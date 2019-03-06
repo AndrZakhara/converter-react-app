@@ -1,12 +1,19 @@
 {
   "env": {
-    "browser": true
+    "browser": true,
+    "es6": true
   },
   "extends": ["airbnb", "prettier", "prettier/react"],
   "parser": "babel-eslint",
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "react"],
   "rules": {
     "react/prop-types": 0,
+    "indent" : [ "error", 2, { "SwitchCase": 1 }],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0,
+    "no-console" : 0,
     "react/jsx-filename-extension": [
       1,
       {
