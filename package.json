@@ -40,9 +40,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "babel-eslint": "^8.2.6",
-    "eslint": "^4.19.1",
-   
+    "babel-eslint": "9.0.0",
+    "eslint": "5.12.0",
     "redux-devtools-extension": "^2.13.8"
   }
 }
