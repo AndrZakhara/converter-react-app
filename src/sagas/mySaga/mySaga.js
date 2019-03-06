@@ -1,4 +1,3 @@
-/* example */
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import Api from '...'
 

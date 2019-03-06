@@ -1,9 +1,5 @@
 import React, { Component, Fragment }  from 'react';
-import Header from './components/Header';
-import Home from './components/Home';
-import LoginForm from './components/LoginForm';
-import News from './components/News';
-import Profile from './components/Profile';
+import { Header, Home, LoginForm, News, Profile } from './components';
 import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
@@ -17,7 +13,7 @@ class App extends Component {
           <Route path = '/login' component = {LoginForm} />
           <Route path = '/news' component = {News} />
           <Route path = '/profile' component = {Profile} />
-        </Switch> 
+        </Switch>
       </Fragment>      
     );
   }

@@ -1,6 +1,6 @@
 import {
 MY_ACTION
-} from '../actions/myAction';
+} from '../../actions/myAction';
 
 const initialState = {
   store: 'myStore'
