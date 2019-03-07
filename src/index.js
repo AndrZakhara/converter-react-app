@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 import store from './store/configureStore';
-import Firebase, { FirebaseContext } from './utils/firebase';
+import Firebase, { FirebaseContext } from './api/firebase';
 
 ReactDOM.render(
   <BrowserRouter>
