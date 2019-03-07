@@ -12,7 +12,7 @@ class Footer extends Component {
         <Grid className={classes.subFooter} item xs={12}>
           <Typography
             className={classes.footerText}
-            variant="subheading"
+            variant='subheading'
             component={'span'}
           >
             © {currentYear} CHISW, Inc.
