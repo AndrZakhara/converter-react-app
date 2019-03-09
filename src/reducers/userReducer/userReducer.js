@@ -1,22 +1,24 @@
-import {
-  MY_ACTION,
-} from '../../actions/myAction';
+import * as actions from '../../actions';
 
-  const initialState = {
-    store: 'myStore'
-  };
+const initialState = { store: 'myStore' };
 
-function temporaryReducer(state = initialState, action) {
+function userReducer(state = initialState, action) {
   switch (action.type) {
-    case MY_ACTION:
+    case actions.GET_ALL_USERS:
       return {
         ...state,
-        store: action.item
-      }
+        store: action.item,
+      };
+
+    case actions.RECIVE_ALL_USERS:
+      return {
+        ...state,
+        userList: action.payload,
+      };
 
     default:
-      return state
+      return state;
   }
 }
-  
-  export default temporaryReducer;
+
+export default userReducer;
