@@ -1,7 +1,7 @@
-import React, { Component, Fragment }  from 'react';
-import { Header, Home, LoginForm, News, Profile } from './components';
+import React, { Component, Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Footer from './components/Footer';
+import { Header, Home, LoginForm, News, Profile, Footer } from './components';
+import { Admin } from './pages';
 
 class App extends Component {
   render() {
@@ -9,11 +9,11 @@ class App extends Component {
       <Fragment>
         <Header />
         <Switch>
-          <Route exact path = '/' 
-          component = {Home} />
+          <Route exact path = '/' component={Home} />
           <Route path = '/login' component = {LoginForm} />
           <Route path = '/news' component = {News} />
           <Route path = '/profile' component = {Profile} />
+          <Route path = '/administrator' component = {Admin} />
         </Switch>
         <Footer />
       </Fragment>      
