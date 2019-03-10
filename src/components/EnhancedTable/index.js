@@ -1,14 +1,3 @@
-// import React from 'react';
-
-// const Home = () => {
-//   return (
-//     <div className = 'content'>
-//       <h2>Main page</h2>
-//     </div>
-//   );
-// };
-
-// export default Home;
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,6 +12,7 @@ import {
   Tooltip,
   TableCell
 } from '@material-ui/core';
+import './style.css';
 
 let counter = 0;
 function createData(date, from, ammFrom, to, ammTo) {
@@ -68,7 +58,7 @@ class EnhancedTableHead extends React.Component {
   };
 
   render() {
-    const { order, orderBy} = this.props;
+    const { order, orderBy } = this.props;
 
     return (
       <TableHead>
@@ -194,7 +184,7 @@ class EnhancedTable extends React.Component {
               {stableSort(data, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
-                 
+
                   return (
                     <TableRow hover>
                       <TableCell component="th" scope="row" padding="none">
