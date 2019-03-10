@@ -1,13 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 
-const styles = theme => ({
+const styles = () => ({
   itemListPadding: {
     padding: '2px 16px',
   },
@@ -34,6 +33,17 @@ const UserListItem = props => {
   );
 };
 
-UserListItem.propTypes = {};
+UserListItem.propTypes = {
+  classes: PropTypes.object,
+  userItem: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    phone: PropTypes.string,
+    email: PropTypes.string,
+    role: PropTypes.string,
+    ava: PropTypes.array
+  }),
+  id: PropTypes.string.isRequired,
+};
 
 export default withStyles(styles)(UserListItem);
