@@ -120,3 +120,123 @@ const styles = theme => ({
     overflowX: 'auto',
   },
 });
+
+
+class EnhancedTable extends React.Component {
+  state = {
+    order: 'asc',
+    orderBy: 'date',
+    selected: [],
+    data: [
+      createData('10/11/12', 'USD', 200, 'EUR', 187),
+      createData('10/10/11', 'UAH', 200, 'USD', 8),
+      createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
+      createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
+      createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
+      createData('10/11/12', 'USD', 200, 'EUR', 187),
+      createData('10/10/11', 'UAH', 200, 'USD', 8),
+      createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
+      createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
+      createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
+      createData('10/10/11', 'UAH', 200, 'USD', 8),
+      createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
+      createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
+      createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
+      createData('10/11/12', 'USD', 200, 'EUR', 187),
+      createData('10/10/11', 'UAH', 200, 'USD', 8),
+      createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
+      createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
+      createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
+    ],
+    page: 0,
+    rowsPerPage: 5,
+  };
+
+  handleRequestSort = (event, property) => {
+    const orderBy = property;
+    let order = 'desc';
+
+    if (this.state.orderBy === property && this.state.order === 'desc') {
+      order = 'asc';
+    }
+
+    this.setState({ order, orderBy });
+  };
+
+
+  handleChangePage = (event, page) => {
+    this.setState({ page });
+  };
+
+  handleChangeRowsPerPage = event => {
+    this.setState({ rowsPerPage: event.target.value });
+  };
+
+  isSelected = id => this.state.selected.indexOf(id) !== -1;
+
+  render() {
+    const { classes } = this.props;
+    const { data, order, orderBy, rowsPerPage, page } = this.state;
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+
+    return (
+      <Paper className={classes.root}>
+        <h1>History of Converting values</h1>
+        <div className={classes.tableWrapper}>
+          <Table className={classes.table} aria-labelledby="tableTitle">
+            <EnhancedTableHead
+              order={order}
+              orderBy={orderBy}
+              onRequestSort={this.handleRequestSort}
+              rowCount={data.length}
+            />
+            <TableBody>
+              {stableSort(data, getSorting(order, orderBy))
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(n => {
+                 
+                  return (
+                    <TableRow hover>
+                      <TableCell component="th" scope="row" padding="none">
+                        {n.date}
+                      </TableCell>
+                      <TableCell align="right">{n.from}</TableCell>
+                      <TableCell align="right">{n.ammFrom}</TableCell>
+                      <TableCell align="right">{n.to}</TableCell>
+                      <TableCell align="right">{n.ammTo}</TableCell>
+                    </TableRow>
+                  );
+                })}
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 49 * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={data.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          backIconButtonProps={{
+            'aria-label': 'Previous Page',
+          }}
+          nextIconButtonProps={{
+            'aria-label': 'Next Page',
+          }}
+          onChangePage={this.handleChangePage}
+          onChangeRowsPerPage={this.handleChangeRowsPerPage}
+        />
+      </Paper>
+    );
+  }
+}
+
+EnhancedTable.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(EnhancedTable);
