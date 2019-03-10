@@ -1,8 +1,8 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component, Fragment} from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Header, Home, LoginForm, Footer } from './components';
-import { Admin, Converter, Profile, SignUp } from './pages';
+import { Header, LoginForm, Footer } from './components';
+import { Admin, Converter, Profile, SignUp, Home } from './pages';
 
 class App extends Component {
   render() {
@@ -15,7 +15,7 @@ class App extends Component {
           <Route path="/admin-panel" component={Admin} />
           <Route path="/profile" component={Profile} />
           <Route path="/converter" component={Converter} />
-          <Route path = '/sign-up' component = {SignUp} />
+          <Route path="/sign-up" component={SignUp} />
         </Switch>
         {/* {true && <Redirect to="/sign-up" />} */}
         <Footer />

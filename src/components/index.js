@@ -1,7 +1,7 @@
 import Header from './Header';
-import Home from './Home';
+import EnhancedTable from './EnhancedTable';
 import LoginForm from './LoginForm';
 import Footer from './Footer';
 import SignUp from './SignUp';
 
-export { Header, Home, LoginForm, SignUp, Footer };
+export { Header, EnhancedTable, LoginForm, SignUp, Footer };

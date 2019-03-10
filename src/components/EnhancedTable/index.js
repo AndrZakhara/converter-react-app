@@ -1,14 +1,3 @@
-// import React from 'react';
-
-// const Home = () => {
-//   return (
-//     <div className = 'content'>
-//       <h2>Main page</h2>
-//     </div>
-//   );
-// };
-
-// export default Home;
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,12 +12,9 @@ import {
   Tooltip,
   TableCell
 } from '@material-ui/core';
+import { dataTabl } from '../../mocks/db';
+import './style.css';
 
-let counter = 0;
-function createData(date, from, ammFrom, to, ammTo) {
-  counter += 1;
-  return { id: counter, date, from, ammFrom, to, ammTo };
-}
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -68,7 +54,7 @@ class EnhancedTableHead extends React.Component {
   };
 
   render() {
-    const { order, orderBy} = this.props;
+    const { order, orderBy } = this.props;
 
     return (
       <TableHead>
@@ -122,32 +108,13 @@ const styles = theme => ({
 });
 
 
+// eslint-disable-next-line react/no-multi-comp
 class EnhancedTable extends React.Component {
   state = {
     order: 'asc',
     orderBy: 'date',
     selected: [],
-    data: [
-      createData('10/11/12', 'USD', 200, 'EUR', 187),
-      createData('10/10/11', 'UAH', 200, 'USD', 8),
-      createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
-      createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
-      createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
-      createData('10/11/12', 'USD', 200, 'EUR', 187),
-      createData('10/10/11', 'UAH', 200, 'USD', 8),
-      createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
-      createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
-      createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
-      createData('10/10/11', 'UAH', 200, 'USD', 8),
-      createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
-      createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
-      createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
-      createData('10/11/12', 'USD', 200, 'EUR', 187),
-      createData('10/10/11', 'UAH', 200, 'USD', 8),
-      createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
-      createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
-      createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
-    ],
+    data: dataTabl,
     page: 0,
     rowsPerPage: 5,
   };
@@ -194,7 +161,7 @@ class EnhancedTable extends React.Component {
               {stableSort(data, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
-                 
+
                   return (
                     <TableRow hover>
                       <TableCell component="th" scope="row" padding="none">

@@ -5,7 +5,7 @@ const users = {
     phone: '380982386289',
     email: 'petya@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
   'Jane@gmail.com': {
     firstName: 'Jane',
@@ -13,7 +13,7 @@ const users = {
     phone: '380672386289',
     email: 'Krok@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
   'user6@gmail.com': {
     firstName: 'Dick',
@@ -29,7 +29,7 @@ const users = {
     phone: '380672386289',
     email: 'kat1@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
   'user4@gmail.com': {
     firstName: 'Dan',
@@ -37,7 +37,7 @@ const users = {
     phone: '380672386289',
     email: 'polyak@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
   'user3@gmail.com': {
     firstName: 'Greg',
@@ -45,7 +45,7 @@ const users = {
     phone: '380672386289',
     email: 'vasya@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
   'user2@gmail.com': {
     firstName: 'Vasya',
@@ -53,7 +53,7 @@ const users = {
     phone: '380672386289',
     email: 'vasya@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
   'user1@gmail.com': {
     firstName: 'Vasya',
@@ -61,7 +61,7 @@ const users = {
     phone: '380672386289',
     email: 'vasya@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
 };
 
@@ -116,8 +116,34 @@ const data = {
     },
   ],
 };
+let counter = 0;
+function createData(date, from, ammFrom, to, ammTo) {
+  counter += 1;
+  return { id: counter, date, from, ammFrom, to, ammTo };
+}
+const dataTabl = [
+  createData('10/11/12', 'USD', 200, 'EUR', 187),
+  createData('10/10/11', 'UAH', 200, 'USD', 8),
+  createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
+  createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
+  createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
+  createData('10/11/12', 'USD', 200, 'EUR', 187),
+  createData('10/10/11', 'UAH', 200, 'USD', 8),
+  createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
+  createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
+  createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
+  createData('10/10/11', 'UAH', 200, 'USD', 8),
+  createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
+  createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
+  createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
+  createData('10/11/12', 'USD', 200, 'EUR', 187),
+  createData('10/10/11', 'UAH', 200, 'USD', 8),
+  createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
+  createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
+  createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
+];
 
-export { users, data };
+export { users, data, dataTabl };
 
 // this.listOfUsers = [
 //   {"id":1,"name":"Alex","description":"alex@gmail.com","field3":"user","field4":"field4 1","field5 ":"field5 1"},
