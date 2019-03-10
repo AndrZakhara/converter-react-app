@@ -1,6 +1,7 @@
 import React, { Component, Fragment }  from 'react';
 import { Header, Home, LoginForm, News, Profile } from './components';
 import { Switch, Route } from 'react-router-dom';
+import Footer from './components/Footer';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
           <Route path = '/news' component = {News} />
           <Route path = '/profile' component = {Profile} />
         </Switch>
+        <Footer />
       </Fragment>      
     );
   }

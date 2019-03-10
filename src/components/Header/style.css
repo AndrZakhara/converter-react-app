@@ -1,0 +1,22 @@
+.navbar a {
+    text-decoration: none;
+  }
+  
+  .rightButton {
+    color: #fff !important;
+  }
+  
+  .rightButton a {
+    text-decoration: none !important;
+  }
+  
+  @media (max-width: 600px) {
+    .rightButton {
+      padding: 8px !important;
+      min-width: 24px !important;
+    }
+  
+    .rightButton .text {
+      display: none;
+    }
+  }
