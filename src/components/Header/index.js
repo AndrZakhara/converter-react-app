@@ -5,7 +5,7 @@ import {
   Toolbar,
   Typography,
   withStyles,
-  Button
+  Button,
 } from '@material-ui/core';
 import { Person, ExitToApp } from '@material-ui/icons';
 
@@ -13,15 +13,15 @@ import './style.css';
 
 const style = {
   toolbar: {
-    display: 'flex'
+    display: 'flex',
   },
   brand: {
     flexGrow: 1,
-    textDecoration: 'none'
+    textDecoration: 'none',
   },
   title: {
-    color: '#fff'
-  }
+    color: '#fff',
+  },
 };
 
 const Header = ({
@@ -32,20 +32,20 @@ const Header = ({
   login
 }) => (
   <div>
-    <AppBar position='static' className='navbar'>
+    <AppBar position="static" className="navbar">
       <Toolbar className={classes.toolbar}>
         {!isAuthenticated ? (
           <div className={classes.brand}>
-            <Link to='/home'>
+            <Link to="/home">
               <Button>
-                <Typography variant='title' className={classes.title}>
+                <Typography variant="title" className={classes.title}>
                   LOGO
                 </Typography>
               </Button>
             </Link>
           </div>
         ) : (
-          <Typography variant='title' className={classes.title}>
+          <Typography variant="title" className={classes.title}>
             LOGO
           </Typography>
         )}
@@ -53,45 +53,45 @@ const Header = ({
           <Fragment>
             {!isAdmin ? (
               <Fragment>
-              <Link to='/admin-panel'>
-              <Button  className = 'rightButton'>
-                <span className='text'>Admin Panel</span>
-              </Button>
-              </Link>
-              <Link to='/convertor'>
-                <Button className = 'rightButton'>
-                  <span className='text'>Convertor</span>
-                </Button>
-              </Link>
-              <Link to='/weather'>
-                <Button  className = 'rightButton'>
-                  <span className='text'>Weather</span>
-                </Button>
-              </Link>
+                <Link to='/admin-panel'>
+                  <Button  className = 'rightButton'>
+                    <span className='text'>Admin Panel</span>
+                  </Button>
+                </Link>
+                <Link to='/convertor'>
+                  <Button className = 'rightButton'>
+                    <span className='text'>Convertor</span>
+                  </Button>
+                </Link>
+                <Link to='/weather'>
+                  <Button  className = 'rightButton'>
+                    <span className='text'>Weather</span>
+                  </Button>
+                </Link>
               </Fragment>
             ) : (
               <Fragment>
-              <Link to={`/convertor`}>
-                <Button  className = 'rightButton'>
-                  <span className='text'>Convertor</span>
-                </Button>
-              </Link>
-              <Link to={`/weather`}>
-                <Button  className = 'rightButton'>
-                  <span className='text'>Weather</span>
-                </Button>
-              </Link>
+                <Link to="/convertor">
+                  <Button  className = 'rightButton'>
+                    <span className='text'>Convertor</span>
+                  </Button>
+                </Link>
+                <Link to="/weather">
+                  <Button  className = 'rightButton'>
+                    <span className='text'>Weather</span>
+                  </Button>
+                  </Link>
               </Fragment>
             )}
-            <Link to='/profile'>
-              <Button className='rightButton'>
+            <Link to="/profile">
+              <Button className="rightButton">
                 <Person />
-                <span className='text'>{login}</span>
+                <span className="text">{login}</span>
               </Button>
             </Link>
-            <Button onClick={onLogout} className='rightButton'>
+            <Button onClick={onLogout} className="rightButton">
               <ExitToApp />
-              <span className='text'>Logout</span>
+              <span className="text">Logout</span>
             </Button>
           </Fragment>
         )}

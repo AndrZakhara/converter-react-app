@@ -13,7 +13,7 @@ class App extends Component {
           <Route path = '/login' component = {LoginForm} />
           <Route path = '/news' component = {News} />
           <Route path = '/profile' component = {Profile} />
-          <Route path = '/administrator' component = {Admin} />
+          <Route path = '/admin-panel' component = {Admin} />
         </Switch>
         <Footer />
       </Fragment>      
