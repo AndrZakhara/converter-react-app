@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React from 'react';
-=======
-import React, { Fragment } from 'react';
->>>>>>> 7ed3d222f680af26fb4f1cd38614e5df8f5dad95
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -34,11 +30,7 @@ const UserList = props => {
 };
 
 UserList.propTypes = {
-<<<<<<< HEAD
   // userList: PropTypes.object,
-=======
-  userList: PropTypes.object,
->>>>>>> 7ed3d222f680af26fb4f1cd38614e5df8f5dad95
   classes: PropTypes.object.isRequired,
 };
 
