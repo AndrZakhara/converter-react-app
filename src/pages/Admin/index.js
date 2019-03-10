@@ -5,9 +5,11 @@ import { withStyles } from '@material-ui/core/styles';
 import { UserList, UserInfo } from '../../components/Admin';
 import { getAllUsers } from '../../actions';
 
+const adminPageHeight = window.innerHeight - 58 - 64;
 const styles = () => ({
   wrapper: {
     display: 'flex',
+    minHeight: adminPageHeight,
   },
 });
 
@@ -18,7 +20,6 @@ class Admin extends Component {
 
   render() {
     const { userList, classes } = this.props;
-
     return (
       <div className={classes.wrapper}>
         <UserList userList={userList} />

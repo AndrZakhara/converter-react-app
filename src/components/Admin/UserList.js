@@ -8,7 +8,7 @@ const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 320,
-    // backgroundColor: theme.palette.background.paper,
+    overflowY: 'scroll',
   },
 });
 
