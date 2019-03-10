@@ -3,7 +3,7 @@ import * as actions from '../../actions';
 import { users } from '../../db';
 
 export function* getAllUser() {
-  const userList = yield call(() => users);
+  const userList = yield call(() => users); // async query here
   yield put(actions.reciveAllUser(userList));
 }
 
@@ -11,6 +11,6 @@ export function* watchGetAllUser() {
   yield takeEvery(actions.GET_ALL_USERS, getAllUser);
 }
 
-export default function* rootSaga() {
-  yield all([fork(getAllUser), fork(watchGetAllUser)]);
+export default function* usersSaga() {
+  yield call(watchGetAllUser);
 }
