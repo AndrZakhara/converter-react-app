@@ -61,3 +61,62 @@ const rows = [
   { id: 'to', numeric: true, disablePadding: false, label: 'Currancy To' },
   { id: 'ammTo', numeric: true, disablePadding: false, label: 'Ammount' },
 ];
+
+class EnhancedTableHead extends React.Component {
+  createSortHandler = property => event => {
+    this.props.onRequestSort(event, property);
+  };
+
+  render() {
+    const { order, orderBy} = this.props;
+
+    return (
+      <TableHead>
+        <TableRow>
+          {rows.map(
+            row => (
+              <TableCell
+                key={row.id}
+                align={row.numeric ? 'right' : 'left'}
+                padding={row.disablePadding ? 'none' : 'default'}
+                sortDirection={orderBy === row.id ? order : false}>
+                <Tooltip
+                  title="Sort"
+                  placement={row.numeric ? 'bottom-end' : 'bottom-start'}
+                  enterDelay={300}>
+                  <TableSortLabel
+                    active={orderBy === row.id}
+                    direction={order}
+                    onClick={this.createSortHandler(row.id)}>
+                    {row.label}
+                  </TableSortLabel>
+                </Tooltip>
+              </TableCell>
+            ),
+            this,
+          )}
+        </TableRow>
+      </TableHead>
+    );
+  }
+}
+
+EnhancedTableHead.propTypes = {
+  onRequestSort: PropTypes.func.isRequired,
+  order: PropTypes.string.isRequired,
+  orderBy: PropTypes.string.isRequired,
+  rowCount: PropTypes.number.isRequired,
+};
+
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+  },
+  table: {
+    minWidth: 1020,
+  },
+  tableWrapper: {
+    overflowX: 'auto',
+  },
+});
