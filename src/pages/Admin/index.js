@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import { UserList, UserInfo } from '../../components/Admin';
 import { getAllUsers } from '../../actions';
+
+const styles = () => ({
+  wrapper: {
+    display: 'flex',
+  },
+});
 
 class Admin extends Component {
   componentDidMount() {
@@ -10,10 +17,10 @@ class Admin extends Component {
   }
 
   render() {
-    const { userList } = this.props;
+    const { userList, classes } = this.props;
 
     return (
-      <div>
+      <div className={classes.wrapper}>
         <UserList userList={userList} />
         <UserInfo />
       </div>
@@ -30,4 +37,4 @@ export default connect(
     userList: state.userReducer.userList,
   }),
   { getAllUsers },
-)(Admin);
+)(withStyles(styles)(Admin));
