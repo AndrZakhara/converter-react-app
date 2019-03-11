@@ -1,19 +1,17 @@
 import * as actions from '../../actions';
 
-const initialState = { store: 'myStore' };
-
-function userReducer(state = initialState, action) {
+function userReducer(state = {}, action) {
   switch (action.type) {
-    case actions.GET_ALL_USERS:
-      return {
-        ...state,
-        store: action.item,
-      };
-
     case actions.RECIVE_ALL_USERS:
       return {
         ...state,
         userList: action.payload,
+      };
+
+    case actions.SET_SELECTED_USER:
+      return {
+        ...state,
+        selectedUser: action.payload,
       };
 
     default:

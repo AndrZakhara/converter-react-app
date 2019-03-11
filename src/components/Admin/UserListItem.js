@@ -13,12 +13,12 @@ const styles = () => ({
 });
 
 const UserListItem = props => {
-  const { classes, userItem, id } = props;
+  const { classes, userItem, id, setSelectedUser } = props;
   return (
     <ListItem
       button
       className={classes.itemListPadding}
-      onClick={() => console.log(id)}>
+      onClick={() => setSelectedUser(id)}>
       <ListItemIcon>
         <Avatar
           src="https://randomuser.me/api/portraits/women/44.jpg"

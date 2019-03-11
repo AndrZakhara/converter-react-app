@@ -15,6 +15,54 @@ const users = {
     role: 'user',
     ava: [], // массив байт
   },
+  'vasya123@gmail.com': {
+    firstName: 'Vasya',
+    lastName: 'Poopkin',
+    phone: '380672386289',
+    email: 'vasya@gmail.com',
+    role: 'user',
+    ava: [], // массив байт
+  },
+  'user5@gmail.com': {
+    firstName: 'Vasya',
+    lastName: 'Poopkin',
+    phone: '380672386289',
+    email: 'vasya@gmail.com',
+    role: 'user',
+    ava: [], // массив байт
+  },
+  'user4@gmail.com': {
+    firstName: 'Vasya',
+    lastName: 'Poopkin',
+    phone: '380672386289',
+    email: 'vasya@gmail.com',
+    role: 'user',
+    ava: [], // массив байт
+  },
+  'user3@gmail.com': {
+    firstName: 'Vasya',
+    lastName: 'Poopkin',
+    phone: '380672386289',
+    email: 'vasya@gmail.com',
+    role: 'user',
+    ava: [], // массив байт
+  },
+  'user2@gmail.com': {
+    firstName: 'Vasya',
+    lastName: 'Poopkin',
+    phone: '380672386289',
+    email: 'vasya@gmail.com',
+    role: 'user',
+    ava: [], // массив байт
+  },
+  'user1@gmail.com': {
+    firstName: 'Vasya',
+    lastName: 'Poopkin',
+    phone: '380672386289',
+    email: 'vasya@gmail.com',
+    role: 'user',
+    ava: [], // массив байт
+  },
 };
 
 const data = {
