@@ -2,22 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import UserListItem from './UserListItem';
 
-import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import DirectionsIcon from '@material-ui/icons/Directions';
+import UserListItem from './UserListItem';
+import { Paper } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 320,
-    overflowY: 'scroll',
     maxHeight: '70%',
+  },
+  searchWrapper: {
+    display: 'flex',
+    paddingLeft: '20px',
+    alighnItems: 'center',
+    margin: '0px 3px 5px 8px',
+  },
+  listWrapper: {
+    overflowY: 'scroll',
+    maxHeight: '300',
+    margin: '0px 3px 5px 8px',
+  },
+  input: {
+    marginLeft: 8,
+    flex: 1,
+  },
+  divider: {
+    width: 1,
+    height: 36,
+    margin: 4,
   },
 });
 
@@ -38,15 +56,13 @@ const UserList = props => {
 
   return (
     <List component="nav" className={classes.root}>
-      <Paper elevation={1}>
+      <Paper className={classes.searchWrapper}>
         <InputBase className={classes.input} placeholder="Search user" />
-        <IconButton className={classes.iconButton} aria-label="Search">
+        <Button disabled aria-label="Search">
           <SearchIcon />
-        </IconButton>
-        <Divider className={classes.divider} />
-      
-      {listItems}
+        </Button>
       </Paper>
+      <Paper className={classes.listWrapper}>{listItems}</Paper>
     </List>
   );
 };
