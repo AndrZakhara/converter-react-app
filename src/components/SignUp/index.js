@@ -1,21 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { Card, CircularProgress, withStyles } from '@material-ui/core';
-import { CardContent, ListItem, List, Button } from '@material-ui/core';
+import { withStyles, Button  } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import classNames from 'classnames';
-import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 
 import { withFirebase } from '../../api/firebase';
-
-const SignUpPage = () => (
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm />
-  </div>
-);
 
 const INITIAL_STATE = {
   username: '',
@@ -62,32 +52,96 @@ const styles = theme => ({
   }
 });
 
-function SignUp(props) {
-  // const {
-  //   username,
-  //   email,
-  //   passwordOne,
-  //   passwordTwo,
-  //   error,
-  // } = this.state;
 
-  // const isInvalid =
-  //   passwordOne !== passwordTwo ||
-  //   passwordOne === '' ||
-  //   email === '' ||
-  //   username === '';
+class SignUpFormBase extends Component {
+  constructor(props) {
+    super(props);
 
-  const { classes } = props;
+    this.state = { ...INITIAL_STATE };
+  }
+  
+  onSubmit = event => {
+    const { username, email, passwordOne } = this.state;
+
+    this.props.firebase
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then(authUser => {
+        // Create a user in your Firebase realtime database
+        return this.props.firebase.user(authUser.user.uid).set({
+          username,
+          email
+        });
+      })
+      .then(() => {
+        return this.props.firebase.doSendEmailVerification();
+      })
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push('/');
+      })
+      .catch(error => {
+        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
+          error.message = ERROR_MSG_ACCOUNT_EXISTS;
+        }
+
+        this.setState({ error });
+      });
+
+    event.preventDefault();
+  };
+
+  onChange = event => {
+    console.log(111);
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  onChangeCheckbox = event => {
+    this.setState({ [event.target.name]: event.target.checked });
+  };
+
+  render() {
+  const {
+    username,
+    email,
+    passwordOne,
+    passwordTwo,
+    phone,
+    error,
+  } = this.state;
+
+  const isInvalid =
+    passwordOne === '' ||
+    passwordTwo === '' ||
+    passwordTwo !== passwordOne ||
+    email === '' ||
+    username === '' ||
+    phone === '';
+    console.log(passwordOne, passwordOne, email, username)
+
+  const { classes } = this.props;
 
   return (
   <div className = {classes.formContainer}>
     <Paper className={classes.form}>
-      <form noValidate autoComplete="off">
+      <form noValidate autoComplete="off" onSubmit={this.onSubmit}>
+        <TextField
+          id="standard-password-input"
+          label="UserName"
+          name="username"
+          required
+          className={classes.textField}
+          onChange={this.onChange}
+          type="text"
+          autoComplete="current-password"
+          margin="normal"
+        />
         <TextField
           id="standard-password-input"
           label="Email"
+          name="email"
           required
           className={classes.textField}
+          onChange={this.onChange}
           type="email"
           autoComplete="current-password"
           margin="normal"
@@ -96,8 +150,22 @@ function SignUp(props) {
         <TextField
           id="standard-password-input"
           label="Password"
+          name="passwordOne"
           required
           className={classes.textField}
+          onChange={this.onChange}
+          type="password"
+          autoComplete="current-password"
+          margin="normal"
+        />
+
+        <TextField
+          id="standard-password-input"
+          label="Password"
+          name="passwordTwo"
+          required
+          className={classes.textField}
+          onChange={this.onChange}
           type="password"
           autoComplete="current-password"
           margin="normal"
@@ -107,30 +175,30 @@ function SignUp(props) {
           required
           id="standard-required"
           label="Phone"
+          name="phone"
           className={classes.textField}
+          onChange={this.onChange}
+          type="number"
           margin="normal"
         />
 
-        <Button className={classes.submitBtn} variant="contained" color="primary">
+        <Button disabled={isInvalid} type='submit' className={classes.submitBtn} variant="contained" color="primary">
           Register
         </Button>
+
+        {error && <p>{error.message}</p>}
       </form>
     </Paper>
   </div>
   );
+  }
 }
-
-const SignUpLink = () => (
-  <p>
-    Don't have an account? <Link to={'sign-up'}>Sign Up</Link>
-  </p>
-);
 
 const SignUpForm = compose(
   withRouter,
   withFirebase,
-)(SignUp);
+)(SignUpFormBase);
 
-export default withStyles(styles)(SignUp);
+export default withStyles(styles)(SignUpFormBase);
 
-export { SignUpForm, SignUpLink };
+export { SignUpForm };
