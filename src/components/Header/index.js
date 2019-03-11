@@ -49,7 +49,7 @@ const Header = ({
             LOGO
           </Typography>
         )}
-        {!isAuthenticated && (
+        {isAuthenticated ? (
           <Fragment>
             {!isAdmin ? (
               <Fragment>
@@ -93,6 +93,19 @@ const Header = ({
               <ExitToApp />
               <span className="text">Logout</span>
             </Button>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <Link to={`/Sign-In`}>
+              <Button  className = 'rightButton'>
+                <span className='text'>Sign-In</span>
+              </Button>
+            </Link>
+            <Link to={`/Sign-Up`}>
+              <Button  className = 'rightButton'>
+                <span className='text'>Sign-Up</span>
+              </Button>
+            </Link>
           </Fragment>
         )}
       </Toolbar>
