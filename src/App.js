@@ -1,11 +1,8 @@
-import React, { Component, Fragment }  from 'react';
-import { Header, Home, LoginForm, News, Profile } from './components';
-import Converter from './pages/Converter';
->>>>>>> feature/converter, *add component currency;
+import React, { Component, Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Header, Home, LoginForm, News, Profile, Footer } from './components';
+import { Converter } from './pages';
 import { Admin } from './pages';
-
 class App extends Component {
   render() {
     return (
@@ -19,7 +16,7 @@ class App extends Component {
           <Route path = '/admin-panel' component = {Admin} />
           <Route path = '/converter' component = {Converter} />
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
       </Fragment>      
     );
   }
