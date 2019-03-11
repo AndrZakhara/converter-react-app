@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-// import { mySaga } from '../sagas';
+import watchGetAllCurrencies from '../sagas/currencySaga';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
 import rootReducer from '../reducers';
@@ -14,6 +14,6 @@ const store = createStore(
   )
 );
 
-// sagaMiddleware.run(mySaga);
+sagaMiddleware.run(watchGetAllCurrencies);
 
 export default store;

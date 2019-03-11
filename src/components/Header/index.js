@@ -58,9 +58,9 @@ const Header = ({
                 <span className='text'>Admin Panel</span>
               </Button>
               </Link>
-              <Link to='/convertor'>
+              <Link to='/converter'>
                 <Button className = 'rightButton'>
-                  <span className='text'>Convertor</span>
+                  <span className='text'>Converter</span>
                 </Button>
               </Link>
               <Link to='/weather'>
@@ -71,9 +71,9 @@ const Header = ({
               </Fragment>
             ) : (
               <Fragment>
-              <Link to={`/convertor`}>
+              <Link to={`/converter`}>
                 <Button  className = 'rightButton'>
-                  <span className='text'>Convertor</span>
+                  <span className='text'>Converter</span>
                 </Button>
               </Link>
               <Link to={`/weather`}>
