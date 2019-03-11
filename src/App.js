@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component, Fragment } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Header, Home, LoginForm, Footer } from './components';
-import { Admin, Converter, Profile  } from './pages';
-=======
-import React, { Component, Fragment }  from 'react';
-import { Header, Home, LoginForm, News, Profile, Footer, SignUp } from './components';
-import { Switch, Route, Redirect } from 'react-router-dom';
->>>>>>> feature/Sign-up make onSubmit handler
+import { Admin, Converter, Profile, SignUp } from './pages';
 
 class App extends Component {
   render() {

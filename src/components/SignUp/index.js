@@ -1,30 +1,15 @@
-import React, { Component, Fragment } from 'react';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
+
+  
+import React from 'react';
+import { reduxForm, Field } from "redux-form";
 import { withStyles, Button  } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
+import Input from "../Input";
 
-import { withFirebase } from '../../api/firebase';
-
-const INITIAL_STATE = {
-  username: '',
-  email: '',
-  passwordOne: '',
-  passwordTwo: '',
-  error: null,
-};
-
-const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
-
-const ERROR_MSG_ACCOUNT_EXISTS = `
-  An account with this E-Mail address already exists.
-  Try to login with this account instead. If you think the
-  account is already used from one of the social logins, try
-  to sign in with one of them. Afterward, associate your accounts
-  on your personal account page.
-`;
-
+import AccountIcon from "@material-ui/icons/AccountCircle";
+import MailIcon from "@material-ui/icons/Mail";
+import Security from "@material-ui/icons/Security";
+import Phone from "@material-ui/icons/Phone";
 
 const styles = theme => ({
   button: {
@@ -53,146 +38,66 @@ const styles = theme => ({
 });
 
 
-class SignUpFormBase extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { ...INITIAL_STATE };
-  }
-  
-  onSubmit = event => {
-    event.preventDefault();
-    const { username, email, passwordOne } = this.state;
-    debugger;
-
-    this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(() => {
-        debugger;
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push('/');
-      })
-      .catch(error => {
-        debugger;
-
-        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
-          error.message = ERROR_MSG_ACCOUNT_EXISTS;
-        }
-
-        this.setState({ error });
-      });
-
-  };
-
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  onChangeCheckbox = event => {
-    this.setState({ [event.target.name]: event.target.checked });
-  };
-
-  render() {
-  const {
-    username,
-    email,
-    passwordOne,
-    passwordTwo,
-    phone,
-    error,
-  } = this.state;
-
-  const isInvalid =
-    passwordOne === '' ||
-    passwordTwo === '' ||
-    passwordTwo !== passwordOne ||
-    email === '' ||
-    username === '' ||
-    phone === '';
-    console.log(passwordOne, passwordOne, email, username)
-
-  const { classes } = this.props;
+function SignUpFormBase(props) {
+  const { classes, isInvalid } = props;
+  console.log(isInvalid);
 
   return (
   <div className = {classes.formContainer}>
     <Paper className={classes.form}>
-      <form noValidate autoComplete="off" onSubmit={this.onSubmit}>
-        <TextField
-          id="standard-password-input"
+      <form noValidate autoComplete="off" onSubmit={props.onSubmit}>
+        <Field
           label="UserName"
           name="username"
-          required
           className={classes.textField}
-          onChange={this.onChange}
-          type="text"
-          autoComplete="current-password"
-          margin="normal"
-        />
-        <TextField
-          id="standard-password-input"
+          component={Input}
+          Icon={AccountIcon}
+          type='text'
+          />
+        <Field
           label="Email"
           name="email"
-          required
           className={classes.textField}
-          onChange={this.onChange}
-          type="email"
-          autoComplete="current-password"
-          margin="normal"
+          Icon={MailIcon}
+          component={Input}
         />
 
-        <TextField
-          id="standard-password-input"
+        <Field
           label="Password"
           name="passwordOne"
-          required
           className={classes.textField}
-          onChange={this.onChange}
-          type="password"
-          autoComplete="current-password"
-          margin="normal"
+          component={Input}
+          Icon={Security}
         />
 
-        <TextField
-          id="standard-password-input"
+        <Field
           label="Password"
           name="passwordTwo"
-          required
           className={classes.textField}
-          onChange={this.onChange}
-          type="password"
-          autoComplete="current-password"
-          margin="normal"
+          component={Input}
+          Icon={Security}
         />
 
-        <TextField
-          required
-          id="standard-required"
+        <Field
           label="Phone"
           name="phone"
           className={classes.textField}
-          onChange={this.onChange}
-          type="number"
-          margin="normal"
+          component={Input}
+          Icon={Phone}
         />
 
         <Button disabled={isInvalid} type='submit' className={classes.submitBtn} variant="contained" color="primary">
           Register
         </Button>
 
-        {error && <p>{error.message}</p>}
+        {props.error && <p>{props.error.message}</p>}
       </form>
     </Paper>
   </div>
   );
-  }
 }
 
-const SignUpForm = compose(
-  withRouter,
-  withFirebase,
-)(SignUpFormBase);
 
-export default withStyles(styles)(SignUpForm);
-// export default SignUpForm;
-
-// export { SignUpForm };
+export default reduxForm({
+  form: "signUp"
+})(withStyles(styles)(SignUpFormBase));
