@@ -98,12 +98,12 @@ const Header = ({
           <Fragment>
             <Link to={`/Sign-In`}>
               <Button  className = 'rightButton'>
-                <span className='text'>Sign-In</span>
+                <span className='text'>Sign In</span>
               </Button>
             </Link>
             <Link to={`/Sign-Up`}>
               <Button  className = 'rightButton'>
-                <span className='text'>Sign-Up</span>
+                <span className='text'>Sign Up</span>
               </Button>
             </Link>
           </Fragment>

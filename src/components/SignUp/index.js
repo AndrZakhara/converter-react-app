@@ -61,25 +61,20 @@ class SignUpFormBase extends Component {
   }
   
   onSubmit = event => {
+    event.preventDefault();
     const { username, email, passwordOne } = this.state;
+    debugger;
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser => {
-        // Create a user in your Firebase realtime database
-        return this.props.firebase.user(authUser.user.uid).set({
-          username,
-          email
-        });
-      })
       .then(() => {
-        return this.props.firebase.doSendEmailVerification();
-      })
-      .then(() => {
+        debugger;
         this.setState({ ...INITIAL_STATE });
         this.props.history.push('/');
       })
       .catch(error => {
+        debugger;
+
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS;
         }
@@ -87,11 +82,9 @@ class SignUpFormBase extends Component {
         this.setState({ error });
       });
 
-    event.preventDefault();
   };
 
   onChange = event => {
-    console.log(111);
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -199,6 +192,7 @@ const SignUpForm = compose(
   withFirebase,
 )(SignUpFormBase);
 
-export default withStyles(styles)(SignUpFormBase);
+export default withStyles(styles)(SignUpForm);
+// export default SignUpForm;
 
-export { SignUpForm };
+// export { SignUpForm };
