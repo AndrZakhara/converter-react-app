@@ -1,5 +1,6 @@
 import React, { Component, Fragment }  from 'react';
-import { Header, Home, LoginForm, News, Profile } from './components';
+import { Header, Home, LoginForm, News } from './components';
+import Profile from './pages/Profile';
 import { Switch, Route } from 'react-router-dom';
 import Footer from './components/Footer';
 
