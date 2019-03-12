@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import {
-  ListItem,
-  Avatar,
-  ListItemText,
-  ListItemIcon,
-} from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import ListItem from '@material-ui/core/ListItem';
+import Avatar from '@material-ui/core/Avatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 const styles = () => ({
   itemListPadding: {

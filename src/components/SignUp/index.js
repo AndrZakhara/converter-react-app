@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from "redux-form";
-import { withStyles, Button  } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Input from "../Input";
 
