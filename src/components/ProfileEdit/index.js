@@ -1,21 +1,21 @@
-import React from "react";
-import { reduxForm, Field } from "redux-form";
-import Input from "../Input/index";
+import React from 'react';
+import { reduxForm, Field } from 'redux-form';
 import {
   Card,
   CardContent,
   CardActions,
   Button,
   withStyles,
-  Typography
-} from "@material-ui/core";
-import { validateProfile } from "../../utils/validate";
+  Typography,
+} from '@material-ui/core';
 
-import AccountIcon from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import DateIcon from "@material-ui/icons/Phone";
+import AccountIcon from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import DateIcon from '@material-ui/icons/Phone';
+import { validateProfile } from '../../utils/validate';
+import Input from '../Input/index';
 
-import styles from "./styles";
+import styles from './styles';
 
 const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
   <div className={classes.container}>
@@ -61,6 +61,6 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
 );
 
 export default reduxForm({
-  form: "editProfile",
-  validate: validateProfile
+  form: 'editProfile',
+  validate: validateProfile,
 })(withStyles(styles)(ProfileEdit));
