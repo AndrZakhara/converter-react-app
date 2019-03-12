@@ -1,16 +1,16 @@
 import { ADD_CURRENCY_ASYNC } from '../../actions/currencyAction';
+import combineEvents from '../../utils/combineEvents';
 
 const initialState = {
   currencies: [],
 };
 
-function currencyReducer(state = initialState, action) {
-  switch (action.type) {
-    case ADD_CURRENCY_ASYNC:
-      return { ...state, currencies: action.payload };
-    default:
-      return state;
-  }
-}
-
-export default currencyReducer;
+export default combineEvents(
+  {
+    [ADD_CURRENCY_ASYNC]: (state, action) => ({
+      ...state,
+      currencies: action.payload,
+    }),
+  },
+  initialState,
+);

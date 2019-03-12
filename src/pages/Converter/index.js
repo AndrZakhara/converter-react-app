@@ -15,6 +15,7 @@ class Converter extends Component {
 
   render() {
     const { currencies } = this.props;
+
     return (
       <div className="converter-wrapper">
         <Currency currencies={currencies} />
@@ -24,6 +25,6 @@ class Converter extends Component {
 }
 
 export default connect(
-  state => ({ currencies: state.currencyReducer.currencies }),
+  state => ({ currencies: state.combineEvents.currencies }),
   { addCurrency, addCurrencyAsync, chooseCurrencyBuy, chooseCurrencySell },
 )(Converter);
