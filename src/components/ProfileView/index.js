@@ -1,15 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable import/no-extraneous-dependencies */
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Typography,
   withStyles,
   Card,
   CardContent,
-  IconButton
-} from "@material-ui/core";
-import EditIcon from "@material-ui/icons/Edit";
+  IconButton,
+} from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
 
-import styles from "./styles";
+import styles from './styles';
 
 const ProfileView = ({ user, classes, toggle }) => (
   <div className={classes.container}>
@@ -21,11 +23,11 @@ const ProfileView = ({ user, classes, toggle }) => (
     </div>
     <Card>
       <CardContent>
-        <Typography variant="headline">{user.get("name")}</Typography>
+        <Typography variant="headline">{user.get('name')}</Typography>
         <Typography variant="subheading" color="primary">
-          {user.get("email")}
+          {user.get('email')}
         </Typography>
-        <Typography variant="subheading">{user.get("phone")}</Typography>
+        <Typography variant="subheading">{user.get('phone')}</Typography>
       </CardContent>
     </Card>
   </div>
@@ -33,7 +35,7 @@ const ProfileView = ({ user, classes, toggle }) => (
 
 ProfileView.propTypes = {
   user: PropTypes.object.isRequired,
-  toggle: PropTypes.func.isRequired
+  toggle: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(ProfileView);

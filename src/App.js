@@ -12,8 +12,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={LoginForm} />
-          <Route path="/profile" component={Profile} />
           <Route path="/admin-panel" component={Admin} />
+          <Route path="/profile" component={Profile} />
           <Route path="/converter" component={Converter} />
         </Switch>
         <Footer />
