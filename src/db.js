@@ -5,47 +5,47 @@ const users = {
     phone: '380982386289',
     email: 'petya@gmail.com',
     role: 'user',
-    ava: [], // массив байт
+    ava: [], 
   },
-  'vasya@gmail.com': {
-    firstName: 'Vasya',
-    lastName: 'Poopkin',
+  'Jane@gmail.com': {
+    firstName: 'Jane',
+    lastName: 'Krok',
     phone: '380672386289',
-    email: 'vasya@gmail.com',
+    email: 'Krok@gmail.com',
     role: 'user',
-    ava: [], // массив байт
+    ava: [], 
   },
-  'vasya123@gmail.com': {
-    firstName: 'Vasya',
-    lastName: 'Poopkin',
+  'user6@gmail.com': {
+    firstName: 'Dick',
+    lastName: 'Rasmoosen',
     phone: '380672386289',
-    email: 'vasya@gmail.com',
+    email: 'user6@gmail.com',
     role: 'user',
-    ava: [], // массив байт
+    ava: [],
   },
   'user5@gmail.com': {
-    firstName: 'Vasya',
-    lastName: 'Poopkin',
+    firstName: 'Kat',
+    lastName: 'Drenan',
     phone: '380672386289',
-    email: 'vasya@gmail.com',
+    email: 'kat1@gmail.com',
     role: 'user',
-    ava: [], // массив байт
+    ava: [], 
   },
   'user4@gmail.com': {
-    firstName: 'Vasya',
-    lastName: 'Poopkin',
+    firstName: 'Dan',
+    lastName: 'Polyak',
     phone: '380672386289',
-    email: 'vasya@gmail.com',
+    email: 'polyak@gmail.com',
     role: 'user',
-    ava: [], // массив байт
+    ava: [], 
   },
   'user3@gmail.com': {
-    firstName: 'Vasya',
-    lastName: 'Poopkin',
+    firstName: 'Greg',
+    lastName: 'Zavadsky',
     phone: '380672386289',
     email: 'vasya@gmail.com',
     role: 'user',
-    ava: [], // массив байт
+    ava: [], 
   },
   'user2@gmail.com': {
     firstName: 'Vasya',
@@ -53,7 +53,7 @@ const users = {
     phone: '380672386289',
     email: 'vasya@gmail.com',
     role: 'user',
-    ava: [], // массив байт
+    ava: [], 
   },
   'user1@gmail.com': {
     firstName: 'Vasya',
@@ -61,7 +61,7 @@ const users = {
     phone: '380672386289',
     email: 'vasya@gmail.com',
     role: 'user',
-    ava: [], // массив байт
+    ava: [], 
   },
 };
 

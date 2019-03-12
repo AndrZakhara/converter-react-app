@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import usersSaga from '../sagas/usersSaga';
+import adminSaga from '../sagas/adminSaga';
 import { composeWithDevTools } from 'redux-devtools-extension'; //eslint-disable-line
 
 import rootReducer from '../reducers';
@@ -12,6 +12,6 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
 
-sagaMiddleware.run(usersSaga);
+sagaMiddleware.run(adminSaga);
 
 export default store;

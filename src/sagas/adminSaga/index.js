@@ -1,5 +1,5 @@
 import { take, put, call, fork, select, takeEvery, all } from 'redux-saga/effects'; //eslint-disable-line
-import * as actions from '../../actions';
+import * as actions from '../../actions/adminPageActons';
 import { users } from '../../db';
 
 export function* getAllUser() {
@@ -11,6 +11,6 @@ export function* watchGetAllUser() {
   yield takeEvery(actions.GET_ALL_USERS, getAllUser);
 }
 
-export default function* usersSaga() {
+export default function* adminSaga() {
   yield call(watchGetAllUser);
 }

@@ -43,21 +43,25 @@ const UserInfo = ({ selectedUser, userList, classes }) => {
       }
 
       return (
-        <Fragment>
+        <Fragment key={item}>
           <ListItem>
-            <ListItemText
-              secondary={`${item}: ${selectedUserData[item]}`}
-              key={item}
-            />
+            <ListItemText secondary={`${item}: ${selectedUserData[item]}`} />
           </ListItem>
           <Divider />
         </Fragment>
       );
     });
+    const { firstName, lastName } = selectedUserData;
+    const userName = (
+      <Fragment>
+        {firstName} {lastName}
+      </Fragment>
+    );
 
     return (
       <div className={classes.root}>
         <h2>User info</h2>
+        <h3>{userName}</h3>
         <Grid container spacing={24} direction="row" justify="center">
           <Grid item xs={6}>
             <Paper className={`${classes.paper} ${classes.infoWrapper}`}>

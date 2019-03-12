@@ -19,6 +19,7 @@ const styles = () => ({
     paddingLeft: '20px',
     alighnItems: 'center',
     margin: '0px 3px 5px 8px',
+    marginBottom: '20px',
   },
   listWrapper: {
     overflowY: 'scroll',

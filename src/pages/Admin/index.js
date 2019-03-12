@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { UserList, UserInfo } from '../../components/Admin';
-import { getAllUsers, setSelectedUser } from '../../actions';
+import { getAllUsers, setSelectedUser } from '../../actions/adminPageActons';
 
 const adminPageHeight = window.innerHeight - 58 - 64;
 const styles = () => ({
   wrapper: {
     display: 'flex',
     minHeight: adminPageHeight,
+    paddingTop: '20px',
   },
 });
 
@@ -19,7 +20,7 @@ class Admin extends Component {
   }
 
   render() {
-    const { userList, classes, setSelectedUser, selectedUser } = this.props;
+    const { userList, classes, setSelectedUser } = this.props;
 
     return (
       <div className={classes.wrapper}>
