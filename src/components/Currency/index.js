@@ -72,7 +72,7 @@ class Currency extends Component {
   };
 
   render() {
-    const { currencies } = this.props;
+    const {currencies} = this.props;
     const {
       currencyBuy,
       currencySell,
@@ -95,8 +95,8 @@ class Currency extends Component {
               input={<FilledInput name="currencyBuy" />}>
               {currencies
                 .filter(item => item.ccy !== currencySell)
-                .map(item => (
-                  <MenuItem value={item.ccy} key={item.ccy}>
+                .map((item, i )=> (
+                  <MenuItem value={item.ccy} key={i}>
                     {item.ccy}
                   </MenuItem>
                 ))}
@@ -116,8 +116,8 @@ class Currency extends Component {
               input={<FilledInput name="currencySell" />}>
               {currencies
                 .filter(item => item.ccy !== currencyBuy)
-                .map(item => (
-                  <MenuItem value={item.ccy} key={item.ccy}>
+                .map((item, i ) => (
+                  <MenuItem value={item.ccy} key={ i }>
                     {item.ccy}
                   </MenuItem>
                 ))}

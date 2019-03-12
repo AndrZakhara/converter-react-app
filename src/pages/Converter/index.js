@@ -10,6 +10,7 @@ class Converter extends Component {
 
   render() {
     const { currencies } = this.props;
+    console.log(currencies);
     return (
       <div className="converter-wrapper">
         <Currency currencies={currencies} />
