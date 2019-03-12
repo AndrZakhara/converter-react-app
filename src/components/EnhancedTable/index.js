@@ -109,11 +109,7 @@ const styles = theme => ({
   },
 });
 
-<<<<<<< HEAD
-
 // eslint-disable-next-line react/no-multi-comp
-=======
->>>>>>> feature/home, fix eslint problems
 class EnhancedTable extends React.Component {
   state = {
     order: 'asc',
