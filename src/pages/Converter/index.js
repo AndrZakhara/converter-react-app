@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Currency from '../../components/Currency';
-import { addCurrencyAsync, addCurrency, chooseCurrencyBuy, chooseCurrencySell } from '../../actions/currencyAction';
+import {
+  addCurrencyAsync,
+  addCurrency,
+  chooseCurrencyBuy,
+  chooseCurrencySell,
+} from '../../actions/currencyAction';
 
 class Converter extends Component {
   componentDidMount() {
@@ -10,7 +15,6 @@ class Converter extends Component {
 
   render() {
     const { currencies } = this.props;
-    console.log(currencies);
     return (
       <div className="converter-wrapper">
         <Currency currencies={currencies} />
@@ -20,6 +24,6 @@ class Converter extends Component {
 }
 
 export default connect(
-  state => ({ currencies: state.currencyReducer }),
+  state => ({ currencies: state.currencyReducer.currencies }),
   { addCurrency, addCurrencyAsync, chooseCurrencyBuy, chooseCurrencySell },
 )(Converter);

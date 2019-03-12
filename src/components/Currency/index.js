@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Select,
   MenuItem,
   FilledInput,
   TextField,
   Button,
+  FormControl,
+  withStyles,
 } from '@material-ui/core';
-import './style.css';
+import { feeConvert } from '../../mocks/db';
+import { styles } from './style';
 
 class Currency extends Component {
   constructor(props) {
@@ -16,7 +20,7 @@ class Currency extends Component {
       currencySell: 'USD',
       amountSell: 0,
       amountBuy: 0,
-      fee: 1,
+      fee: 2,
     };
   }
 
@@ -72,7 +76,7 @@ class Currency extends Component {
   };
 
   render() {
-    const {currencies} = this.props;
+    const { currencies, classes } = this.props;
     const {
       currencyBuy,
       currencySell,
@@ -81,58 +85,61 @@ class Currency extends Component {
       amountSell,
     } = this.state;
     const { handleChange, _changeCurrencies, handleInput, _buyCurrency } = this;
+    const selectsOptions = oppositeCurrency =>
+      currencies
+        .filter(item => item.ccy !== oppositeCurrency)
+        .map(item => (
+          <MenuItem value={item.ccy} key={item.ccy}>
+            {item.ccy}
+          </MenuItem>
+        ));
+    const feeSelectsOption = () =>
+      feeConvert.map(item => (
+        <MenuItem value={item} key={item}>
+          {item}
+        </MenuItem>
+      ));
+
     return (
-      <div className="app-content">
-        <div className="converter-title">
-          <h2>Currency Converter</h2>
+      <div className={classes.appContent}>
+        <div className={classes.converterTitle}>
+          <h2 className={classes.marginDef}>Currency Converter</h2>
         </div>
-        <div className="currency-line">
-          <label>
+        <div className={classes.currencyLine}>
+          <FormControl className={classes.formControl}>
             <p>give back</p>
             <Select
               value={currencyBuy}
               onChange={handleChange}
               input={<FilledInput name="currencyBuy" />}>
-              {currencies
-                .filter(item => item.ccy !== currencySell)
-                .map((item, i )=> (
-                  <MenuItem value={item.ccy} key={i}>
-                    {item.ccy}
-                  </MenuItem>
-                ))}
+              {selectsOptions(currencySell)}
             </Select>
-          </label>
+          </FormControl>
           <Button
             variant="contained"
             color="primary"
             onClick={_changeCurrencies}>
             &#8660;
           </Button>
-          <label>
+          <FormControl className={classes.formControl}>
             <p>we get</p>
             <Select
               value={currencySell}
               onChange={handleChange}
               input={<FilledInput name="currencySell" />}>
-              {currencies
-                .filter(item => item.ccy !== currencyBuy)
-                .map((item, i ) => (
-                  <MenuItem value={item.ccy} key={ i }>
-                    {item.ccy}
-                  </MenuItem>
-                ))}
+              {selectsOptions(currencyBuy)}
             </Select>
-          </label>
+          </FormControl>
         </div>
-        <div className="counter-line">
+        <div className={classes.currencyLine}>
           <TextField
-            id="outlined-adornment-amount"
+            className={classes.inputAmount}
             variant="outlined"
             label="How much to exchange"
             type="number"
             value={amountSell}
             name="amountSell"
-            min="0"
+            inputProps={{ min: '0', step: '1' }}
             onInput={handleInput}
             onChange={_buyCurrency}
           />
@@ -147,26 +154,22 @@ class Currency extends Component {
             variant="outlined"
           />
         </div>
-        <div className="bottom-btns-wrap">
-          <label className="fee-wrapper">
-            Fee
+        <div className={classes.bottomBtnsWrap}>
+          <FormControl className={classes.feeWrapper}>
+            <p>Fee </p>
             <Select
               value={fee}
               onChange={handleChange}
               input={<FilledInput name="fee" />}>
-              <MenuItem value={0}>0</MenuItem>
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
+              {feeSelectsOption()}
             </Select>
-            %
-          </label>
+            <p> %</p>
+          </FormControl>
           <p>
             Sell <i>{currencyBuy}</i> to <i>{currencySell}</i>
           </p>
         </div>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" className={classes.buyBtn}>
           Buy
         </Button>
       </div>
@@ -174,4 +177,8 @@ class Currency extends Component {
   }
 }
 
-export default Currency;
+Currency.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Currency);
