@@ -8,6 +8,7 @@ import ProfileEdit from './ProfileEdit';
 import UserInfo from './UserInfo';
 import UserList from './UserList';
 import UserListItem from './UserListItem';
+import SignIn from './SignIn';
 
 export {
   Header,
@@ -20,4 +21,5 @@ export {
   UserInfo,
   UserList,
   UserListItem,
+  SignIn,
 };

@@ -18,3 +18,7 @@ export const GET_USER_DATA = 'GET_USER_DATA';
 export const RECIVE_ALL_USERS = 'RECIVE_ALL_USERS';
 export const SET_SELECTED_USER = 'SET_SELECTED_USER';
 export const SET_FILTER = 'SET_FILTER';
+
+export const SIGNIN = 'SIGNIN';
+export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
+export const SIGNIN_ERROR = 'SIGNIN_ERROR';
