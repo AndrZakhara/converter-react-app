@@ -1,5 +1,4 @@
-/* eslint-disable react/prefer-stateless-function */
-import React, { Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Header, LoginForm, Footer } from './components';
 import { Admin, Converter, Profile, SignUp, Home } from './pages';

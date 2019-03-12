@@ -15,7 +15,6 @@ import {
 import { dataTabl } from '../../mocks/db';
 import './style.css';
 
-
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -52,7 +51,8 @@ const rows = [
 
 class EnhancedTableHead extends React.Component {
   createSortHandler = property => event => {
-    this.props.onRequestSort(event, property);
+    const { onRequestSort } = this.props;
+    onRequestSort(event, property);
   };
 
   render() {
@@ -123,14 +123,13 @@ class EnhancedTable extends React.Component {
   handleRequestSort = (event, property) => {
     const orderBy = property;
     let order = 'desc';
-
+    // eslint-disable-next-line react/destructuring-assignment
     if (this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
 
     this.setState({ order, orderBy });
   };
-
 
   handleChangePage = (event, page) => {
     this.setState({ page });
@@ -163,16 +162,16 @@ class EnhancedTable extends React.Component {
               {stableSort(data, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => (
-                    <TableRow hover>
-                      <TableCell component="th" scope="row" padding="none">
-                        {n.date}
-                      </TableCell>
-                      <TableCell align="right">{n.from}</TableCell>
-                      <TableCell align="right">{n.ammFrom}</TableCell>
-                      <TableCell align="right">{n.to}</TableCell>
-                      <TableCell align="right">{n.ammTo}</TableCell>
-                    </TableRow>
-                  ))}
+                  <TableRow hover>
+                    <TableCell component="th" scope="row" padding="none">
+                      {n.date}
+                    </TableCell>
+                    <TableCell align="right">{n.from}</TableCell>
+                    <TableCell align="right">{n.ammFrom}</TableCell>
+                    <TableCell align="right">{n.to}</TableCell>
+                    <TableCell align="right">{n.ammTo}</TableCell>
+                  </TableRow>
+                ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
                   <TableCell colSpan={6} />
