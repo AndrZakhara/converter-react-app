@@ -68,7 +68,7 @@ class Currency extends Component {
     const secondConvert = this.convertFromUa(firstConvert, currencies[a].sale);
     const countWithTax = secondConvert - this.countTax(secondConvert, fee);
 
-    this.setState({ amountBuy: countWithTax });
+    this.setState({ amountBuy: Math.trunc(countWithTax * 100) / 100 });
   };
 
   render() {

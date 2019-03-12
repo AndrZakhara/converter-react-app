@@ -1,13 +1,10 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
-import axios from 'axios';
+
 import { ADD_CURRENCY, addCurrencyAsync } from '../../actions/currencyAction';
+import { getCurrencyApi } from '../../utils/axios';
 
 function* getCurrencies() {
-  const currenciesList = yield call(() =>
-    axios
-      .get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
-      .then(item => item.data),
-  );
+  const currenciesList = yield call(getCurrencyApi);
   yield put(addCurrencyAsync(currenciesList));
 }
 
