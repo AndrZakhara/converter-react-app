@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+<<<<<<< HEAD
 import { reducer as form } from 'redux-form';
 
 import userReducer from './userReducer/userReducer';
@@ -10,4 +11,12 @@ export default combineReducers({
   currencyReducer,
   user,
   form,
+=======
+import temporaryReducer from './temporaryReducer/temporaryReducer';
+import { reducer as form } from 'redux-form'
+
+export default combineReducers({
+  temporaryReducer,
+  form
+>>>>>>> feature/Sign-up add redux-form
 });

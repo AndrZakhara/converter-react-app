@@ -1,5 +1,3 @@
-
-  
 import React from 'react';
 import { reduxForm, Field } from "redux-form";
 import { withStyles, Button  } from '@material-ui/core';
