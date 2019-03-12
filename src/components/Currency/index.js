@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Select,
-  MenuItem,
-  FilledInput,
-  TextField,
-  Button,
-  FormControl,
-  withStyles,
-} from '@material-ui/core';
+import FilledInput from '@material-ui/core/FilledInput';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import { withStyles } from '@material-ui/core/styles';
 import { feeConvert } from '../../mocks/db';
 import { styles } from './style';
 

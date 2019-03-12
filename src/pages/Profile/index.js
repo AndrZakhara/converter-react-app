@@ -2,7 +2,9 @@
 /* eslint-disable react/no-access-state-in-setstate */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, CircularProgress } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchUser, saveProfile } from '../../actions';
 
 import ProfileView from '../../components/ProfileView';

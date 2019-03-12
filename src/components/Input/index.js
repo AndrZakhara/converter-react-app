@@ -1,5 +1,6 @@
 import React from 'react';
-import { TextField, InputAdornment } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 const Input = ({ input, meta: { touched, error }, Icon, label, className }) => (
   <TextField
