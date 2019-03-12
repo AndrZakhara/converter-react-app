@@ -36,7 +36,7 @@ class SignUpFormBase extends Component {
     <SignUp
       isInvalid={isInvalid}
       onSubmit={this.onSubmit}
-      error={null}
+      error={error}
     />
   );
   }

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { reducer as form } from 'redux-form';
 
 import userReducer from './userReducer/userReducer';
@@ -13,10 +14,13 @@ export default combineReducers({
   form,
 =======
 import temporaryReducer from './temporaryReducer/temporaryReducer';
+=======
+import signUpReducer from './signUpReducer';
+>>>>>>> feature/Sign-Up add sagas and redux-form
 import { reducer as form } from 'redux-form'
 
 export default combineReducers({
-  temporaryReducer,
+  signUpReducer,
   form
 >>>>>>> feature/Sign-up add redux-form
 });
