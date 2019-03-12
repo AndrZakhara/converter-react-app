@@ -2,16 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-
 import InputBase from '@material-ui/core/InputBase';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import UserListItem from './UserListItem';
 import { Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import UserListItem from './UserListItem';
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     width: '100%',
     maxWidth: 320,

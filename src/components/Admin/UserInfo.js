@@ -1,32 +1,84 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-// import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-// import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
+import {
+  ListItem,
+  Divider,
+  Grid,
+  Paper,
+  Avatar,
+  ListItemText,
+} from '@material-ui/core';
 
-const styles = () => ({
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+    alignItems: 'center',
+    color: '#999999',
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  infoWrapper: {
+    display: 'flex',
+  },
   bigAvatar: {
     width: '100px',
     height: '100px',
   },
 });
 
-const UserInfo = ({ classes, id, users }) => {
+const UserInfo = ({ selectedUser, userList, classes }) => {
+  if (selectedUser) {
+    const selectedUserData = userList[selectedUser];
+    const listElement = Object.keys(selectedUserData).map(item => {
+      if (item === 'firstName' || item === 'lastName' || item === 'ava') {
+        return null;
+      }
+
+      return (
+        <Fragment>
+          <ListItem>
+            <ListItemText
+              secondary={`${item}: ${selectedUserData[item]}`}
+              key={item}
+            />
+          </ListItem>
+          <Divider />
+        </Fragment>
+      );
+    });
+
+    return (
+      <div className={classes.root}>
+        <h2>User info</h2>
+        <Grid container spacing={24} direction="row" justify="center">
+          <Grid item xs={6}>
+            <Paper className={`${classes.paper} ${classes.infoWrapper}`}>
+              <Avatar src="" alt="avatar" className={classes.bigAvatar} />
+              <div>{listElement}</div>
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h2>User info</h2>
-      <Avatar src="" alt="avatar" className={classes.bigAvatar} />
-      {/* {console.log(Object.keys(users))} */}
-      <h3>{id}</h3>
-      <p>{id && console.log(users.id)}</p>
+    <div className={classes.root}>
+      <h2>Any selected user</h2>
     </div>
   );
 };
 
-// UserInfo.propTypes = {
-  
-// };
+UserInfo.propTypes = {
+  selectedUser: PropTypes.string,
+};
 
 export default withStyles(styles)(UserInfo);

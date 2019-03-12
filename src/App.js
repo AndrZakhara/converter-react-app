@@ -15,7 +15,7 @@ class App extends Component {
           <Route path = '/profile' component = {Profile} />
           <Route path = '/admin-panel' component = {Admin} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </Fragment>      
     );
   }

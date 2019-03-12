@@ -24,7 +24,7 @@ class Admin extends Component {
     return (
       <div className={classes.wrapper}>
         <UserList userList={userList} setSelectedUser={setSelectedUser} />
-        <UserInfo id={selectedUser} users={userList} />
+        <UserInfo {...this.props} />
       </div>
     );
   }
