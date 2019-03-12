@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {
-  List,
-  InputBase,
-  SearchIcon,
-  Paper,
-  Button,
-  UserListItem,
-} from '@material-ui/core';
+import { List, InputBase, Paper, Button } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
+import UserListItem from './UserListItem';
 
 const styles = () => ({
   root: {
