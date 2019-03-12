@@ -10,7 +10,7 @@ import {
   TableSortLabel,
   Paper,
   Tooltip,
-  TableCell
+  TableCell,
 } from '@material-ui/core';
 import { dataTabl } from '../../mocks/db';
 import './style.css';
@@ -37,7 +37,9 @@ function stableSort(array, cmp) {
 }
 
 function getSorting(order, orderBy) {
-  return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
+  return order === 'desc'
+    ? (a, b) => desc(a, b, orderBy)
+    : (a, b) => -desc(a, b, orderBy);
 }
 
 const rows = [
@@ -107,8 +109,11 @@ const styles = theme => ({
   },
 });
 
+<<<<<<< HEAD
 
 // eslint-disable-next-line react/no-multi-comp
+=======
+>>>>>>> feature/home, fix eslint problems
 class EnhancedTable extends React.Component {
   state = {
     order: 'asc',
@@ -144,7 +149,8 @@ class EnhancedTable extends React.Component {
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, rowsPerPage, page } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+    const emptyRows =
+      rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
@@ -160,9 +166,7 @@ class EnhancedTable extends React.Component {
             <TableBody>
               {stableSort(data, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(n => {
-
-                  return (
+                .map(n => (
                     <TableRow hover>
                       <TableCell component="th" scope="row" padding="none">
                         {n.date}
@@ -172,8 +176,7 @@ class EnhancedTable extends React.Component {
                       <TableCell align="right">{n.to}</TableCell>
                       <TableCell align="right">{n.ammTo}</TableCell>
                     </TableRow>
-                  );
-                })}
+                  ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
                   <TableCell colSpan={6} />
