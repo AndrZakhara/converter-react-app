@@ -113,26 +113,13 @@ const styles = theme => ({
   },
 });
 
+// eslint-disable-next-line react/no-multi-comp
 class EnhancedTable extends React.Component {
   state = {
     order: 'asc',
     orderBy: 'date',
     selected: [],
     data: [
-      createData('10/11/12', 'USD', 200, 'EUR', 187),
-      createData('10/10/11', 'UAH', 200, 'USD', 8),
-      createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
-      createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
-      createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
-      createData('10/11/12', 'USD', 200, 'EUR', 187),
-      createData('10/10/11', 'UAH', 200, 'USD', 8),
-      createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
-      createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
-      createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
-      createData('10/10/11', 'UAH', 200, 'USD', 8),
-      createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
-      createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
-      createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
       createData('10/11/12', 'USD', 200, 'EUR', 187),
       createData('10/10/11', 'UAH', 200, 'USD', 8),
       createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
@@ -153,7 +140,6 @@ class EnhancedTable extends React.Component {
 
     this.setState({ order, orderBy });
   };
-
 
   handleChangePage = (event, page) => {
     this.setState({ page });
@@ -186,16 +172,16 @@ class EnhancedTable extends React.Component {
               {stableSort(data, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => (
-                    <TableRow hover>
-                      <TableCell component="th" scope="row" padding="none">
-                        {n.date}
-                      </TableCell>
-                      <TableCell align="right">{n.from}</TableCell>
-                      <TableCell align="right">{n.ammFrom}</TableCell>
-                      <TableCell align="right">{n.to}</TableCell>
-                      <TableCell align="right">{n.ammTo}</TableCell>
-                    </TableRow>
-                  ))}
+                  <TableRow hover>
+                    <TableCell component="th" scope="row" padding="none">
+                      {n.date}
+                    </TableCell>
+                    <TableCell align="right">{n.from}</TableCell>
+                    <TableCell align="right">{n.ammFrom}</TableCell>
+                    <TableCell align="right">{n.to}</TableCell>
+                    <TableCell align="right">{n.ammTo}</TableCell>
+                  </TableRow>
+                ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
                   <TableCell colSpan={6} />
