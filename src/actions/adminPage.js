@@ -2,6 +2,7 @@ export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const GET_USER_DATA = 'GET_USER_DATA';
 export const RECIVE_ALL_USERS = 'RECIVE_ALL_USERS';
 export const SET_SELECTED_USER = 'SET_SELECTED_USER';
+export const SET_FILTER = 'SET_FILTER';
 
 export function getAllUsers() {
   return {
@@ -27,4 +28,11 @@ export function setSelectedUser(userId) {
     type: SET_SELECTED_USER,
     payload: userId,
   };
+}
+
+export function setFilter(filterValue) {
+  return {
+    type: SET_FILTER,
+    payload: filterValue,
+  }
 }

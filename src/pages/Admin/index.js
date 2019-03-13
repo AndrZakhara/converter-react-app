@@ -3,7 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { UserList, UserInfo } from '../../components/Admin';
-import { getAllUsers, setSelectedUser } from '../../actions/adminPageActons';
+import {
+  getAllUsers,
+  setSelectedUser,
+  setFilter,
+} from '../../actions/adminPage';
+import getFilteredUserList from './selectors';
 
 const adminPageHeight = window.innerHeight - 58 - 64;
 const styles = () => ({
@@ -20,11 +25,11 @@ class Admin extends Component {
   }
 
   render() {
-    const { userList, classes, setSelectedUser } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.wrapper}>
-        <UserList userList={userList} setSelectedUser={setSelectedUser} />
+        <UserList {...this.props} />
         <UserInfo {...this.props} />
       </div>
     );
@@ -38,11 +43,14 @@ Admin.propTypes = {
 
 export default connect(
   state => ({
-    userList: state.userReducer.userList,
-    selectedUser: state.userReducer.selectedUser,
+    userListFiltered: getFilteredUserList(state),
+    selectedUser: state.adminReducer.selectedUser,
+    filterValue: state.adminReducer.filterValue,
+    userList: state.adminReducer.userList,
   }),
   {
     getAllUsers,
     setSelectedUser,
+    setFilter,
   },
 )(withStyles(styles)(Admin));

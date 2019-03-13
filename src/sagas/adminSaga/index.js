@@ -1,9 +1,9 @@
 import { take, put, call, fork, select, takeEvery, all } from 'redux-saga/effects'; //eslint-disable-line
-import * as actions from '../../actions/adminPageActons';
+import * as actions from '../../actions/adminPage';
 import { users } from '../../mocks/db';
 
 export function* getAllUser() {
-  const userList = yield call(() => users); // async query here
+  const userList = yield call(() => users);
   yield put(actions.reciveAllUser(userList));
 }
 

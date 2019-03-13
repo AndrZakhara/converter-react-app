@@ -38,13 +38,13 @@ const styles = () => ({
 });
 
 const UserList = props => {
-  const { userList, classes, setSelectedUser } = props;
+  const { userListFiltered, classes, setSelectedUser, setFilter } = props;
   let listItems = null;
 
-  if (userList !== undefined) {
-    listItems = Object.keys(userList).map(item => (
+  if (userListFiltered !== undefined) {
+    listItems = Object.keys(userListFiltered).map(item => (
       <UserListItem
-        userItem={userList[item]}
+        userItem={userListFiltered[item]}
         key={item}
         id={item}
         setSelectedUser={setSelectedUser}
@@ -55,7 +55,11 @@ const UserList = props => {
   return (
     <List component="nav" className={classes.root}>
       <Paper className={classes.searchWrapper}>
-        <InputBase className={classes.input} placeholder="Search user" />
+        <InputBase
+          className={classes.input}
+          placeholder="Search user"
+          onChange={e => setFilter(e.target.value)}
+        />
         <Button disabled aria-label="Search">
           <SearchIcon />
         </Button>
@@ -67,7 +71,7 @@ const UserList = props => {
 
 UserList.propTypes = {
   // userList: PropTypes.object,
-  classes: PropTypes.object.isRequired,
+  setFilter: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(UserList);
