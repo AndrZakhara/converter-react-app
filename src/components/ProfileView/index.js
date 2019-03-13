@@ -21,11 +21,13 @@ const ProfileView = ({ user, classes, toggle }) => (
     </div>
     <Card>
       <CardContent>
-        <Typography variant="headline">{user.get('name')}</Typography>
+        <Typography variant="headline">{user.get('firstName')}</Typography>
+        <Typography variant="headline">{user.get('lastName')}</Typography>
+        <Typography variant="subheading">{user.get('phone')}</Typography>
         <Typography variant="subheading" color="primary">
           {user.get('email')}
         </Typography>
-        <Typography variant="subheading">{user.get('phone')}</Typography>
+        <Typography variant="subheading">{user.get('role')}</Typography>
       </CardContent>
     </Card>
   </div>

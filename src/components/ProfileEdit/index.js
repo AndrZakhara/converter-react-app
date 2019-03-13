@@ -25,7 +25,14 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
       <Card>
         <CardContent>
           <Field
-            name="name"
+            name="firstName"
+            component={Input}
+            label="Name"
+            Icon={AccountIcon}
+            className={classes.input}
+          />
+          <Field
+            name="lastName"
             component={Input}
             label="Name"
             Icon={AccountIcon}
