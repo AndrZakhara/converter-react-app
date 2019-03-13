@@ -3,12 +3,12 @@ import { reduxForm, Field } from "redux-form";
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import Input from "../Input";
+import Input from 'components/Input';
 
-import AccountIcon from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import Security from "@material-ui/icons/Security";
-import Phone from "@material-ui/icons/Phone";
+import AccountIcon from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import Security from '@material-ui/icons/Security';
+import Phone from '@material-ui/icons/Phone';
 
 const styles = theme => ({
   button: {

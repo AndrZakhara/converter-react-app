@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Currency from '../../components/Currency';
-import { addCurrencyAsync, addCurrency, chooseCurrencyBuy, chooseCurrencySell } from '../../actions/currencyAction';
+import Currency from 'components/Currency';
+import { addCurrencyAsync, addCurrency, chooseCurrencyBuy, chooseCurrencySell } from 'actions/currencyAction';
 
 class Converter extends Component {
   componentDidMount() {

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import {SignUp} from '../../components'
-import {connect} from 'react-redux';
-import { withFirebase } from '../../api/firebase';
-import { signUp } from '../../actions/signUp';
+import { SignUp } from 'components'
+import { connect } from 'react-redux';
+import { withFirebase } from 'api/firebase';
+import { signUp } from 'actions/signUp';
 
 class SignUpFormBase extends Component {
   

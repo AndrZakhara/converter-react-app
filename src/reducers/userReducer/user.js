@@ -3,7 +3,7 @@ import {
   FETCH_USER,
   FETCH_USER_SUCCESS,
   SAVE_PROFILE,
-} from '../../actions/types';
+} from 'actions/types';
 
 const initialState = fromJS({
   profile: null,

@@ -1,4 +1,4 @@
-import * as actions from '../../actions/adminPageActons';
+import * as actions from 'actions/adminPageActons';
 
 function userReducer(state = {}, action) {
   switch (action.type) {

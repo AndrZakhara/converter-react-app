@@ -1,7 +1,7 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 
-import { ADD_CURRENCY, addCurrencyAsync } from '../../actions/currencyAction';
-import { getCurrencyApi } from '../../api/axios';
+import { ADD_CURRENCY, addCurrencyAsync } from 'actions/currencyAction';
+import { getCurrencyApi } from 'api/axios';
 
 function* getCurrencies() {
   const currenciesList = yield call(getCurrencyApi);
