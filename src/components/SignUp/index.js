@@ -4,7 +4,14 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Input from '../Input';
-import { validateProfile } from '../../utils/validate'
+import {
+  validateFirstName,
+  validateSecondName,
+  validateEmail,
+  validatePhone,
+  passwordLength,
+  passwordMatch,
+  validateProfile } from '../../utils/validate'
 
 import AccountIcon from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
@@ -38,12 +45,12 @@ const styles = theme => ({
 
 
 const SignUpFormBase = (props) => {
-  const { classes } = props;
+  const { classes, handleSubmit, onSubmit } = props;
 
   return (
   <div className = {classes.formContainer}>
     <Paper className={classes.form}>
-      <form noValidate autoComplete="off" onSubmit={props.onSubmit}>
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Field
           label="First name"
           name="firstName"
@@ -51,6 +58,7 @@ const SignUpFormBase = (props) => {
           component={Input}
           Icon={AccountIcon}
           type="text"
+          validate={validateFirstName}
         />
 
         <Field
@@ -60,6 +68,7 @@ const SignUpFormBase = (props) => {
           component={Input}
           Icon={AccountIcon}
           type="text"
+          validate={validateSecondName}
         />
 
         <Field
@@ -69,6 +78,7 @@ const SignUpFormBase = (props) => {
           Icon={MailIcon}
           component={Input}
           type="email"
+          validate={validateEmail}
         />
 
         <Field
@@ -78,6 +88,7 @@ const SignUpFormBase = (props) => {
           component={Input}
           Icon={Security}
           type="password"
+          validate={[passwordLength, passwordMatch]}
         />
 
         <Field
@@ -87,6 +98,7 @@ const SignUpFormBase = (props) => {
           component={Input}
           Icon={Security}
           type="password"
+          validate={[passwordLength, passwordMatch]}
         />
 
         <Field
@@ -96,10 +108,10 @@ const SignUpFormBase = (props) => {
           component={Input}
           Icon={Phone}
           type="number"
+          validate={validatePhone}
         />
 
         <Button
-          // disabled={isInvalid}
           type="submit"
           className={classes.submitBtn}
           variant="contained"
@@ -116,6 +128,5 @@ const SignUpFormBase = (props) => {
 
 
 export default reduxForm({
-  form: 'signUp',
-  validate: validateProfile
+  form: 'signUp'
 })(withStyles(styles)(SignUpFormBase));

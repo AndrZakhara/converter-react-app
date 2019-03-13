@@ -1,17 +1,14 @@
 /* eslint-disable import/prefer-default-export */
 import isEmail from 'isemail';
 
-const testMask = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
+const phoneMask = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
 const passwordMask = /.{6,}/;
 
-export const validateProfile = ({ firstName, secondName, email, phone, passwordOne, passwordTwo }) => {
+export const validateProfile = ({ name, email, phone }) => {
   const errors = {};
 
-  if (!firstName) {
-    errors.firstName = 'Please provide your first name';
-  }
-  if (!secondName) {
-    errors.secondName = 'Please provide your second name';
+  if (!name) {
+    errors.name = 'Please provide your name';
   }
 
   if (!email) {
@@ -22,22 +19,26 @@ export const validateProfile = ({ firstName, secondName, email, phone, passwordO
 
   if (!phone) {
     errors.phone = 'Please, provide your phone';
-  } else if (!testMask.test(phone)) {
+  } else if (!phoneMask.test(phone)) {
     errors.phone = 'Please, write your phone properly';
   }
 
-  if (!passwordOne || !passwordMask.test(passwordOne)) {
-    errors.passwordOne = 'Password should have at least 6 characters';
-  }
-
-  if (!passwordTwo || !passwordMask.test(passwordTwo)) {
-    errors.passwordTwo = 'Password should have at least 6 characters';
-  }
-
-  if (passwordOne !== passwordTwo) {
-    errors.passwordOne = 'Passwords should be the same';
-    errors.passwordTwo = 'Passwords should be the same';
-  }
-  
   return errors;
 };
+
+export const validateFirstName = firstName => firstName ? undefined : 'Please provide your first name';
+export const validateSecondName = secondName => secondName ? undefined : 'Please provide your second name';
+export const validateEmail = email => email && isEmail.validate(email) ? undefined : 'Please, write your email properly';
+export const validatePhone = phone => {
+  if (!phone) {
+    return 'Please, provide your phone';
+  } else if (!phoneMask.test(phone)) {
+    return 'Please, write your phone properly';
+  }
+};
+export const passwordLength = password => password && passwordMask.test(password) ? undefined : 'Password should have at least 6 characters';
+export const passwordMatch = (_, allValues) => {
+  if (allValues.passwordOne !== allValues.passwordTwo) {
+    return 'Password should be the same';
+  }
+}
