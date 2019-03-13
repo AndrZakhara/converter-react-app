@@ -3,7 +3,7 @@ import * as actions from '../../actions/adminPage';
 import { users } from '../../mocks/db';
 
 export function* getAllUser() {
-  const userList = yield call(() => users);
+  const userList = yield call(() => users); // TODO
   yield put(actions.reciveAllUser(userList));
 }
 

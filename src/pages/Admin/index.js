@@ -10,11 +10,10 @@ import {
 } from '../../actions/adminPage';
 import getFilteredUserList from './selectors';
 
-const adminPageHeight = window.innerHeight - 58 - 64;
 const styles = () => ({
   wrapper: {
     display: 'flex',
-    minHeight: adminPageHeight,
+    maxHeight: '300px',
     paddingTop: '20px',
   },
 });
@@ -41,16 +40,20 @@ Admin.propTypes = {
   setSelectedUser: PropTypes.func.isRequired,
 };
 
+const select = state => {
+  const userListFiltered = getFilteredUserList(state);
+  const { selectedUser, filterValue, userList } = state.adminReducer;
+
+  return { userListFiltered, selectedUser, filterValue, userList };
+};
+
+const mapDispatchToProps = dispatch => ({
+  getAllUsers: () => dispatch(getAllUsers()),
+  setSelectedUser: id => dispatch(setSelectedUser(id)),
+  setFilter: filter => dispatch(setFilter(filter)),
+});
+
 export default connect(
-  state => ({
-    userListFiltered: getFilteredUserList(state),
-    selectedUser: state.adminReducer.selectedUser,
-    filterValue: state.adminReducer.filterValue,
-    userList: state.adminReducer.userList,
-  }),
-  {
-    getAllUsers,
-    setSelectedUser,
-    setFilter,
-  },
+  select,
+  mapDispatchToProps,
 )(withStyles(styles)(Admin));

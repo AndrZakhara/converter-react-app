@@ -1,28 +1,32 @@
-import * as actions from '../../actions/adminPage';
+import {
+  RECIVE_ALL_USERS,
+  SET_SELECTED_USER,
+  SET_FILTER,
+} from '../../actions/adminPage';
 
 const initialState = {
   filterValue: '',
   userList: {},
 };
 
-function adminReducer(state = initialState, action) {
-  switch (action.type) {
-    case actions.RECIVE_ALL_USERS:
+function adminReducer(state = initialState, { type, payload }) {
+  switch (type) {
+    case RECIVE_ALL_USERS:
       return {
         ...state,
-        userList: action.payload,
+        userList: payload,
       };
 
-    case actions.SET_SELECTED_USER:
+    case SET_SELECTED_USER:
       return {
         ...state,
-        selectedUser: action.payload,
+        selectedUser: payload,
       };
 
-    case actions.SET_FILTER:
+    case SET_FILTER:
       return {
         ...state,
-        filterValue: action.payload,
+        filterValue: payload,
       };
 
     default:
