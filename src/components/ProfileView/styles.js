@@ -1,4 +1,4 @@
-export default ({ spacing: { unit }, breakpoints }) => ({
+export default ({ spacing: { unit } }) => ({
   container: {
     padding: unit,
     width: 600,
