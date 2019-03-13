@@ -8,7 +8,7 @@ import { signUp } from '../../actions/signUp';
 
 const SignUpFormBase = ({error, signUp}) => {
   
-  const onSubmit = (inputs) => {
+  const onSubmit = inputs => {
     const {email, passwordOne} = inputs;
     signUp(email, passwordOne);
   };
