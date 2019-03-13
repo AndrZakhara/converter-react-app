@@ -2,12 +2,16 @@
 import isEmail from 'isemail';
 
 const testMask = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
+const passwordMask = /.{6,}/;
 
-export const validateProfile = ({ name, email, phone }) => {
+export const validateProfile = ({ firstName, secondName, email, phone, passwordOne, passwordTwo }) => {
   const errors = {};
 
-  if (!name) {
-    errors.name = 'Please provide your name';
+  if (!firstName) {
+    errors.firstName = 'Please provide your first name';
+  }
+  if (!secondName) {
+    errors.secondName = 'Please provide your second name';
   }
 
   if (!email) {
@@ -22,5 +26,18 @@ export const validateProfile = ({ name, email, phone }) => {
     errors.phone = 'Please, write your phone properly';
   }
 
+  if (!passwordOne || !passwordMask.test(passwordOne)) {
+    errors.passwordOne = 'Password should have at least 6 characters';
+  }
+
+  if (!passwordTwo || !passwordMask.test(passwordTwo)) {
+    errors.passwordTwo = 'Password should have at least 6 characters';
+  }
+
+  if (passwordOne !== passwordTwo) {
+    errors.passwordOne = 'Passwords should be the same';
+    errors.passwordTwo = 'Passwords should be the same';
+  }
+  
   return errors;
 };

@@ -3,7 +3,8 @@ import { reduxForm, Field } from 'redux-form';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import Input from "../Input";
+import Input from '../Input';
+import { validateProfile } from '../../utils/validate'
 
 import AccountIcon from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
@@ -37,7 +38,7 @@ const styles = theme => ({
 
 
 const SignUpFormBase = (props) => {
-  const { classes, isInvalid } = props;
+  const { classes } = props;
 
   return (
   <div className = {classes.formContainer}>
@@ -98,7 +99,7 @@ const SignUpFormBase = (props) => {
         />
 
         <Button
-          disabled={isInvalid}
+          // disabled={isInvalid}
           type="submit"
           className={classes.submitBtn}
           variant="contained"
@@ -115,5 +116,6 @@ const SignUpFormBase = (props) => {
 
 
 export default reduxForm({
-  form: 'signUp'
+  form: 'signUp',
+  validate: validateProfile
 })(withStyles(styles)(SignUpFormBase));

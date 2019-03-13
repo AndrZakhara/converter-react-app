@@ -22,17 +22,17 @@ const SignUpFormBase = (props) => {
     error,
   } = props;
 
-  const isInvalid =
-    passwordOne === undefined ||
-    passwordTwo === undefined ||
-    passwordTwo !== passwordOne ||
-    email === undefined ||
-    username === undefined ||
-    phone === undefined;
+  // const isInvalid =
+  //   passwordOne === undefined ||
+  //   passwordTwo === undefined ||
+  //   passwordTwo !== passwordOne ||
+  //   email === undefined ||
+  //   username === undefined ||
+  //   phone === undefined;
 
   return (
     <SignUp
-      isInvalid={isInvalid}
+      // isInvalid={isInvalid}
       onSubmit={onSubmit}
       error={error}
     />
