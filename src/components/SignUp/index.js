@@ -12,8 +12,7 @@ import Phone from '@material-ui/icons/Phone';
 import Input from '../Input';
 import styles from './style.js';
 import {
-  validateFirstName,
-  validateSecondName,
+  validateTextEmpty,
   validateEmail,
   validatePhone,
   passwordLength,
@@ -31,7 +30,7 @@ const SignUpFormBase = ({ classes, handleSubmit, onSubmit, error }) =>  (
           component={Input}
           Icon={AccountIcon}
           type="text"
-          validate={validateFirstName}
+          validate={validateTextEmpty}
         />
 
         <Field
@@ -41,7 +40,7 @@ const SignUpFormBase = ({ classes, handleSubmit, onSubmit, error }) =>  (
           component={Input}
           Icon={AccountIcon}
           type="text"
-          validate={validateSecondName}
+          validate={validateTextEmpty}
         />
 
         <Field

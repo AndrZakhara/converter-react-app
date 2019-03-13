@@ -6,14 +6,12 @@ import { connect } from 'react-redux';
 import { withFirebase } from '../../api/firebase';
 import { signUp } from '../../actions/signUp';
 
-const SignUpFormBase = (props) => {
+const SignUpFormBase = ({error, signUp}) => {
   
-  function onSubmit(...params) {
-    const {email, passwordOne} = params[0];
-    props.signUp(email, passwordOne);
+  const onSubmit = (inputs) => {
+    const {email, passwordOne} = inputs;
+    signUp(email, passwordOne);
   };
-
-  const {error} = props;
 
   return (
     <SignUp
@@ -23,11 +21,7 @@ const SignUpFormBase = (props) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    error: state.signUpReducer.error
-  }
-}
+const mapStateToProps = ({signUp}) => ({error: signUp.error});
 
 const mapDispatchToProps = dispatch => ({
   signUp: (email, password) => dispatch(signUp(email, password)),

@@ -26,8 +26,7 @@ export const validateProfile = ({ name, email, phone }) => {
   return errors;
 };
 
-export const validateFirstName = firstName => firstName ? undefined : 'Please provide your first name';
-export const validateSecondName = secondName => secondName ? undefined : 'Please provide your second name';
+export const validateTextEmpty = firstName => firstName ? undefined : 'Please fill this field';
 export const validateEmail = email => email && isEmail.validate(email) ? undefined : 'Please, write your email properly';
 export const validatePhone = phone => {
   if (!phone) {
