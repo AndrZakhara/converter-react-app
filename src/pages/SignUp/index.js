@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import {SignUp} from '../../components'
+import { SignUp } from '../../components'
 import {connect} from 'react-redux';
 import { withFirebase } from '../../api/firebase';
 import { signUp } from '../../actions/signUp';
 
 const SignUpFormBase = (props) => {
   
-  onSubmit = event => {
+  const onSubmit = event => {
     props.signUp(props.email, props.passwordOne);
     event.preventDefault();
   };

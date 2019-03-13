@@ -1,14 +1,14 @@
 import React from 'react';
-import { reduxForm, Field } from "redux-form";
+import { reduxForm, Field } from 'redux-form';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Input from "../Input";
 
-import AccountIcon from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import Security from "@material-ui/icons/Security";
-import Phone from "@material-ui/icons/Phone";
+import AccountIcon from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import Security from '@material-ui/icons/Security';
+import Phone from '@material-ui/icons/Phone';
 
 const styles = theme => ({
   button: {
@@ -36,7 +36,7 @@ const styles = theme => ({
 });
 
 
-function SignUpFormBase(props) {
+const SignUpFormBase = (props) => {
   const { classes, isInvalid } = props;
 
   return (
@@ -44,20 +44,30 @@ function SignUpFormBase(props) {
     <Paper className={classes.form}>
       <form noValidate autoComplete="off" onSubmit={props.onSubmit}>
         <Field
-          label="UserName"
-          name="username"
+          label="First name"
+          name="firstName"
           className={classes.textField}
           component={Input}
           Icon={AccountIcon}
-          type='text'
-          />
+          type="text"
+        />
+
+        <Field
+          label="Second name"
+          name="secondName"
+          className={classes.textField}
+          component={Input}
+          Icon={AccountIcon}
+          type="text"
+        />
+
         <Field
           label="Email"
           name="email"
           className={classes.textField}
           Icon={MailIcon}
           component={Input}
-          type='email'
+          type="email"
         />
 
         <Field
@@ -66,16 +76,16 @@ function SignUpFormBase(props) {
           className={classes.textField}
           component={Input}
           Icon={Security}
-          type='password'
+          type="password"
         />
 
         <Field
-          label="Password"
+          label="Repeat password"
           name="passwordTwo"
           className={classes.textField}
           component={Input}
           Icon={Security}
-          type='password'
+          type="password"
         />
 
         <Field
@@ -84,10 +94,15 @@ function SignUpFormBase(props) {
           className={classes.textField}
           component={Input}
           Icon={Phone}
-          type='number'
+          type="number"
         />
 
-        <Button disabled={isInvalid} type='submit' className={classes.submitBtn} variant="contained" color="primary">
+        <Button
+          disabled={isInvalid}
+          type="submit"
+          className={classes.submitBtn}
+          variant="contained"
+          color="primary">
           Register
         </Button>
 
@@ -100,5 +115,5 @@ function SignUpFormBase(props) {
 
 
 export default reduxForm({
-  form: "signUp"
+  form: 'signUp'
 })(withStyles(styles)(SignUpFormBase));
