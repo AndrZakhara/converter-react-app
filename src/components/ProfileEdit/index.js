@@ -44,6 +44,7 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
             label="Name"
             Icon={MailIcon}
             className={classes.input}
+            disabled
           />
           <Field
             name="phone"
