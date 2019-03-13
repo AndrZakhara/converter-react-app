@@ -27,6 +27,7 @@ export default (state = initialState, { type, payload }) => {
       };
     case SIGNUP_ERROR:
       console.log(SIGNUP_ERROR);
+      console.log(payload);
       return {
         ...state,
         error: payload,

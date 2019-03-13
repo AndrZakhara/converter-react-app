@@ -1,15 +1,15 @@
-import { put, takeEvery } from 'redux-saga/effects'
-import { SIGNUP, SIGNUP_SUCCESS } from '../../actions/types';
-import Firebase from '../../api/firebase';
-import { signUpError } from '../../actions/signUp';
+import { call, put, takeEvery } from 'redux-saga/effects'
+import { SIGNUP } from '../../actions/types';
+import { signUpError,signUpSuccess } from '../../actions/signUp';
+import { register } from '../../api/auth';
 
 function* SignUp(action) {   
    const { email, password } = action.payload;
    try {
-      yield Firebase.DoCreateUserWithEmailAndPassword(email, password)
-      yield put({type: SIGNUP_SUCCESS});
+      yield call(register, email, password);
+      yield put(call(signUpSuccess));
    } catch(e) {
-      yield put(signUpError(e));
+      yield put(call(signUpError, e));
    }
  }
 
