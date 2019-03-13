@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EnhancedTable from '../../components/EnhancedTable';
+import EnhancedTable from '../../components/EnhancedTable/EnhancedTable';
 
 class Home extends Component {
   render() {
