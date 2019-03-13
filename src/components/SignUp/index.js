@@ -27,7 +27,6 @@ const styles = theme => ({
     padding: '20px',
   },
   textField: {
-    width: '90%',
     marginBottom: '20px'
   },
   submitBtn: {
@@ -39,7 +38,6 @@ const styles = theme => ({
 
 function SignUpFormBase(props) {
   const { classes, isInvalid } = props;
-  console.log(isInvalid);
 
   return (
   <div className = {classes.formContainer}>
@@ -59,6 +57,7 @@ function SignUpFormBase(props) {
           className={classes.textField}
           Icon={MailIcon}
           component={Input}
+          type='email'
         />
 
         <Field
@@ -67,6 +66,7 @@ function SignUpFormBase(props) {
           className={classes.textField}
           component={Input}
           Icon={Security}
+          type='password'
         />
 
         <Field
@@ -75,6 +75,7 @@ function SignUpFormBase(props) {
           className={classes.textField}
           component={Input}
           Icon={Security}
+          type='password'
         />
 
         <Field
@@ -83,6 +84,7 @@ function SignUpFormBase(props) {
           className={classes.textField}
           component={Input}
           Icon={Phone}
+          type='number'
         />
 
         <Button disabled={isInvalid} type='submit' className={classes.submitBtn} variant="contained" color="primary">

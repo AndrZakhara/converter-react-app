@@ -6,14 +6,13 @@ import {connect} from 'react-redux';
 import { withFirebase } from '../../api/firebase';
 import { signUp } from '../../actions/signUp';
 
-class SignUpFormBase extends Component {
+const SignUpFormBase = (props) => {
   
   onSubmit = event => {
-    this.props.signUp(this.props.email, this.props.passwordOne);
+    props.signUp(props.email, props.passwordOne);
     event.preventDefault();
   };
 
-  render() {
   const {
     username,
     email,
@@ -21,7 +20,7 @@ class SignUpFormBase extends Component {
     passwordTwo,
     phone,
     error,
-  } = this.props;
+  } = props;
 
   const isInvalid =
     passwordOne === undefined ||
@@ -30,16 +29,14 @@ class SignUpFormBase extends Component {
     email === undefined ||
     username === undefined ||
     phone === undefined;
-    console.log(passwordOne, passwordTwo, email, username, phone);
 
   return (
     <SignUp
       isInvalid={isInvalid}
-      onSubmit={this.onSubmit}
+      onSubmit={onSubmit}
       error={error}
     />
   );
-  }
 }
 
 const mapStateToProps = (state) => {
