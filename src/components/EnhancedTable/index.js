@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Table,
@@ -12,8 +11,8 @@ import {
   Tooltip,
   TableCell,
 } from '@material-ui/core';
-import { dataTabl } from '../../mocks/db';
-import './style.css';
+import { data } from '../../mocks/db';
+import { styles } from './style';
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -42,11 +41,38 @@ function getSorting(order, orderBy) {
 }
 
 const rows = [
-  { id: 'date', numeric: false, disablePadding: true, label: 'Date' },
-  { id: 'from', numeric: true, disablePadding: false, label: 'Currancy From' },
-  { id: 'ammFrom', numeric: true, disablePadding: false, label: 'Ammount' },
-  { id: 'to', numeric: true, disablePadding: false, label: 'Currancy To' },
-  { id: 'ammTo', numeric: true, disablePadding: false, label: 'Ammount' },
+  {
+    id: 'date',
+    numeric: false,
+    label: 'Date',
+  },
+  {
+    id: 'currencyFrom',
+    numeric: true,
+    label: 'Currancy From',
+  },
+  {
+    id: 'amountFrom',
+    numeric: true,
+    label: 'Ammount',
+  },
+  {
+    id: 'currencyTo',
+    numeric: true,
+    label: 'Currancy To',
+  },
+  {
+    id: 'amountTo',
+    numeric: true,
+    disablePadding: false,
+    label: 'Ammount',
+  },
+  {
+    id: 'commission',
+    numeric: true,
+    label: 'Сommission',
+  },
+  { id: 'rate', numeric: true, disablePadding: false, label: 'Rate' },
 ];
 
 class EnhancedTableHead extends React.Component {
@@ -65,9 +91,9 @@ class EnhancedTableHead extends React.Component {
             row => (
               <TableCell
                 key={row.id}
-                align={row.numeric ? 'right' : 'left'}
-                padding={row.disablePadding ? 'none' : 'default'}
-                sortDirection={orderBy === row.id ? order : false}>
+                align={row.numeric ? 'center' : 'left'}
+                sortDirection={orderBy === row.id ? order : false}
+                style={{ fontSize: '20px' }}>
                 <Tooltip
                   title="Sort"
                   placement={row.numeric ? 'bottom-end' : 'bottom-start'}
@@ -89,33 +115,11 @@ class EnhancedTableHead extends React.Component {
   }
 }
 
-EnhancedTableHead.propTypes = {
-  onRequestSort: PropTypes.func.isRequired,
-  order: PropTypes.string.isRequired,
-  orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
-};
-
-const styles = theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
-  },
-  table: {
-    minWidth: 1020,
-  },
-  tableWrapper: {
-    overflowX: 'auto',
-  },
-});
-
-// eslint-disable-next-line react/no-multi-comp
 class EnhancedTable extends React.Component {
   state = {
     order: 'asc',
     orderBy: 'date',
-    selected: [],
-    data: dataTabl,
+    data: data['petya@gmail.com'],
     page: 0,
     rowsPerPage: 5,
   };
@@ -123,7 +127,6 @@ class EnhancedTable extends React.Component {
   handleRequestSort = (event, property) => {
     const orderBy = property;
     let order = 'desc';
-    // eslint-disable-next-line react/destructuring-assignment
     if (this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
@@ -139,8 +142,6 @@ class EnhancedTable extends React.Component {
     this.setState({ rowsPerPage: event.target.value });
   };
 
-  isSelected = id => this.state.selected.indexOf(id) !== -1;
-
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, rowsPerPage, page } = this.state;
@@ -149,7 +150,7 @@ class EnhancedTable extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <h1>History of Converting values</h1>
+        <h1 className={classes.headerTitle}>History of Converting values</h1>
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
@@ -163,13 +164,15 @@ class EnhancedTable extends React.Component {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => (
                   <TableRow hover>
-                    <TableCell component="th" scope="row" padding="none">
+                    <TableCell component="th" scope="row">
                       {n.date}
                     </TableCell>
-                    <TableCell align="right">{n.from}</TableCell>
-                    <TableCell align="right">{n.ammFrom}</TableCell>
-                    <TableCell align="right">{n.to}</TableCell>
-                    <TableCell align="right">{n.ammTo}</TableCell>
+                    <TableCell align="center" style={{ fontSize: '16px' }}>{n.currencyFrom}</TableCell>
+                    <TableCell align="center" style={{ fontSize: '16px' }}>{n.amountFrom}</TableCell>
+                    <TableCell align="center" style={{ fontSize: '16px' }}>{n.currencyTo}</TableCell>
+                    <TableCell align="center" style={{ fontSize: '16px' }}>{n.amountTo}</TableCell>
+                    <TableCell align="center" style={{ fontSize: '16px' }}>{n.commission}</TableCell>
+                    <TableCell align="center" style={{ fontSize: '16px' }}>{n.rate}</TableCell>
                   </TableRow>
                 ))}
               {emptyRows > 0 && (
@@ -199,9 +202,5 @@ class EnhancedTable extends React.Component {
     );
   }
 }
-
-EnhancedTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(EnhancedTable);

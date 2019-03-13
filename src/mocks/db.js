@@ -116,34 +116,7 @@ const data = {
     },
   ],
 };
-let counter = 0;
-function createData(date, from, ammFrom, to, ammTo) {
-  counter += 1;
-  return { id: counter, date, from, ammFrom, to, ammTo };
-}
-const dataTabl = [
-  createData('10/11/12', 'USD', 200, 'EUR', 187),
-  createData('10/10/11', 'UAH', 200, 'USD', 8),
-  createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
-  createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
-  createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
-  createData('10/11/12', 'USD', 200, 'EUR', 187),
-  createData('10/10/11', 'UAH', 200, 'USD', 8),
-  createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
-  createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
-  createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
-  createData('10/10/11', 'UAH', 200, 'USD', 8),
-  createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
-  createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
-  createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
-  createData('10/11/12', 'USD', 200, 'EUR', 187),
-  createData('10/10/11', 'UAH', 200, 'USD', 8),
-  createData('10/11/11', 'EUR', 100, 'UAH', 6.0),
-  createData('12/11/11', 'RUB', 16.0, 'UAH', 6.0),
-  createData('12/11/11', 'EUR', 16.0, 'RUB', 6.0),
-];
-
-export { users, data, dataTabl };
+export { users, data };
 
 // this.listOfUsers = [
 //   {"id":1,"name":"Alex","description":"alex@gmail.com","field3":"user","field4":"field4 1","field5 ":"field5 1"},
