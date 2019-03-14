@@ -10,9 +10,14 @@ import EnhancedTableHead from './EnhancedTableHead';
 import { styles } from './style';
 import { stableSort, getSorting } from '../../utils/sort';
 
+const ORDER = {
+  ASC: 'asc',
+  DESC: 'desc',
+};
+
 class EnhancedTable extends Component {
   state = {
-    order: 'asc',
+    order: ORDER.ASC,
     orderBy: 'date',
     page: 0,
     rowsPerPage: 5,
@@ -20,11 +25,10 @@ class EnhancedTable extends Component {
 
   handleRequestSort = (event, property) => {
     const orderBy = property;
-    let order = 'desc';
-    if (this.state.orderBy === property && this.state.order === 'desc') {
-      order = 'asc';
+    let order = ORDER.DESC;
+    if (this.state.orderBy === property && this.state.order === ORDER.DESC) {
+      order = ORDER.ASC;
     }
-
     this.setState({ order, orderBy });
   };
 
