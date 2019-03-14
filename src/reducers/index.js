@@ -5,7 +5,7 @@ import userReducer from './userReducer/userReducer';
 import combineEvents from './currencyReducer';
 import signUpReducer from './signUpReducer';
 import user from './userReducer/user';
-import { BUY_CURRENCY } from '../actions/currencyAction';
+import {formsReducers} from './currencyReducer/form.reducer';
 
 export default combineReducers({
   userReducer,
@@ -13,15 +13,5 @@ export default combineReducers({
   user,
   signUpReducer,
   form,
-  reducerBuy: form.plugin({
-    login: (state, action) => {
-      switch (action.type) {
-        case BUY_CURRENCY:
-          console.log(state);
-          return state;
-        default:
-          return state;
-      }
-    },
-  }),
+  formsReducers
 });

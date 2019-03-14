@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/prefer-default-export
-export const styles = theme => ({
+export const styles = () => ({
   appContent: {
     width: 650,
     margin: 'auto',
@@ -15,6 +14,10 @@ export const styles = theme => ({
   },
   marginDef: {
     margin: 0,
+  },
+  text: {
+  fontSize: '23px',
+  textTransform: 'capitalize',
   },
   converterTitle: {
     background: '#3f51b5',
@@ -61,7 +64,30 @@ export const styles = theme => ({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  inputAmount: {
-    width: `${220}px`,
+  feeSelect: {
+    width: `${50}px`,
+    border: '1px solid #797979',
+    borderRadius: '5px',
+    padding: '10px 5px',
+    fontSize: '18px',
+    textIndent: '7px',
+    cursor: 'pointer',
   },
+  select: {
+    width: `${220}px`,
+    border: '1px solid #797979',
+    borderRadius: '5px',
+    padding: '10px 5px',
+    fontSize: '18px',
+    textIndent: '7px',
+    cursor: 'pointer',
+  },
+  inputAmount: {
+    width: `${209}px`,
+    border: '1px solid #797979',
+    borderRadius: '5px',
+    padding: '10px 5px',
+    fontSize: '18px',
+    textIndent: '7px',
+  }
 });

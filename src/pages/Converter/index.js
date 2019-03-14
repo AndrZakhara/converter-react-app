@@ -5,19 +5,40 @@ import {
   addCurrencyAsync,
   addCurrency,
   buyConvertCurrency,
+  countCurrency,
 } from '../../actions/currencyAction';
 
-const Converter = ({currencies, addCurrency, buyConvertCurrency}) => (
-  <div className="converter-wrapper">
+const Converter = ({currencies, addCurrency, buyConvertCurrency, currenciesFields, currenciesCount, countCurrency }) => {
+  const submit = val => ( buyConvertCurrency(val));
+  
+  return (<div className="converter-wrapper">
     <Currency
+      onSubmit={submit}
       currencies={currencies}
       addCurrency={addCurrency}
-      buyConvertCurrency={buyConvertCurrency}
+      countCurrency={countCurrency}
+      currenciesCount={currenciesCount}
     />
-  </div>
-);
+  </div>);
+};
+
+
+const mapStateToProps = (state) => {
+  return { currencies: state.combineEvents.currencies,
+    currenciesFields: state.combineEvents. currenciesBuy,
+    currenciesCount: state.form.currencyForm
+  }
+}
+
+const mapDispatchToProps = {
+  addCurrency,
+  addCurrencyAsync,
+  buyConvertCurrency,
+  countCurrency,
+  
+};
 
 export default connect(
-  state => ({ currencies: state.combineEvents.currencies }),
-  { addCurrency, addCurrencyAsync, buyConvertCurrency },
+  mapStateToProps,
+  mapDispatchToProps,
 )(Converter);

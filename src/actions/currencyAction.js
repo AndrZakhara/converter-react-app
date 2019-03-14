@@ -1,6 +1,7 @@
 export const ADD_CURRENCY = 'ADD_CURRENCY';
 export const ADD_CURRENCY_ASYNC = 'ADD_CURRENCY_ASYNC';
 export const BUY_CURRENCY = 'BUY_CURRENCY';
+export const COUNT_CURRENCY = 'COUNT_CURRENCY';
 
 export const addCurrency = () => ({
   type: ADD_CURRENCY,
@@ -11,7 +12,12 @@ export const addCurrencyAsync = data => ({
   payload: data,
 });
 
-export const buyConvertCurrency = data => ({
+export const buyConvertCurrency = value => ({
   type: BUY_CURRENCY,
-  payload: data,
+  payload: value,
+});
+
+export const countCurrency = value => ({
+  type: COUNT_CURRENCY,
+  payload: value,
 });
