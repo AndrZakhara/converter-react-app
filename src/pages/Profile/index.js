@@ -34,6 +34,7 @@ class Profile extends Component {
   render() {
     const { user, classes } = this.props;
     if (!user) {
+      // TODO "NO RESPONSE" FUNCTIONAL
       return <CircularProgress className={classes.loader} />;
     }
     return (

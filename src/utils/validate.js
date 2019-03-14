@@ -13,31 +13,16 @@ export const validateEmail = email =>
 export const validatePhone = phone => {
   if (!phone) {
     return 'Please, provide your phone';
-  }
-  if (!phoneMask.test(phone)) {
-    return 'Please, write your phone properly';
-  }
-
-  if (!phone) {
-    errors.phone = 'Please, provide your phone';
-  } else if (!phoneMask.test(phone)) {
-    errors.phone = 'Please, write your phone properly';
-
-  }
-};
-
-export const validateTextEmpty = firstName => firstName ? undefined : 'Please fill this field';
-export const validateEmail = email => email && isEmail.validate(email) ? undefined : 'Please, write your email properly';
-export const validatePhone = phone => {
-  if (!phone) {
-    return 'Please, provide your phone';
-  } else if (!phoneMask.test(phone)) {
+  } if (!phoneMask.test(phone)) {
     return 'Please, write your phone properly';
   }
 };
-export const passwordLength = password => password && passwordMask.test(password) ? undefined : 'Password should have at least 6 characters';
+export const passwordLength = password =>
+  password && passwordMask.test(password)
+    ? undefined
+    : 'Password should have at least 6 characters';
 export const passwordMatch = (_, allValues) => {
   if (allValues.passwordOne !== allValues.passwordTwo) {
     return 'Password should be the same';
   }
-}
+};

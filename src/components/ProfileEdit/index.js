@@ -30,13 +30,6 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
             label="Name"
             Icon={AccountIcon}
             className={classes.input}
-          />
-          <Field
-            name="lastName"
-            component={Input}
-            label="Name"
-            Icon={AccountIcon}
-            className={classes.input}
             validate={validateTextEmpty}
           />
           <Field
