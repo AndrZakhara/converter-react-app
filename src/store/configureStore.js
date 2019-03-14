@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'; //eslint-disable
 import watchGetAllCurrencies from '../sagas/currencySaga';
 import { fetchUserSaga } from '../sagas/userSaga';
 import signUpSaga from '../sagas/signUpSaga';
+import enhancedTableSaga from '../sagas/enhancedTableSaga';
 
 import rootReducer from '../reducers';
 
@@ -18,6 +19,7 @@ const store = createStore(
 sagaMiddleware.run(adminSaga);
 sagaMiddleware.run(watchGetAllCurrencies);
 sagaMiddleware.run(signUpSaga);
+sagaMiddleware.run(enhancedTableSaga);
 Object.values(fetchUserSaga).forEach(sagaMiddleware.run.bind(sagaMiddleware));
 
 export default store;
