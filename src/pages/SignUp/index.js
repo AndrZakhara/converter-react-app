@@ -29,8 +29,3 @@ export default compose(
     mapDispatchToProps,
   ),
 )(SignUpForm);
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(SignUpForm);
