@@ -1,7 +1,7 @@
 import { take, put, call, fork, select, takeEvery, all } from 'redux-saga/effects'; //eslint-disable-line
 import * as actions from '../../actions/types';
 import { data } from '../../mocks/db';
-import { fetchUserData } from '../../actions/enhancedTable';
+import { fetchUserData } from '../../actions/homePageActions';
 
 export function* getUserData() {
   const dataList = yield call(() => data); // TODO

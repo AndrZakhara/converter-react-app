@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import {
-  TableHead,
-  TableRow,
-  TableSortLabel,
-  Tooltip,
-  TableCell,
-} from '@material-ui/core';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+import Tooltip from '@material-ui/core/Tooltip';
+import TableCell from '@material-ui/core/TableCell';
 
 const rows = [
   {

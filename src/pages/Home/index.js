@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserData } from '../../actions/enhancedTable';
+import { getUserData } from '../../actions/homePageActions';
 import EnhancedTable from '../../components/EnhancedTable/EnhancedTable';
 
 class Home extends Component {

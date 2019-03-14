@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'; //eslint-disable
 import watchGetAllCurrencies from '../sagas/currencySaga';
 import { fetchUserSaga } from '../sagas/userSaga';
 import signUpSaga from '../sagas/signUpSaga';
-import enhancedTableSaga from '../sagas/enhancedTableSaga';
+import enhancedTableSaga from '../sagas/enhancedTableSaga/enhancedTable.saga';
 
 import rootReducer from '../reducers';
 

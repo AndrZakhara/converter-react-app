@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {
-  Table,
-  TableBody,
-  TablePagination,
-  TableRow,
-  Paper,
-  TableCell,
-} from '@material-ui/core';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import TableCell from '@material-ui/core/TableCell';
 import EnhancedTableHead from './EnhancedTableHead';
 import { styles } from './style';
 import { stableSort, getSorting } from '../../utils/sort';
@@ -23,7 +21,6 @@ class EnhancedTable extends Component {
   handleRequestSort = (event, property) => {
     const orderBy = property;
     let order = 'desc';
-    // eslint-disable-next-line react/destructuring-assignment
     if (this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
