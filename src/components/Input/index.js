@@ -17,6 +17,7 @@ const Input = ({ input, meta: { touched, error }, Icon, label, className, type }
         </InputAdornment>
       ),
     }}
+    disabled={disabled}
     {...input}
   />
 );
