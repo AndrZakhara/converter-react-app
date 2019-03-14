@@ -41,7 +41,7 @@ class Profile extends Component {
         {this.state.editing ? (
           <ProfileEdit
             toggle={this.toggleEditing}
-            initialValues={{ ...user }}
+            initialValues={user}
             onSave={this.save}
           />
         ) : (
@@ -56,10 +56,10 @@ const mapStateToProps = ({ user }) => ({
   user: user.profile,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onFetchUser: () => dispatch(fetchUser()),
-  onSaveProfile: profile => dispatch(saveProfile(profile)),
-});
+const mapDispatchToProps = {
+  onFetchUser: fetchUser,
+  onSaveProfile: saveProfile,
+};
 
 export default connect(
   mapStateToProps,
