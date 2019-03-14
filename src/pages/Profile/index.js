@@ -41,7 +41,7 @@ class Profile extends Component {
         {this.state.editing ? (
           <ProfileEdit
             toggle={this.toggleEditing}
-            initialValues={user.toJS()}
+            initialValues={{ ...user }}
             onSave={this.save}
           />
         ) : (
@@ -53,7 +53,7 @@ class Profile extends Component {
 }
 
 const mapStateToProps = ({ user }) => ({
-  user: user.get('profile'),
+  user: user.profile,
 });
 
 const mapDispatchToProps = dispatch => ({
