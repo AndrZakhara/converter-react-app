@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import { UserList, UserInfo } from '../../components/Admin';
 import { getAllUsers, setSelectedUser } from '../../actions/adminPageActons';
 

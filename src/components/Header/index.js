@@ -1,13 +1,14 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  withStyles,
-  Button,
-} from '@material-ui/core';
-import { Person, ExitToApp } from '@material-ui/icons';
+
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
+import AppBar from '@material-ui/core/AppBar';
+
+import Person from '@material-ui/icons/Person';
+import ExitToApp from '@material-ui/icons/ExitToApp';
 
 import './style.css';
 
