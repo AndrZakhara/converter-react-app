@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
+import { compose } from 'recompose';
+
 import FilledInput from '@material-ui/core/FilledInput';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -7,8 +10,14 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import { withStyles } from '@material-ui/core/styles';
+
 import { feeConvert } from '../../mocks/db';
 import { styles } from './style';
+import {
+  convertToUa,
+  convertFromUa,
+  countTax,
+} from '../../helpers/converter.helper';
 
 class Currency extends Component {
   constructor(props) {
@@ -22,30 +31,16 @@ class Currency extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.addCurrency();
+  }
+
   handleChange = event => {
     this.setState(() => ({ [event.target.name]: event.target.value }));
   };
 
   handleInput = event => {
     this.setState({ amountSell: event.target.value });
-  };
-
-  convertToUa = (from, to) => {
-    const result = from * to;
-
-    return result;
-  };
-
-  convertFromUa = (from, to) => {
-    const res = from / to;
-
-    return res;
-  };
-
-  countTax = (sum, pr) => {
-    const res = (sum * pr) / 100;
-
-    return res;
   };
 
   _changeCurrencies = () => {
@@ -63,18 +58,21 @@ class Currency extends Component {
     const a = currencies.findIndex(item => item.ccy === currencySell);
     const b = currencies.findIndex(item => item.ccy === currencyBuy);
 
-    const firstConvert = this.convertToUa(
-      event.target.value,
-      currencies[b].buy,
-    );
-    const secondConvert = this.convertFromUa(firstConvert, currencies[a].sale);
-    const countWithTax = secondConvert - this.countTax(secondConvert, fee);
+    const firstConvert = convertToUa(event.target.value, currencies[b].buy);
+    const secondConvert = convertFromUa(firstConvert, currencies[a].sale);
+    const countWithTax = secondConvert - countTax(secondConvert, fee);
 
     this.setState({ amountBuy: Math.trunc(countWithTax * 100) / 100 });
   };
 
   render() {
-    const { currencies, classes } = this.props;
+    const {
+      currencies,
+      classes,
+      handleSubmit,
+      submitting,
+      buyConvertCurrency,
+    } = this.props;
     const {
       currencyBuy,
       currencySell,
@@ -99,19 +97,26 @@ class Currency extends Component {
       ));
 
     return (
-      <div className={classes.appContent}>
+      <form
+        className={classes.appContent}
+        onSubmit={handleSubmit(buyConvertCurrency)}>
         <div className={classes.converterTitle}>
           <h2 className={classes.marginDef}>Currency Converter</h2>
         </div>
         <div className={classes.currencyLine}>
           <FormControl className={classes.formControl}>
             <p>give back</p>
-            <Select
-              value={currencyBuy}
-              onChange={handleChange}
-              input={<FilledInput name="currencyBuy" />}>
-              {selectsOptions(currencySell)}
-            </Select>
+            <Field
+              name="currencyBuy"
+              component={() => (
+                <Select
+                  value={currencyBuy}
+                  onChange={handleChange}
+                  input={<FilledInput name="currencyBuy" />}>
+                  {selectsOptions(currencySell)}
+                </Select>
+              )}
+            />
           </FormControl>
           <Button
             variant="contained"
@@ -121,56 +126,81 @@ class Currency extends Component {
           </Button>
           <FormControl className={classes.formControl}>
             <p>we get</p>
-            <Select
-              value={currencySell}
-              onChange={handleChange}
-              input={<FilledInput name="currencySell" />}>
-              {selectsOptions(currencyBuy)}
-            </Select>
+            <Field
+              name="currencySell"
+              component={() => (
+                <Select
+                  value={currencySell}
+                  onChange={handleChange}
+                  input={<FilledInput name="currencySell" />}>
+                  {selectsOptions(currencyBuy)}
+                </Select>
+              )}
+            />
           </FormControl>
         </div>
         <div className={classes.currencyLine}>
-          <TextField
-            className={classes.inputAmount}
-            variant="outlined"
-            label="How much to exchange"
-            type="number"
-            value={amountSell}
+          <Field
             name="amountSell"
-            inputProps={{ min: '0', step: '1' }}
-            onInput={handleInput}
-            onChange={_buyCurrency}
+            component={() => (
+              <TextField
+                className={classes.inputAmount}
+                variant="outlined"
+                label="How much to exchange"
+                type="number"
+                value={amountSell}
+                name="amountSell"
+                inputProps={{ min: '0', step: '1' }}
+                onInput={handleInput}
+                onChange={_buyCurrency}
+              />
+            )}
           />
-          <TextField
-            id="outlined-number"
-            label="How much will we get"
-            type="number"
-            value={amountBuy}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
+          <Field
+            name="amountBuy"
+            component={() => (
+              <TextField
+                id="outlined-number"
+                label="How much will we get"
+                type="number"
+                value={amountBuy}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                variant="outlined"
+              />
+            )}
           />
         </div>
         <div className={classes.bottomBtnsWrap}>
           <FormControl className={classes.feeWrapper}>
             <p>Fee </p>
-            <Select
-              value={fee}
-              onChange={handleChange}
-              input={<FilledInput name="fee" />}>
-              {feeSelectsOption()}
-            </Select>
+            <Field
+              name="fee"
+              component={() => (
+                <Select
+                  value={fee}
+                  onChange={handleChange}
+                  input={<FilledInput name="fee" />}>
+                  {feeSelectsOption()}
+                </Select>
+              )}
+            />
             <p> %</p>
           </FormControl>
           <p>
             Sell <i>{currencyBuy}</i> to <i>{currencySell}</i>
           </p>
         </div>
-        <Button variant="contained" color="primary" className={classes.buyBtn}>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.buyBtn}
+          type="submit"
+          disabled={submitting}>
           Buy
         </Button>
-      </div>
+      </form>
     );
   }
 }
@@ -179,4 +209,7 @@ Currency.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Currency);
+export default compose(
+  reduxForm({ form: 'Currency' }),
+  withStyles(styles),
+)(Currency);

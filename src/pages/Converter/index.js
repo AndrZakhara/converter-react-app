@@ -1,30 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Currency from '../../components/Currency';
 import {
   addCurrencyAsync,
   addCurrency,
-  chooseCurrencyBuy,
-  chooseCurrencySell,
+  buyConvertCurrency,
 } from '../../actions/currencyAction';
 
-class Converter extends Component {
-  componentDidMount() {
-    this.props.addCurrency();
-  }
-
-  render() {
-    const { currencies } = this.props;
-
-    return (
-      <div className="converter-wrapper">
-        <Currency currencies={currencies} />
-      </div>
-    );
-  }
-}
+const Converter = ({currencies, addCurrency, buyConvertCurrency}) => (
+  <div className="converter-wrapper">
+    <Currency
+      currencies={currencies}
+      addCurrency={addCurrency}
+      buyConvertCurrency={buyConvertCurrency}
+    />
+  </div>
+);
 
 export default connect(
   state => ({ currencies: state.combineEvents.currencies }),
-  { addCurrency, addCurrencyAsync, chooseCurrencyBuy, chooseCurrencySell },
+  { addCurrency, addCurrencyAsync, buyConvertCurrency },
 )(Converter);
