@@ -21,7 +21,7 @@ const SignUpFormBase = ({error, signUp}) => {
   );
 }
 
-const mapStateToProps = ({signUp}) => ({error: signUp.error});
+const mapStateToProps = ({ signUp }) => ({ error: signUp.error });
 
 const mapDispatchToProps = dispatch => ({
   signUp: (email, password) => dispatch(signUp(email, password)),

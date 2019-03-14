@@ -7,9 +7,9 @@ function* SignUp(action) {
    const { email, password } = action.payload;
    try {
       yield call(register, email, password);
-      yield put(call(signUpSuccess));
+      yield put(signUpSuccess());
    } catch(e) {
-      yield put(call(signUpError, e));
+      yield put(signUpError(e));
    }
  }
 
