@@ -9,7 +9,7 @@ export function* getUserData() {
 }
 
 export function* watchGetAllUser() {
-  yield takeEvery(actions.GET_USER_DATA, getUserData);
+  yield takeEvery(actions.TABLE_GET_USER_DATA, getUserData);
 }
 
 export default function* enhancedTableSaga() {
