@@ -2,7 +2,7 @@ import {
   RECIVE_ALL_USERS,
   SET_SELECTED_USER,
   SET_FILTER,
-} from '../../actions/adminPage';
+} from '../../actions/types';
 
 const initialState = {
   filterValue: '',

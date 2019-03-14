@@ -1,27 +1,23 @@
-export const GET_ALL_USERS = 'GET_ALL_USERS';
-export const GET_USER_DATA = 'GET_USER_DATA';
-export const RECIVE_ALL_USERS = 'RECIVE_ALL_USERS';
-export const SET_SELECTED_USER = 'SET_SELECTED_USER';
-export const SET_FILTER = 'SET_FILTER';
+import {
+  GET_ALL_USERS,
+  GET_USER_DATA,
+  RECIVE_ALL_USERS,
+  SET_SELECTED_USER,
+  SET_FILTER,
+} from './types';
 
-export function getAllUsers() {
-  return {
-    type: GET_ALL_USERS,
-  };
-}
+export const getAllUsers = () => ({
+  type: GET_ALL_USERS,
+});
 
-export function getUserData() {
-  return {
-    type: GET_USER_DATA,
-  };
-}
+export const getUserData = () => ({
+  type: GET_USER_DATA,
+});
 
-export function reciveAllUser(userList) {
-  return {
-    type: RECIVE_ALL_USERS,
-    payload: userList,
-  };
-}
+export const reciveAllUser = userList => ({
+  type: RECIVE_ALL_USERS,
+  payload: userList,
+});
 
 export function setSelectedUser(userId) {
   return {
