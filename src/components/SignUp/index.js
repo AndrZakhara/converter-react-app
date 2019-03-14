@@ -10,7 +10,7 @@ import Security from '@material-ui/icons/Security';
 import Phone from '@material-ui/icons/Phone';
 
 import Input from '../Input';
-import styles from './style.js';
+import styles from './style';
 import {
   validateTextEmpty,
   validateEmail,
@@ -19,8 +19,8 @@ import {
   passwordMatch,
 } from '../../utils/validate';
 
-const SignUpFormBase = ({ classes, handleSubmit, onSubmit, error }) =>  (
-  <div className = {classes.formContainer}>
+const SignUpFormBase = ({ classes, handleSubmit, onSubmit, error }) => (
+  <div className={classes.formContainer}>
     <Paper className={classes.form}>
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Field
@@ -99,5 +99,5 @@ const SignUpFormBase = ({ classes, handleSubmit, onSubmit, error }) =>  (
 
 export default compose(
   reduxForm({ form: 'signUp' }),
-  withStyles(styles)
+  withStyles(styles),
 )(SignUpFormBase);

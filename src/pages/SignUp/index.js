@@ -1,38 +1,36 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { SignUp } from '../../components'
 import { connect } from 'react-redux';
+import { SignUp } from '../../components';
 import { withFirebase } from '../../api/firebase';
 import { signUp } from '../../actions/signUp';
 
-const SignUpFormBase = ({error, signUp}) => {
-  
+const SignUpForm = ({ error, signUpDispatch }) => {
   const onSubmit = inputs => {
-    const {email, passwordOne} = inputs;
-    signUp(email, passwordOne);
+    const { email, passwordOne } = inputs;
+    signUpDispatch(email, passwordOne);
   };
 
-  return (
-    <SignUp
-      onSubmit={onSubmit}
-      error={error}
-    />
-  );
-}
+  return <SignUp onSubmit={onSubmit} error={error} />;
+};
 
 const mapStateToProps = ({ signUp }) => ({ error: signUp.error });
 
 const mapDispatchToProps = dispatch => ({
-  signUp: (email, password) => dispatch(signUp(email, password)),
+  signUpDispatch: (email, password) => dispatch(signUp(email, password)),
 });
 
-const SignUpForm = compose(
+export default compose(
   withRouter,
   withFirebase,
-)(SignUpFormBase);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
 )(SignUpForm);
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps,
+// )(SignUpForm);

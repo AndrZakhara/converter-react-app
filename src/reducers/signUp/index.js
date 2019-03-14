@@ -1,13 +1,9 @@
-import {
-  SIGNUP,
-  SIGNUP_SUCCESS,
-  SIGNUP_ERROR,
-} from '../../actions/types';
+import { SIGNUP, SIGNUP_SUCCESS, SIGNUP_ERROR } from '../../actions/types';
 
 const initialState = {
   user: null,
   isLoggedIn: false,
-  error: null
+  error: null,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -15,13 +11,13 @@ export default (state = initialState, { type, payload }) => {
     case SIGNUP:
       // There we can add spinner in future
       return {
-        ...state
+        ...state,
       };
     case SIGNUP_SUCCESS:
       return {
         ...state,
         isLoggedIn: true,
-        user: payload
+        user: payload,
       };
     case SIGNUP_ERROR:
       return {
