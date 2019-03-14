@@ -11,7 +11,7 @@ import CardActions from '@material-ui/core/CardActions';
 import AccountIcon from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import DateIcon from '@material-ui/icons/Phone';
-import { validateProfile } from '../../utils/validate';
+import { validateTextEmpty, validatePhone } from '../../utils/validate';
 import Input from '../Input/index';
 
 import styles from './styles';
@@ -30,6 +30,7 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
             label="Name"
             Icon={AccountIcon}
             className={classes.input}
+            validate={validateTextEmpty}
           />
           <Field
             name="lastName"
@@ -37,6 +38,7 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
             label="Name"
             Icon={AccountIcon}
             className={classes.input}
+            validate={validateTextEmpty}
           />
           <Field
             name="email"
@@ -52,6 +54,7 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
             label="Phone Number"
             Icon={DateIcon}
             className={classes.input}
+            validate={validatePhone}
           />
         </CardContent>
         <CardActions className={classes.actions}>
@@ -69,5 +72,4 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
 
 export default reduxForm({
   form: 'editProfile',
-  validate: validateProfile,
 })(withStyles(styles)(ProfileEdit));
