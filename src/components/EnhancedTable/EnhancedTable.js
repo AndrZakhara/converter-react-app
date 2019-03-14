@@ -25,6 +25,7 @@ class EnhancedTable extends Component {
   handleRequestSort = (event, property) => {
     const orderBy = property;
     let order = 'desc';
+    // eslint-disable-next-line react/destructuring-assignment
     if (this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
