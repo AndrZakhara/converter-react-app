@@ -4,26 +4,26 @@ import isEmail from 'isemail';
 const phoneMask = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
 const passwordMask = /.{6,}/;
 
-export const validateProfile = ({ name, email, phone }) => {
-  const errors = {};
-
-  if (!name) {
-    errors.name = 'Please provide your name';
+export const validateTextEmpty = firstName =>
+  firstName ? undefined : 'Please fill this field';
+export const validateEmail = email =>
+  email && isEmail.validate(email)
+    ? undefined
+    : 'Please, write your email properly';
+export const validatePhone = phone => {
+  if (!phone) {
+    return 'Please, provide your phone';
   }
-
-  if (!email) {
-    errors.email = 'Please, provide your email';
-  } else if (!isEmail.validate(email)) {
-    errors.email = 'Please, write your email properly';
+  if (!phoneMask.test(phone)) {
+    return 'Please, write your phone properly';
   }
 
   if (!phone) {
     errors.phone = 'Please, provide your phone';
   } else if (!phoneMask.test(phone)) {
     errors.phone = 'Please, write your phone properly';
-  }
 
-  return errors;
+  }
 };
 
 export const validateTextEmpty = firstName => firstName ? undefined : 'Please fill this field';
