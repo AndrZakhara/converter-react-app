@@ -8,3 +8,7 @@ export const SAVE_PROFILE = 'EDIT_PROFILE';
 export const SIGNUP = 'SIGNUP';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
+
+export const GET_USER_DATA = 'GET_USER_DATA';
+export const FETCH_USER_DATA = 'FETCH_USER_DATA';
+export const RECIVE_USER_DATA = 'RECIVE_USER_DATA';
