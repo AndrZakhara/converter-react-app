@@ -6,10 +6,10 @@ import { SignUp } from '../../components';
 import { withFirebase } from '../../api/firebase';
 import { signUp } from '../../actions/signUp';
 
-const SignUpForm = ({ error, signUpDispatch }) => {
+const SignUpForm = ({ error, signUp }) => {
   const onSubmit = inputs => {
     const { email, passwordOne } = inputs;
-    signUpDispatch(email, passwordOne);
+    signUp(email, passwordOne);
   };
 
   return <SignUp onSubmit={onSubmit} error={error} />;
@@ -17,9 +17,9 @@ const SignUpForm = ({ error, signUpDispatch }) => {
 
 const mapStateToProps = ({ signUp }) => ({ error: signUp.error });
 
-const mapDispatchToProps = dispatch => ({
-  signUpDispatch: (email, password) => dispatch(signUp(email, password)),
-});
+const mapDispatchToProps = {
+  signUp,
+};
 
 export default compose(
   withRouter,
