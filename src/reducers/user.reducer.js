@@ -2,7 +2,8 @@ import {
   FETCH_USER,
   FETCH_USER_SUCCESS,
   SAVE_PROFILE,
-} from '../../actions/types';
+  FETCH_USER_CURRENCY_DIALS,
+} from '../actions/types';
 
 const initialState = {
   profile: null,
@@ -26,6 +27,12 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         profile: payload,
       };
+    case FETCH_USER_CURRENCY_DIALS:
+      return {
+        ...state,
+        userDials: payload,
+      };
+
     default:
       return {
         ...state,

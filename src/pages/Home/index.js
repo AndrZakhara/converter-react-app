@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserData } from '../../actions/homePageActions';
+import { fetchDialsSuccess } from '../../actions';
 import EnhancedTable from '../../components/EnhancedTable/EnhancedTable';
 
 class Home extends Component {
   componentDidMount() {
-    this.props.getUserData();
+    this.props.fetchDialsSuccess();
   }
 
   render() {
@@ -16,7 +16,7 @@ class Home extends Component {
 }
 
 const select = store => {
-  const data = store.enhancedTableReducer.userData;
+  const data = store.user.userDials;
 
   return { data };
 };
@@ -24,6 +24,6 @@ const select = store => {
 export default connect(
   select,
   {
-    getUserData,
+    fetchDialsSuccess,
   },
 )(Home);

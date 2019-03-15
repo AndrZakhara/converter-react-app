@@ -1,4 +1,10 @@
-import { SAVE_PROFILE, FETCH_USER, FETCH_USER_SUCCESS } from './types';
+import {
+  SAVE_PROFILE,
+  FETCH_USER,
+  FETCH_USER_SUCCESS,
+  GET_USER_CURRENCY_DIALS,
+  FETCH_USER_CURRENCY_DIALS,
+} from './types';
 
 export const fetchUser = () => ({
   type: FETCH_USER,
@@ -12,4 +18,13 @@ export const fetchUserSuccess = user => ({
 export const saveProfile = profile => ({
   type: SAVE_PROFILE,
   payload: profile,
+});
+
+export const fetchUserDials = () => ({
+  type: GET_USER_CURRENCY_DIALS,
+});
+
+export const fetchDialsSuccess = data => ({
+  type: FETCH_USER_CURRENCY_DIALS,
+  payload: data,
 });

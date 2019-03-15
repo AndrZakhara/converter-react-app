@@ -6,4 +6,12 @@ import SignUp from './SignUp';
 import ProfileView from './ProfileView';
 import ProfileEdit from './ProfileEdit';
 
-export { Header, EnhancedTable, LoginForm, SignUp, Footer, ProfileView, ProfileEdit };
+export {
+  Header,
+  EnhancedTable,
+  LoginForm,
+  SignUp,
+  Footer,
+  ProfileView,
+  ProfileEdit,
+};
