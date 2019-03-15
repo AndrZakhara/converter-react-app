@@ -2,11 +2,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
+
 import EditIcon from '@material-ui/icons/Edit';
 
 import styles from './styles';
@@ -21,11 +23,13 @@ const ProfileView = ({ user, classes, toggle }) => (
     </div>
     <Card>
       <CardContent>
-        <Typography variant="headline">{user.get('name')}</Typography>
+        <Typography variant="headline">{user.firstName}</Typography>
+        <Typography variant="headline">{user.lastName}</Typography>
+        <Typography variant="subheading">{user.phone}</Typography>
         <Typography variant="subheading" color="primary">
-          {user.get('email')}
+          {user.email}
         </Typography>
-        <Typography variant="subheading">{user.get('phone')}</Typography>
+        <Typography variant="subheading">{user.role}</Typography>
       </CardContent>
     </Card>
   </div>

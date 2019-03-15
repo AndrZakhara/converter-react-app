@@ -18,6 +18,6 @@ const store = createStore(
 sagaMiddleware.run(adminSaga);
 sagaMiddleware.run(watchGetAllCurrencies);
 sagaMiddleware.run(signUpSaga);
-Object.values(fetchUserSaga).forEach(sagaMiddleware.run.bind(sagaMiddleware));
+sagaMiddleware.run(fetchUserSaga);
 
 export default store;

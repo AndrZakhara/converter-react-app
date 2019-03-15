@@ -2,7 +2,15 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-const Input = ({ input, meta: { touched, error }, Icon, label, className, type }) => (
+const Input = ({
+  input,
+  meta: { touched, error },
+  Icon,
+  label,
+  className,
+  disabled,
+  type,
+}) => (
   <TextField
     className={className}
     fullWidth
@@ -17,6 +25,7 @@ const Input = ({ input, meta: { touched, error }, Icon, label, className, type }
         </InputAdornment>
       ),
     }}
+    disabled={disabled}
     {...input}
   />
 );
