@@ -8,8 +8,13 @@ import {
   countCurrency,
 } from '../../actions/currencyAction';
 
-const Converter = ({currencies, addCurrency, buyConvertCurrency, currenciesFields, currenciesCount, countCurrency }) => {
-  const submit = val => ( buyConvertCurrency(val));
+
+const Converter = ({currencies, addCurrency, buyConvertCurrency, currenciesCount, countCurrency }) => {
+
+  const submit = values => {
+    buyConvertCurrency(values);
+  };
+
   
   return (<div className="converter-wrapper">
     <Currency
@@ -24,8 +29,9 @@ const Converter = ({currencies, addCurrency, buyConvertCurrency, currenciesField
 
 
 const mapStateToProps = (state) => {
-  return { currencies: state.combineEvents.currencies,
-    currenciesFields: state.combineEvents. currenciesBuy,
+  return {
+    currencies: state.combineEvents.currencies,
+    currenciesFields: state.combineEvents.currenciesBuy,
     currenciesCount: state.form.currencyForm
   }
 }
@@ -35,7 +41,6 @@ const mapDispatchToProps = {
   addCurrencyAsync,
   buyConvertCurrency,
   countCurrency,
-  
 };
 
 export default connect(

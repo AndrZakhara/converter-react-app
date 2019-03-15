@@ -6,14 +6,9 @@ export const formsReducers = ({
     currencyForm: (state, action) => { 
       switch(action.type) {
         case COUNT_CURRENCY:
-        console.log(action);
-        
           return {
             ...state,
-            values: {
-              ...state.values,
-              amountBuy: 35 
-            }
+            values: action.payload
           }
         default:
           return state

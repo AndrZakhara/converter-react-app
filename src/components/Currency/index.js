@@ -13,7 +13,6 @@ import { buyCurrency } from '../../helpers/converter.helper';
 class Currency extends Component {
   componentDidMount() {
     this.props.addCurrency();
-    this.props.countCurrency();
   };
 
   _changeCurrencies = () => {
@@ -34,10 +33,12 @@ class Currency extends Component {
     const { currenciesCount, change, currencies } = this.props;
     const { currencyBuy, currencySell, amountSell, fee } = currenciesCount.values;
     buyCurrency(currencies, currencySell, currencyBuy, amountSell, fee, change);
+    this.props.countCurrency(currenciesCount.values);
   };
 
   render() {
     const { currencies, classes, handleSubmit } = this.props;
+
     const selectsOptions = oppositeCurrency =>
       currencies
         .filter(item => item.ccy !== oppositeCurrency)
