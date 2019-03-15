@@ -1,12 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Currency from '../../components/Currency';
-import {
-  addCurrencyAsync,
-  addCurrency,
-  buyConvertCurrency,
-  countCurrency,
-} from '../../actions/currencyAction';
+import Currency from 'components/Currency';
+import { addCurrencyAsync, addCurrency, buyConvertCurrency, countCurrency } from 'actions/currencyAction';
 
 
 const Converter = ({currencies, addCurrency, buyConvertCurrency, currenciesCount, countCurrency }) => {

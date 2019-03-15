@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { List, InputBase, Paper, Button } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import List from '@material-ui/core/List';
+import InputBase from '@material-ui/core/InputBase';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import UserListItem from './UserListItem';
 

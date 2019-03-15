@@ -1,5 +1,5 @@
-import { ADD_CURRENCY_ASYNC, BUY_CURRENCY } from '../../actions/currencyAction';
 import combineEvents from '../../utils/combineEvents';
+import { ADD_CURRENCY_ASYNC, BUY_CURRENCY } from 'actions/currencyAction';
 
 const initialState = {
   currencies: [],

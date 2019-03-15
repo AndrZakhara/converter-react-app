@@ -1,64 +1,56 @@
 import React from 'react';
-import { reduxForm, Field } from "redux-form";
+import { reduxForm, Field } from 'redux-form';
+import { compose } from 'recompose';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Input from "../Input";
+import AccountIcon from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import Security from '@material-ui/icons/Security';
+import Phone from '@material-ui/icons/Phone';
 
-import AccountIcon from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import Security from "@material-ui/icons/Security";
-import Phone from "@material-ui/icons/Phone";
+import Input from 'components/Input';
+import {
+  validateTextEmpty,
+  validateEmail,
+  validatePhone,
+  passwordLength,
+  passwordMatch,
+} from 'utils/validate';
+import styles from './style';
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-  formContainer: {
-    paddingTop: '100px',
-    margin: '0 auto',
-    width: '50%',
-    maxWidth: '750px',
-  },
-  form: {
-    padding: '20px',
-  },
-  textField: {
-    width: '90%',
-    marginBottom: '20px'
-  },
-  submitBtn: {
-    display: 'block',
-    margin: '0 auto'
-  }
-});
-
-
-function SignUpFormBase(props) {
-  const { classes, isInvalid } = props;
-  console.log(isInvalid);
-
-  return (
-  <div className = {classes.formContainer}>
+const SignUpFormBase = ({ classes, handleSubmit, onSubmit, error }) => (
+  <div className={classes.formContainer}>
     <Paper className={classes.form}>
-      <form noValidate autoComplete="off" onSubmit={props.onSubmit}>
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Field
-          label="UserName"
-          name="username"
+          label="First name"
+          name="firstName"
           className={classes.textField}
           component={Input}
           Icon={AccountIcon}
-          type='text'
-          />
+          type="text"
+          validate={validateTextEmpty}
+        />
+
+        <Field
+          label="Second name"
+          name="secondName"
+          className={classes.textField}
+          component={Input}
+          Icon={AccountIcon}
+          type="text"
+          validate={validateTextEmpty}
+        />
+
         <Field
           label="Email"
           name="email"
           className={classes.textField}
           Icon={MailIcon}
           component={Input}
+          type="email"
+          validate={validateEmail}
         />
 
         <Field
@@ -67,14 +59,18 @@ function SignUpFormBase(props) {
           className={classes.textField}
           component={Input}
           Icon={Security}
+          type="password"
+          validate={[passwordLength, passwordMatch]}
         />
 
         <Field
-          label="Password"
+          label="Repeat password"
           name="passwordTwo"
           className={classes.textField}
           component={Input}
           Icon={Security}
+          type="password"
+          validate={[passwordLength, passwordMatch]}
         />
 
         <Field
@@ -83,20 +79,25 @@ function SignUpFormBase(props) {
           className={classes.textField}
           component={Input}
           Icon={Phone}
+          type="number"
+          validate={validatePhone}
         />
 
-        <Button disabled={isInvalid} type='submit' className={classes.submitBtn} variant="contained" color="primary">
+        <Button
+          type="submit"
+          className={classes.submitBtn}
+          variant="contained"
+          color="primary">
           Register
         </Button>
 
-        {props.error && <p>{props.error.message}</p>}
+        {error && <p>{error.message}</p>}
       </form>
     </Paper>
   </div>
-  );
-}
+);
 
-
-export default reduxForm({
-  form: "signUp"
-})(withStyles(styles)(SignUpFormBase));
+export default compose(
+  reduxForm({ form: 'signUp' }),
+  withStyles(styles),
+)(SignUpFormBase);

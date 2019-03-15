@@ -2,14 +2,12 @@
 /* eslint-disable react/no-access-state-in-setstate */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
 
+import withStyles from '@material-ui/core/styles/withStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { fetchUser, saveProfile } from '../../actions';
 
-import ProfileView from '../../components/ProfileView';
-import ProfileEdit from '../../components/ProfileEdit';
-
+import { fetchUser, saveProfile } from 'actions';
+import { ProfileEdit, ProfileView } from 'components';
 import styles from './styles';
 
 class Profile extends Component {
@@ -35,6 +33,7 @@ class Profile extends Component {
   render() {
     const { user, classes } = this.props;
     if (!user) {
+      // TODO "NO RESPONSE" FUNCTIONAL
       return <CircularProgress className={classes.loader} />;
     }
     return (
@@ -42,7 +41,7 @@ class Profile extends Component {
         {this.state.editing ? (
           <ProfileEdit
             toggle={this.toggleEditing}
-            initialValues={user.toJS()}
+            initialValues={user}
             onSave={this.save}
           />
         ) : (
@@ -54,13 +53,13 @@ class Profile extends Component {
 }
 
 const mapStateToProps = ({ user }) => ({
-  user: user.get('profile'),
+  user: user.profile,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onFetchUser: () => dispatch(fetchUser()),
-  onSaveProfile: profile => dispatch(saveProfile(profile)),
-});
+const mapDispatchToProps = {
+  onFetchUser: fetchUser,
+  onSaveProfile: saveProfile,
+};
 
 export default connect(
   mapStateToProps,
