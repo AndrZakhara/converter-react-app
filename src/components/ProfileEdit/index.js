@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { compose } from 'recompose';
+
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
@@ -11,9 +12,9 @@ import CardActions from '@material-ui/core/CardActions';
 import AccountIcon from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import DateIcon from '@material-ui/icons/Phone';
+
 import { validateTextEmpty, validatePhone } from '../../utils/validate';
 import Input from '../Input/index';
-
 import styles from './styles';
 
 const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
