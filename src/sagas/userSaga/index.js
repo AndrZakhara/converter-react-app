@@ -10,7 +10,6 @@ export function* fetchUserSaga() {
     const { data } = yield call(axios.get, 'https://api.myjson.com/bins/abo2a');
     yield put(fetchUserSuccess(data.user));
   } catch (e) {
-    console.log(e);
     yield put(serverError());
   }
 }
