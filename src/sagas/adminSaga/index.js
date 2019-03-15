@@ -6,7 +6,7 @@ import fb from '../../api/firebase/index';
 export function* getAllUser() {
   const userList = yield call(() =>
     fb
-      .getUserListData()
+      .getUserList()
       .once('value')
       .then(snapshot => snapshot.val()),
   );

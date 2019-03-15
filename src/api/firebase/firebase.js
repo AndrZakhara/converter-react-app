@@ -34,7 +34,7 @@ class Firebase {
 
   doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
 
-  getUserListData = () => this.database.ref('listOfUsers');
+  getUserList = () => this.database.ref('listOfUsers');
 }
 
 export default Firebase;
