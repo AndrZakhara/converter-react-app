@@ -6,8 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchUser, saveProfile } from '../../actions';
 
-import ProfileView from '../../components/ProfileView';
-import ProfileEdit from '../../components/ProfileEdit';
+import { ProfileEdit, ProfileView } from '../../components';
 
 import styles from './styles';
 

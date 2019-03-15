@@ -22,7 +22,6 @@ export default (state = initialState, { type, payload }) => {
         profile: payload,
       };
     case SAVE_PROFILE:
-      console.log(payload);
       return {
         ...state,
         profile: payload,

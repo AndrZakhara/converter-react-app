@@ -1,6 +1,6 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-
+import { compose } from 'recompose';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
@@ -27,7 +27,7 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
           <Field
             name="firstName"
             component={Input}
-            label="Name"
+            label="First Name"
             Icon={AccountIcon}
             className={classes.input}
             validate={validateTextEmpty}
@@ -35,7 +35,7 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
           <Field
             name="lastName"
             component={Input}
-            label="Name"
+            label="Second Name"
             Icon={AccountIcon}
             className={classes.input}
             validate={validateTextEmpty}
@@ -43,7 +43,7 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
           <Field
             name="email"
             component={Input}
-            label="Name"
+            label="Email"
             Icon={MailIcon}
             className={classes.input}
             disabled
@@ -70,6 +70,7 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
   </div>
 );
 
-export default reduxForm({
-  form: 'editProfile',
-})(withStyles(styles)(ProfileEdit));
+export default compose(
+  reduxForm({ form: 'editProfile' }),
+  withStyles(styles),
+)(ProfileEdit);
