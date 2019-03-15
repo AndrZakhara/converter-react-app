@@ -19,6 +19,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "react-hot-loader": "^4.8.0",
     "react-phone-number-input": "^2.3.7",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",

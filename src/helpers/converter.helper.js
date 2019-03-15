@@ -16,7 +16,7 @@ const countTax = (sum, pr) => {
   return res;
 };
 
-export const buyCurrency = (array, CurrencyNameFrom, CurrencyNameTo, AmountSell, tax, cb) => {
+export const buyCurrency = (array, CurrencyNameFrom, CurrencyNameTo, AmountSell, tax) => {
 
   const indexSellCurrency = array.findIndex(
     item => item.ccy === CurrencyNameFrom,
@@ -34,5 +34,5 @@ export const buyCurrency = (array, CurrencyNameFrom, CurrencyNameTo, AmountSell,
     array[indexBuyCurrency].sale,
   );
   const countWithTax = secondConvert - countTax(secondConvert, tax);
-  cb('amountBuy', Math.trunc(countWithTax * 100) / 100);
+  return Math.trunc(countWithTax * 100) / 100;
 };

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { compose } from 'recompose';
 import Button from '@material-ui/core/Button';
@@ -8,7 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { feeConvert } from '../../mocks/db';
 import { styles } from './style';
-import { buyCurrency } from '../../helpers/converter.helper';
 
 class Currency extends Component {
   componentDidMount() {
@@ -30,15 +28,14 @@ class Currency extends Component {
   };
 
   _buyCurrency = () => {
-    const { currenciesCount, change, currencies } = this.props;
+    const { currenciesCount, change, currencies, amountBuy } = this.props;
     const { currencyBuy, currencySell, amountSell, fee } = currenciesCount.values;
-    buyCurrency(currencies, currencySell, currencyBuy, amountSell, fee, change);
-    this.props.countCurrency(currenciesCount.values);
+    this.props.countCurrency(currencies, currencyBuy, currencySell, amountSell, fee);
+    change('amountBuy', amountBuy);
   };
 
   render() {
     const { currencies, classes, handleSubmit } = this.props;
-
     const selectsOptions = oppositeCurrency =>
       currencies
         .filter(item => item.ccy !== oppositeCurrency)
@@ -70,7 +67,7 @@ class Currency extends Component {
               name="currencySell"
               component="select"
               onChange={this._buyCurrency}>
-              {selectsOptions()}
+              {selectsOptions(this.currencyBuy)}
             </Field>
           </FormControl>
           <Button
@@ -86,7 +83,7 @@ class Currency extends Component {
               name="currencyBuy"
               component="select"
               onChange={this._buyCurrency}>
-              {selectsOptions()}
+              {selectsOptions(this.currencySell)}
             </Field>
           </FormControl>
         </div>
@@ -133,10 +130,6 @@ class Currency extends Component {
     );
   }
 }
-
-Currency.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default compose(
   reduxForm({
