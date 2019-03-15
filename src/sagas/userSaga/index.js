@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { call, put, take, takeEvery } from 'redux-saga/effects';
 import { getProfile } from '../../api/getProfile';
-import { FETCH_USER, FETCH_USER_CURRENCY_DIALS } from '../../actions/types';
+import { FETCH_USER, GET_USER_CURRENCY_DIALS } from '../../actions/types';
 import { data } from '../../mocks/db';
 import {
   fetchUserSuccess,
@@ -25,7 +25,7 @@ export function* getUserDialsData() {
 }
 
 export function* watchGetAllUser() {
-  yield takeEvery(FETCH_USER_CURRENCY_DIALS, getUserDialsData);
+  yield takeEvery(GET_USER_CURRENCY_DIALS, getUserDialsData);
 }
 
 export default function* getUserDialsSaga() {
