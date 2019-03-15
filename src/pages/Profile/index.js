@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import withStyles from '@material-ui/core/styles/withStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { fetchUser, saveProfile } from '../../actions';
-import { ProfileEdit, ProfileView } from '../../components';
+import { fetchUser, saveProfile } from 'actions';
+import { ProfileEdit, ProfileView } from 'components';
 import styles from './styles';
 
 class Profile extends Component {

@@ -8,13 +8,12 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
-
 import AccountIcon from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import DateIcon from '@material-ui/icons/Phone';
 
-import { validateTextEmpty, validatePhone } from '../../utils/validate';
-import Input from '../Input/index';
+import { validateTextEmpty, validatePhone } from 'utils/validate';
+import Input from 'components/Input/index';
 import styles from './styles';
 
 const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
