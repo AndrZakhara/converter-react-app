@@ -21,5 +21,6 @@ sagaMiddleware.run(watchGetAllCurrencies);
 sagaMiddleware.run(signUpSaga);
 sagaMiddleware.run(enhancedTableSaga);
 Object.values(fetchUserSaga).forEach(sagaMiddleware.run.bind(sagaMiddleware));
+sagaMiddleware.run(fetchUserSaga);
 
 export default store;
