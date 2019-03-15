@@ -1,4 +1,4 @@
-import { SIGNUP, SIGNUP_SUCCESS, SIGNUP_ERROR } from '../../actions/types';
+import { SIGNUP, SIGNUP_SUCCESS, SIGNUP_ERROR } from 'actions/types';
 
 const initialState = {
   user: null,

@@ -6,7 +6,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
-import UserListItem from './UserListItem';
+import UserListItem from 'components/Admin/UserListItem';
 
 const styles = () => ({
   root: {

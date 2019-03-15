@@ -1,5 +1,6 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { compose } from 'recompose';
 
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -7,13 +8,12 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
-
 import AccountIcon from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import DateIcon from '@material-ui/icons/Phone';
-import { validateProfile } from '../../utils/validate';
-import Input from '../Input/index';
 
+import { validateTextEmpty, validatePhone } from 'utils/validate';
+import Input from 'components/Input/index';
 import styles from './styles';
 
 const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
@@ -25,18 +25,28 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
       <Card>
         <CardContent>
           <Field
-            name="name"
+            name="firstName"
             component={Input}
-            label="Name"
+            label="First Name"
             Icon={AccountIcon}
             className={classes.input}
+            validate={validateTextEmpty}
+          />
+          <Field
+            name="lastName"
+            component={Input}
+            label="Second Name"
+            Icon={AccountIcon}
+            className={classes.input}
+            validate={validateTextEmpty}
           />
           <Field
             name="email"
             component={Input}
-            label="Name"
+            label="Email"
             Icon={MailIcon}
             className={classes.input}
+            disabled
           />
           <Field
             name="phone"
@@ -44,6 +54,7 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
             label="Phone Number"
             Icon={DateIcon}
             className={classes.input}
+            validate={validatePhone}
           />
         </CardContent>
         <CardActions className={classes.actions}>
@@ -59,7 +70,7 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
   </div>
 );
 
-export default reduxForm({
-  form: 'editProfile',
-  validate: validateProfile,
-})(withStyles(styles)(ProfileEdit));
+export default compose(
+  reduxForm({ form: 'editProfile' }),
+  withStyles(styles),
+)(ProfileEdit);
