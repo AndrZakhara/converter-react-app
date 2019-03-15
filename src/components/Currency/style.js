@@ -2,7 +2,6 @@ export const styles = () => ({
   appContent: {
     width: 650,
     margin: 'auto',
-    marginTop: 50,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
