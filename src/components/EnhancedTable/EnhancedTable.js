@@ -14,7 +14,6 @@ const ORDER = {
   ASC: 'asc',
   DESC: 'desc',
 };
-
 class EnhancedTable extends Component {
   state = {
     order: ORDER.ASC,
@@ -53,7 +52,10 @@ class EnhancedTable extends Component {
         <Paper className={classes.root}>
           <h1 className={classes.headerTitle}>History of Converting values</h1>
           <div className={classes.tableWrapper}>
-            <Table className={classes.table} aria-labelledby="tableTitle">
+            <Table
+              className={classes.table}
+              aria-labelledby="tableTitle"
+              id="indexTable">
               <EnhancedTableHead
                 order={order}
                 orderBy={orderBy}

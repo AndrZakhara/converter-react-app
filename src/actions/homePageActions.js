@@ -1,10 +1,10 @@
-import { TABLE_GET_USER_DATA, TABLE_FETCH_USER_DATA } from './types';
+import { GET_USER_HISTORY, FETCH_USER_HISTORY, RECIVE_USER_HISTORY } from './types';
 
 export const getUserData = () => ({
-  type: TABLE_GET_USER_DATA,
+  type: GET_USER_HISTORY,
 });
 
 export const fetchUserData = data => ({
-  type: TABLE_FETCH_USER_DATA,
+  type: FETCH_USER_HISTORY,
   payload: data,
 });

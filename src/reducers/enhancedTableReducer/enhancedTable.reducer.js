@@ -2,7 +2,7 @@ import * as actions from '../../actions/types';
 
 function enhancedTableReducer(state = {}, action) {
   switch (action.type) {
-    case actions.TABLE_FETCH_USER_DATA:
+    case actions.FETCH_USER_HISTORY:
       return {
         ...state,
         userData: action.payload,
