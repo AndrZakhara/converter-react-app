@@ -19,16 +19,12 @@ export const reciveAllUser = userList => ({
   payload: userList,
 });
 
-export function setSelectedUser(userId) {
-  return {
-    type: SET_SELECTED_USER,
-    payload: userId,
-  };
-}
+export const setSelectedUser = userId => ({
+  type: SET_SELECTED_USER,
+  payload: userId,
+});
 
-export function setFilter(filterValue) {
-  return {
-    type: SET_FILTER,
-    payload: filterValue,
-  }
-}
+export const setFilter = filterValue => ({
+  type: SET_FILTER,
+  payload: filterValue,
+});

@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 
-import adminReducer from './adminReducer';
+import users from './users.reducer';
 import currencyReducer from './currencyReducer';
 import signUpReducer from './signUpReducer';
 import user from './userReducer/user';
 
 export default combineReducers({
-  adminReducer,
+  users,
   currencyReducer,
   user,
   signUpReducer,

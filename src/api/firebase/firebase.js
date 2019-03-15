@@ -15,6 +15,7 @@ class Firebase {
   constructor() {
     app.initializeApp(config);
     this.auth = app.auth();
+    this.database = app.database();
   }
 
   static DoCreateUserWithEmailAndPassword = (email, password) => {
@@ -32,6 +33,8 @@ class Firebase {
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
   doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
+
+  getUserListData = () => this.database.ref('listOfUsers');
 }
 
 export default Firebase;

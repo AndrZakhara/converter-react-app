@@ -24,12 +24,23 @@ class Admin extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const {
+      classes,
+      userList,
+      selectedUser,
+      userListFiltered,
+      setSelectedUser,
+      setFilter,
+    } = this.props;
 
     return (
       <div className={classes.wrapper}>
-        <UserList {...this.props} />
-        <UserInfo {...this.props} />
+        <UserList
+          userListFiltered={userListFiltered}
+          setSelectedUser={setSelectedUser}
+          setFilter={setFilter}
+        />
+        <UserInfo userList={userList} selectedUser={selectedUser} />
       </div>
     );
   }
@@ -40,20 +51,20 @@ Admin.propTypes = {
   setSelectedUser: PropTypes.func.isRequired,
 };
 
-const select = state => {
-  const userListFiltered = getFilteredUserList(state);
-  const { selectedUser, filterValue, userList } = state.adminReducer;
+const select = ({ users }) => {
+  const userListFiltered = getFilteredUserList(users);
+  const { selectedUser, filterValue, userList } = users;
 
   return { userListFiltered, selectedUser, filterValue, userList };
 };
 
-const mapDispatchToProps = dispatch => ({
-  getAllUsers: () => dispatch(getAllUsers()),
-  setSelectedUser: id => dispatch(setSelectedUser(id)),
-  setFilter: filter => dispatch(setFilter(filter)),
-});
+const actionCreators = {
+  getAllUsers,
+  setSelectedUser,
+  setFilter,
+};
 
 export default connect(
   select,
-  mapDispatchToProps,
+  actionCreators,
 )(withStyles(styles)(Admin));
