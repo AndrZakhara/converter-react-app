@@ -18,15 +18,18 @@ export const buyConvertCurrency = value => ({
   payload: value,
 });
 
-export const countCurrency = (currencies, currencySell, currencyBuy, amountSell, fee) => ({
+export const countCurrency = (
+  currencies,
+  { currencySell, currencyBuy, amountSell, fee },
+) => ({
   type: COUNT_CURRENCY,
   payload: {
     currencies,
     currencySell,
     currencyBuy,
     amountSell,
-    fee
-  }
+    fee,
+  },
 });
 
 export const countCurrencyAsync = value => ({
