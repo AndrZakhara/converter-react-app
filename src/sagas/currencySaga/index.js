@@ -7,7 +7,7 @@ import {
   countCurrencyAsync,
 } from 'actions/currencyAction';
 import getCurrencyApi from 'api/axios';
-import buyCurrency from 'helpers/converter.helper';
+import {buyCurrency} from 'helpers/converter.helper';
 
 function* getCurrencies() {
   const currenciesList = yield call(getCurrencyApi);

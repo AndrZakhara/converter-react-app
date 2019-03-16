@@ -6,6 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import { withStyles } from '@material-ui/core/styles';
 import { feeConvert } from 'mocks/db';
 import { styles } from './style';
+import { swappingVariables } from 'helpers/converter.helper';
 
 class Currency extends Component {
   componentDidMount() {
@@ -20,10 +21,7 @@ class Currency extends Component {
       amountSell,
       amountBuy,
     } = currenciesCount.values;
-    change('currencyBuy', currencySell);
-    change('currencySell', currencyBuy);
-    change('amountBuy', amountSell);
-    change('amountSell', amountBuy);
+    swappingVariables(currencyBuy, currencySell, amountSell, amountBuy, change);
   };
 
   buyCurrency = () => {
