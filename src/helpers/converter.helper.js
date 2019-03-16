@@ -1,38 +1,18 @@
-const convertToUa = (from, to) => {
-  const result = from * to;
+const convertToUa = (from, to) => from * to;
+const convertFromUa = (from, to) => from / to;
+const countTax = (sum, fee) => (sum * fee) / 100;
 
-  return result;
-};
-
-const convertFromUa = (from, to) => {
-  const res = from / to;
-
-  return res;
-};
-
-const countTax = (sum, pr) => {
-  const res = (sum * pr) / 100;
-
-  return res;
-};
-
-export const buyCurrency = (array, CurrencyNameFrom, CurrencyNameTo, AmountSell, tax) => {
-
+export default (array, CurrencyNameFrom, CurrencyNameTo, AmountSell, tax) => {
   const indexSellCurrency = array.findIndex(
     item => item.ccy === CurrencyNameFrom,
   );
-  const indexBuyCurrency = array.findIndex(
-    item => item.ccy === CurrencyNameTo,
-  );
-
-  const firstConvert = convertToUa(
-    AmountSell,
-    array[indexSellCurrency].buy,
-  );
+  const indexBuyCurrency = array.findIndex(item => item.ccy === CurrencyNameTo);
+  const firstConvert = convertToUa(AmountSell, array[indexSellCurrency].buy);
   const secondConvert = convertFromUa(
     firstConvert,
     array[indexBuyCurrency].sale,
   );
   const countWithTax = secondConvert - countTax(secondConvert, tax);
+
   return Math.trunc(countWithTax * 100) / 100;
 };

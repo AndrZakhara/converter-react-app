@@ -4,16 +4,15 @@ import { compose } from 'recompose';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import { withStyles } from '@material-ui/core/styles';
-
-import { feeConvert } from '../../mocks/db';
+import { feeConvert } from 'mocks/db';
 import { styles } from './style';
 
 class Currency extends Component {
   componentDidMount() {
-    this.props.addCurrency();
+    this.props.loadCurrencies();
   }
 
-  _changeCurrencies = () => {
+  changeCurrencies = () => {
     const { currenciesCount, change } = this.props;
     const {
       currencyBuy,
@@ -27,7 +26,7 @@ class Currency extends Component {
     change('amountSell', amountBuy);
   };
 
-  _buyCurrency = () => {
+  buyCurrency = () => {
     const {
       currenciesCount,
       change,
@@ -41,7 +40,6 @@ class Currency extends Component {
 
   render() {
     const { currencies, classes, handleSubmit } = this.props;
-    const { _buyCurrency, _changeCurrencies } = this;
     const selectsOptions = oppositeCurrency =>
       currencies
         .filter(item => item.ccy !== oppositeCurrency)
@@ -72,14 +70,14 @@ class Currency extends Component {
               className={classes.select}
               name="currencySell"
               component="select"
-              onChange={_buyCurrency}>
+              onChange={this.buyCurrency}>
               {selectsOptions(this.currencyBuy)}
             </Field>
           </FormControl>
           <Button
             variant="contained"
             color="primary"
-            onClick={_changeCurrencies}>
+            onClick={this.changeCurrencies}>
             &#8660;
           </Button>
           <FormControl className={classes.formControl}>
@@ -88,7 +86,7 @@ class Currency extends Component {
               className={classes.select}
               name="currencyBuy"
               component="select"
-              onChange={_buyCurrency}>
+              onChange={this.buyCurrency}>
               {selectsOptions()}
             </Field>
           </FormControl>
@@ -101,7 +99,7 @@ class Currency extends Component {
             type="number"
             label="How much to exchange"
             min="0"
-            onChange={_buyCurrency}
+            onChange={this.buyCurrency}
           />
           <Field
             className={classes.inputAmount}
@@ -119,7 +117,7 @@ class Currency extends Component {
               className={classes.feeSelect}
               name="fee"
               component="select"
-              onChange={_buyCurrency}>
+              onChange={this.buyCurrency}>
               {feeSelectsOption()}
             </Field>
             <p className={classes.text}> %</p>

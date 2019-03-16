@@ -1,17 +1,17 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 
 import {
-  ADD_CURRENCY,
+  LOAD_CURRENCY,
   COUNT_CURRENCY,
-  addCurrencyAsync,
+  loadCurrenciesAsync,
   countCurrencyAsync,
 } from 'actions/currencyAction';
 import getCurrencyApi from 'api/axios';
-import { buyCurrency } from 'helpers/converter.helper';
+import buyCurrency from 'helpers/converter.helper';
 
 function* getCurrencies() {
   const currenciesList = yield call(getCurrencyApi);
-  yield put(addCurrencyAsync(currenciesList));
+  yield put(loadCurrenciesAsync(currenciesList));
 }
 
 function* countCurrencies(action) {
@@ -22,14 +22,18 @@ function* countCurrencies(action) {
     amountSell,
     fee,
   } = action.payload;
-  const buyValue = yield call(() =>
-    buyCurrency(currencies, currencySell, currencyBuy, amountSell, fee),
+  const buyValue = buyCurrency(
+    currencies,
+    currencySell,
+    currencyBuy,
+    amountSell,
+    fee,
   );
   yield put(countCurrencyAsync(buyValue));
 }
 
 export function* watchGetAllCurrencies() {
-  yield takeEvery(ADD_CURRENCY, getCurrencies);
+  yield takeEvery(LOAD_CURRENCY, getCurrencies);
 }
 
 export function* watchCountCurrencies() {

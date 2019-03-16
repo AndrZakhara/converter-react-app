@@ -1,5 +1,9 @@
 import combineEvents from 'utils/combineEvents';
-import { ADD_CURRENCY_ASYNC, BUY_CURRENCY, COUNT_CURRENCY_ASYNC } from 'actions/currencyAction';
+import {
+  LOAD_CURRENCY_ASYNC,
+  BUY_CURRENCY,
+  COUNT_CURRENCY_ASYNC,
+} from 'actions/currencyAction';
 
 const initialState = {
   currencies: [],
@@ -9,18 +13,9 @@ const initialState = {
 
 export default combineEvents(
   {
-    [ADD_CURRENCY_ASYNC]: (state, action) => ({
-      ...state,
-      currencies: action.payload,
-    }),
-    [BUY_CURRENCY]: (state, action) => ({
-      ...state,
-      currenciesBuy: action.payload,
-    }),
-    [COUNT_CURRENCY_ASYNC]: (state, action) => ({
-      ...state,
-      amountBuy: action.payload,
-    })
+    [LOAD_CURRENCY_ASYNC]: (state, { payload }) => ({ ...state, currencies: payload }),
+    [BUY_CURRENCY]: (state, { payload }) => ({...state, currenciesBuy: payload }),
+    [COUNT_CURRENCY_ASYNC]: (state, { payload }) => ({...state, amountBuy: payload }),
   },
   initialState,
 );

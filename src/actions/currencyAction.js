@@ -1,15 +1,15 @@
-export const ADD_CURRENCY = 'ADD_CURRENCY';
-export const ADD_CURRENCY_ASYNC = 'ADD_CURRENCY_ASYNC';
+export const LOAD_CURRENCY = 'LOAD_CURRENCY';
+export const LOAD_CURRENCY_ASYNC = 'LOAD_CURRENCY_ASYNC';
 export const BUY_CURRENCY = 'BUY_CURRENCY';
 export const COUNT_CURRENCY = 'COUNT_CURRENCY';
 export const COUNT_CURRENCY_ASYNC = 'COUNT_CURRENCY_ASYNC';
 
-export const addCurrency = () => ({
-  type: ADD_CURRENCY,
+export const loadCurrencies = () => ({
+  type: LOAD_CURRENCY,
 });
 
-export const addCurrencyAsync = data => ({
-  type: ADD_CURRENCY_ASYNC,
+export const loadCurrenciesAsync = data => ({
+  type: LOAD_CURRENCY_ASYNC,
   payload: data,
 });
 
