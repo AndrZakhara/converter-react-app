@@ -42,12 +42,11 @@ const UserList = props => {
   let listItems = null;
 
   if (userListFiltered !== undefined) {
-    listItems = Object.keys(userListFiltered).map(item => (
+    listItems = userListFiltered.map(item => (
       <UserListItem
-        userItem={userListFiltered[item]}
-        key={item}
-        id={item}
-        setSelectedUser={setSelectedUser}
+        user={item}
+        key={item.id}
+        getSetSelectedUser={setSelectedUser}
       />
     ));
   }
@@ -69,7 +68,7 @@ const UserList = props => {
   );
 };
 
-UserList.propTypes = {
+UserList.propTypes = { //TODO Proptypes
   // userList: PropTypes.object,
   setFilter: PropTypes.func.isRequired,
 };

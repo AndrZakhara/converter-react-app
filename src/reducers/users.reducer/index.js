@@ -7,6 +7,7 @@ import {
 const initialState = {
   filterValue: '',
   userList: {},
+  selectedUser: null,
 };
 
 function adminReducer(state = initialState, { type, payload }) {

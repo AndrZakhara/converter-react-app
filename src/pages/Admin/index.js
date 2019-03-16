@@ -26,7 +26,6 @@ class Admin extends Component {
   render() {
     const {
       classes,
-      userList,
       selectedUser,
       userListFiltered,
       setSelectedUser,
@@ -40,7 +39,7 @@ class Admin extends Component {
           setSelectedUser={setSelectedUser}
           setFilter={setFilter}
         />
-        <UserInfo userList={userList} selectedUser={selectedUser} />
+        <UserInfo selectedUser={selectedUser} />
       </div>
     );
   }
@@ -53,9 +52,9 @@ Admin.propTypes = {
 
 const select = ({ users }) => {
   const userListFiltered = getFilteredUserList(users);
-  const { selectedUser, filterValue, userList } = users;
+  const { selectedUser, filterValue } = users;
 
-  return { userListFiltered, selectedUser, filterValue, userList };
+  return { userListFiltered, selectedUser, filterValue };
 };
 
 const actionCreators = {

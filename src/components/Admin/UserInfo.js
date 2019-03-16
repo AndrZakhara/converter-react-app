@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ListItem from '@material-ui/core/ListItem';
@@ -32,39 +32,31 @@ const styles = theme => ({
   },
 });
 
-const UserInfo = ({ selectedUser, userList, classes }) => {
+const UserInfo = ({ selectedUser, classes }) => {
   if (selectedUser) {
-    const selectedUserData = userList[selectedUser];
-    const listElement = Object.keys(selectedUserData).map(item => {
-      if (item === 'firstName' || item === 'lastName' || item === 'ava') {
-        return null;
-      }
-
-      return (
-        <Fragment key={item}>
-          <ListItem>
-            <ListItemText secondary={`${item}: ${selectedUserData[item]}`} />
-          </ListItem>
-          <Divider />
-        </Fragment>
-      );
-    });
-    const { firstName, lastName } = selectedUserData;
-    const userName = (
-      <Fragment>
-        {firstName} {lastName}
-      </Fragment>
-    );
+    const { firstName, lastName, ava, email, role, phone } = selectedUser;
 
     return (
       <div className={classes.root}>
         <h2>User info</h2>
-        <h3>{userName}</h3>
+        <h3>{`${firstName} ${lastName}`}</h3>
         <Grid container spacing={24} direction="row" justify="center">
           <Grid item xs={6}>
             <Paper className={`${classes.paper} ${classes.infoWrapper}`}>
-              <Avatar src="" alt="avatar" className={classes.bigAvatar} />
-              <div>{listElement}</div>
+              <Avatar src={ava} alt="avatar" className={classes.bigAvatar} />
+              <div>
+                <ListItem>
+                  <ListItemText secondary={`Email: ${email}`} />
+                </ListItem>
+                <Divider />
+                <ListItem>
+                  <ListItemText secondary={`Phone: ${phone}`} />
+                </ListItem>
+                <Divider />
+                <ListItem>
+                  <ListItemText secondary={`Role: ${role}`} />
+                </ListItem>
+              </div>
             </Paper>
           </Grid>
         </Grid>
@@ -79,8 +71,8 @@ const UserInfo = ({ selectedUser, userList, classes }) => {
   );
 };
 
-UserInfo.propTypes = {
-  selectedUser: PropTypes.string,
+UserInfo.propTypes = { //TODO Proptypes
+  selectedUser: PropTypes.object,
 };
 
 export default withStyles(styles)(UserInfo);
