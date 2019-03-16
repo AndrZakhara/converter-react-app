@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { func } from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import List from '@material-ui/core/List';
 import InputBase from '@material-ui/core/InputBase';
@@ -41,7 +41,7 @@ const UserList = props => {
 };
 
 UserList.propTypes = { //TODO Add proptypes
-  setFilter: PropTypes.func.isRequired,
+  setFilter: func.isRequired,
 };
 
 export default withStyles(styles)(UserList);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { func } from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { UserList, UserInfo } from 'components/Admin';
 import { getAllUsers, setSelectedUser, setFilter } from 'actions';
@@ -41,8 +41,8 @@ class Admin extends Component {
 }
 
 Admin.propTypes = {
-  getAllUsers: PropTypes.func.isRequired,
-  setSelectedUser: PropTypes.func.isRequired,
+  getAllUsers: func.isRequired,
+  setSelectedUser: func.isRequired,
 };
 
 const select = ({ users }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { object, shape, array, string } from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
@@ -26,15 +26,16 @@ const UserListItem = props => {
   );
 };
 
-UserListItem.propTypes = { //TODO fix proptypes
-  classes: PropTypes.object,
-  userItem: PropTypes.shape({
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    phone: PropTypes.string,
-    email: PropTypes.string,
-    role: PropTypes.string,
-    ava: PropTypes.array
+UserListItem.propTypes = {
+  // TODO fix proptypes
+  classes: object,
+  userItem: shape({
+    firstName: string,
+    lastName: string,
+    phone: string,
+    email: string,
+    role: string,
+    ava: array,
   }),
 };
 

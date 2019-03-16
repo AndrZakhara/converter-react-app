@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { shape, string } from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -41,13 +41,13 @@ const UserInfo = ({ selectedUser, classes }) => {
 };
 
 UserInfo.propTypes = {
-  selectedUser: PropTypes.shape({
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    ava: PropTypes.string,
-    email: PropTypes.string,
-    role: PropTypes.string,
-    phone: PropTypes.string,
+  selectedUser: shape({
+    firstName: string,
+    lastName: string,
+    ava: string,
+    email: string,
+    role: string,
+    phone: string,
   }),
 };
 
