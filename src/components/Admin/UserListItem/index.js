@@ -9,7 +9,7 @@ import styles from './style';
 
 const UserListItem = props => {
   const { classes, user, getSetSelectedUser } = props;
-  const { firstName, lastName, ava, email } = user;
+  const { firstName, lastName, ava, email = ' - ' } = user;
   return (
     <ListItem
       button
@@ -19,7 +19,9 @@ const UserListItem = props => {
         <Avatar src={ava} alt="avatar" />
       </ListItemIcon>
       <ListItemText
-        primary={`${firstName} ${lastName}`}
+        primary={
+          firstName || lastName ? `${firstName} ${lastName}` : 'Unknown User'
+        }
         secondary={`email: ${email}`}
       />
     </ListItem>
