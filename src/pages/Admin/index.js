@@ -21,12 +21,6 @@ class Admin extends Component {
       setFilter,
     } = this.props;
 
-    const userInfoElem = selectedUser ? (
-      <UserInfo selectedUser={selectedUser} />
-    ) : (
-      <h2 className={classes.infoHeader}>Any user selected.</h2>
-    );
-
     return (
       <div className={classes.wrapper}>
         <UserList
@@ -34,7 +28,11 @@ class Admin extends Component {
           setSelectedUser={setSelectedUser}
           setFilter={setFilter}
         />
-        {userInfoElem}
+        {selectedUser ? (
+          <UserInfo selectedUser={selectedUser} />
+        ) : (
+          <h2 className={classes.infoHeader}>Any user selected.</h2>
+        )}
       </div>
     );
   }

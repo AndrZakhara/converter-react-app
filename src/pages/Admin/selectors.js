@@ -9,9 +9,12 @@ const transformToArray = createSelector(
     const list = itemList;
     const newListArr = [];
     Object.keys(list).forEach(key => {
-      list[key].id = key;
+      if (typeof list[key] === 'object') {
+        list[key].id = key;
+      }
       newListArr.push(list[key]);
     });
+
     return newListArr;
   },
 );

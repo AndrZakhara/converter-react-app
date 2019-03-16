@@ -11,17 +11,6 @@ import styles from './style';
 
 const UserList = props => {
   const { userListFiltered, classes, setSelectedUser, setFilter } = props;
-  let listItems = null;
-
-  if (userListFiltered !== undefined) {
-    listItems = userListFiltered.map(item => (
-      <UserListItem
-        user={item}
-        key={item.id}
-        getSetSelectedUser={setSelectedUser}
-      />
-    ));
-  }
 
   return (
     <List component="nav" className={classes.root}>
@@ -35,12 +24,22 @@ const UserList = props => {
           <SearchIcon />
         </Button>
       </Paper>
-      <Paper className={classes.listWrapper}>{listItems}</Paper>
+      <Paper className={classes.listWrapper}>
+        {userListFiltered &&
+          userListFiltered.map(item => (
+            <UserListItem
+              user={item}
+              key={item.id}
+              getSetSelectedUser={setSelectedUser}
+            />
+          ))}
+      </Paper>
     </List>
   );
 };
 
-UserList.propTypes = { //TODO Add proptypes
+UserList.propTypes = {
+  // TODO Add proptypes
   setFilter: func.isRequired,
 };
 

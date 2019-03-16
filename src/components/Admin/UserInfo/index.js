@@ -10,12 +10,21 @@ import ListItemText from '@material-ui/core/ListItemText';
 import styles from './style';
 
 const UserInfo = ({ selectedUser, classes }) => {
-  const { firstName, lastName, ava, email, role, phone } = selectedUser;
+  const {
+    firstName = '',
+    lastName = '',
+    ava,
+    email = ' - ',
+    role = 'user',
+    phone = ' - ',
+  } = selectedUser;
 
   return (
     <div className={classes.root}>
       <h2>User info</h2>
-      <h3>{`${firstName} ${lastName}`}</h3>
+      <h3>
+        {firstName || lastName ? `${firstName} ${lastName}` : 'Unknown User'}
+      </h3>
       <Grid container spacing={24} direction="row" justify="center">
         <Grid item xs={6}>
           <Paper className={`${classes.paper} ${classes.infoWrapper}`}>
@@ -48,18 +57,7 @@ UserInfo.propTypes = {
     email: string,
     role: string,
     phone: string,
-  }),
-};
-
-UserInfo.defaultProps = {
-  selectedUser: {
-    firstName: '',
-    lastName: '',
-    ava: '', //TODO add default value
-    email: ' - ',
-    role: 'user',
-    phone: ' - ',
-  },
+  }).isRequired,
 };
 
 export default withStyles(styles)(UserInfo);
