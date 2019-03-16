@@ -9,15 +9,15 @@ import MailIcon from '@material-ui/icons/Mail';
 import Security from '@material-ui/icons/Security';
 import Phone from '@material-ui/icons/Phone';
 
-import Input from '../Input';
-import styles from './style';
+import Input from 'components/Input';
 import {
   validateTextEmpty,
   validateEmail,
   validatePhone,
   passwordLength,
   passwordMatch,
-} from '../../utils/validate';
+} from 'utils/validate';
+import styles from './style';
 
 const SignUpFormBase = ({ classes, handleSubmit, onSubmit, error }) => (
   <div className={classes.formContainer}>

@@ -1,5 +1,4 @@
-import Firebase from '../../api/firebase';
+import Firebase from 'api/firebase';
 
-export const register = (email, password) => {
-  return Firebase.DoCreateUserWithEmailAndPassword(email, password);
-}
+export const register = (email, password) =>
+  Firebase.DoCreateUserWithEmailAndPassword(email, password);

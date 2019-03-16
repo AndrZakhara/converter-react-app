@@ -1,4 +1,4 @@
-import { ADD_CURRENCY_ASYNC } from '../../actions/currencyAction';
+import { ADD_CURRENCY_ASYNC } from 'actions/currencyAction';
 
 const initialState = [{ ccy: 'UAH', base_ccy: 'UAH', buy: '1', sale: '1' }];
 
