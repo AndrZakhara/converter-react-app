@@ -9,7 +9,7 @@ const initialState = {
   userList: {},
 };
 
-function adminReducer(state = initialState, { type, payload }) {
+function usersReducer(state = initialState, { type, payload }) {
   switch (type) {
     case RECIVE_ALL_USERS:
       return {
@@ -34,4 +34,4 @@ function adminReducer(state = initialState, { type, payload }) {
   }
 }
 
-export default adminReducer;
+export default usersReducer;

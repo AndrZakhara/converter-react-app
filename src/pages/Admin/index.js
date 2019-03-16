@@ -3,20 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { UserList, UserInfo } from 'components/Admin';
-import {
-  getAllUsers,
-  setSelectedUser,
-  setFilter,
-} from 'actions/adminPage';
+import { getAllUsers, setSelectedUser, setFilter } from 'actions';
 import getFilteredUserList from './selectors';
-
-const styles = () => ({
-  wrapper: {
-    display: 'flex',
-    maxHeight: '300px',
-    paddingTop: '20px',
-  },
-});
+import styles from './style';
 
 class Admin extends Component {
   componentDidMount() {
@@ -32,6 +21,12 @@ class Admin extends Component {
       setFilter,
     } = this.props;
 
+    const userInfoElem = selectedUser ? (
+      <UserInfo selectedUser={selectedUser} />
+    ) : (
+      <h2 className={classes.infoHeader}>Any user selected.</h2>
+    );
+
     return (
       <div className={classes.wrapper}>
         <UserList
@@ -39,7 +34,7 @@ class Admin extends Component {
           setSelectedUser={setSelectedUser}
           setFilter={setFilter}
         />
-        <UserInfo selectedUser={selectedUser} />
+        {userInfoElem}
       </div>
     );
   }

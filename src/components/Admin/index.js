@@ -1,4 +1,4 @@
-import UserInfo from './UserInfo';
-import UserList from './UserList';
+import UserList from 'components/Admin/UserList';
+import UserInfo from 'components/Admin/UserInfo';
 
 export { UserInfo, UserList };

@@ -5,12 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-
-const styles = () => ({
-  itemListPadding: {
-    padding: '2px 16px',
-  },
-});
+import styles from './style';
 
 const UserListItem = props => {
   const { classes, user, getSetSelectedUser } = props;

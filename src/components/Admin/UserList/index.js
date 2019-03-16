@@ -7,35 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import UserListItem from 'components/Admin/UserListItem';
-
-const styles = () => ({
-  root: {
-    width: '100%',
-    maxWidth: 320,
-    maxHeight: '70%',
-  },
-  searchWrapper: {
-    display: 'flex',
-    paddingLeft: '20px',
-    alighnItems: 'center',
-    margin: '0px 3px 5px 8px',
-    marginBottom: '20px',
-  },
-  listWrapper: {
-    overflowY: 'scroll',
-    maxHeight: '300',
-    margin: '0px 3px 5px 8px',
-  },
-  input: {
-    marginLeft: 8,
-    flex: 1,
-  },
-  divider: {
-    width: 1,
-    height: 36,
-    margin: 4,
-  },
-});
+import styles from './style';
 
 const UserList = props => {
   const { userListFiltered, classes, setSelectedUser, setFilter } = props;
@@ -68,8 +40,7 @@ const UserList = props => {
   );
 };
 
-UserList.propTypes = { //TODO Proptypes
-  // userList: PropTypes.object,
+UserList.propTypes = { //TODO Add proptypes
   setFilter: PropTypes.func.isRequired,
 };
 

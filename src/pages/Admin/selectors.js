@@ -4,7 +4,7 @@ const getFilterValue = users => users.filterValue;
 const getUserList = users => users.userList;
 
 const transformToArray = createSelector(
-  [getUserList],
+  getUserList,
   itemList => {
     const list = itemList;
     const newListArr = [];
