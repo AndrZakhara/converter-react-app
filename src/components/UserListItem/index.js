@@ -1,5 +1,6 @@
 import React from 'react';
-import { object, shape, array, string } from 'prop-types';
+import { func, object } from 'prop-types';
+import { userType } from 'types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
@@ -8,13 +9,13 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import styles from './style';
 
 const UserListItem = props => {
-  const { classes, user, getSetSelectedUser } = props;
-  const { firstName, lastName, ava, email = ' - ' } = user;
+  const { classes, user, handleClickUser } = props;
+  const { firstName, lastName, ava, email } = user;
   return (
     <ListItem
       button
       className={classes.itemListPadding}
-      onClick={() => getSetSelectedUser(user)}>
+      onClick={() => handleClickUser(user)}>
       <ListItemIcon>
         <Avatar src={ava} alt="avatar" />
       </ListItemIcon>
@@ -22,23 +23,16 @@ const UserListItem = props => {
         primary={
           firstName || lastName ? `${firstName} ${lastName}` : 'Unknown User'
         }
-        secondary={`email: ${email}`}
+        secondary={`email: ${email || ' - '}`}
       />
     </ListItem>
   );
 };
 
 UserListItem.propTypes = {
-  // TODO fix proptypes
-  classes: object,
-  userItem: shape({
-    firstName: string,
-    lastName: string,
-    phone: string,
-    email: string,
-    role: string,
-    ava: array,
-  }),
+  user: userType.isRequired,
+  handleClickUser: func.isRequired,
+  classes: object.isRequired,
 };
 
 export default withStyles(styles)(UserListItem);

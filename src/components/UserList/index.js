@@ -1,5 +1,6 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { func, object } from 'prop-types';
+import { usersFilteredType } from 'types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import List from '@material-ui/core/List';
 import InputBase from '@material-ui/core/InputBase';
@@ -32,7 +33,7 @@ const UserList = ({
           <UserListItem
             user={item}
             key={item.id}
-            getSetSelectedUser={setSelectedUser}
+            handleClickUser={setSelectedUser}
           />
         ))}
     </Paper>
@@ -40,8 +41,10 @@ const UserList = ({
 );
 
 UserList.propTypes = {
-  // TODO Add proptypes
   setFilter: func.isRequired,
+  setSelectedUser: func.isRequired,
+  userListFiltered: usersFilteredType,
+  classes: object.isRequired,
 };
 
 export default withStyles(styles)(UserList);

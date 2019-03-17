@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { func } from 'prop-types';
+import { func, object } from 'prop-types';
+import { userType, usersFilteredType } from 'types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { UserList, UserInfo } from 'components';
 import { getAllUsers, setSelectedUser, setFilter } from 'actions';
@@ -20,7 +21,6 @@ class Admin extends Component {
       setSelectedUser,
       setFilter,
     } = this.props;
-
     return (
       <div className={classes.wrapper}>
         <UserList
@@ -41,6 +41,10 @@ class Admin extends Component {
 Admin.propTypes = {
   getAllUsers: func.isRequired,
   setSelectedUser: func.isRequired,
+  setFilter: func.isRequired,
+  selectedUser: userType,
+  userListFiltered: usersFilteredType,
+  classes: object.isRequired,
 };
 
 const select = ({ users }) => {

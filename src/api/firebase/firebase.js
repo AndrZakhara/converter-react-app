@@ -18,9 +18,8 @@ class Firebase {
     this.database = app.database();
   }
 
-  static DoCreateUserWithEmailAndPassword = (email, password) => {
-    return app.auth().createUserWithEmailAndPassword(email, password);
-  }
+  static DoCreateUserWithEmailAndPassword = (email, password) =>
+    app.auth().createUserWithEmailAndPassword(email, password);
 
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
@@ -34,7 +33,11 @@ class Firebase {
 
   doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
 
-  getUserList = () => this.database.ref('listOfUsers');
+  fetchUsers = () =>
+    this.database
+      .ref('listOfUsers')
+      .once('value')
+      .then(snapshot => snapshot.val());
 }
 
 export default Firebase;
