@@ -10,10 +10,11 @@ const initialState = {
   currenciesBuy: [],
   amountBuy: 0,
 };
+const UAH = {ccy: 'UAH', base_ccy: 'UAH', buy: '1', sale: '1'};
 
 export default combineEvents(
   {
-    [LOAD_CURRENCY_ASYNC]: (state, { payload }) => ({ ...state, currencies: payload }),
+    [LOAD_CURRENCY_ASYNC]: (state, { payload }) => ({ ...state, currencies: [UAH, ...payload] }),
     [BUY_CURRENCY]: (state, { payload }) => ({...state, currenciesBuy: payload }),
     [COUNT_CURRENCY_ASYNC]: (state, { payload }) => ({...state, amountBuy: payload }),
   },

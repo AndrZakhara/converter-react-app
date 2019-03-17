@@ -5,7 +5,6 @@ import userReducer from './userReducer/userReducer';
 import combineEvents from './currencyReducer';
 import signUp from './signUp';
 import user from './userReducer/user';
-import {formsReducers} from './currencyReducer/form.reducer';
 
 export default combineReducers({
   userReducer,
@@ -13,5 +12,4 @@ export default combineReducers({
   user,
   signUp,
   form,
-  formsReducers
 });

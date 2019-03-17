@@ -38,20 +38,6 @@ class Currency extends Component {
 
   render() {
     const { currencies, classes, handleSubmit } = this.props;
-    const selectsOptions = oppositeCurrency =>
-      currencies
-        .filter(item => item.ccy !== oppositeCurrency)
-        .map(item => (
-          <option value={item.ccy} key={item.ccy}>
-            {item.ccy}
-          </option>
-        ));
-    const feeSelectsOption = () =>
-      feeConvert.map(item => (
-        <option value={item} key={item}>
-          {item}
-        </option>
-      ));
 
     return (
       <form
@@ -69,7 +55,14 @@ class Currency extends Component {
               name="currencySell"
               component="select"
               onChange={this.buyCurrency}>
-              {selectsOptions(this.currencyBuy)}
+              {
+                currencies
+                  .filter(item => item.ccy !== 'BTC')
+                  .map(item => (
+                    <option value={item.ccy} key={item.ccy}>
+                      {item.ccy}
+                    </option>))
+              }
             </Field>
           </FormControl>
           <Button
@@ -85,7 +78,14 @@ class Currency extends Component {
               name="currencyBuy"
               component="select"
               onChange={this.buyCurrency}>
-              {selectsOptions()}
+              {
+                currencies
+                  .filter(item => item.ccy !== 'BTC')
+                  .map(item => (
+                    <option value={item.ccy} key={item.ccy}>
+                      {item.ccy}
+                    </option>))
+              }
             </Field>
           </FormControl>
         </div>
@@ -116,7 +116,12 @@ class Currency extends Component {
               name="fee"
               component="select"
               onChange={this.buyCurrency}>
-              {feeSelectsOption()}
+              {
+                feeConvert.map(item => (
+                  <option value={item} key={item}>
+                    {item}
+                  </option>))
+              }
             </Field>
             <p className={classes.text}> %</p>
           </FormControl>
@@ -133,17 +138,19 @@ class Currency extends Component {
   }
 }
 
+const withForm = reduxForm({
+  form: 'currencyForm',
+  enableReinitialize: true,
+  initialValues: {
+    currencyBuy: 'EUR',
+    currencySell: 'USD',
+    amountSell: 0,
+    amountBuy: 0,
+    fee: 2,
+  },
+});
+
 export default compose(
-  reduxForm({
-    form: 'currencyForm',
-    enableReinitialize: true,
-    initialValues: {
-      currencyBuy: 'EUR',
-      currencySell: 'USD',
-      amountSell: 0,
-      amountBuy: 0,
-      fee: 2,
-    },
-  }),
+  withForm,
   withStyles(styles),
 )(Currency);
