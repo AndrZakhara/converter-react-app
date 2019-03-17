@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserDials } from '../../actions/user';
-import EnhancedTable from '../../components/EnhancedTable/EnhancedTable';
+import EnhancedTable from 'components/EnhancedTable/EnhancedTable';
+import { fetchUserDials } from 'actions/user';
 
 class Home extends Component {
   componentDidMount() {

@@ -6,9 +6,9 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TableCell from '@material-ui/core/TableCell';
+import { stableSort, getSorting } from 'utils/sort';
 import EnhancedTableHead from './EnhancedTableHead';
 import { styles } from './style';
-import { stableSort, getSorting } from '../../utils/sort';
 
 const ORDER = {
   ASC: 'asc',
@@ -29,6 +29,7 @@ class EnhancedTable extends Component {
       order = ORDER.ASC;
     }
     this.setState({ order, orderBy });
+    console.log(orderBy);
   };
 
   handleChangePage = (event, page) => {
