@@ -1,77 +1,58 @@
 import React from 'react';
-import { reduxForm, Field } from "redux-form";
-import { withStyles, Button  } from '@material-ui/core';
+import { reduxForm, Field } from 'redux-form';
+import { compose } from 'recompose';
+
+import withStyles from '@material-ui/core/styles/withStyles';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import Input from "../Input";
+import MailIcon from '@material-ui/icons/Mail';
+import Security from '@material-ui/icons/Security';
 
-import { Mail, Security } from "@material-ui/icons";
+import Input from 'components/Input';
+import { validateEmail, passwordLength } from 'utils/validate';
+import styles from './style';
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-  formContainer: {
-    paddingTop: '100px',
-    margin: '0 auto',
-    width: '50%',
-    maxWidth: '750px',
-  },
-  form: {
-    padding: '20px',
-  },
-  textField: {
-    marginBottom: '20px'
-  },
-  submitBtn: {
-    display: 'block',
-    margin: '0 auto'
-  }
-});
-
-
-function SignInFormBase(props) {
-  const { classes, isInvalid } = props;
-
+const SignInForm = ({ classes, onSubmit, errorMsg, handleSubmit }) => {
+  console.log(errorMsg);
   return (
-  <div className = {classes.formContainer}>
-    <Paper className={classes.form}>
-      <form noValidate autoComplete="off" onSubmit={props.onSubmit}>
-        <Field
-          label="Email"
-          name="email"
-          className={classes.textField}
-          Icon={Mail}
-          component={Input}
-        />
+    <div className={classes.formContainer}>
+      <div className={classes.converterTitle}>Sign In</div>
+      <Paper className={classes.form}>
+        <form noValidate onSubmit={handleSubmit(onSubmit)}>
+          <Field
+            label="Email"
+            name="email"
+            type="email"
+            className={classes.textField}
+            Icon={MailIcon}
+            component={Input}
+            validate={validateEmail}
+          />
 
-        <Field
-          label="Password"
-          name="password"
-          className={classes.textField}
-          component={Input}
-          Icon={Security}
-        />
-
-        <Button
-          disabled={false}
-          type='submit'
-          className={classes.submitBtn}
-          variant="contained"
-          color="primary">
-          Log In
-        </Button>
-
-        {props.error && <p>{props.error.message}</p>}
-      </form>
-    </Paper>
-  </div>
+          <Field
+            label="Password"
+            name="password"
+            type="password"
+            className={classes.textField}
+            component={Input}
+            Icon={Security}
+            validate={passwordLength}
+          />
+          <div className={classes.errorMsg}>{errorMsg}</div>
+          <Button
+            type="submit"
+            className={classes.submitBtn}
+            variant="contained"
+            color="primary">
+            Log In
+          </Button>
+        </form>
+      </Paper>
+    </div>
   );
-}
+};
 
-
-export default reduxForm({
-  form: "signIn"
-})(withStyles(styles)(SignInFormBase));
+export default compose(
+  reduxForm({ form: 'signIn' }),
+  withStyles(styles),
+)(SignInForm);

@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { SignUp } from 'components';
 import { connect } from 'react-redux';
-import { withFirebase } from 'api/firebase';
 import { signUp } from 'actions/signUp';
 
 const SignUpForm = ({ error, signUp }) => {
@@ -24,7 +23,6 @@ const mapDispatchToProps = {
 
 export default compose(
   withRouter,
-  withFirebase,
   connect(
     mapStateToProps,
     mapDispatchToProps,

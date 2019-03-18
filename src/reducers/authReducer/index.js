@@ -1,7 +1,7 @@
 import { SIGNIN, SIGNIN_SUCCESS, SIGNIN_ERROR } from 'actions/types';
 
 const initialState = {
-  user: null,
+  uid: null,
   isLoggedIn: false,
   error: null,
 };
@@ -15,15 +15,17 @@ export default (state = initialState, { type, payload }) => {
         ...state,
       };
     case SIGNIN_SUCCESS:
+      console.log(SIGNIN_SUCCESS);
       return {
         ...state,
         isLoggedIn: true,
         user: payload,
       };
     case SIGNIN_ERROR:
+      console.log(payload.errorMsg.message);
       return {
         ...state,
-        error: payload,
+        error: payload.errorMsg.message,
       };
     default:
       return state;

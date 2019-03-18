@@ -1,56 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { SignIn } from '../../components'
 import { connect } from 'react-redux';
-import { withFirebase } from '../../api/firebase';
-import { signIn } from '../../actions/signIn';
+import { SignIn } from 'components';
+import { signIn } from 'actions/signIn';
 
-class SignInFormBase extends Component {
-  
-  onSubmit = event => {
-    this.props.signIn(this.props.email, this.props.password);
-    event.preventDefault();
+const SignInFormBase = ({ signIn, error }) => {
+  const onSubmit = ({ email, password }) => {
+    signIn(email, password);
   };
 
-  render() {
-  const {
-    email,
-    password,
-    error
-  } = this.props;
+  console.log(error);
+  return <SignIn onSubmit={onSubmit} errorMsg={error} />;
+};
 
-  const isInvalid =
-    password === undefined ||
-    email === undefined;
-
-  return (
-    <SignIn
-      isInvalid={isInvalid}
-      onSubmit={this.onSubmit}
-      error={error}
-    />
-  );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    email: state.form.signUp && state.form.signUp.values && state.form.signUp.values.email,
-    password: state.form.signUp && state.form.signUp.values && state.form.signUp.values.password,
-  }
-}
-
-const mapDispatchToProps = dispatch => ({
-  signIn: (email, password) => dispatch(signIn(email, password)),
+const mapStateToProps = ({ auth }) => ({
+  error: auth.error,
 });
 
-const SignInForm = compose(
-  withRouter,
-  withFirebase,
-)(SignInFormBase);
+const mapDispatchToProps = {
+  signIn,
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SignInForm);
+export default compose(
+  withRouter,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+)(SignInFormBase);
