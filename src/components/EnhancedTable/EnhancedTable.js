@@ -23,13 +23,12 @@ class EnhancedTable extends Component {
   };
 
   handleRequestSort = (event, property) => {
-    const orderBy = property;
-    let order = ORDER.DESC;
-    if (this.state.orderBy === property && this.state.order === ORDER.DESC) {
-      order = ORDER.ASC;
+    const { orderBy, order } = this.state;
+    let currOrder = ORDER.DESC;
+    if (orderBy === property && order === ORDER.DESC) {
+      currOrder = ORDER.ASC;
     }
-    this.setState({ order, orderBy });
-    console.log(orderBy);
+    this.setState({ order: currOrder, orderBy: property });
   };
 
   handleChangePage = (event, page) => {

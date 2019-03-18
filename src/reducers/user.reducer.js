@@ -39,3 +39,4 @@ export default (state = initialState, { type, payload }) => {
       };
   }
 };
+
