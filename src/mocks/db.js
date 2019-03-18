@@ -116,7 +116,28 @@ const data = {
     },
   ],
 };
-export { users, data };
+const defUser = [
+  {
+    date: '10.10.2010',
+    currencyFrom: 'EUR',
+    currencyTo: 'USD',
+    commission: 0,
+    rate: 1.11,
+    amountFrom: 200,
+    amountTo: 222,
+  },
+  {
+    date: '11.11.2011',
+    currencyFrom: 'UAH',
+    currencyTo: 'USD',
+    commission: 0,
+    rate: 27.1,
+    amountFrom: 271,
+    amountTo: 10,
+  },
+];
+
+export { users, data, defUser };
 
 // this.listOfUsers = [
 //   {"id":1,"name":"Alex","description":"alex@gmail.com","field3":"user","field4":"field4 1","field5 ":"field5 1"},

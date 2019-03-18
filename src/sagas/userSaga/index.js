@@ -3,7 +3,7 @@ import { call, put, take, takeEvery } from 'redux-saga/effects';
 import { getProfile } from 'api/getProfile';
 import { FETCH_USER, GET_USER_CURRENCY_DIALS } from 'actions/types';
 import { fetchUserSuccess, serverError, fetchDialsSuccess } from 'actions';
-import { data } from '../../mocks/db';
+import { data, defUser } from '../../mocks/db';
 
 export function* fetchUserSaga() {
   try {
@@ -16,7 +16,7 @@ export function* fetchUserSaga() {
 }
 
 export function* getUserDialsData() {
-  const dataList = yield call(() => data); // TODO
+  const dataList = yield call(() => defUser); // TODO
   yield put(fetchDialsSuccess(dataList));
 }
 
