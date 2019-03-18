@@ -7,9 +7,8 @@ import { connect } from 'react-redux';
 import { signUp } from 'actions/signUp';
 
 const SignUpForm = ({ error, signUp }) => {
-  const onSubmit = inputs => {
-    const { email, passwordOne } = inputs;
-    signUp(email, passwordOne);
+  const onSubmit = ({ email, passwordOne, firstName, secondName, phone }) => {
+    signUp(email, passwordOne, firstName, secondName, phone);
   };
 
   return <SignUp onSubmit={onSubmit} errorMsg={error} />;

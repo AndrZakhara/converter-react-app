@@ -48,4 +48,14 @@ class Firebase {
       .on('value', snapshot => cb(snapshot.val()));
 }
 
-export default new Firebase();
+const p = new Firebase();
+// p.doCreateUserInDatabase(
+//   '123123',
+//   '',
+//   'alex@gmail.com',
+//   'Alex',
+//   'Alex',
+//   '132123123',
+// );
+
+export default p;

@@ -41,7 +41,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoggedIn: true,
-        uid: payload,
+        uid: payload.uid,
       };
     case SIGNUP_ERROR:
       console.log(payload.errorMsg.message);
