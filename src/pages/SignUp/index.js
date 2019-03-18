@@ -12,10 +12,10 @@ const SignUpForm = ({ error, signUp }) => {
     signUp(email, passwordOne);
   };
 
-  return <SignUp onSubmit={onSubmit} error={error} />;
+  return <SignUp onSubmit={onSubmit} errorMsg={error} />;
 };
 
-const mapStateToProps = ({ signUp }) => ({ error: signUp.error });
+const mapStateToProps = ({ auth }) => ({ error: auth.error });
 
 const mapDispatchToProps = {
   signUp,

@@ -10,7 +10,6 @@ const SignInFormBase = ({ signIn, error }) => {
     signIn(email, password);
   };
 
-  console.log(error);
   return <SignIn onSubmit={onSubmit} errorMsg={error} />;
 };
 

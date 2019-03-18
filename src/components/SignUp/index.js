@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { compose } from 'recompose';
+
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
@@ -19,7 +20,7 @@ import {
 } from 'utils/validate';
 import styles from './style';
 
-const SignUpFormBase = ({ classes, handleSubmit, onSubmit, error }) => (
+const SignUpFormBase = ({ classes, handleSubmit, onSubmit, errorMsg }) => (
   <div className={classes.formContainer}>
     <Paper className={classes.form}>
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
@@ -82,7 +83,7 @@ const SignUpFormBase = ({ classes, handleSubmit, onSubmit, error }) => (
           type="number"
           validate={validatePhone}
         />
-
+        <div className={classes.errorMsg}>{errorMsg}</div>
         <Button
           type="submit"
           className={classes.submitBtn}
@@ -90,8 +91,6 @@ const SignUpFormBase = ({ classes, handleSubmit, onSubmit, error }) => (
           color="primary">
           Register
         </Button>
-
-        {error && <p>{error.message}</p>}
       </form>
     </Paper>
   </div>

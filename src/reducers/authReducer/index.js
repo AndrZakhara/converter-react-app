@@ -1,4 +1,11 @@
-import { SIGNIN, SIGNIN_SUCCESS, SIGNIN_ERROR } from 'actions/types';
+import {
+  SIGNIN,
+  SIGNIN_SUCCESS,
+  SIGNIN_ERROR,
+  SIGNUP,
+  SIGNUP_SUCCESS,
+  SIGNUP_ERROR,
+} from 'actions/types';
 
 const initialState = {
   uid: null,
@@ -9,19 +16,34 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case SIGNIN:
-      // There we can add spinner in future
-      console.log(SIGNIN);
       return {
         ...state,
       };
     case SIGNIN_SUCCESS:
-      console.log(SIGNIN_SUCCESS);
       return {
         ...state,
         isLoggedIn: true,
-        user: payload,
+        uid: payload,
       };
     case SIGNIN_ERROR:
+      return {
+        ...state,
+        error: payload.errorMsg.message,
+      };
+    case SIGNUP:
+      console.log(SIGNUP);
+      return {
+        ...state,
+      };
+    case SIGNUP_SUCCESS:
+      console.log(SIGNUP_SUCCESS);
+      console.log(payload);
+      return {
+        ...state,
+        isLoggedIn: true,
+        uid: payload,
+      };
+    case SIGNUP_ERROR:
       console.log(payload.errorMsg.message);
       return {
         ...state,

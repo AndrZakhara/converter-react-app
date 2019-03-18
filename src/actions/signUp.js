@@ -8,14 +8,9 @@ export const signUp = (email, password) => ({
   },
 });
 
-export const signUpSuccess = (email, password, username, phone) => ({
+export const signUpSuccess = uid => ({
   type: SIGNUP_SUCCESS,
-  payload: {
-    email,
-    password,
-    username,
-    phone,
-  },
+  payload: uid,
 });
 
 export const signUpError = error => ({

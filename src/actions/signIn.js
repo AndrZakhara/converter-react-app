@@ -4,21 +4,18 @@ export const signIn = (email, password) => ({
   type: SIGNIN,
   payload: {
     email,
-    password
-  }
+    password,
+  },
 });
 
-export const signInSuccess = (email, password) => ({
+export const signInSuccess = uid => ({
   type: SIGNIN_SUCCESS,
-  payload: {
-    email,
-    password
-  }
+  payload: uid,
 });
 
 export const signInError = error => ({
   type: SIGNIN_ERROR,
   payload: {
-    errorMsg: error
+    errorMsg: error,
   },
 });

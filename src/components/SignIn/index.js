@@ -12,9 +12,7 @@ import Input from 'components/Input';
 import { validateEmail, passwordLength } from 'utils/validate';
 import styles from './style';
 
-const SignInForm = ({ classes, onSubmit, errorMsg, handleSubmit }) => {
-  console.log(errorMsg);
-  return (
+const SignInForm = ({ classes, onSubmit, errorMsg, handleSubmit }) => (
     <div className={classes.formContainer}>
       <div className={classes.converterTitle}>Sign In</div>
       <Paper className={classes.form}>
@@ -50,7 +48,6 @@ const SignInForm = ({ classes, onSubmit, errorMsg, handleSubmit }) => {
       </Paper>
     </div>
   );
-};
 
 export default compose(
   reduxForm({ form: 'signIn' }),

@@ -3,12 +3,11 @@ import { signInError, signInSuccess } from 'actions/signIn';
 import { signIn } from 'api/auth';
 import { SIGNIN } from 'actions/types';
 
-function* SignIn(action) {
-  const { email, password } = action.payload;
+function* SignIn({ payload: { email, password } }) {
   console.log(email, password);
   try {
-    yield call(signIn, email, password);
-    yield put(signInSuccess(email, password));
+    const response = yield call(signIn, email, password);
+    yield put(signInSuccess(response.user.uid));
   } catch (e) {
     yield put(signInError(e));
   }

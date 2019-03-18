@@ -18,7 +18,7 @@ class App extends Component {
           <Route path="/sign-up" component={SignUp} />
           <Route path="/sign-in" component={SignIn} />
         </Switch>
-        {true && <Redirect to="/sign-in" />}
+        {/* {true && <Redirect to="/sign-in" />} */}
         <Footer />
       </Fragment>
     );

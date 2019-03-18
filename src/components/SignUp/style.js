@@ -16,6 +16,15 @@ export default theme => ({
   },
   textField: {
     marginBottom: '20px',
+<<<<<<< HEAD
+=======
+  },
+  errorMsg: {
+    textAlign: 'center',
+    color: 'red',
+    height: '30px',
+    fontSize: '14px',
+>>>>>>> feature/Auth now there is only auth reducer
   },
   submitBtn: {
     display: 'block',
