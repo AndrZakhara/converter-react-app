@@ -4,7 +4,6 @@ import Currency from 'components/Currency';
 import {
   loadCurrenciesAsync,
   loadCurrencies,
-  buyConvertCurrency,
   countCurrency,
   countCurrencyAsync,
 } from 'actions/currencyAction';
@@ -12,14 +11,12 @@ import {
 const Converter = ({
   currencies,
   loadCurrencies,
-  buyConvertCurrency,
   currenciesCount,
   countCurrency,
   amountBuy,
 }) => (
   <div className="converter-wrapper">
     <Currency
-      onSubmit={buyConvertCurrency}
       currencies={currencies}
       loadCurrencies={loadCurrencies}
       countCurrency={countCurrency}
@@ -31,7 +28,6 @@ const Converter = ({
 
 const mapStateToProps = ({ combineEvents, form }) => ({
   currencies: combineEvents.currencies,
-  currenciesFields: combineEvents.currenciesBuy,
   currenciesCount: form.currencyForm,
   amountBuy: combineEvents.amountBuy,
 });
@@ -39,7 +35,6 @@ const mapStateToProps = ({ combineEvents, form }) => ({
 const mapDispatchToProps = {
   loadCurrencies,
   loadCurrenciesAsync,
-  buyConvertCurrency,
   countCurrency,
   countCurrencyAsync,
 };

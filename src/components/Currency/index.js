@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { Field, reduxForm, getFormValues } from 'redux-form';
 import { compose } from 'recompose';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import { withStyles } from '@material-ui/core/styles';
+import moment from 'moment';
 import { feeConvert } from 'mocks/db';
 import { styles } from './style';
 import { swappingVariables } from 'helpers/converter.helper';
@@ -14,36 +16,43 @@ class Currency extends Component {
   }
 
   changeCurrencies = () => {
-    const { currenciesCount, change } = this.props;
+    const { values, change } = this.props;
     const {
       currencyBuy,
       currencySell,
       amountSell,
       amountBuy,
-    } = currenciesCount.values;
+    } = values;
     swappingVariables(currencyBuy, currencySell, amountSell, amountBuy, change);
   };
 
   buyCurrency = () => {
     const {
-      currenciesCount,
+      values,
       change,
       currencies,
       amountBuy,
       countCurrency,
     } = this.props;
-    countCurrency(currencies, currenciesCount.values);
+    countCurrency(currencies, values);
     change('amountBuy', amountBuy);
+  };
+  
+  sendCurrenciesDeal = e => {
+    const datas = moment().format('L');
+    console.log(datas);
+    console.log(this.props.values);
+    e.preventDefault();
   };
 
   render() {
-    const { currencies, classes, handleSubmit } = this.props;
+    const { currencies, classes, handleSubmit, values } = this.props;
 
     return (
       <form
         name="currencyForm"
         className={classes.appContent}
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit(this.sendCurrenciesDeal)}>
         <div className={classes.converterTitle}>
           <h2 className={classes.marginDef}>Currency Converter</h2>
         </div>
@@ -57,7 +66,7 @@ class Currency extends Component {
               onChange={this.buyCurrency}>
               {
                 currencies
-                  .filter(item => item.ccy !== 'BTC')
+                  .filter(item => item.ccy !== values.currencyBuy)
                   .map(item => (
                     <option value={item.ccy} key={item.ccy}>
                       {item.ccy}
@@ -80,7 +89,7 @@ class Currency extends Component {
               onChange={this.buyCurrency}>
               {
                 currencies
-                  .filter(item => item.ccy !== 'BTC')
+                  .filter(item => item.ccy !== values.currencySell)
                   .map(item => (
                     <option value={item.ccy} key={item.ccy}>
                       {item.ccy}
@@ -130,7 +139,8 @@ class Currency extends Component {
           variant="contained"
           color="primary"
           className={classes.buyBtn}
-          type="submit">
+          type="submit"
+          onClick={ this.sendCurrenciesDeal }>
           Buy
         </Button>
       </form>
@@ -149,8 +159,11 @@ const withForm = reduxForm({
     fee: 2,
   },
 });
-
+const mapStateToProps = (state) => ({
+  values: getFormValues('currencyForm')(state),
+});
 export default compose(
   withForm,
+  connect(mapStateToProps),
   withStyles(styles),
 )(Currency);
