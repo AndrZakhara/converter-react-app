@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { signInError, signInSuccess } from 'actions/signIn';
+import { signInError, signInSuccess } from 'actions/auth';
 import { fetchUserSuccess } from 'actions/user';
 import { signIn } from 'api/auth';
 import { getUserfromDB } from 'api/database';

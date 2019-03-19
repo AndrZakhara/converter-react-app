@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { SIGNUP } from 'actions/types';
-import { signUpError, signUpSuccess } from 'actions/signUp';
+import { SIGNUP, SIGNUP_SUCCESS } from 'actions/types';
+import { signUpError, signUpSuccess } from 'actions/auth';
 import { register } from 'api/auth';
 import { createUserInDB } from 'api/database';
 

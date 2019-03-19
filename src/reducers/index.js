@@ -6,10 +6,19 @@ import currencyReducer from './currencyReducer';
 import auth from './authReducer';
 import user from './user.reducer';
 
-export default combineReducers({
+const appReducer = combineReducers({
   users,
   currencyReducer,
   user,
   form,
   auth,
 });
+
+export default (state, action) => {
+  let st = state;
+  if (action.type === 'SIGN_OUT') {
+    st = undefined;
+  }
+
+  return appReducer(st, action);
+};

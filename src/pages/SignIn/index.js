@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { SignIn } from 'components';
-import { signIn } from 'actions/signIn';
+import { signIn } from 'actions/auth';
 
 const SignInFormBase = ({ signIn, error, isLoggedIn }) => {
   const onSubmit = ({ email, password }) => {
