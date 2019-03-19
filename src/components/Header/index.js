@@ -25,10 +25,6 @@ const style = {
   title: {
     color: '#fff',
   },
-  SignInSignUp: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
 };
 
 const Header = ({ classes, isLoggedIn, role }) => (
@@ -73,20 +69,6 @@ const Header = ({ classes, isLoggedIn, role }) => (
                 <span className="text">Weather</span>
               </Button>
             </Link>
-
-            <Fragment>
-              <Link to="/converter">
-                <Button className="rightButton">
-                  <span className="text">Converter</span>
-                </Button>
-              </Link>
-              <Link to="/weather">
-                <Button className="rightButton">
-                  <span className="text">Weather</span>
-                </Button>
-              </Link>
-            </Fragment>
-
             <Link to="/profile">
               <Button className="rightButton">
                 <Person />
@@ -98,7 +80,7 @@ const Header = ({ classes, isLoggedIn, role }) => (
             </Button>
           </Fragment>
         ) : (
-          <Fragment className={classes.SignInSignUp}>
+          <Fragment>
             <Link to="/sign-in">
               <Button className="rightButton">
                 <span className="text">Sign In</span>
