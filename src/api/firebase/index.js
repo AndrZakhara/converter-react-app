@@ -42,10 +42,11 @@ class Firebase {
     });
   };
 
-  getUserFromDatabase = (uid, cb) =>
+  getUserFromDatabase = uid =>
     this.database
       .ref(`listOfUsers/${uid}`)
-      .on('value', snapshot => cb(snapshot.val()));
+      .once('value')
+      .then(snapshot => snapshot.val());
 }
 
 const p = new Firebase();
