@@ -5,6 +5,9 @@ import Footer from './Footer';
 import SignUp from './SignUp';
 import ProfileView from './ProfileView';
 import ProfileEdit from './ProfileEdit';
+import UserInfo from './UserInfo';
+import UserList from './UserList';
+import UserListItem from './UserListItem';
 
 export {
   Header,
@@ -14,4 +17,7 @@ export {
   Footer,
   ProfileView,
   ProfileEdit,
+  UserInfo,
+  UserList,
+  UserListItem,
 };

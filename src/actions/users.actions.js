@@ -3,6 +3,7 @@ import {
   GET_USER_DATA,
   RECIVE_ALL_USERS,
   SET_SELECTED_USER,
+  SET_FILTER,
 } from './types';
 
 export const getAllUsers = () => ({
@@ -21,4 +22,9 @@ export const reciveAllUser = userList => ({
 export const setSelectedUser = userId => ({
   type: SET_SELECTED_USER,
   payload: userId,
+});
+
+export const setFilter = filterValue => ({
+  type: SET_FILTER,
+  payload: filterValue,
 });
