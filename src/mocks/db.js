@@ -5,7 +5,7 @@ const users = {
     phone: '380982386289',
     email: 'petya@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
   'Jane@gmail.com': {
     firstName: 'Jane',
@@ -13,7 +13,7 @@ const users = {
     phone: '380672386289',
     email: 'Krok@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
   'user6@gmail.com': {
     firstName: 'Dick',
@@ -29,7 +29,7 @@ const users = {
     phone: '380672386289',
     email: 'kat1@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
   'user4@gmail.com': {
     firstName: 'Dan',
@@ -37,7 +37,7 @@ const users = {
     phone: '380672386289',
     email: 'polyak@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
   'user3@gmail.com': {
     firstName: 'Greg',
@@ -45,7 +45,7 @@ const users = {
     phone: '380672386289',
     email: 'vasya@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
   'user2@gmail.com': {
     firstName: 'Vasya',
@@ -53,7 +53,7 @@ const users = {
     phone: '380672386289',
     email: 'vasya@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
   'user1@gmail.com': {
     firstName: 'Vasya',
@@ -61,7 +61,7 @@ const users = {
     phone: '380672386289',
     email: 'vasya@gmail.com',
     role: 'user',
-    ava: [], 
+    ava: [],
   },
 };
 
@@ -116,8 +116,28 @@ const data = {
     },
   ],
 };
+const defUser = [
+  {
+    date: '10.10.2010',
+    currencyFrom: 'EUR',
+    currencyTo: 'USD',
+    commission: 0,
+    rate: 1.11,
+    amountFrom: 200,
+    amountTo: 222,
+  },
+  {
+    date: '11.11.2011',
+    currencyFrom: 'UAH',
+    currencyTo: 'USD',
+    commission: 0,
+    rate: 27.1,
+    amountFrom: 271,
+    amountTo: 10,
+  },
+];
 
-export { users, data };
+export { users, data, defUser };
 
 // this.listOfUsers = [
 //   {"id":1,"name":"Alex","description":"alex@gmail.com","field3":"user","field4":"field4 1","field5 ":"field5 1"},

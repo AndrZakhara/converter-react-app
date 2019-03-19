@@ -1,8 +1,9 @@
 /* eslint-disable import/prefer-default-export */
-import { call, put, take } from 'redux-saga/effects';
+import { call, put, take, takeEvery } from 'redux-saga/effects';
 import { getProfile } from 'api/getProfile';
-import { FETCH_USER } from 'actions/types';
-import { fetchUserSuccess, serverError } from 'actions';
+import { FETCH_USER, GET_USER_CURRENCY_DIALS } from 'actions/types';
+import { fetchUserSuccess, serverError, fetchDialsSuccess } from 'actions';
+import { data, defUser } from '../../mocks/db';
 
 export function* fetchUserSaga() {
   try {
@@ -12,4 +13,17 @@ export function* fetchUserSaga() {
   } catch (e) {
     yield put(serverError());
   }
+}
+
+export function* getUserDialsData() {
+  const dataList = yield call(() => defUser); // TODO
+  yield put(fetchDialsSuccess(dataList));
+}
+
+export function* watchGetAllUser() {
+  yield takeEvery(GET_USER_CURRENCY_DIALS, getUserDialsData);
+}
+
+export default function* getUserDialsSaga() {
+  yield call(watchGetAllUser);
 }

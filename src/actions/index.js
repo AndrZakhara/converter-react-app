@@ -1,4 +1,9 @@
-export { fetchUser, fetchUserSuccess, saveProfile } from './user';
+export {
+  fetchUser,
+  fetchUserSuccess,
+  saveProfile,
+  fetchDialsSuccess,
+} from './user';
 export {
   getAllUsers,
   getUserData,

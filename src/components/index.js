@@ -1,5 +1,5 @@
 import Header from './Header';
-import Home from './Home';
+import EnhancedTable from './EnhancedTable/EnhancedTable';
 import LoginForm from './LoginForm';
 import Footer from './Footer';
 import SignUp from './SignUp';
@@ -11,7 +11,7 @@ import UserListItem from './UserListItem';
 
 export {
   Header,
-  Home,
+  EnhancedTable,
   LoginForm,
   SignUp,
   Footer,
