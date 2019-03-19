@@ -9,6 +9,7 @@ function* SignIn({ payload: { email, password } }) {
   try {
     const response = yield call(signIn, email, password);
     const user = yield call(getUserfromDB, response.user.uid);
+    console.log(user);
     yield put(fetchUserSuccess(user));
     yield put(signInSuccess(response.user.uid));
   } catch (e) {

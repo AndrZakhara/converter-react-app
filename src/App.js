@@ -1,12 +1,11 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Fragment } from 'react';
 import PrivateRoute from 'pages/PrivateRoute';
-import { connect } from 'react-redux';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { Header, Home, Footer } from './components';
 import { Admin, Converter, Profile, SignUp, SignIn } from './pages';
 
-const App = ({ isLoggedIn }) => (
+const App = () => (
   <Fragment>
     <Header />
     <Switch>
@@ -21,4 +20,4 @@ const App = ({ isLoggedIn }) => (
   </Fragment>
 );
 
-export default connect(({ auth }) => ({ isLoggedIn: auth.isLoggedIn }))(App);
+export default App;

@@ -22,23 +22,43 @@ class Firebase {
 
   doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
 
-  doCreateUserInDatabase = (uid, ava, email, firstName, LastName, phone) => {
+  doCreateUserInDatabase = (
+    uid,
+    ava,
+    email,
+    firstName,
+    lastName,
+    phone,
+    role = 'role',
+  ) => {
     this.database.ref(`listOfUsers/${uid}`).set({
+      uid,
       ava,
       email,
       firstName,
-      LastName,
+      lastName,
       phone,
+      role,
     });
   };
 
-  doUpdateUserInDatabase = (uid, ava, email, firstName, LastName, phone) => {
+  doUpdateUserInDatabase = (
+    uid,
+    ava,
+    email,
+    firstName,
+    LastName,
+    phone,
+    role,
+  ) => {
     this.database.ref(`listOfUsers/${uid}`).update({
       ava,
       email,
       firstName,
       LastName,
       phone,
+      role,
+      uid,
     });
   };
 
@@ -49,14 +69,4 @@ class Firebase {
       .then(snapshot => snapshot.val());
 }
 
-const p = new Firebase();
-// p.doCreateUserInDatabase(
-//   '123123',
-//   '',
-//   'alex@gmail.com',
-//   'Alex',
-//   'Alex',
-//   '132123123',
-// );
-
-export default p;
+export default new Firebase();

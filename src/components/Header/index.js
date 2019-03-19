@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
 
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -23,13 +25,17 @@ const style = {
   title: {
     color: '#fff',
   },
+  SignInSignUp: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
 };
 
-const Header = ({ classes, isAuthenticated, onLogout, isAdmin, login }) => (
+const Header = ({ classes, isLoggedIn, role }) => (
   <div>
     <AppBar position="static" className="navbar">
       <Toolbar className={classes.toolbar}>
-        {!isAuthenticated ? (
+        {isLoggedIn ? (
           <div className={classes.brand}>
             <Link to="/home">
               <Button>
@@ -40,54 +46,69 @@ const Header = ({ classes, isAuthenticated, onLogout, isAdmin, login }) => (
             </Link>
           </div>
         ) : (
-          <Typography variant="title" className={classes.title}>
-            LOGO
-          </Typography>
+          <div className={classes.brand}>
+            <Typography variant="title" className={classes.title}>
+              LOGO
+            </Typography>
+          </div>
         )}
-        {!isAuthenticated && (
+        {isLoggedIn ? (
           <Fragment>
-            {!isAdmin ? (
+            {!role === 'admin' ? (
               <Fragment>
                 <Link to="/admin-panel">
                   <Button className="rightButton">
                     <span className="text">Admin Panel</span>
                   </Button>
                 </Link>
-                <Link to="/converter">
-                  <Button className="rightButton">
-                    <span className="text">Converter</span>
-                  </Button>
-                </Link>
-                <Link to="/weather">
-                  <Button className="rightButton">
-                    <span className="text">Weather</span>
-                  </Button>
-                </Link>
               </Fragment>
-            ) : (
-              <Fragment>
-                <Link to="/converter">
-                  <Button className="rightButton">
-                    <span className="text">Converter</span>
-                  </Button>
-                </Link>
-                <Link to="/weather">
-                  <Button className="rightButton">
-                    <span className="text">Weather</span>
-                  </Button>
-                </Link>
-              </Fragment>
-            )}
+            ) : null}
+            <Link to="/converter">
+              <Button className="rightButton">
+                <span className="text">Converter</span>
+              </Button>
+            </Link>
+            <Link to="/weather">
+              <Button className="rightButton">
+                <span className="text">Weather</span>
+              </Button>
+            </Link>
+
+            <Fragment>
+              <Link to="/converter">
+                <Button className="rightButton">
+                  <span className="text">Converter</span>
+                </Button>
+              </Link>
+              <Link to="/weather">
+                <Button className="rightButton">
+                  <span className="text">Weather</span>
+                </Button>
+              </Link>
+            </Fragment>
+
             <Link to="/profile">
               <Button className="rightButton">
                 <Person />
-                <span className="text">{login}</span>
               </Button>
             </Link>
-            <Button onClick={onLogout} className="rightButton">
+            <Button className="rightButton">
               <ExitToApp />
               <span className="text">Logout</span>
             </Button>
+          </Fragment>
+        ) : (
+          <Fragment className={classes.SignInSignUp}>
+            <Link to="/sign-in">
+              <Button className="rightButton">
+                <span className="text">Sign In</span>
+              </Button>
+            </Link>
+            <Link to="/sign-up">
+              <Button className="rightButton">
+                <span className="text">Sign Up</span>
+              </Button>
+            </Link>
           </Fragment>
         )}
       </Toolbar>
@@ -95,4 +116,10 @@ const Header = ({ classes, isAuthenticated, onLogout, isAdmin, login }) => (
   </div>
 );
 
-export default withStyles(style)(Header);
+export default compose(
+  withStyles(style),
+  connect(({ auth, user }) => ({
+    isLoggedIn: auth.isLoggedIn,
+    role: user.profile.role,
+  })),
+)(Header);
