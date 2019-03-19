@@ -1,40 +1,33 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Field, reduxForm, getFormValues } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { compose } from 'recompose';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import { withStyles } from '@material-ui/core/styles';
-import moment from 'moment';
 import { feeConvert } from 'mocks/db';
 import { styles } from './style';
-import { swappingVariables } from 'helpers/converter.helper';
 
 class Currency extends Component {
   componentDidMount() {
-    this.props.loadCurrencies();
+    const { loadCurrencies } = this.props;
+    loadCurrencies();
   }
 
   changeCurrencies = () => {
-    const { values, change } = this.props;
-    swappingVariables(values, change);
+    const { swappingCurrency } = this.props;
+    swappingCurrency();
   };
 
   buyCurrency = () => {
     const {
-      values,
+      currenciesCount,
       change,
       currencies,
       amountBuy,
       countCurrency,
     } = this.props;
-    countCurrency(currencies, values);
+    countCurrency(currencies, currenciesCount.values);
     change('amountBuy', amountBuy);
-  };
-  
-  sendCurrenciesDeal = e => {
-    e.preventDefault();
-    const transactionDate = moment().format('L');
   };
 
   render() {
@@ -44,7 +37,7 @@ class Currency extends Component {
       <form
         name="currencyForm"
         className={classes.appContent}
-        onSubmit={handleSubmit(this.sendCurrenciesDeal)}>
+        onSubmit={handleSubmit}>
         <div className={classes.converterTitle}>
           <h2 className={classes.marginDef}>Currency Converter</h2>
         </div>
@@ -56,12 +49,11 @@ class Currency extends Component {
               name="currencySell"
               component="select"
               onChange={this.buyCurrency}>
-              {
-                currencies.map(item => (
-                    <option value={item.ccy} key={item.ccy}>
-                      {item.ccy}
-                    </option>))
-              }
+              {currencies.map(item => (
+                <option value={item.ccy} key={item.ccy}>
+                  {item.ccy}
+                </option>
+              ))}
             </Field>
           </FormControl>
           <Button
@@ -77,12 +69,11 @@ class Currency extends Component {
               name="currencyBuy"
               component="select"
               onChange={this.buyCurrency}>
-              {
-                currencies.map(item => (
-                    <option value={item.ccy} key={item.ccy}>
-                      {item.ccy}
-                    </option>))
-              }
+              {currencies.map(item => (
+                <option value={item.ccy} key={item.ccy}>
+                  {item.ccy}
+                </option>
+              ))}
             </Field>
           </FormControl>
         </div>
@@ -113,12 +104,11 @@ class Currency extends Component {
               name="fee"
               component="select"
               onChange={this.buyCurrency}>
-              {
-                feeConvert.map(item => (
-                  <option value={item} key={item}>
-                    {item}
-                  </option>))
-              }
+              {feeConvert.map(item => (
+                <option value={item} key={item}>
+                  {item}
+                </option>
+              ))}
             </Field>
             <p className={classes.text}> %</p>
           </FormControl>
@@ -128,7 +118,7 @@ class Currency extends Component {
           color="primary"
           className={classes.buyBtn}
           type="submit"
-          onClick={ this.sendCurrenciesDeal }>
+          onClick={this.sendCurrenciesDeal}>
           Buy
         </Button>
       </form>
@@ -147,11 +137,8 @@ const withForm = reduxForm({
     fee: 2,
   },
 });
-const mapStateToProps = (state) => ({
-  values: getFormValues('currencyForm')(state),
-});
+
 export default compose(
   withForm,
-  connect(mapStateToProps),
   withStyles(styles),
 )(Currency);

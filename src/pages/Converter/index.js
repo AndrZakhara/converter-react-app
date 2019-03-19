@@ -2,26 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Currency from 'components/Currency';
 import {
-  loadCurrenciesAsync,
   loadCurrencies,
   countCurrency,
-  countCurrencyAsync,
-} from 'actions/currencyAction';
+  swappingCurrency,
+} from 'actions/converter.actions';
 
 const Converter = ({
+  loadCurrencies: loadCurrenciesAction,
+  countCurrency: countCurrencyAction,
+  swappingCurrency: swappingCurrencyAction,
   currencies,
-  loadCurrencies,
   currenciesCount,
-  countCurrency,
   amountBuy,
 }) => (
   <div className="converter-wrapper">
     <Currency
       currencies={currencies}
-      loadCurrencies={loadCurrencies}
-      countCurrency={countCurrency}
+      loadCurrencies={loadCurrenciesAction}
+      countCurrency={countCurrencyAction}
       currenciesCount={currenciesCount}
       amountBuy={amountBuy}
+      swappingCurrency={swappingCurrencyAction}
     />
   </div>
 );
@@ -34,9 +35,8 @@ const mapStateToProps = ({ converter, form }) => ({
 
 const mapDispatchToProps = {
   loadCurrencies,
-  loadCurrenciesAsync,
   countCurrency,
-  countCurrencyAsync,
+  swappingCurrency,
 };
 
 export default connect(

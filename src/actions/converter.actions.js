@@ -2,6 +2,7 @@ export const LOAD_CURRENCY = 'LOAD_CURRENCY';
 export const LOAD_CURRENCY_ASYNC = 'LOAD_CURRENCY_ASYNC';
 export const COUNT_CURRENCY = 'COUNT_CURRENCY';
 export const COUNT_CURRENCY_ASYNC = 'COUNT_CURRENCY_ASYNC';
+export const SWAP_CURRENCY = 'SWAP_CURRENCY';
 
 export const loadCurrencies = () => ({
   type: LOAD_CURRENCY,
@@ -23,4 +24,8 @@ export const countCurrency = (currencies, item) => ({
 export const countCurrencyAsync = value => ({
   type: COUNT_CURRENCY_ASYNC,
   payload: value,
+});
+
+export const swappingCurrency = () => ({
+  type: SWAP_CURRENCY,
 });
