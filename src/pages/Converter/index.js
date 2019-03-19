@@ -26,10 +26,10 @@ const Converter = ({
   </div>
 );
 
-const mapStateToProps = ({ combineEvents, form }) => ({
-  currencies: combineEvents.currencies,
+const mapStateToProps = ({ converter, form }) => ({
+  currencies: converter.currencies,
   currenciesCount: form.currencyForm,
-  amountBuy: combineEvents.amountBuy,
+  amountBuy: converter.amountBuy,
 });
 
 const mapDispatchToProps = {

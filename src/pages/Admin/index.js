@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { func, object } from 'prop-types';
+import { userType, usersFilteredType } from 'types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { UserList, UserInfo } from 'components/Admin';
-import { getAllUsers, setSelectedUser } from 'actions/adminPageActons';
-
-const adminPageHeight = window.innerHeight - 58 - 64;
-const styles = () => ({
-  wrapper: {
-    display: 'flex',
-    minHeight: adminPageHeight,
-    paddingTop: '20px',
-  },
-});
+import { UserList, UserInfo } from 'components';
+import { getAllUsers, setSelectedUser, setFilter } from 'actions';
+import getFilteredUserList from './selectors';
+import styles from './style';
 
 class Admin extends Component {
   componentDidMount() {
@@ -20,29 +14,53 @@ class Admin extends Component {
   }
 
   render() {
-    const { userList, classes, setSelectedUser } = this.props;
-
+    const {
+      classes,
+      selectedUser,
+      userListFiltered,
+      setSelectedUser,
+      setFilter,
+    } = this.props;
     return (
       <div className={classes.wrapper}>
-        <UserList userList={userList} setSelectedUser={setSelectedUser} />
-        <UserInfo {...this.props} />
+        <UserList
+          userListFiltered={userListFiltered}
+          setSelectedUser={setSelectedUser}
+          setFilter={setFilter}
+        />
+        {selectedUser ? (
+          <UserInfo selectedUser={selectedUser} />
+        ) : (
+          <h2 className={classes.infoHeader}>Any user selected.</h2>
+        )}
       </div>
     );
   }
 }
 
 Admin.propTypes = {
-  getAllUsers: PropTypes.func.isRequired,
-  setSelectedUser: PropTypes.func.isRequired,
+  getAllUsers: func.isRequired,
+  setSelectedUser: func.isRequired,
+  setFilter: func.isRequired,
+  selectedUser: userType,
+  userListFiltered: usersFilteredType,
+  classes: object.isRequired,
+};
+
+const select = ({ users }) => {
+  const userListFiltered = getFilteredUserList(users);
+  const { selectedUser, filterValue } = users;
+
+  return { userListFiltered, selectedUser, filterValue };
+};
+
+const actionCreators = {
+  getAllUsers,
+  setSelectedUser,
+  setFilter,
 };
 
 export default connect(
-  state => ({
-    userList: state.userReducer.userList,
-    selectedUser: state.userReducer.selectedUser,
-  }),
-  {
-    getAllUsers,
-    setSelectedUser,
-  },
+  select,
+  actionCreators,
 )(withStyles(styles)(Admin));

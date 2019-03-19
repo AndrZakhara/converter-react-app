@@ -1,10 +1,11 @@
 import { take, put, call, fork, select, takeEvery, all } from 'redux-saga/effects'; //eslint-disable-line
-import * as actions from 'actions/adminPageActons';
+import * as actions from 'actions';
 import { GET_ALL_USERS } from 'actions/types';
-import { users } from 'mocks/db';
+import fb from 'api/firebase'; //TODO will fixed in another branch
 
 export function* getAllUser() {
-  const userList = yield call(() => users); // async query here
+  const userList = yield call(fb.fetchUsers); //TODO will fixed in another branch
+
   yield put(actions.reciveAllUser(userList));
 }
 
