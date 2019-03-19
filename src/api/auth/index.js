@@ -1,4 +1,4 @@
 import Firebase from 'api/firebase';
 
-export const register = (email, password) =>
+export default (email, password) =>
   Firebase.DoCreateUserWithEmailAndPassword(email, password);

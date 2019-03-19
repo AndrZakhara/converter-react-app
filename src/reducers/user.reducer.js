@@ -1,3 +1,4 @@
+/* eslint-disable */
 import combineEvents from 'utils/combineEvents';
 import {
   FETCH_USER,

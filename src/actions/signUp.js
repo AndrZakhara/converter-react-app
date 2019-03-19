@@ -5,7 +5,7 @@ export const signUp = (email, password) => ({
   payload: {
     email,
     password,
-  }
+  },
 });
 
 export const signUpSuccess = (email, password, username, phone) => ({
@@ -14,13 +14,13 @@ export const signUpSuccess = (email, password, username, phone) => ({
     email,
     password,
     username,
-    phone
-  }
+    phone,
+  },
 });
 
 export const signUpError = error => ({
   type: SIGNUP_ERROR,
   payload: {
-    errorMsg: error
+    errorMsg: error,
   },
 });

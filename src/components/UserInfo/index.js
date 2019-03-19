@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { object } from 'prop-types';
 import { userType } from 'types';

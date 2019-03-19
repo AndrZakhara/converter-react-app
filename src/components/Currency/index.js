@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -70,7 +71,7 @@ class Currency extends Component {
   };
 
   render() {
-    const {currencies} = this.props;
+    const { currencies } = this.props;
     const {
       currencyBuy,
       currencySell,
@@ -93,7 +94,7 @@ class Currency extends Component {
               input={<FilledInput name="currencyBuy" />}>
               {currencies
                 .filter(item => item.ccy !== currencySell)
-                .map((item, i )=> (
+                .map((item, i) => (
                   <MenuItem value={item.ccy} key={i}>
                     {item.ccy}
                   </MenuItem>
@@ -114,8 +115,8 @@ class Currency extends Component {
               input={<FilledInput name="currencySell" />}>
               {currencies
                 .filter(item => item.ccy !== currencyBuy)
-                .map((item, i ) => (
-                  <MenuItem value={item.ccy} key={ i }>
+                .map((item, i) => (
+                  <MenuItem value={item.ccy} key={i}>
                     {item.ccy}
                   </MenuItem>
                 ))}
