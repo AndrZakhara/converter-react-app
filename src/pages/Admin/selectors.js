@@ -8,11 +8,14 @@ const transformToArray = createSelector(
   itemList => {
     const list = itemList;
     const newListArr = [];
-    Object.keys(list).forEach(key => {
-      if (typeof list[key] === 'object') {
-        list[key].id = key;
+
+    Object.entries(list).forEach(([key, item]) => {
+      const itemCopy = { ...item };
+
+      if (typeof itemCopy === 'object') {
+        itemCopy.id = key;
       }
-      newListArr.push(list[key]);
+      newListArr.push(itemCopy);
     });
 
     return newListArr;
@@ -25,7 +28,7 @@ const getFilteredUserList = createSelector(
     const filteredList = [];
     const isInItem = (item, filterValue) => {
       if (typeof item === 'string') {
-        if (item.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1) {
+        if (item.toLowerCase().includes(filterValue.toLowerCase())) {
           return true;
         }
       }
@@ -34,9 +37,9 @@ const getFilteredUserList = createSelector(
 
     list.forEach(item => {
       let isAdded = false;
-      Object.keys(item).forEach(keys => {
-        if (keys !== 'ava' && keys !== 'id' && !isAdded) {
-          if (isInItem(item[keys], filter)) {
+      Object.entries(item).forEach(([key, value]) => {
+        if (key !== 'ava' && key !== 'id' && !isAdded) {
+          if (isInItem(value, filter)) {
             filteredList.push(item);
             isAdded = true;
           }
