@@ -4,10 +4,10 @@ export default function combineEvents(reducers, initialState) {
       throw new Error('Unappropriated reducer type', reducers);
     }
     if (action.type in reducers) {
-      return reducers[action.type](state, action);
+      return { ...state, ...reducers[action.type](state, action) };
     }
     if ('default' in reducers) {
-      return reducers.default(state, action);
+      return { ...state, ...reducers.default(state, action) };
     }
     return state;
   };

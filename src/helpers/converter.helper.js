@@ -16,9 +16,10 @@ export const buyCurrency = (array, CurrencyNameFrom, CurrencyNameTo, AmountSell,
 
   return Math.trunc(countWithTax * 100) / 100;
 };
-export const swappingVariables = (currencyBuy, currencySell, amountSell, amountBuy, cb) => {
+export const swappingVariables = (values, cb) => {
+  const { currencyBuy, currencySell, amountSell, amountBuy } = values;
   cb('currencyBuy', currencySell);
   cb('currencySell', currencyBuy);
   cb('amountBuy', amountSell);
   cb('amountSell', amountBuy);
-}
+};

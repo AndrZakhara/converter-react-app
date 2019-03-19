@@ -17,13 +17,7 @@ class Currency extends Component {
 
   changeCurrencies = () => {
     const { values, change } = this.props;
-    const {
-      currencyBuy,
-      currencySell,
-      amountSell,
-      amountBuy,
-    } = values;
-    swappingVariables(currencyBuy, currencySell, amountSell, amountBuy, change);
+    swappingVariables(values, change);
   };
 
   buyCurrency = () => {
@@ -39,14 +33,12 @@ class Currency extends Component {
   };
   
   sendCurrenciesDeal = e => {
-    const datas = moment().format('L');
-    console.log(datas);
-    console.log(this.props.values);
     e.preventDefault();
+    const transactionDate = moment().format('L');
   };
 
   render() {
-    const { currencies, classes, handleSubmit, values } = this.props;
+    const { currencies, classes, handleSubmit } = this.props;
 
     return (
       <form
@@ -65,9 +57,7 @@ class Currency extends Component {
               component="select"
               onChange={this.buyCurrency}>
               {
-                currencies
-                  .filter(item => item.ccy !== values.currencyBuy)
-                  .map(item => (
+                currencies.map(item => (
                     <option value={item.ccy} key={item.ccy}>
                       {item.ccy}
                     </option>))
@@ -88,9 +78,7 @@ class Currency extends Component {
               component="select"
               onChange={this.buyCurrency}>
               {
-                currencies
-                  .filter(item => item.ccy !== values.currencySell)
-                  .map(item => (
+                currencies.map(item => (
                     <option value={item.ccy} key={item.ccy}>
                       {item.ccy}
                     </option>))
