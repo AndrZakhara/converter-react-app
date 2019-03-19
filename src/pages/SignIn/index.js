@@ -5,15 +5,18 @@ import { connect } from 'react-redux';
 import { SignIn } from 'components';
 import { signIn } from 'actions/signIn';
 
-const SignInFormBase = ({ signIn, error }) => {
+const SignInFormBase = ({ signIn, error, isLoggedIn }) => {
   const onSubmit = ({ email, password }) => {
     signIn(email, password);
   };
 
-  return <SignIn onSubmit={onSubmit} errorMsg={error} />;
+  return (
+    <SignIn onSubmit={onSubmit} errorMsg={error} isLoggedIn={isLoggedIn} />
+  );
 };
 
 const mapStateToProps = ({ auth }) => ({
+  isLoggedIn: auth.isLoggedIn,
   error: auth.error,
 });
 

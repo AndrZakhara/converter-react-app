@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { compose } from 'recompose';
+import { Redirect } from 'react-router-dom';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
@@ -12,7 +13,18 @@ import Input from 'components/Input';
 import { validateEmail, passwordLength } from 'utils/validate';
 import styles from './style';
 
-const SignInForm = ({ classes, onSubmit, errorMsg, handleSubmit }) => (
+const SignInForm = ({
+  classes,
+  onSubmit,
+  errorMsg,
+  handleSubmit,
+  isLoggedIn,
+}) => {
+  if (isLoggedIn) {
+    return <Redirect to="/" />;
+  }
+
+  return (
     <div className={classes.formContainer}>
       <div className={classes.converterTitle}>Sign In</div>
       <Paper className={classes.form}>
@@ -48,6 +60,7 @@ const SignInForm = ({ classes, onSubmit, errorMsg, handleSubmit }) => (
       </Paper>
     </div>
   );
+};
 
 export default compose(
   reduxForm({ form: 'signIn' }),
