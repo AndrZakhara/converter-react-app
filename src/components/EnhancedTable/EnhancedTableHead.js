@@ -54,28 +54,25 @@ class EnhancedTableHead extends Component {
     return (
       <TableHead>
         <TableRow>
-          {rows.map(
-            row => (
-              <TableCell
-                key={row.id}
-                align={row.numeric ? 'center' : 'left'}
-                sortDirection={orderBy === row.id ? order : false}
-                style={{ fontSize: '20px' }}>
-                <Tooltip
-                  title="Sort"
-                  placement={row.numeric ? 'bottom-end' : 'bottom-start'}
-                  enterDelay={300}>
-                  <TableSortLabel
-                    active={orderBy === row.id}
-                    direction={order}
-                    onClick={this.createSortHandler(row.id)}>
-                    {row.label}
-                  </TableSortLabel>
-                </Tooltip>
-              </TableCell>
-            ),
-            this,
-          )}
+          {rows.map(row => (
+            <TableCell
+              key={row.id}
+              align={row.numeric ? 'center' : 'left'}
+              sortDirection={orderBy === row.id ? order : false}
+              style={{ fontSize: '20px' }}>
+              <Tooltip
+                title="Sort"
+                placement={row.numeric ? 'bottom-end' : 'bottom-start'}
+                enterDelay={300}>
+                <TableSortLabel
+                  active={orderBy === row.id}
+                  direction={order}
+                  onClick={this.createSortHandler(row.id)}>
+                  {row.label}
+                </TableSortLabel>
+              </Tooltip>
+            </TableCell>
+          ))}
         </TableRow>
       </TableHead>
     );
