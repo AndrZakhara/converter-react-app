@@ -4,7 +4,7 @@ export const signUp = (email, password) => ({
   type: SIGNUP,
   payload: {
     email,
-    password
+    password,
   }
 });
 

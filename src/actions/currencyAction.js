@@ -12,11 +12,11 @@ export const loadCurrenciesAsync = data => ({
   payload: data,
 });
 
-export const countCurrency = ( currencies, item ) => ({
+export const countCurrency = (currencies, item) => ({
   type: COUNT_CURRENCY,
   payload: {
     currencies,
-    ...item
+    ...item,
   },
 });
 
