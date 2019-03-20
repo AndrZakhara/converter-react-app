@@ -26,26 +26,20 @@ export const signInError = error => ({
   payload: error,
 });
 
-export const signUp = (email, password, firstName, secondName, phone) => ({
+export const signUp = (email, password, firstName, lastName, phone) => ({
   type: SIGNUP,
   payload: {
     email,
     password,
     firstName,
-    secondName,
+    lastName,
     phone,
   },
 });
 
-export const signUpSuccess = (uid, email, firstName, lastName, phone) => ({
+export const signUpSuccess = uid => ({
   type: SIGNUP_SUCCESS,
-  payload: {
-    uid,
-    email,
-    firstName,
-    lastName,
-    phone,
-  },
+  payload: uid,
 });
 
 export const signUpError = error => ({

@@ -27,7 +27,7 @@ export default combineEvents(
     [SIGNUP]: () => ({}),
     [SIGNUP_SUCCESS]: (state, { payload }) => ({
       isLoggedIn: true,
-      uid: payload.uid,
+      uid: payload,
     }),
     [SIGNUP_ERROR]: (state, { payload }) => ({
       error: payload,

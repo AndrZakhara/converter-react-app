@@ -19,7 +19,7 @@ export default () => ({
     padding: '20px',
   },
   textField: {
-    marginBottom: '20px',
+    height: '52px',
   },
   errorMsg: {
     textAlign: 'center',

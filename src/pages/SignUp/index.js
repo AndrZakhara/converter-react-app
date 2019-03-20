@@ -6,15 +6,21 @@ import { SignUp } from 'components';
 import { connect } from 'react-redux';
 import { signUp } from 'actions/auth';
 
-const SignUpForm = ({ error, signUp }) => {
-  const onSubmit = ({ email, passwordOne, firstName, secondName, phone }) => {
-    signUp(email, passwordOne, firstName, secondName, phone);
+const SignUpForm = ({ error, signUp, isLoggedIn }) => {
+  const onSubmit = ({ email, passwordOne, firstName, lastName, phone }) => {
+    signUp(email, passwordOne, firstName, lastName, phone);
   };
 
-  return <SignUp onSubmit={onSubmit} errorMsg={error} />;
+  return <SignUp
+    onSubmit={onSubmit}
+    errorMsg={error}
+    isLoggedIn={isLoggedIn}/>;
 };
 
-const mapStateToProps = ({ auth }) => ({ error: auth.error });
+const mapStateToProps = ({ auth }) => ({
+  isLoggedIn: auth.isLoggedIn,
+  error: auth.error
+});
 
 const mapDispatchToProps = {
   signUp,

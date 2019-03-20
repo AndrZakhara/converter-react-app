@@ -25,9 +25,14 @@ export default theme => ({
     padding: '20px',
   },
   textField: {
+<<<<<<< HEAD
     marginBottom: '20px',
 <<<<<<< HEAD
 =======
+=======
+    // marginBottom: '10px',
+    height: '52px',
+>>>>>>> feature/Auth set state after sign up
   },
   errorMsg: {
     textAlign: 'center',

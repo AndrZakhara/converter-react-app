@@ -49,7 +49,7 @@ class Firebase {
     firstName,
     LastName,
     phone,
-    role,
+    role = 'user',
   ) => {
     this.database.ref(`listOfUsers/${uid}`).update({
       ava,
