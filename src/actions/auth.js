@@ -23,9 +23,7 @@ export const signInSuccess = uid => ({
 
 export const signInError = error => ({
   type: SIGNIN_ERROR,
-  payload: {
-    errorMsg: error,
-  },
+  payload: error,
 });
 
 export const signUp = (email, password, firstName, secondName, phone) => ({
@@ -52,9 +50,7 @@ export const signUpSuccess = (uid, email, firstName, lastName, phone) => ({
 
 export const signUpError = error => ({
   type: SIGNUP_ERROR,
-  payload: {
-    errorMsg: error,
-  },
+  payload: error,
 });
 
 export const signOut = () => ({

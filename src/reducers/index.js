@@ -3,7 +3,7 @@ import { reducer as form } from 'redux-form';
 
 import users from './users.reducer';
 import currencyReducer from './currencyReducer';
-import auth from './authReducer';
+import auth from './auth.reducer';
 import user from './user.reducer';
 
 const appReducer = combineReducers({

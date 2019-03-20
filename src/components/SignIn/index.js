@@ -48,7 +48,7 @@ const SignInForm = ({
             Icon={Security}
             validate={passwordLength}
           />
-          <div className={classes.errorMsg}>{errorMsg}</div>
+          <div className={classes.errorMsg}>{errorMsg && errorMsg.message}</div>
           <Button
             type="submit"
             className={classes.submitBtn}

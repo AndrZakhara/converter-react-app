@@ -35,7 +35,7 @@ const Header = ({ classes, isLoggedIn, role, onLogOut }) => {
         <Toolbar className={classes.toolbar}>
           {isLoggedIn ? (
             <div className={classes.brand}>
-              <Link to="/home">
+              <Link to="/">
                 <Button>
                   <Typography variant="title" className={classes.title}>
                     LOGO
