@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import TableCell from '@material-ui/core/TableCell';
 import { stableSort, getSorting } from 'utils/sort';
 import EnhancedTableHead from './EnhancedTableHead';
-import { styles } from './style';
+import styles from './style';
 
 const ORDER = {
   ASC: 'asc',
@@ -116,7 +116,8 @@ class EnhancedTable extends Component {
           />
         </Paper>
       );
-    } else return null;
+    }
+    return null;
   }
 }
 

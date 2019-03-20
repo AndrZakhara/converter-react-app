@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable */
 import isEmail from 'isemail';
 
 const phoneMask = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
@@ -13,7 +13,8 @@ export const validateEmail = email =>
 export const validatePhone = phone => {
   if (!phone) {
     return 'Please, provide your phone';
-  } if (!phoneMask.test(phone)) {
+  }
+  if (!phoneMask.test(phone)) {
     return 'Please, write your phone properly';
   }
 };

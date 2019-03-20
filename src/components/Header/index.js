@@ -25,13 +25,7 @@ const style = {
   },
 };
 
-const Header = ({
-  classes,
-  isAuthenticated,
-  onLogout,
-  isAdmin,
-  login
-}) => (
+const Header = ({ classes, isAuthenticated, onLogout, isAdmin, login }) => (
   <div>
     <AppBar position="static" className="navbar">
       <Toolbar className={classes.toolbar}>
@@ -54,34 +48,34 @@ const Header = ({
           <Fragment>
             {!isAdmin ? (
               <Fragment>
-                <Link to='/admin-panel'>
-                  <Button  className = 'rightButton'>
-                    <span className='text'>Admin Panel</span>
+                <Link to="/admin-panel">
+                  <Button className="rightButton">
+                    <span className="text">Admin Panel</span>
                   </Button>
                 </Link>
-                <Link to={`/converter`}>
-                <Button  className = 'rightButton'>
-                  <span className='text'>Converter</span>
-                </Button>
-              </Link>
-                <Link to='/weather'>
-                  <Button  className = 'rightButton'>
-                    <span className='text'>Weather</span>
+                <Link to="/converter">
+                  <Button className="rightButton">
+                    <span className="text">Converter</span>
+                  </Button>
+                </Link>
+                <Link to="/weather">
+                  <Button className="rightButton">
+                    <span className="text">Weather</span>
                   </Button>
                 </Link>
               </Fragment>
             ) : (
               <Fragment>
-              <Link to={`/converter`}>
-                <Button  className = 'rightButton'>
-                  <span className='text'>Converter</span>
-                </Button>
-              </Link>
-                <Link to="/weather">
-                  <Button  className = 'rightButton'>
-                    <span className='text'>Weather</span>
+                <Link to="/converter">
+                  <Button className="rightButton">
+                    <span className="text">Converter</span>
                   </Button>
-                  </Link>
+                </Link>
+                <Link to="/weather">
+                  <Button className="rightButton">
+                    <span className="text">Weather</span>
+                  </Button>
+                </Link>
               </Fragment>
             )}
             <Link to="/profile">

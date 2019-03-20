@@ -15,11 +15,10 @@ export default theme => ({
     padding: '20px',
   },
   textField: {
-    marginBottom: '20px'
+    marginBottom: '20px',
   },
   submitBtn: {
     display: 'block',
-    margin: '0 auto'
-  }
+    margin: '0 auto',
+  },
 });
-
