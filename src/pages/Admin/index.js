@@ -1,17 +1,22 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { func, object } from 'prop-types';
+import { func, shape, string } from 'prop-types';
 import { userType, usersFilteredType } from 'types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { UserList, UserInfo } from 'components';
-import { getAllUsers, setSelectedUser, setFilter } from 'actions';
+import { UserList, UserInfo, EnhancedTable } from 'components';
+import {
+  getAllUsers as getAllUsersAction,
+  setSelectedUser as setSelectedUserAction,
+  setFilter as setFilterAction,
+} from 'actions';
+import { defUser } from 'mocks/db'; // TODO add real api
 import getFilteredUserList from './selectors';
 import styles from './style';
 
 class Admin extends Component {
   componentDidMount() {
-    this.props.getAllUsers();
+    const { getAllUsers } = this.props;
+    getAllUsers();
   }
 
   render() {
@@ -29,11 +34,14 @@ class Admin extends Component {
           setSelectedUser={setSelectedUser}
           setFilter={setFilter}
         />
-        {selectedUser ? (
-          <UserInfo selectedUser={selectedUser} />
-        ) : (
-          <h2 className={classes.infoHeader}>Any user selected.</h2>
-        )}
+        <div>
+          {selectedUser ? (
+            <UserInfo selectedUser={selectedUser} />
+          ) : (
+            <h2 className={classes.infoHeader}>Any user selected.</h2>
+          )}
+          {selectedUser && <EnhancedTable allUserData={defUser} />}
+        </div>
       </div>
     );
   }
@@ -45,7 +53,15 @@ Admin.propTypes = {
   setFilter: func.isRequired,
   selectedUser: userType,
   userListFiltered: usersFilteredType,
-  classes: object.isRequired,
+  classes: shape({
+    wrapper: string.isRequired,
+    infoHeader: string.isRequired,
+  }).isRequired,
+};
+
+Admin.defaultProps = {
+  selectedUser: null,
+  userListFiltered: null,
 };
 
 const select = ({ users }) => {
@@ -56,9 +72,9 @@ const select = ({ users }) => {
 };
 
 const actionCreators = {
-  getAllUsers,
-  setSelectedUser,
-  setFilter,
+  getAllUsers: getAllUsersAction,
+  setSelectedUser: setSelectedUserAction,
+  setFilter: setFilterAction,
 };
 
 export default connect(
