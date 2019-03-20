@@ -15,15 +15,11 @@ const Converter = ({
   sendCurrencyTransaction: sendCurrencyTransactionAction,
   currencies,
   currenciesCount,
-  amountBuy,
-  purchasedCurrency,
 }) => (
   <div className="converter-wrapper">
     <Currency
       currencies={currencies}
-      amountBuy={amountBuy}
       currenciesCount={currenciesCount}
-      purchasedCurrency={purchasedCurrency}
       loadCurrencies={loadCurrenciesAction}
       countCurrency={countCurrencyAction}
       swappingCurrency={swappingCurrencyAction}
@@ -35,8 +31,6 @@ const Converter = ({
 const mapStateToProps = ({ converter, form }) => ({
   currencies: converter.currencies,
   currenciesCount: form.currencyForm,
-  amountBuy: converter.amountBuy,
-  purchasedCurrency: converter.purchasedCurrency,
 });
 
 const mapDispatchToProps = {

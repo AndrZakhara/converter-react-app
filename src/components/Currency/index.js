@@ -20,16 +20,8 @@ class Currency extends Component {
   };
 
   buyCurrency = () => {
-    const {
-      currenciesCount,
-      change,
-      currencies,
-      amountBuy,
-      countCurrency,
-    } = this.props;
-
+    const { currenciesCount, currencies, countCurrency } = this.props;
     countCurrency(currencies, currenciesCount.values);
-    change('amountBuy', amountBuy);
   };
 
   buyConcentrationCurrency = e => {
