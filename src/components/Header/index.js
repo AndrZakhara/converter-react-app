@@ -52,7 +52,7 @@ const Header = ({ classes, isLoggedIn, role, onLogOut }) => {
           )}
           {isLoggedIn ? (
             <Fragment>
-              {!role === 'admin' ? (
+              {role === 'admin' ? (
                 <Fragment>
                   <Link to="/admin-panel">
                     <Button className="rightButton">
