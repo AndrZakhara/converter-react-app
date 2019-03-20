@@ -2,6 +2,7 @@ import {
   LOAD_CURRENCY,
   COUNT_CURRENCY,
   SWAP_CURRENCY,
+  SEND_DIAL,
   LOAD_CURRENCY_ASYNC,
   COUNT_CURRENCY_ASYNC,
 } from './types';
@@ -30,4 +31,9 @@ export const countCurrencyAsync = value => ({
 
 export const swappingCurrency = () => ({
   type: SWAP_CURRENCY,
+});
+
+export const sendCurrencyTransaction = value => ({
+  type: SEND_DIAL,
+  payload: value,
 });

@@ -7,6 +7,7 @@ export default (array, CurrencyNameFrom, CurrencyNameTo, AmountSell, tax) => {
     item => item.ccy === CurrencyNameFrom,
   );
   const indexBuyCurrency = array.findIndex(item => item.ccy === CurrencyNameTo);
+
   const firstConvert = convertToUa(AmountSell, array[indexSellCurrency].buy);
   const secondConvert = convertFromUa(
     firstConvert,
@@ -15,5 +16,4 @@ export default (array, CurrencyNameFrom, CurrencyNameTo, AmountSell, tax) => {
   const countWithTax = secondConvert - countTax(secondConvert, tax);
 
   return Math.trunc(countWithTax * 100) / 100;
-  // return countWithTax;
 };

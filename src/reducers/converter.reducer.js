@@ -1,5 +1,9 @@
 import combineEvents from 'utils/combineEvents';
-import { LOAD_CURRENCY_ASYNC, COUNT_CURRENCY_ASYNC } from 'actions/types';
+import {
+  LOAD_CURRENCY_ASYNC,
+  COUNT_CURRENCY_ASYNC,
+  SEND_DIAL,
+} from 'actions/types';
 
 const initialState = {
   currencies: [],
@@ -13,6 +17,7 @@ export default combineEvents(
       currencies: [UAH, ...payload],
     }),
     [COUNT_CURRENCY_ASYNC]: (state, { payload }) => ({ amountBuy: payload }),
+    [SEND_DIAL]: (state, { payload }) => ({ purchasedCurrency: payload }),
   },
   initialState,
 );

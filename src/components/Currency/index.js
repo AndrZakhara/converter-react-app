@@ -4,6 +4,7 @@ import { compose } from 'recompose';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import { withStyles } from '@material-ui/core/styles';
+import moment from 'moment';
 import { feeConvert } from 'mocks/db';
 import styles from './style';
 
@@ -31,14 +32,22 @@ class Currency extends Component {
     change('amountBuy', amountBuy);
   };
 
+  buyConcentrationCurrency = e => {
+    e.preventDefault();
+    const { sendCurrencyTransaction, currenciesCount } = this.props;
+    const transactionDate = moment().format('llll');
+    const transactionMessage = { transactionDate, ...currenciesCount.values };
+    sendCurrencyTransaction(transactionMessage); // TODO message to firebase;
+  };
+
   render() {
-    const { currencies, classes, handleSubmit } = this.props;
+    const { currencies, classes } = this.props;
 
     return (
       <form
         name="currencyForm"
         className={classes.appContent}
-        onSubmit={handleSubmit}>
+        onSubmit={this.buyConcentrationCurrency}>
         <div className={classes.converterTitle}>
           <h2 className={classes.marginDef}>Currency Converter</h2>
         </div>
