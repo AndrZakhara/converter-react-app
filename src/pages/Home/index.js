@@ -5,8 +5,8 @@ import { fetchUserDials } from 'actions/user';
 
 class Home extends Component {
   componentDidMount() {
-    // eslint-disable-next-line react/destructuring-assignment
-    this.props.fetchUserDials();
+    const { fetchUserDials: defState } = this.props;
+    defState();
   }
 
   render() {
