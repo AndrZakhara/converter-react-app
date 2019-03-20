@@ -13,6 +13,7 @@ import ExitToApp from '@material-ui/icons/ExitToApp';
 
 import './style.css';
 import { signOut } from 'actions/auth';
+import { ADMIN } from 'constants/roles';
 
 const style = {
   toolbar: {
@@ -27,79 +28,76 @@ const style = {
   },
 };
 
-const Header = ({ classes, isLoggedIn, role, onLogOut }) => {
-  const LogOutHandler = () => onLogOut();
-  return (
-    <div>
-      <AppBar position="static" className="navbar">
-        <Toolbar className={classes.toolbar}>
-          {isLoggedIn ? (
-            <div className={classes.brand}>
-              <Link to="/">
-                <Button>
-                  <Typography variant="title" className={classes.title}>
-                    LOGO
-                  </Typography>
-                </Button>
-              </Link>
-            </div>
-          ) : (
-            <div className={classes.brand}>
-              <Typography variant="title" className={classes.title}>
-                LOGO
-              </Typography>
-            </div>
-          )}
-          {isLoggedIn ? (
-            <Fragment>
-              {role === 'admin' ? (
-                <Fragment>
-                  <Link to="/admin-panel">
-                    <Button className="rightButton">
-                      <span className="text">Admin Panel</span>
-                    </Button>
-                  </Link>
-                </Fragment>
-              ) : null}
-              <Link to="/converter">
-                <Button className="rightButton">
-                  <span className="text">Converter</span>
-                </Button>
-              </Link>
-              <Link to="/weather">
-                <Button className="rightButton">
-                  <span className="text">Weather</span>
-                </Button>
-              </Link>
-              <Link to="/profile">
-                <Button className="rightButton">
-                  <Person />
-                </Button>
-              </Link>
-              <Button className="rightButton" onClick={LogOutHandler}>
-                <ExitToApp />
-                <span className="text">Logout</span>
+const Header = ({ classes, isLoggedIn, role, onLogOut }) => (
+  <div>
+    <AppBar position="static" className="navbar">
+      <Toolbar className={classes.toolbar}>
+        {isLoggedIn ? (
+          <div className={classes.brand}>
+            <Link to="/">
+              <Button>
+                <Typography variant="title" className={classes.title}>
+                  LOGO
+                </Typography>
               </Button>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <Link to="/sign-in">
-                <Button className="rightButton">
-                  <span className="text">Sign In</span>
-                </Button>
-              </Link>
-              <Link to="/sign-up">
-                <Button className="rightButton">
-                  <span className="text">Sign Up</span>
-                </Button>
-              </Link>
-            </Fragment>
-          )}
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-};
+            </Link>
+          </div>
+        ) : (
+          <div className={classes.brand}>
+            <Typography variant="title" className={classes.title}>
+              LOGO
+            </Typography>
+          </div>
+        )}
+        {isLoggedIn ? (
+          <Fragment>
+            {role === ADMIN ? (
+              <Fragment>
+                <Link to="/admin-panel">
+                  <Button className="rightButton">
+                    <span className="text">Admin Panel</span>
+                  </Button>
+                </Link>
+              </Fragment>
+            ) : null}
+            <Link to="/converter">
+              <Button className="rightButton">
+                <span className="text">Converter</span>
+              </Button>
+            </Link>
+            <Link to="/weather">
+              <Button className="rightButton">
+                <span className="text">Weather</span>
+              </Button>
+            </Link>
+            <Link to="/profile">
+              <Button className="rightButton">
+                <Person />
+              </Button>
+            </Link>
+            <Button className="rightButton" onClick={onLogOut}>
+              <ExitToApp />
+              <span className="text">Logout</span>
+            </Button>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <Link to="/sign-in">
+              <Button className="rightButton">
+                <span className="text">Sign In</span>
+              </Button>
+            </Link>
+            <Link to="/sign-up">
+              <Button className="rightButton">
+                <span className="text">Sign Up</span>
+              </Button>
+            </Link>
+          </Fragment>
+        )}
+      </Toolbar>
+    </AppBar>
+  </div>
+);
 
 const mapStateToProps = ({ auth, user }) => ({
   isLoggedIn: auth.isLoggedIn,

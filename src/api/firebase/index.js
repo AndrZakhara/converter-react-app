@@ -1,6 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import { USER } from 'constants/roles';
 import config from './config';
 
 class Firebase {
@@ -29,7 +30,7 @@ class Firebase {
     firstName,
     lastName,
     phone,
-    role = 'role',
+    role = USER,
   ) => {
     this.database.ref(`listOfUsers/${uid}`).set({
       uid,
@@ -49,7 +50,7 @@ class Firebase {
     firstName,
     LastName,
     phone,
-    role = 'user',
+    role = USER,
   ) => {
     this.database.ref(`listOfUsers/${uid}`).update({
       ava,
