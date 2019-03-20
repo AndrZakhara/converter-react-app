@@ -1,4 +1,4 @@
-export const styles = () => ({
+export default () => ({
   subFooter: {
     padding: '20px 16px 20px 16px',
   },
@@ -6,6 +6,6 @@ export const styles = () => ({
     color: '#fff',
     fontSize: '0.95rem',
     textAlign: 'center',
-    lineHeight: 1.5
+    lineHeight: 1.5,
   },
 });

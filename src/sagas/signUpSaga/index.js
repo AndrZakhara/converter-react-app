@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { SIGNUP } from 'actions/types';
 import { signUpError, signUpSuccess } from 'actions/signUp';
-import { register } from 'api/auth';
+import register from 'api/auth';
 
 function* SignUp(action) {
   const { email, password } = action.payload;

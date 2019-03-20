@@ -1,4 +1,4 @@
-export const styles = theme => ({
+export default theme => ({
   root: {
     width: '90%',
     margin: '0 auto',

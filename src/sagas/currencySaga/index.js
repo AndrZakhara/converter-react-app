@@ -1,5 +1,4 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
-
 import {
   LOAD_CURRENCY,
   COUNT_CURRENCY,

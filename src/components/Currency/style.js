@@ -1,4 +1,4 @@
-export const styles = () => ({
+export default () => ({
   appContent: {
     width: 650,
     margin: 'auto',
@@ -15,8 +15,8 @@ export const styles = () => ({
     margin: 0,
   },
   text: {
-  fontSize: '23px',
-  textTransform: 'capitalize',
+    fontSize: '23px',
+    textTransform: 'capitalize',
   },
   converterTitle: {
     background: '#3f51b5',
@@ -88,5 +88,5 @@ export const styles = () => ({
     padding: '10px 5px',
     fontSize: '18px',
     textIndent: '7px',
-  }
+  },
 });

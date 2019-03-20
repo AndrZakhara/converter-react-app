@@ -10,15 +10,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Person from '@material-ui/icons/Person';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 
-import { styles } from './style';
+import styles from './style';
 
-const Header = ({
-  classes,
-  isAuthenticated,
-  onLogout,
-  isAdmin,
-  login
-}) => (
+const Header = ({ classes, isAuthenticated, onLogout, isAdmin, login }) => (
   <div>
     <AppBar position="static" className={classes.navbar}>
       <Toolbar className={classes.toolbar}>
@@ -41,34 +35,34 @@ const Header = ({
           <Fragment>
             {!isAdmin ? (
               <Fragment>
-                <Link to='/admin-panel' className={classes.navbarA}>
-                  <Button className={classes.rightButton}>
-                    <span className='text'>Admin Panel</span>
+                <Link to="/admin-panel">
+                  <Button className="rightButton">
+                    <span className="text">Admin Panel</span>
                   </Button>
                 </Link>
-                <Link to={`/converter`} className={classes.navbarA}>
-                <Button  className={classes.rightButton}>
-                  <span className='text'>Converter</span>
-                </Button>
-              </Link>
-                <Link to='/weather' className={classes.navbarA}>
-                  <Button  className={classes.rightButton}>
-                    <span className='text'>Weather</span>
+                <Link to="/converter">
+                  <Button className="rightButton">
+                    <span className="text">Converter</span>
+                  </Button>
+                </Link>
+                <Link to="/weather">
+                  <Button className="rightButton">
+                    <span className="text">Weather</span>
                   </Button>
                 </Link>
               </Fragment>
             ) : (
               <Fragment>
-              <Link to={`/converter`} className={classes.navbarA}>
-                <Button  className={classes.rightButton}>
-                  <span className='text'>Converter</span>
-                </Button>
-              </Link>
-                <Link to="/weather" className={classes.navbarA}>
-                  <Button  className={classes.rightButton}>
-                    <span className='text'>Weather</span>
+                <Link to="/converter">
+                  <Button className="rightButton">
+                    <span className="text">Converter</span>
                   </Button>
-                  </Link>
+                </Link>
+                <Link to="/weather">
+                  <Button className="rightButton">
+                    <span className="text">Weather</span>
+                  </Button>
+                </Link>
               </Fragment>
             )}
             <Link to="/profile" className={classes.navbarA}>

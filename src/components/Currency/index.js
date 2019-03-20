@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import { withStyles } from '@material-ui/core/styles';
 import { feeConvert } from 'mocks/db';
-import { styles } from './style';
+import styles from './style';
 
 class Currency extends Component {
   componentDidMount() {
