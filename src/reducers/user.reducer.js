@@ -8,7 +8,15 @@ import {
 } from 'actions/types';
 
 const initialState = {
-  profile: null,
+  profile: {
+    firstName: null,
+    lastName: null,
+    phone: null,
+    email: null,
+    ava: null,
+    role: null,
+    uid: null,
+  },
   error: null,
 };
 

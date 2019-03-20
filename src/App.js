@@ -2,8 +2,8 @@
 import React, { Fragment } from 'react';
 import PrivateRoute from 'pages/PrivateRoute';
 import { Switch, Route } from 'react-router-dom';
-import { Header, Home, Footer } from './components';
-import { Admin, Converter, Profile, SignUp, SignIn } from './pages';
+import { Header, Footer } from './components';
+import { Admin, Converter, Profile, SignUp, SignIn, Home } from './pages';
 
 const App = () => (
   <Fragment>
