@@ -1,5 +1,5 @@
 export default () => ({
-  converterTitle: {
+  loginTitle: {
     lineHeight: '53px',
     background: '#3f51b5',
     color: '#fff',

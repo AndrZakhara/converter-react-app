@@ -26,7 +26,7 @@ const SignInForm = ({
 
   return (
     <div className={classes.formContainer}>
-      <div className={classes.converterTitle}>Sign In</div>
+      <div className={classes.loginTitle}>Sign In</div>
       <Paper className={classes.form}>
         <form noValidate onSubmit={handleSubmit(onSubmit)}>
           <Field

@@ -19,9 +19,11 @@ import {
   passwordMatch,
 } from 'utils/validate';
 import styles from './style';
+import './style.css';
 
 const SignUpFormBase = ({ classes, handleSubmit, onSubmit, errorMsg }) => (
   <div className={classes.formContainer}>
+    <div className={classes.logoutTitle}>Sign Up</div>
     <Paper className={classes.form}>
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Field
@@ -83,7 +85,7 @@ const SignUpFormBase = ({ classes, handleSubmit, onSubmit, errorMsg }) => (
           type="number"
           validate={validatePhone}
         />
-        <div className={classes.errorMsg}>{errorMsg}</div>
+        <div className={classes.errorMsg}>{errorMsg && errorMsg.message}</div>
         <Button
           type="submit"
           className={classes.submitBtn}

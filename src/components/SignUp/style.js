@@ -1,4 +1,14 @@
 export default theme => ({
+  logoutTitle: {
+    lineHeight: '53px',
+    background: '#3f51b5',
+    color: '#fff',
+    borderRadius: '5px 5px 0 0',
+    width: '100%',
+    textAlign: 'center',
+    fontSize: '27px',
+    fontWeight: '700',
+  },
   button: {
     margin: theme.spacing.unit,
   },
