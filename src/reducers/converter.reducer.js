@@ -1,8 +1,5 @@
 import combineEvents from 'utils/combineEvents';
-import {
-  LOAD_CURRENCY_ASYNC,
-  COUNT_CURRENCY_ASYNC,
-} from 'actions/converter.actions';
+import { LOAD_CURRENCY_ASYNC, COUNT_CURRENCY_ASYNC } from 'actions/types';
 
 const initialState = {
   currencies: [],

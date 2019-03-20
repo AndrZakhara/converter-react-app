@@ -26,6 +26,7 @@ class Currency extends Component {
       amountBuy,
       countCurrency,
     } = this.props;
+
     countCurrency(currencies, currenciesCount.values);
     change('amountBuy', amountBuy);
   };

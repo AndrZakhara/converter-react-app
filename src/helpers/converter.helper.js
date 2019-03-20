@@ -14,6 +14,6 @@ export default (array, CurrencyNameFrom, CurrencyNameTo, AmountSell, tax) => {
   );
   const countWithTax = secondConvert - countTax(secondConvert, tax);
 
-  // return Math.trunc(countWithTax * 100) / 100;
-  return countWithTax;
+  return Math.trunc(countWithTax * 100) / 100;
+  // return countWithTax;
 };

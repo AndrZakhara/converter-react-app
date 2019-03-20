@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import styles from './style';
 
-const Footer = classes => {
+const Footer = ({ classes }) => {
   const currentYear = new Date().getFullYear();
   return (
     <div className="footer">

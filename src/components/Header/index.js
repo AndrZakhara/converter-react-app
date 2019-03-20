@@ -35,31 +35,31 @@ const Header = ({ classes, isAuthenticated, onLogout, isAdmin, login }) => (
           <Fragment>
             {!isAdmin ? (
               <Fragment>
-                <Link to="/admin-panel">
-                  <Button className="rightButton">
+                <Link to="/admin-panel" className={classes.navbarA}>
+                  <Button className={classes.rightButton}>
                     <span className="text">Admin Panel</span>
                   </Button>
                 </Link>
-                <Link to="/converter">
-                  <Button className="rightButton">
+                <Link to="/converter" className={classes.navbarA}>
+                  <Button className={classes.rightButton}>
                     <span className="text">Converter</span>
                   </Button>
                 </Link>
-                <Link to="/weather">
-                  <Button className="rightButton">
+                <Link to="/weather" className={classes.navbarA}>
+                  <Button className={classes.rightButton}>
                     <span className="text">Weather</span>
                   </Button>
                 </Link>
               </Fragment>
             ) : (
               <Fragment>
-                <Link to="/converter">
-                  <Button className="rightButton">
+                <Link to="/converter" className={classes.navbarA}>
+                  <Button className={classes.rightButton}>
                     <span className="text">Converter</span>
                   </Button>
                 </Link>
-                <Link to="/weather">
-                  <Button className="rightButton">
+                <Link to="/weather" className={classes.navbarA}>
+                  <Button className={classes.rightButton}>
                     <span className="text">Weather</span>
                   </Button>
                 </Link>

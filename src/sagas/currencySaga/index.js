@@ -1,11 +1,10 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 import {
-  LOAD_CURRENCY,
-  COUNT_CURRENCY,
   loadCurrenciesAsync,
   countCurrencyAsync,
 } from 'actions/converter.actions';
-import getCurrencyApi from 'api/axios';
+import { LOAD_CURRENCY, COUNT_CURRENCY } from 'actions/types';
+import getCurrencyApi from 'api/getCurrency';
 import buyCurrency from 'helpers/converter.helper';
 
 function* getCurrencies() {
