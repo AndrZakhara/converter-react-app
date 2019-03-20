@@ -11,6 +11,7 @@ export default {
             currencySell: state.values.currencyBuy,
             amountSell: state.values.amountBuy,
             amountBuy: state.values.amountSell,
+            fee: state.values.fee,
           },
         };
       default:

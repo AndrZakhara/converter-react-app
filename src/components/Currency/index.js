@@ -91,6 +91,7 @@ class Currency extends Component {
           <Field
             className={classes.inputAmount}
             name="amountSell"
+            parse={value => Number(value)}
             component="input"
             type="number"
             label="How much to exchange"
@@ -100,6 +101,7 @@ class Currency extends Component {
           <Field
             className={classes.inputAmount}
             name="amountBuy"
+            parse={value => Number(value)}
             component="input"
             type="number"
             label="How much will we get"

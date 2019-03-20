@@ -7,7 +7,7 @@ export default (array, CurrencyNameFrom, CurrencyNameTo, AmountSell, tax) => {
     item => item.ccy === CurrencyNameFrom,
   );
   const indexBuyCurrency = array.findIndex(item => item.ccy === CurrencyNameTo);
-
+  console.log(typeof AmountSell);
   const firstConvert = convertToUa(AmountSell, array[indexSellCurrency].buy);
   const secondConvert = convertFromUa(
     firstConvert,
