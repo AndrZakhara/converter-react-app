@@ -1,14 +1,16 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 import {
+  loadCurrenciesRequest,
   loadCurrenciesSuccess,
   loadCurrenciesError,
   countCurrencyAsync,
 } from 'actions/converter.actions';
-import { LOAD_CURRENCY_REQUEST, COUNT_CURRENCY } from 'actions/types';
+import { LOAD_CURRENCY, COUNT_CURRENCY } from 'actions/types';
 import getCurrencyApi from 'api/getCurrency';
 import buyCurrency from 'helpers/converter.helper';
 
 function* fetchCurrencies() {
+  yield put(loadCurrenciesRequest());
   try {
     const currenciesList = yield call(getCurrencyApi);
     yield put(loadCurrenciesSuccess(currenciesList));
@@ -36,7 +38,7 @@ function* countCurrencies(action) {
 }
 
 export function* watchGetAllCurrencies() {
-  yield takeEvery(LOAD_CURRENCY_REQUEST, fetchCurrencies);
+  yield takeEvery(LOAD_CURRENCY, fetchCurrencies);
 }
 
 export function* watchCountCurrencies() {
