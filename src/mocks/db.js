@@ -118,7 +118,7 @@ const data = {
 };
 const defUser = [
   {
-    date: '10.10.2010',
+    date: 'Mon, 18 Mar 2019 02:05:16',
     currencyFrom: 'EUR',
     currencyTo: 'USD',
     commission: 0,
@@ -127,7 +127,16 @@ const defUser = [
     amountTo: 222,
   },
   {
-    date: '11.11.2011',
+    date: 'Mon, 18 Mar 2018 02:05:24',
+    currencyFrom: 'UAH',
+    currencyTo: 'USD',
+    commission: 0,
+    rate: 27.1,
+    amountFrom: 271,
+    amountTo: 10,
+  },
+  {
+    date: 'Mon, 27 Sep 2022 02:05:24',
     currencyFrom: 'UAH',
     currencyTo: 'USD',
     commission: 0,

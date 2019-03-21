@@ -7,6 +7,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TableCell from '@material-ui/core/TableCell';
 import { stableSort, getSorting } from 'utils/sort';
+import moment from 'moment';
 import EnhancedTableHead from './EnhancedTableHead';
 import styles from './style';
 
@@ -45,7 +46,6 @@ class EnhancedTable extends Component {
 
     if (allUserData) {
       const data = allUserData;
-      console.log(data);
       const emptyRows =
         rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -67,9 +67,9 @@ class EnhancedTable extends Component {
                 {stableSort(data, getSorting(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map(n => (
-                    <TableRow hover>
+                    <TableRow hover key={n.date}>
                       <TableCell component="th" scope="row">
-                        {n.date}
+                        {moment(n.date).format('DD.MM.YYYY')}
                       </TableCell>
                       <TableCell align="center" style={{ fontSize: '16px' }}>
                         {n.currencyFrom}
