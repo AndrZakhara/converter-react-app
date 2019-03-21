@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { signInStart, signInError, signInSuccess } from 'actions/auth';
+import { signInStart, signInError, signInSuccess } from 'actions';
 import { signIn } from 'api/auth';
 import { SIGNIN } from 'actions/types';
 

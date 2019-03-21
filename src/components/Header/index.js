@@ -11,7 +11,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Person from '@material-ui/icons/Person';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 
-import { signOut } from 'actions/auth';
+import { signOut } from 'actions';
 import { ADMIN } from 'constants/roles';
 import styles from './style';
 

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { SignUp } from 'components';
 import { connect } from 'react-redux';
-import { signUp as signUpAction } from 'actions/auth';
+import { signUp as signUpAction } from 'actions';
 
 const SignUpForm = ({ error, signUp, isLoggedIn }) => {
   const onSubmit = ({ email, passwordOne, firstName, lastName, phone }) => {

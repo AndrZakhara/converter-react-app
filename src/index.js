@@ -8,12 +8,12 @@ import { store, persistor } from './store/configureStore';
 import './index.css';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+  <PersistGate loading={null} persistor={persistor}>
+    <BrowserRouter>
+      <Provider store={store}>
         <App />
-      </PersistGate>
-    </Provider>
-  </BrowserRouter>,
+      </Provider>
+    </BrowserRouter>
+  </PersistGate>,
   document.getElementById('root'),
 );

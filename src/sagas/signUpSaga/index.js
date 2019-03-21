@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { SIGNUP } from 'actions/types';
-import { signUpStart, signUpError, signUpSuccess } from 'actions/auth';
+import { signUpStart, signUpError, signUpSuccess } from 'actions';
 import { register } from 'api/auth';
 
 function* SignUp({ payload: { email, password, firstName, lastName, phone } }) {
