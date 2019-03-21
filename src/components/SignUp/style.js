@@ -16,7 +16,6 @@ export default theme => ({
     display: 'none',
   },
   formContainer: {
-    paddingTop: '100px',
     margin: '0 auto',
     width: '50%',
     maxWidth: '750px',

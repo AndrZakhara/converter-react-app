@@ -10,7 +10,6 @@ export default () => ({
     fontWeight: '700',
   },
   formContainer: {
-    paddingTop: '100px',
     margin: '0 auto',
     width: '50%',
     maxWidth: '750px',

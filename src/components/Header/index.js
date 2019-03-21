@@ -21,8 +21,8 @@ const Header = ({ classes, isLoggedIn, role, onLogOut }) => (
       <Toolbar className={classes.toolbar}>
         {isLoggedIn ? (
           <div className={classes.brand}>
-            <Link to="/">
-              <Button>
+            <Link to="/" className={classes.navbarA}>
+              <Button className={classes.rightButton}>
                 <Typography variant="title" className={classes.title}>
                   LOGO
                 </Typography>
@@ -47,18 +47,18 @@ const Header = ({ classes, isLoggedIn, role, onLogOut }) => (
                 </Link>
               </Fragment>
             ) : null}
-            <Link to="/converter">
-              <Button className="rightButton">
+            <Link to="/converter" className={classes.navbarA}>
+              <Button className={classes.rightButton}>
                 <span className="text">Converter</span>
               </Button>
             </Link>
-            <Link to="/weather">
-              <Button className="rightButton">
+            <Link to="/weather" className={classes.navbarA}>
+              <Button className={classes.rightButton}>
                 <span className="text">Weather</span>
               </Button>
             </Link>
-            <Link to="/profile">
-              <Button className="rightButton">
+            <Link to="/profile" className={classes.navbarA}>
+              <Button className={classes.rightButton}>
                 <Person />
               </Button>
             </Link>
@@ -69,13 +69,13 @@ const Header = ({ classes, isLoggedIn, role, onLogOut }) => (
           </Fragment>
         ) : (
           <Fragment>
-            <Link to="/sign-in">
-              <Button className="rightButton">
+            <Link to="/sign-in" className={classes.navbarA}>
+              <Button className={classes.rightButton}>
                 <span className="text">Sign In</span>
               </Button>
             </Link>
-            <Link to="/sign-up">
-              <Button className="rightButton">
+            <Link to="/sign-up" className={classes.navbarA}>
+              <Button className={classes.rightButton}>
                 <span className="text">Sign Up</span>
               </Button>
             </Link>
