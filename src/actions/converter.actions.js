@@ -1,15 +1,15 @@
 import {
-  LOAD_CURRENCY,
   COUNT_CURRENCY,
   SWAP_CURRENCY,
   SEND_DIAL,
+  LOAD_CURRENCY_REQUEST,
   LOAD_CURRENCY_SUCCESS,
-  LOAD_CURRENCY_FAILURE,
+  LOAD_CURRENCY_ERROR,
   COUNT_CURRENCY_ASYNC,
 } from './types';
 
 export const loadCurrencies = () => ({
-  type: LOAD_CURRENCY,
+  type: LOAD_CURRENCY_REQUEST,
 });
 
 export const loadCurrenciesSuccess = data => ({
@@ -18,7 +18,7 @@ export const loadCurrenciesSuccess = data => ({
 });
 
 export const loadCurrenciesError = error => ({
-  type: LOAD_CURRENCY_FAILURE,
+  type: LOAD_CURRENCY_ERROR,
   payload: error,
 });
 

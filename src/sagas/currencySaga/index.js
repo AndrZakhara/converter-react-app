@@ -4,13 +4,13 @@ import {
   loadCurrenciesError,
   countCurrencyAsync,
 } from 'actions/converter.actions';
-import { LOAD_CURRENCY, COUNT_CURRENCY } from 'actions/types';
+import { LOAD_CURRENCY_REQUEST, COUNT_CURRENCY } from 'actions/types';
 import getCurrencyApi from 'api/getCurrency';
 import buyCurrency from 'helpers/converter.helper';
 
 function* fetchCurrencies() {
-  const currenciesList = yield call(getCurrencyApi);
   try {
+    const currenciesList = yield call(getCurrencyApi);
     yield put(loadCurrenciesSuccess(currenciesList));
   } catch (error) {
     yield put(loadCurrenciesError(error));
@@ -36,7 +36,7 @@ function* countCurrencies(action) {
 }
 
 export function* watchGetAllCurrencies() {
-  yield takeEvery(LOAD_CURRENCY, fetchCurrencies);
+  yield takeEvery(LOAD_CURRENCY_REQUEST, fetchCurrencies);
 }
 
 export function* watchCountCurrencies() {
