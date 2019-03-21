@@ -11,7 +11,7 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
     display: 'flex',
-    flexDirection: 'column',
+    // flexDirection: 'column',
   },
   infoWrapper: {
     display: 'flex',
@@ -19,6 +19,14 @@ const styles = theme => ({
   bigAvatar: {
     width: '100px',
     height: '100px',
+  },
+  buttonWrapper: {
+    display: 'flex',
+    // flexWrap: 'nowrap',
+    flexDirection: 'column',
+  },
+  button: {
+    margin: '0 5px',
   },
 });
 
