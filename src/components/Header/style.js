@@ -14,6 +14,7 @@ export default () => ({
   },
   navbarA: {
     textDecoration: 'none',
+    color: '#fff',
   },
   rightButton: {
     color: '#fff',

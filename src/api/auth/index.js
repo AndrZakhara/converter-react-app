@@ -1,4 +1,7 @@
-import Firebase from 'api/firebase';
+import fb from 'api/firebase';
 
-export default (email, password) =>
-  Firebase.DoCreateUserWithEmailAndPassword(email, password);
+export const register = (email, password) =>
+  fb.doCreateUserWithEmailAndPassword(email, password);
+
+export const signIn = (email, password) =>
+  fb.doSignInWithEmailAndPassword(email, password);

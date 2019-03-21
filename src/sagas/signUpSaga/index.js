@@ -1,13 +1,21 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { SIGNUP } from 'actions/types';
-import { signUpError, signUpSuccess } from 'actions/signUp';
-import register from 'api/auth';
+import { signUpStart, signUpError, signUpSuccess } from 'actions';
+import { register } from 'api/auth';
 
-function* SignUp(action) {
-  const { email, password } = action.payload;
+function* SignUp({ payload: { email, password, firstName, lastName, phone } }) {
   try {
-    yield call(register, email, password);
-    yield put(signUpSuccess());
+    yield put(signUpStart());
+    const response = yield call(register, email, password);
+    const user = {
+      uid: response.user.uid,
+      ava: '',
+      email,
+      firstName,
+      lastName,
+      phone,
+    };
+    yield put(signUpSuccess(user));
   } catch (e) {
     yield put(signUpError(e));
   }
