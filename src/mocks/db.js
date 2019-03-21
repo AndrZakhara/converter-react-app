@@ -1,4 +1,4 @@
-const users = {
+export const users = {
   'petya@gmail.com': {
     firstName: 'Petya',
     lastName: 'Shaskin',
@@ -65,7 +65,7 @@ const users = {
   },
 };
 
-const data = {
+export const data = {
   'vasya@gmail.com': [
     {
       date: '11.11.2011',
@@ -116,7 +116,7 @@ const data = {
     },
   ],
 };
-const defUser = [
+export const defUser = [
   {
     date: '10.10.2010',
     currencyFrom: 'EUR',
@@ -136,8 +136,7 @@ const defUser = [
     amountTo: 10,
   },
 ];
-
-export { users, data, defUser };
+export const feeConvert = [0, 1, 2, 3, 4, 5];
 
 // this.listOfUsers = [
 //   {"id":1,"name":"Alex","description":"alex@gmail.com","field3":"user","field4":"field4 1","field5 ":"field5 1"},

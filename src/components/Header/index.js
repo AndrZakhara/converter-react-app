@@ -4,33 +4,20 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
 import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Person from '@material-ui/icons/Person';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 
-import './style.css';
 import { signOut } from 'actions/auth';
 import { ADMIN } from 'constants/roles';
-
-const style = {
-  toolbar: {
-    display: 'flex',
-  },
-  brand: {
-    flexGrow: 1,
-    textDecoration: 'none',
-  },
-  title: {
-    color: '#fff',
-  },
-};
+import styles from './style';
 
 const Header = ({ classes, isLoggedIn, role, onLogOut }) => (
   <div>
-    <AppBar position="static" className="navbar">
+    <AppBar position="static" className={classes.navbar}>
       <Toolbar className={classes.toolbar}>
         {isLoggedIn ? (
           <div className={classes.brand}>
@@ -53,8 +40,8 @@ const Header = ({ classes, isLoggedIn, role, onLogOut }) => (
           <Fragment>
             {role === ADMIN ? (
               <Fragment>
-                <Link to="/admin-panel">
-                  <Button className="rightButton">
+                <Link to="/admin-panel" className={classes.navbarA}>
+                  <Button className={classes.rightButton}>
                     <span className="text">Admin Panel</span>
                   </Button>
                 </Link>
@@ -75,7 +62,7 @@ const Header = ({ classes, isLoggedIn, role, onLogOut }) => (
                 <Person />
               </Button>
             </Link>
-            <Button className="rightButton" onClick={onLogOut}>
+            <Button className={classes.rightButton} onClick={onLogOut}>
               <ExitToApp />
               <span className="text">Logout</span>
             </Button>
@@ -109,7 +96,7 @@ const mapDispatchToProps = {
 };
 
 export default compose(
-  withStyles(style),
+  withStyles(styles),
   connect(
     mapStateToProps,
     mapDispatchToProps,
