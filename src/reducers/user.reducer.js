@@ -5,6 +5,8 @@ import {
   FETCH_USER_SUCCESS,
   SAVE_PROFILE,
   FETCH_USER_CURRENCY_DIALS,
+  CREATE_DB_PROFILE,
+  CREATE_DB_PROFILE_SUCCESS
 } from 'actions/types';
 
 const initialState = {
@@ -27,6 +29,10 @@ export default combineEvents(
     [SAVE_PROFILE]: (state, { payload }) => ({ profile: payload }),
     [FETCH_USER_CURRENCY_DIALS]: (state, { payload }) => ({
       userDials: payload,
+    }),
+    [CREATE_DB_PROFILE]: () => ({}),
+    [CREATE_DB_PROFILE_SUCCESS]: (state, { payload }) => ({
+      profile: payload,
     }),
   },
   initialState,

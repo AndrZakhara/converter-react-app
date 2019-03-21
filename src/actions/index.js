@@ -12,4 +12,6 @@ export {
   setFilter,
 } from './users.actions';
 
+export { createDbProfileStart, createDbProfileSuccess } from './auth';
+
 export { serverError } from './errors';

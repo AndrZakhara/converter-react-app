@@ -1,12 +1,25 @@
 import {
   SIGNIN,
+  SIGNIN_START,
   SIGNIN_SUCCESS,
   SIGNIN_ERROR,
   SIGNUP,
+  SIGNUP_START,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
   SIGN_OUT,
+  CREATE_DB_PROFILE,
+  CREATE_DB_PROFILE_SUCCESS,
 } from './types';
+
+export const createDbProfileStart = () => ({
+  type: CREATE_DB_PROFILE,
+});
+
+export const createDbProfileSuccess = user => ({
+  type: CREATE_DB_PROFILE_SUCCESS,
+  payload: user,
+});
 
 export const signIn = (email, password) => ({
   type: SIGNIN,
@@ -14,6 +27,10 @@ export const signIn = (email, password) => ({
     email,
     password,
   },
+});
+
+export const signInStart = () => ({
+  type: SIGNIN_START,
 });
 
 export const signInSuccess = uid => ({
@@ -37,9 +54,13 @@ export const signUp = (email, password, firstName, lastName, phone) => ({
   },
 });
 
-export const signUpSuccess = uid => ({
+export const signUpStart = () => ({
+  type: SIGNUP_START,
+});
+
+export const signUpSuccess = user => ({
   type: SIGNUP_SUCCESS,
-  payload: uid,
+  payload: user,
 });
 
 export const signUpError = error => ({
