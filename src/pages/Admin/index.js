@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { func, shape, string } from 'prop-types';
 import { userType, usersFilteredType } from 'types';
@@ -64,20 +65,23 @@ Admin.defaultProps = {
   userListFiltered: null,
 };
 
-const select = ({ users }) => {
+const mapStateToProps = ({ users }) => {
   const userListFiltered = getFilteredUserList(users);
   const { selectedUser, filterValue } = users;
 
   return { userListFiltered, selectedUser, filterValue };
 };
 
-const actionCreators = {
+const mapDispatchToProps = {
   getAllUsers: getAllUsersAction,
   setSelectedUser: setSelectedUserAction,
   setFilter: setFilterAction,
 };
 
-export default connect(
-  select,
-  actionCreators,
-)(withStyles(styles)(Admin));
+export default compose(
+  withStyles(styles),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+)(Admin);
