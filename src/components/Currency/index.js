@@ -1,176 +1,148 @@
-/* eslint-disable */
 import React, { Component } from 'react';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import FilledInput from '@material-ui/core/FilledInput';
-import TextField from '@material-ui/core/TextField';
+import { Field, reduxForm } from 'redux-form';
+import { compose } from 'recompose';
 import Button from '@material-ui/core/Button';
-import './style.css';
+import FormControl from '@material-ui/core/FormControl';
+import { withStyles } from '@material-ui/core/styles';
+import moment from 'moment';
+import { feeConvert } from 'mocks/db';
+import styles from './style';
 
 class Currency extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currencyBuy: 'EUR',
-      currencySell: 'USD',
-      amountSell: 0,
-      amountBuy: 0,
-      fee: 1,
-    };
+  componentDidMount() {
+    const { loadCurrencies } = this.props;
+    loadCurrencies();
   }
 
-  handleChange = event => {
-    this.setState(() => ({ [event.target.name]: event.target.value }));
+  changeCurrencies = () => {
+    const { swappingCurrency } = this.props;
+    swappingCurrency();
   };
 
-  handleInput = event => {
-    this.setState({ amountSell: event.target.value });
+  buyCurrency = () => {
+    const { currenciesCount, currencies, countCurrency } = this.props;
+    countCurrency(currencies, currenciesCount.values);
   };
 
-  convertToUa = (from, to) => {
-    const result = from * to;
-
-    return result;
-  };
-
-  convertFromUa = (from, to) => {
-    const res = from / to;
-
-    return res;
-  };
-
-  countTax = (sum, pr) => {
-    const res = (sum * pr) / 100;
-
-    return res;
-  };
-
-  _changeCurrencies = () => {
-    const { currencySell, currencyBuy, amountBuy, amountSell } = this.state;
-    this.setState({ currencyBuy: currencySell });
-    this.setState({ currencySell: currencyBuy });
-    this.setState({ amountSell: amountBuy });
-    this.setState({ amountBuy: amountSell });
-  };
-
-  _buyCurrency = event => {
-    const { currencies } = this.props;
-    const { currencySell, currencyBuy, fee } = this.state;
-
-    const a = currencies.findIndex(item => item.ccy === currencySell);
-    const b = currencies.findIndex(item => item.ccy === currencyBuy);
-
-    const firstConvert = this.convertToUa(
-      event.target.value,
-      currencies[b].buy,
-    );
-    const secondConvert = this.convertFromUa(firstConvert, currencies[a].sale);
-    const countWithTax = secondConvert - this.countTax(secondConvert, fee);
-
-    this.setState({ amountBuy: Math.trunc(countWithTax * 100) / 100 });
+  buyConcentrationCurrency = e => {
+    e.preventDefault();
+    const { sendCurrencyTransaction, currenciesCount } = this.props;
+    const transactionDate = moment().format('llll');
+    const transactionMessage = { transactionDate, ...currenciesCount.values };
+    sendCurrencyTransaction(transactionMessage); // TODO message to firebase;
   };
 
   render() {
-    const { currencies } = this.props;
-    const {
-      currencyBuy,
-      currencySell,
-      fee,
-      amountBuy,
-      amountSell,
-    } = this.state;
-    const { handleChange, _changeCurrencies, handleInput, _buyCurrency } = this;
+    const { currencies, classes } = this.props;
+
     return (
-      <div className="app-content">
-        <div className="converter-title">
-          <h2>Currency Converter</h2>
+      <form
+        name="currencyForm"
+        className={classes.appContent}
+        onSubmit={this.buyConcentrationCurrency}>
+        <div className={classes.converterTitle}>
+          <h2 className={classes.marginDef}>Currency Converter</h2>
         </div>
-        <div className="currency-line">
-          <label>
-            <p>give back</p>
-            <Select
-              value={currencyBuy}
-              onChange={handleChange}
-              input={<FilledInput name="currencyBuy" />}>
-              {currencies
-                .filter(item => item.ccy !== currencySell)
-                .map((item, i) => (
-                  <MenuItem value={item.ccy} key={i}>
-                    {item.ccy}
-                  </MenuItem>
-                ))}
-            </Select>
-          </label>
+        <div className={classes.currencyLine}>
+          <FormControl className={classes.formControl}>
+            <p className={classes.text}>give back</p>
+            <Field
+              className={classes.select}
+              name="currencySell"
+              component="select"
+              onChange={this.buyCurrency}>
+              {currencies.map(item => (
+                <option value={item.ccy} key={item.ccy}>
+                  {item.ccy}
+                </option>
+              ))}
+            </Field>
+          </FormControl>
           <Button
             variant="contained"
             color="primary"
-            onClick={_changeCurrencies}>
+            onClick={this.changeCurrencies}>
             &#8660;
           </Button>
-          <label>
-            <p>we get</p>
-            <Select
-              value={currencySell}
-              onChange={handleChange}
-              input={<FilledInput name="currencySell" />}>
-              {currencies
-                .filter(item => item.ccy !== currencyBuy)
-                .map((item, i) => (
-                  <MenuItem value={item.ccy} key={i}>
-                    {item.ccy}
-                  </MenuItem>
-                ))}
-            </Select>
-          </label>
+          <FormControl className={classes.formControl}>
+            <p className={classes.text}>we get</p>
+            <Field
+              className={classes.select}
+              name="currencyBuy"
+              component="select"
+              onChange={this.buyCurrency}>
+              {currencies.map(item => (
+                <option value={item.ccy} key={item.ccy}>
+                  {item.ccy}
+                </option>
+              ))}
+            </Field>
+          </FormControl>
         </div>
-        <div className="counter-line">
-          <TextField
-            id="outlined-adornment-amount"
-            variant="outlined"
-            label="How much to exchange"
-            type="number"
-            value={amountSell}
+        <div className={classes.currencyLine}>
+          <Field
+            className={classes.inputAmount}
             name="amountSell"
-            min="0"
-            onInput={handleInput}
-            onChange={_buyCurrency}
-          />
-          <TextField
-            id="outlined-number"
-            label="How much will we get"
+            parse={value => Number(value)}
+            component="input"
             type="number"
-            value={amountBuy}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="outlined"
+            label="How much to exchange"
+            min="0"
+            onChange={this.buyCurrency}
+          />
+          <Field
+            className={classes.inputAmount}
+            name="amountBuy"
+            parse={value => Number(value)}
+            component="input"
+            type="number"
+            label="How much will we get"
+            readOnly
           />
         </div>
-        <div className="bottom-btns-wrap">
-          <label className="fee-wrapper">
-            Fee
-            <Select
-              value={fee}
-              onChange={handleChange}
-              input={<FilledInput name="fee" />}>
-              <MenuItem value={0}>0</MenuItem>
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-            </Select>
-            %
-          </label>
-          <p>
-            Sell <i>{currencyBuy}</i> to <i>{currencySell}</i>
-          </p>
+        <div className={classes.bottomBtnsWrap}>
+          <FormControl className={classes.feeWrapper}>
+            <p className={classes.text}>Fee </p>
+            <Field
+              className={classes.feeSelect}
+              name="fee"
+              component="select"
+              onChange={this.buyCurrency}>
+              {feeConvert.map(item => (
+                <option value={item} key={item}>
+                  {item}
+                </option>
+              ))}
+            </Field>
+            <p className={classes.text}> %</p>
+          </FormControl>
         </div>
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.buyBtn}
+          type="submit"
+          onClick={this.sendCurrenciesDeal}>
           Buy
         </Button>
-      </div>
+      </form>
     );
   }
 }
 
-export default Currency;
+const withForm = reduxForm({
+  form: 'currencyForm',
+  enableReinitialize: true,
+  initialValues: {
+    currencyBuy: 'EUR',
+    currencySell: 'USD',
+    amountSell: 0,
+    amountBuy: 0,
+    fee: 2,
+  },
+});
+
+export default compose(
+  withForm,
+  withStyles(styles),
+)(Currency);
