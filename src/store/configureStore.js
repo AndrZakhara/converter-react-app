@@ -2,6 +2,9 @@ import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import adminSaga from 'sagas/adminSaga';
 import { composeWithDevTools } from 'redux-devtools-extension'; //eslint-disable-line
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
 import {
   watchGetAllCurrencies,
   watchCountCurrencies,
@@ -12,12 +15,20 @@ import signInSaga from 'sagas/signInSaga';
 
 import rootReducer from 'reducers';
 
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['user', 'auth'],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
-  rootReducer,
+  persistedReducer,
   composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
+const persistor = persistStore(store);
 
 sagaMiddleware.run(adminSaga);
 sagaMiddleware.run(watchGetAllCurrencies);
@@ -27,4 +38,4 @@ sagaMiddleware.run(getUserDialsData);
 sagaMiddleware.run(signInSaga);
 sagaMiddleware.run(watchGetAllUser);
 
-export default store;
+export { store, persistor };
