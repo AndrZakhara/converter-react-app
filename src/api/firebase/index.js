@@ -68,6 +68,12 @@ class Firebase {
       .ref(`listOfUsers/${uid}`)
       .once('value')
       .then(snapshot => snapshot.val());
+
+  fetchUsers = () =>
+    this.database
+      .ref('listOfUsers')
+      .once('value')
+      .then(snapshot => snapshot.val());
 }
 
 export default new Firebase();
