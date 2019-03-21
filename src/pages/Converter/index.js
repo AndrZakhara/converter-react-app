@@ -9,10 +9,10 @@ import {
 } from 'actions/converter.actions';
 
 const Converter = ({
-  loadCurrencies: loadCurrenciesAction,
-  countCurrency: countCurrencyAction,
-  swappingCurrency: swappingCurrencyAction,
-  sendCurrencyTransaction: sendCurrencyTransactionAction,
+  loadCurrenciesAction,
+  countCurrencyAction,
+  swappingCurrencyAction,
+  sendCurrencyTransactionAction,
   currencies,
   currenciesCount,
 }) => (
@@ -34,10 +34,10 @@ const mapStateToProps = ({ converter, form }) => ({
 });
 
 const mapDispatchToProps = {
-  loadCurrencies,
-  countCurrency,
-  swappingCurrency,
-  sendCurrencyTransaction,
+  loadCurrenciesAction: loadCurrencies,
+  countCurrencyAction: countCurrency,
+  swappingCurrencyAction: swappingCurrency,
+  sendCurrencyTransactionAction: sendCurrencyTransaction,
 };
 
 export default connect(
