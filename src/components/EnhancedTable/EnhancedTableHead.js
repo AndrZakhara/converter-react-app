@@ -8,37 +8,30 @@ import TableCell from '@material-ui/core/TableCell';
 const rows = [
   {
     id: 'date',
-    numeric: false,
     label: 'Date',
   },
   {
     id: 'currencyFrom',
-    numeric: true,
     label: 'Currancy From',
   },
   {
     id: 'amountFrom',
-    numeric: true,
     label: 'Ammount',
   },
   {
     id: 'currencyTo',
-    numeric: true,
     label: 'Currancy To',
   },
   {
     id: 'amountTo',
-    numeric: true,
     label: 'Ammount',
   },
   {
     id: 'commission',
-    numeric: true,
     label: 'Сommission',
   },
   {
     id: 'rate',
-    numeric: true,
     label: 'Rate',
   },
 ];
@@ -57,9 +50,9 @@ class EnhancedTableHead extends Component {
           {rows.map(row => (
             <TableCell
               key={row.id}
-              align={row.numeric ? 'center' : 'left'}
+              align="center"
               sortDirection={orderBy === row.id ? order : false}
-              style={{ fontSize: '20px' }}>
+              style={{ fontSize: '20px', padding: 0 }}>
               <Tooltip
                 title="Sort"
                 placement={row.numeric ? 'bottom-end' : 'bottom-start'}

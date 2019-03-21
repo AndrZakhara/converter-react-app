@@ -53,10 +53,7 @@ class EnhancedTable extends Component {
         <Paper className={classes.root}>
           <h1 className={classes.headerTitle}>History of Converting values</h1>
           <div className={classes.tableWrapper}>
-            <Table
-              className={classes.table}
-              aria-labelledby="tableTitle"
-              id="indexTable">
+            <Table className={classes.table} aria-labelledby="tableTitle">
               <EnhancedTableHead
                 order={order}
                 orderBy={orderBy}
@@ -68,25 +65,31 @@ class EnhancedTable extends Component {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map(n => (
                     <TableRow hover key={n.date}>
-                      <TableCell component="th" scope="row">
+                      <TableCell
+                        align="center"
+                        component="th"
+                        scope="row"
+                        className={classes.remPadd}>
                         {moment(n.date).format('DD.MM.YYYY')}
                       </TableCell>
-                      <TableCell align="center" style={{ fontSize: '16px' }}>
+                      <TableCell align="center" className={classes.remPadd}>
                         {n.currencyFrom}
                       </TableCell>
-                      <TableCell align="center" style={{ fontSize: '16px' }}>
+                      <TableCell align="center" className={classes.remPadd}>
                         {n.amountFrom}
                       </TableCell>
-                      <TableCell align="center" style={{ fontSize: '16px' }}>
+                      <TableCell align="center" className={classes.remPadd}>
                         {n.currencyTo}
                       </TableCell>
-                      <TableCell align="center" style={{ fontSize: '16px' }}>
+                      <TableCell align="center" className={classes.remPadd}>
                         {n.amountTo}
                       </TableCell>
-                      <TableCell align="center" style={{ fontSize: '16px' }}>
+                      <TableCell align="center" className={classes.remPadd}>
                         {n.commission}
                       </TableCell>
-                      <TableCell align="center" style={{ fontSize: '16px' }}>
+                      <TableCell
+                        align="center"
+                        className={classes.remPaddRight}>
                         {n.rate}
                       </TableCell>
                     </TableRow>

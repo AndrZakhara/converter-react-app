@@ -26,4 +26,12 @@ export default theme => ({
     textTransform: 'capitalize',
     letterSpacing: '1px',
   },
+  remPadd: {
+    padding: 0,
+    fontSize: '16px',
+  },
+  remPaddRight: {
+    paddingLeft: 0,
+    fontSize: '16px',
+  },
 });
