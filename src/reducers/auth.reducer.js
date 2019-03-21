@@ -1,10 +1,7 @@
 import combineEvents from 'utils/combineEvents';
 import {
-  SIGNIN,
-  SIGNIN_START,
   SIGNIN_SUCCESS,
   SIGNIN_ERROR,
-  SIGNUP,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
 } from 'actions/types';
@@ -17,8 +14,6 @@ const initialState = {
 
 export default combineEvents(
   {
-    [SIGNIN]: () => ({}),
-    [SIGNIN_START]: () => ({}),
     [SIGNIN_SUCCESS]: (state, { payload }) => ({
       isLoggedIn: true,
       uid: payload,
@@ -26,7 +21,6 @@ export default combineEvents(
     [SIGNIN_ERROR]: (state, { payload }) => ({
       error: payload,
     }),
-    [SIGNUP]: () => ({}),
     [SIGNUP_SUCCESS]: (state, { payload }) => ({
       isLoggedIn: true,
       uid: payload.uid,
