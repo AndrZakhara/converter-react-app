@@ -10,6 +10,9 @@ const styles = () => ({
     color: 'white',
     height: 30,
   },
+  sectionWrapper: {
+    width: '70%',
+  },
 });
 
 export default styles;

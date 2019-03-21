@@ -1,30 +1,46 @@
-/* eslint-disable */
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Currency from 'components/Currency';
 import {
-  addCurrencyAsync,
-  addCurrency,
-  chooseCurrencyBuy,
-  chooseCurrencySell,
-} from 'actions/currencyAction';
+  loadCurrencies,
+  countCurrency,
+  swappingCurrency,
+  sendCurrencyTransaction,
+} from 'actions/converter.actions';
 
-class Converter extends Component {
-  componentDidMount() {
-    this.props.addCurrency();
-  }
+const Converter = ({
+  loadCurrenciesAction,
+  countCurrencyAction,
+  swappingCurrencyAction,
+  sendCurrencyTransactionAction,
+  currencies,
+  currenciesCount,
+}) => (
+  <div className="converter-wrapper">
+    <Currency
+      currencies={currencies}
+      currenciesCount={currenciesCount}
+      loadCurrencies={loadCurrenciesAction}
+      countCurrency={countCurrencyAction}
+      swappingCurrency={swappingCurrencyAction}
+      sendCurrencyTransaction={sendCurrencyTransactionAction}
+    />
+  </div>
+);
 
-  render() {
-    const { currencies } = this.props;
-    return (
-      <div className="converter-wrapper">
-        <Currency currencies={currencies} />
-      </div>
-    );
-  }
-}
+const mapStateToProps = ({ converter, form }) => ({
+  currencies: converter.currencies,
+  currenciesCount: form.currencyForm,
+});
+
+const mapDispatchToProps = {
+  loadCurrenciesAction: loadCurrencies,
+  countCurrencyAction: countCurrency,
+  swappingCurrencyAction: swappingCurrency,
+  sendCurrencyTransactionAction: sendCurrencyTransaction,
+};
 
 export default connect(
-  state => ({ currencies: state.currencyReducer }),
-  { addCurrency, addCurrencyAsync, chooseCurrencyBuy, chooseCurrencySell },
+  mapStateToProps,
+  mapDispatchToProps,
 )(Converter);

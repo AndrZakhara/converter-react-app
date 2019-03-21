@@ -1,17 +1,23 @@
-/* eslint-disable */
 import React, { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { func, object } from 'prop-types';
+import { func, shape, string } from 'prop-types';
 import { userType, usersFilteredType } from 'types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { UserList, UserInfo } from 'components';
-import { getAllUsers, setSelectedUser, setFilter } from 'actions';
+import { UserList, UserInfo, EnhancedTable } from 'components';
+import {
+  getAllUsers as getAllUsersAction,
+  setSelectedUser as setSelectedUserAction,
+  setFilter as setFilterAction,
+} from 'actions';
+import { defUser } from 'mocks/db'; // TODO add real api
 import getFilteredUserList from './selectors';
 import styles from './style';
 
 class Admin extends Component {
   componentDidMount() {
-    this.props.getAllUsers();
+    const { getAllUsers } = this.props;
+    getAllUsers();
   }
 
   render() {
@@ -29,11 +35,14 @@ class Admin extends Component {
           setSelectedUser={setSelectedUser}
           setFilter={setFilter}
         />
-        {selectedUser ? (
-          <UserInfo selectedUser={selectedUser} />
-        ) : (
-          <h2 className={classes.infoHeader}>Any user selected.</h2>
-        )}
+        <div className={classes.sectionWrapper}>
+          {selectedUser ? (
+            <UserInfo selectedUser={selectedUser} />
+          ) : (
+            <h2 className={classes.infoHeader}>Any user selected.</h2>
+          )}
+          {selectedUser && <EnhancedTable allUserData={defUser} />}
+        </div>
       </div>
     );
   }
@@ -45,23 +54,34 @@ Admin.propTypes = {
   setFilter: func.isRequired,
   selectedUser: userType,
   userListFiltered: usersFilteredType,
-  classes: object.isRequired,
+  classes: shape({
+    wrapper: string.isRequired,
+    infoHeader: string.isRequired,
+  }).isRequired,
 };
 
-const select = ({ users }) => {
+Admin.defaultProps = {
+  selectedUser: null,
+  userListFiltered: null,
+};
+
+const mapStateToProps = ({ users }) => {
   const userListFiltered = getFilteredUserList(users);
   const { selectedUser, filterValue } = users;
 
   return { userListFiltered, selectedUser, filterValue };
 };
 
-const actionCreators = {
-  getAllUsers,
-  setSelectedUser,
-  setFilter,
+const mapDispatchToProps = {
+  getAllUsers: getAllUsersAction,
+  setSelectedUser: setSelectedUserAction,
+  setFilter: setFilterAction,
 };
 
-export default connect(
-  select,
-  actionCreators,
-)(withStyles(styles)(Admin));
+export default compose(
+  withStyles(styles),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+)(Admin);
