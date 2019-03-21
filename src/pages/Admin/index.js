@@ -35,7 +35,7 @@ class Admin extends Component {
           setSelectedUser={setSelectedUser}
           setFilter={setFilter}
         />
-        <div>
+        <div className={classes.sectionWrapper}>
           {selectedUser ? (
             <UserInfo selectedUser={selectedUser} />
           ) : (
