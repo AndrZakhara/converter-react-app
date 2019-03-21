@@ -6,11 +6,7 @@ import {
   watchGetAllCurrencies,
   watchCountCurrencies,
 } from 'sagas/currencySaga';
-import {
-  fetchUserSaga,
-  getUserDialsData,
-  watchGetAllUser,
-} from 'sagas/userSaga';
+import { getUserDialsData, watchGetAllUser } from 'sagas/userSaga';
 import signUpSaga from 'sagas/signUpSaga';
 import signInSaga from 'sagas/signInSaga';
 
@@ -29,7 +25,6 @@ sagaMiddleware.run(watchCountCurrencies);
 sagaMiddleware.run(signUpSaga);
 sagaMiddleware.run(getUserDialsData);
 sagaMiddleware.run(signInSaga);
-sagaMiddleware.run(fetchUserSaga);
 sagaMiddleware.run(watchGetAllUser);
 
 export default store;
