@@ -11,4 +11,15 @@ export default ({ spacing: { unit } }) => ({
     alignItems: 'center',
     marginBottom: unit * 2,
   },
+  cardWrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '0 30px',
+  },
+  media: {
+    height: '140px',
+    width: '140px',
+    borderRadius: '50%',
+  },
 });
