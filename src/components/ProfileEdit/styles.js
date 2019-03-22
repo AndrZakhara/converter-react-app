@@ -1,6 +1,7 @@
 export default ({ spacing: { unit }, breakpoints }) => ({
   container: {
     marginTop: unit * 8,
+    marginBottom: unit * 40,
   },
   form: {
     width: 600,

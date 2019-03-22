@@ -3,6 +3,7 @@ export default ({ spacing: { unit } }) => ({
     padding: unit,
     width: 600,
     margin: `${unit * 8}px auto 0`,
+    marginBottom: unit * 50,
   },
   header: {
     display: 'flex',
