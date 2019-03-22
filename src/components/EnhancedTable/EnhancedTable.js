@@ -64,7 +64,7 @@ class EnhancedTable extends Component {
                 {stableSort(data, getSorting(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map(n => (
-                    <TableRow hover key={n.date}>
+                    <TableRow hover key={n.id}>
                       <TableCell
                         align="center"
                         component="th"
