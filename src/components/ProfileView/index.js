@@ -1,7 +1,5 @@
-/* eslint-disable react/forbid-prop-types */
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import PropTypes from 'prop-types';
+import { func } from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -10,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
 
 import EditIcon from '@material-ui/icons/Edit';
+import { userType } from 'types';
 
 import styles from './styles';
 
@@ -36,8 +35,8 @@ const ProfileView = ({ user, classes, toggle }) => (
 );
 
 ProfileView.propTypes = {
-  user: PropTypes.object.isRequired,
-  toggle: PropTypes.func.isRequired,
+  user: userType.isRequired,
+  toggle: func.isRequired,
 };
 
 export default withStyles(styles)(ProfileView);

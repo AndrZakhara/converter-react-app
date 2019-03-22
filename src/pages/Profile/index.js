@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import withStyles from '@material-ui/core/styles/withStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { updateProfile, saveProfile } from 'actions';
+import { updateProfile } from 'actions';
 import { ProfileEdit, ProfileView } from 'components';
 import styles from './styles';
 
@@ -22,7 +22,6 @@ class Profile extends Component {
   };
 
   save = profile => {
-    this.props.onSaveProfile(profile);
     this.props.onUpdateProfile(profile);
     this.toggleEditing();
   };
@@ -55,7 +54,6 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = {
   onUpdateProfile: updateProfile,
-  onSaveProfile: saveProfile,
 };
 
 export default connect(
