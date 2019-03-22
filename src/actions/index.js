@@ -3,6 +3,7 @@ export {
   fetchUserSuccess,
   saveProfile,
   fetchDialsSuccess,
+  updateProfile,
 } from './user';
 export {
   getAllUsers,

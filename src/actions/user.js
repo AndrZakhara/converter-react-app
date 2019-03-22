@@ -4,6 +4,7 @@ import {
   FETCH_USER_SUCCESS,
   GET_USER_CURRENCY_DIALS,
   FETCH_USER_CURRENCY_DIALS,
+  UPDATE_PROFILE,
 } from './types';
 
 export const fetchUser = () => ({
@@ -27,4 +28,9 @@ export const fetchUserDials = () => ({
 export const fetchDialsSuccess = data => ({
   type: FETCH_USER_CURRENCY_DIALS,
   payload: data,
+});
+
+export const updateProfile = profile => ({
+  type: UPDATE_PROFILE,
+  payload: profile,
 });
