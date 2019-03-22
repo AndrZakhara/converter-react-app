@@ -10,6 +10,8 @@ import {
 
 const initialState = {
   currencies: [],
+  onSending: false,
+  onLoading: false,
 };
 const UAH = { ccy: 'UAH', base_ccy: 'UAH', buy: '1', sale: '1' };
 

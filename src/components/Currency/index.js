@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { compose } from 'recompose';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import { feeConvert } from 'mocks/db';
@@ -47,7 +48,7 @@ class Currency extends Component {
   };
 
   render() {
-    const { currencies, classes } = this.props;
+    const { currencies, classes, onSending } = this.props;
     return (
       <form
         name="currencyForm"
@@ -130,14 +131,20 @@ class Currency extends Component {
             <p className={classes.text}> %</p>
           </FormControl>
         </div>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.buyBtn}
-          type="submit"
-          onClick={this.sendCurrenciesDeal}>
-          Buy
-        </Button>
+        <div className={classes.wrapperbuyBtn}>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.buyBtn}
+            type="submit"
+            disabled={onSending}
+            onClick={this.handleButtonClick}>
+            Buy
+          </Button>
+          {onSending && (
+            <CircularProgress size={24} className={classes.buttonProgress} />
+          )}
+        </div>
       </form>
     );
   }
