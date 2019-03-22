@@ -1,20 +1,21 @@
+/* eslint-disable react/prefer-stateless-function */
 import React, { Fragment } from 'react';
+import PrivateRoute from 'pages/PrivateRoute';
 import { Switch, Route } from 'react-router-dom';
-import { Header, LoginForm, Footer } from './components';
-import { Admin, Converter, Profile, SignUp, Home } from './pages';
+import { Header, Footer } from './components';
+import { Admin, Converter, Profile, SignUp, SignIn, Home } from './pages';
 
 const App = () => (
   <Fragment>
     <Header />
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/login" component={LoginForm} />
-      <Route path="/admin-panel" component={Admin} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/converter" component={Converter} />
+      <PrivateRoute exact path="/" component={Home} />
+      <PrivateRoute path="/admin-panel" component={Admin} />
+      <PrivateRoute path="/profile" component={Profile} />
+      <PrivateRoute path="/converter" component={Converter} />
       <Route path="/sign-up" component={SignUp} />
+      <Route path="/sign-in" component={SignIn} />
     </Switch>
-    {/* {true && <Redirect to="/sign-up" />} */}
     <Footer />
   </Fragment>
 );

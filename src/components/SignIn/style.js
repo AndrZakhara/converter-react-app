@@ -1,5 +1,5 @@
-export default theme => ({
-  logoutTitle: {
+export default () => ({
+  loginTitle: {
     lineHeight: '53px',
     background: '#3f51b5',
     color: '#fff',
@@ -8,12 +8,6 @@ export default theme => ({
     textAlign: 'center',
     fontSize: '27px',
     fontWeight: '700',
-  },
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
   },
   formContainer: {
     margin: '0 auto',
@@ -35,5 +29,6 @@ export default theme => ({
   submitBtn: {
     display: 'block',
     margin: '0 auto',
+    padding: '7px 33px',
   },
 });
