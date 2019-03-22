@@ -1,5 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/no-access-state-in-setstate */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -16,25 +14,26 @@ class Profile extends Component {
   };
 
   toggleEditing = () => {
-    this.setState({
-      editing: !this.state.editing,
-    });
+    this.setState(state => ({ editing: !state.editing }));
   };
 
   save = profile => {
-    this.props.onUpdateProfile(profile);
+    const { onUpdateProfile } = this.props;
+    onUpdateProfile(profile);
     this.toggleEditing();
   };
 
   render() {
     const { user, classes } = this.props;
+    const { editing } = this.state;
+
     if (!user) {
       // TODO "NO RESPONSE" FUNCTIONAL
       return <CircularProgress className={classes.loader} />;
     }
     return (
       <div className={classes.container}>
-        {this.state.editing ? (
+        {editing ? (
           <ProfileEdit
             toggle={this.toggleEditing}
             initialValues={user}
