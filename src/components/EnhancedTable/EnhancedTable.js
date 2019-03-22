@@ -45,7 +45,6 @@ class EnhancedTable extends Component {
 
     if (allUserData) {
       const data = allUserData;
-      console.log(data);
       const emptyRows =
         rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
