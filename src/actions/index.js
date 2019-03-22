@@ -4,7 +4,7 @@ export {
   saveProfile,
   fetchDialsSuccess,
   updateProfile,
-} from './user';
+} from './user.actions';
 export {
   getAllUsers,
   getUserData,

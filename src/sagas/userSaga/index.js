@@ -7,17 +7,6 @@ import { data, defUser } from '../../mocks/db';
 import { getUserfromDB } from 'api/database';
 import { createUserInDB } from 'api/database';
 
-
-export function* fetchUserSaga() {
-  try {
-    yield take(FETCH_USER);
-    const { data } = yield call(getProfile);
-    yield put(fetchUserSuccess(data.user));
-  } catch (e) {
-    yield put(serverError());
-  }
-}
-
 export function* getUserDialsData() {
   const dataList = yield call(() => defUser); // TODO
   yield put(fetchDialsSuccess(dataList));
