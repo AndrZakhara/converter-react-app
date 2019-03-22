@@ -26,15 +26,28 @@ class Currency extends Component {
 
   buyConcentrationCurrency = e => {
     e.preventDefault();
-    const { sendCurrencyTransaction, currenciesCount } = this.props;
+    const { sendCurrencyTransaction, currenciesCount, uid } = this.props;
     const transactionDate = moment().format('llll');
-    const transactionMessage = { transactionDate, ...currenciesCount.values };
-    sendCurrencyTransaction(transactionMessage); // TODO message to firebase;
+    const {
+      currencySell,
+      amountSell,
+      currencyBuy,
+      amountBuy,
+      fee,
+    } = currenciesCount.values;
+    sendCurrencyTransaction({
+      uid,
+      transactionDate,
+      currencySell,
+      amountSell,
+      currencyBuy,
+      amountBuy,
+      fee,
+    });
   };
 
   render() {
     const { currencies, classes } = this.props;
-
     return (
       <form
         name="currencyForm"

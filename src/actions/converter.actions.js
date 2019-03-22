@@ -1,7 +1,10 @@
 import {
   COUNT_CURRENCY,
   SWAP_CURRENCY,
-  SEND_DIAL,
+  SEND_DEAL,
+  SEND_DEAL_POST,
+  SEND_DEAL_SUCCESS,
+  SEND_DEAL_ERROR,
   LOAD_CURRENCY,
   LOAD_CURRENCY_REQUEST,
   LOAD_CURRENCY_SUCCESS,
@@ -48,6 +51,23 @@ export const swappingCurrency = () => ({
 });
 
 export const sendCurrencyTransaction = value => ({
-  type: SEND_DIAL,
-  payload: value,
+  type: SEND_DEAL,
+  payload: { ...value },
+});
+
+export const sendCurrencyTransactionPost = () => ({
+  type: SEND_DEAL_POST,
+  onSending: true,
+});
+
+export const sendCurrencyTransactionSuccess = data => ({
+  type: SEND_DEAL_SUCCESS,
+  payload: data,
+  onSending: false,
+});
+
+export const sendCurrencyTransactionError = error => ({
+  type: SEND_DEAL_ERROR,
+  payload: error,
+  onSending: false,
 });

@@ -63,6 +63,25 @@ class Firebase {
     });
   };
 
+  doCreateDealInDatabase = (
+    uid,
+    transactionDate,
+    currencySell,
+    amountSell,
+    currencyBuy,
+    amountBuy,
+    fee,
+  ) => {
+    this.database.ref(`listOfDeals/${uid}`).push({
+      transactionDate,
+      currencySell,
+      amountSell,
+      currencyBuy,
+      amountBuy,
+      fee,
+    });
+  };
+
   getUserFromDatabase = uid =>
     this.database
       .ref(`listOfUsers/${uid}`)

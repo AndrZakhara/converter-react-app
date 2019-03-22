@@ -3,7 +3,9 @@ import {
   LOAD_CURRENCY_REQUEST,
   LOAD_CURRENCY_SUCCESS,
   LOAD_CURRENCY_ERROR,
-  SEND_DIAL,
+  SEND_DEAL_POST,
+  SEND_DEAL_SUCCESS,
+  SEND_DEAL_ERROR,
 } from 'actions/types';
 
 const initialState = {
@@ -25,7 +27,16 @@ export default combineEvents(
       error: payload,
       onLoading,
     }),
-    [SEND_DIAL]: (state, { payload }) => ({ purchasedCurrency: payload }),
+    [SEND_DEAL_POST]: (state, { onSending }) => ({
+      onSending,
+    }),
+    [SEND_DEAL_SUCCESS]: (state, { onSending }) => ({
+      onSending,
+    }),
+    [SEND_DEAL_ERROR]: (state, { payload, onSending }) => ({
+      error: payload,
+      onSending,
+    }),
   },
   initialState,
 );
