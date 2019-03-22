@@ -12,6 +12,7 @@ import {
 import { getUserDialsData, watchGetAllUser } from 'sagas/userSaga';
 import signUpSaga from 'sagas/signUpSaga';
 import signInSaga from 'sagas/signInSaga';
+import updateProfile from 'sagas/updateProfileSaga';
 
 import rootReducer from 'reducers';
 
@@ -37,5 +38,6 @@ sagaMiddleware.run(signUpSaga);
 sagaMiddleware.run(getUserDialsData);
 sagaMiddleware.run(signInSaga);
 sagaMiddleware.run(watchGetAllUser);
+sagaMiddleware.run(updateProfile);
 
 export { store, persistor };

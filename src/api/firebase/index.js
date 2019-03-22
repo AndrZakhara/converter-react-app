@@ -48,7 +48,7 @@ class Firebase {
     ava,
     email,
     firstName,
-    LastName,
+    lastName,
     phone,
     role = USER,
   ) => {
@@ -56,7 +56,7 @@ class Firebase {
       ava,
       email,
       firstName,
-      LastName,
+      lastName,
       phone,
       role,
       uid,
