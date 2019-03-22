@@ -1,20 +1,32 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { UPDATE_PROFILE } from 'actions/types';
-import { serverError } from 'actions';
+import {
+  updateProfileStart,
+  updateProfileSuccess,
+  updateProfileError,
+} from 'actions';
 import { updateProfileInDB } from 'api/database';
 
 function* updateProfileSaga({
   payload: { uid, ava, email, firstName, lastName, phone },
 }) {
   try {
+    yield put(updateProfileStart());
     yield call(updateProfileInDB, uid, ava, email, firstName, lastName, phone);
+    const profile = {
+      ava,
+      firstName,
+      lastName,
+      phone,
+    };
+    yield put(updateProfileSuccess(profile));
   } catch (e) {
-    yield put(serverError());
+    yield put(updateProfileError(e));
   }
 }
 
-function* updateProfile() {
+function* mySaga() {
   yield takeEvery(UPDATE_PROFILE, updateProfileSaga);
 }
 
-export default updateProfile;
+export default mySaga;

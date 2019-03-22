@@ -3,7 +3,6 @@ export {
   fetchUserSuccess,
   saveProfile,
   fetchDialsSuccess,
-  updateProfile,
 } from './user.actions';
 export {
   getAllUsers,
@@ -28,3 +27,10 @@ export {
 } from './auth';
 
 export { serverError } from './errors';
+
+export {
+  updateProfile,
+  updateProfileStart,
+  updateProfileSuccess,
+  updateProfileError,
+} from './updateProfile.actions';

@@ -1,6 +1,5 @@
 /* eslint-disable  */
 import { call, put, take, takeEvery } from 'redux-saga/effects';
-import getProfile from 'api/getProfile';
 import { FETCH_USER, GET_USER_CURRENCY_DIALS, SIGNIN_SUCCESS, SIGNUP_SUCCESS } from 'actions/types';
 import { fetchUser, fetchUserSuccess, serverError, fetchDialsSuccess, createDbProfileStart, createDbProfileSuccess } from 'actions';
 import { data, defUser } from '../../mocks/db';
