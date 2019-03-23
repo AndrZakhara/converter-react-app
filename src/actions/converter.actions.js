@@ -18,19 +18,16 @@ export const loadCurrencies = () => ({
 
 export const loadCurrenciesRequest = () => ({
   type: LOAD_CURRENCY_REQUEST,
-  onLoading: true,
 });
 
 export const loadCurrenciesSuccess = data => ({
   type: LOAD_CURRENCY_SUCCESS,
   payload: data,
-  onLoading: false,
 });
 
 export const loadCurrenciesError = error => ({
   type: LOAD_CURRENCY_ERROR,
   payload: error,
-  onLoading: false,
 });
 
 export const countCurrency = (currencies, item) => ({
@@ -57,17 +54,14 @@ export const sendCurrencyTransaction = value => ({
 
 export const sendCurrencyTransactionPost = () => ({
   type: SEND_DEAL_POST,
-  onSending: true,
 });
 
 export const sendCurrencyTransactionSuccess = data => ({
   type: SEND_DEAL_SUCCESS,
   payload: data,
-  onSending: false,
 });
 
 export const sendCurrencyTransactionError = error => ({
   type: SEND_DEAL_ERROR,
   payload: error,
-  onSending: false,
 });

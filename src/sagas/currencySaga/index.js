@@ -42,29 +42,10 @@ function* countCurrencies(action) {
 }
 
 function* sendDealOfConverting(action) {
-  const {
-    uid,
-    transactionDate,
-    currencySell,
-    amountSell,
-    currencyBuy,
-    amountBuy,
-    fee,
-  } = action.payload;
-
   yield put(sendCurrencyTransactionPost());
   try {
-    yield call(
-      createDealInDB,
-      uid,
-      transactionDate,
-      currencySell,
-      amountSell,
-      currencyBuy,
-      amountBuy,
-      fee,
-    );
-
+    console.log(action.payload);
+    yield call(createDealInDB, action.payload);
     yield put(sendCurrencyTransactionSuccess());
   } catch (error) {
     yield put(sendCurrencyTransactionError(error));

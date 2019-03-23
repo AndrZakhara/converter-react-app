@@ -5,7 +5,7 @@ export const createUserInDB = (uid, ava, email, firstName, lastName, phone) =>
 
 export const getUserfromDB = uid => fb.getUserFromDatabase(uid);
 
-export const createDealInDB = (
+export const createDealInDB = ({
   uid,
   transactionDate,
   currencySell,
@@ -13,7 +13,7 @@ export const createDealInDB = (
   currencyBuy,
   amountBuy,
   fee,
-) => {
+}) => {
   fb.doCreateDealInDatabase(
     uid,
     transactionDate,
