@@ -10,7 +10,7 @@ export default () => ({
     color: '#fff',
   },
   navbar: {
-    width: `${100}vw`,
+    width: `${100}%`,
   },
   navbarA: {
     textDecoration: 'none',
