@@ -44,7 +44,6 @@ function* countCurrencies(action) {
 function* sendDealOfConverting(action) {
   yield put(sendCurrencyTransactionPost());
   try {
-    console.log(action.payload);
     yield call(createDealInDB, action.payload);
     yield put(sendCurrencyTransactionSuccess());
   } catch (error) {
