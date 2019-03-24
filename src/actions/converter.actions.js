@@ -49,7 +49,7 @@ export const swappingCurrency = () => ({
 
 export const sendCurrencyTransaction = value => ({
   type: SEND_DEAL,
-  payload: { ...value },
+  payload: value,
 });
 
 export const sendCurrencyTransactionPost = () => ({
