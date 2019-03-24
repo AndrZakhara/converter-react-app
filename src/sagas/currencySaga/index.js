@@ -4,10 +4,14 @@ import {
   loadCurrenciesSuccess,
   loadCurrenciesError,
   countCurrencyAsync,
+  sendCurrencyTransactionPost,
+  sendCurrencyTransactionSuccess,
+  sendCurrencyTransactionError,
 } from 'actions/converter.actions';
-import { LOAD_CURRENCY, COUNT_CURRENCY } from 'actions/types';
+import { LOAD_CURRENCY, COUNT_CURRENCY, SEND_DEAL } from 'actions/types';
 import getCurrencyApi from 'api/getCurrency';
 import buyCurrency from 'helpers/converter.helper';
+import { createDealInDB } from 'api/database';
 
 function* fetchCurrencies() {
   yield put(loadCurrenciesRequest());
@@ -37,10 +41,24 @@ function* countCurrencies(action) {
   yield put(countCurrencyAsync(buyValue));
 }
 
+function* sendDealOfConverting(action) {
+  yield put(sendCurrencyTransactionPost());
+  try {
+    yield call(createDealInDB, action.payload);
+    yield put(sendCurrencyTransactionSuccess());
+  } catch (error) {
+    yield put(sendCurrencyTransactionError(error));
+  }
+}
+
 export function* watchGetAllCurrencies() {
   yield takeEvery(LOAD_CURRENCY, fetchCurrencies);
 }
 
 export function* watchCountCurrencies() {
   yield takeEvery(COUNT_CURRENCY, countCurrencies);
+}
+
+export function* watchSendDealConvertation() {
+  yield takeEvery(SEND_DEAL, sendDealOfConverting);
 }

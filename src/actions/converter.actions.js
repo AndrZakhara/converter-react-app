@@ -1,7 +1,10 @@
 import {
   COUNT_CURRENCY,
   SWAP_CURRENCY,
-  SEND_DIAL,
+  SEND_DEAL,
+  SEND_DEAL_POST,
+  SEND_DEAL_SUCCESS,
+  SEND_DEAL_ERROR,
   LOAD_CURRENCY,
   LOAD_CURRENCY_REQUEST,
   LOAD_CURRENCY_SUCCESS,
@@ -15,19 +18,16 @@ export const loadCurrencies = () => ({
 
 export const loadCurrenciesRequest = () => ({
   type: LOAD_CURRENCY_REQUEST,
-  onLoading: true,
 });
 
 export const loadCurrenciesSuccess = data => ({
   type: LOAD_CURRENCY_SUCCESS,
   payload: data,
-  onLoading: false,
 });
 
 export const loadCurrenciesError = error => ({
   type: LOAD_CURRENCY_ERROR,
   payload: error,
-  onLoading: false,
 });
 
 export const countCurrency = (currencies, item) => ({
@@ -48,6 +48,20 @@ export const swappingCurrency = () => ({
 });
 
 export const sendCurrencyTransaction = value => ({
-  type: SEND_DIAL,
+  type: SEND_DEAL,
   payload: value,
+});
+
+export const sendCurrencyTransactionPost = () => ({
+  type: SEND_DEAL_POST,
+});
+
+export const sendCurrencyTransactionSuccess = data => ({
+  type: SEND_DEAL_SUCCESS,
+  payload: data,
+});
+
+export const sendCurrencyTransactionError = error => ({
+  type: SEND_DEAL_ERROR,
+  payload: error,
 });

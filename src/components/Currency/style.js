@@ -39,6 +39,9 @@ export default () => ({
     width: 150,
     fontSize: 20,
   },
+  wrapperbuyBtn: {
+    position: 'relative',
+  },
   changeBtn: {
     width: 60,
     borderRadius: 7,
@@ -55,6 +58,11 @@ export default () => ({
   formControl: {
     width: `${220}px`,
     textAlign: 'center',
+  },
+  buttonProgress: {
+    position: 'absolute',
+    top: '25%',
+    left: '45%',
   },
   feeWrapper: {
     width: `${30}%`,
