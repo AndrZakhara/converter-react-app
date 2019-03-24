@@ -4,7 +4,7 @@ import adminSaga from 'sagas/adminSaga';
 import { composeWithDevTools } from 'redux-devtools-extension'; //eslint-disable-line
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
+import watcherWeather from 'sagas/weatherSaga';
 import {
   watchGetAllCurrencies,
   watchCountCurrencies,
@@ -39,5 +39,6 @@ sagaMiddleware.run(signUpSaga);
 sagaMiddleware.run(getUserDialsData);
 sagaMiddleware.run(signInSaga);
 sagaMiddleware.run(watchGetAllUser);
+sagaMiddleware.run(watcherWeather);
 
 export { store, persistor };
