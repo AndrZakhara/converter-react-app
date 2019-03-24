@@ -1,7 +1,7 @@
 import axios from 'axios';
-import PRIVAT from 'constants/endpoints';
+import { P24_API_URL } from 'constants/endpoints';
 
 export default () =>
   axios
-    .get(`${PRIVAT}/pubinfo?json&exchange&coursid=5`)
+    .get(`${P24_API_URL}/pubinfo?json&exchange&coursid=5`)
     .then(item => item.data);
