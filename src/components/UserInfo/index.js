@@ -3,7 +3,6 @@ import { userType } from 'types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,51 +13,55 @@ const UserInfo = ({ selectedUser, classes }) => {
   const { firstName, lastName, ava, email, role, phone } = selectedUser;
 
   return (
-    <div className={classes.root}>
-      <h3>
-        {firstName && lastName ? `${firstName} ${lastName}` : 'Unknown User'}
-      </h3>
-      <Grid container spacing={24} direction="row" justify="center">
-        <Grid item xs={6}>
-          <Paper className={`${classes.paper} ${classes.infoWrapper}`}>
-            <Avatar src={ava} alt="avatar" className={classes.bigAvatar} />
-            <div>
-              <ListItem>
-                <ListItemText secondary={`Email: ${email || ' - '}`} />
-              </ListItem>
-              <Divider />
-              <ListItem>
-                <ListItemText secondary={`Phone: ${phone || ' - '}`} />
-              </ListItem>
-              <Divider />
-              <ListItem>
-                <ListItemText secondary={`Role: ${role || 'user'}`} />
-              </ListItem>
-            </div>
-            <div className={classes.buttonWrapper}>
-              <Button
-                className={classes.button}
-                variant="contained"
-                color="primary">
-                Reset password
-              </Button>
-              <Button
-                className={classes.button}
-                variant="contained"
-                color="primary">
-                Delete user
-              </Button>
-              <Button
-                className={classes.button}
-                variant="contained"
-                color="primary">
-                Change role
-              </Button>
-            </div>
-          </Paper>
-        </Grid>
-      </Grid>
-    </div>
+    <Paper className={classes.paperWrapper}>
+      <div className={classes.headerWrapper}>
+        <Avatar src={ava} alt="avatar" className={classes.bigAvatar} />
+        <h2 className={classes.header}>
+          {firstName && lastName ? `${firstName} ${lastName}` : 'Unknown User'}
+        </h2>
+      </div>
+      <div className={classes.infoBodyWrapper}>
+        <div className={classes.userInfoWrapper}>
+          <ListItem>
+            <ListItemText secondary={`Email: ${email || ' - '}`} />
+          </ListItem>
+          <Divider />
+          <ListItem>
+            <ListItemText secondary={`Phone: ${phone || ' - '}`} />
+          </ListItem>
+          <Divider />
+          <ListItem>
+            <ListItemText secondary={`Role: ${role || 'user'}`} />
+          </ListItem>
+        </div>
+        <div className={classes.buttonWrapper}>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary">
+            Reset password
+          </Button>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary">
+            Delete user
+          </Button>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary">
+            Change role
+          </Button>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary">
+            User activity
+          </Button>
+        </div>
+      </div>
+    </Paper>
   );
 };
 
