@@ -1,6 +1,8 @@
 import React from 'react';
 import { func } from 'prop-types';
 
+import uploadImage from 'components/UploadImage/index';
+
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
@@ -12,6 +14,15 @@ import EditIcon from '@material-ui/icons/Edit';
 import { userType } from 'types';
 
 import styles from './styles';
+
+const CardMediaWithUpload = uploadImage()(CardMedia);
+
+const handleImageUploadSuccess = url => {
+  console.log('heh', url);
+};
+const handleImageUploadFailure = e => {
+  console.log('meh', e);
+};
 
 const ProfileView = ({ user, classes, toggle }) => (
   <div className={classes.container}>
@@ -31,7 +42,12 @@ const ProfileView = ({ user, classes, toggle }) => (
         </Typography>
         <Typography variant="subheading">{user.role}</Typography>
       </CardContent>
-      <CardMedia className={classes.media} image={user.ava} />
+      <CardMediaWithUpload
+        className={classes.media}
+        image={user.ava}
+        onImageUploadSuccess={handleImageUploadSuccess}
+        onImageUploadFailed={handleImageUploadFailure}
+      />
     </Card>
   </div>
 );
