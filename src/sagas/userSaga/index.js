@@ -19,11 +19,9 @@ export function* fetchUserSaga() {
 
 export function* getUserDialsData(action) {
   const { uid } = action.payload;
-  
-  
   yield put(fetchDialsRequest());
   try{
-    const dataList = yield call(getDealsConvertationfromDB(uid));
+    const dataList = yield call(getDealsConvertationfromDB, uid);
     yield put(fetchDialsSuccess(dataList));
   }catch(error){
     yield put(fetchDialsError(error));

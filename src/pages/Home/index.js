@@ -6,6 +6,7 @@ import { fetchUserDials } from 'actions/user.actions';
 class Home extends Component {
   componentDidMount() {
     const { fetchUserDials: defState, uid } = this.props;
+    console.log(this.props);
     defState(uid);
   }
 
@@ -15,10 +16,9 @@ class Home extends Component {
   }
 }
 
-const select = store => {
-  const data = store.user.userDials;
-  // eslint-disable-next-line prefer-destructuring
-  const uid = store.user.profile.uid;
+const select = ({ user }) => {
+  const data = user.userDials;
+  const { uid } = user.profile;
   return { data, uid };
 };
 
