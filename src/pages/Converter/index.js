@@ -14,11 +14,15 @@ const Converter = ({
   swappingCurrencyAction,
   sendCurrencyTransactionAction,
   currencies,
+  onSending,
   currenciesCount,
+  uid,
 }) => (
   <div className="converter-wrapper">
     <Currency
+      uid={uid}
       currencies={currencies}
+      onSending={onSending}
       currenciesCount={currenciesCount}
       loadCurrencies={loadCurrenciesAction}
       countCurrency={countCurrencyAction}
@@ -28,9 +32,12 @@ const Converter = ({
   </div>
 );
 
-const mapStateToProps = ({ converter, form }) => ({
+const mapStateToProps = ({ converter, form, user }) => ({
   currencies: converter.currencies,
   currenciesCount: form.currencyForm,
+  uid: user.profile.uid,
+  deal: converter.deal,
+  onSending: converter.onSending,
 });
 
 const mapDispatchToProps = {
