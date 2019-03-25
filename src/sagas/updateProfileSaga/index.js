@@ -5,14 +5,14 @@ import {
   updateProfileSuccess,
   updateProfileError,
 } from 'actions';
-import { updateProfileInDB } from 'api/database';
+import { updateUserInDB } from 'api/database';
 
 function* updateProfileSaga({
   payload: { uid, ava, email, firstName, lastName, phone },
 }) {
   try {
     yield put(updateProfileStart());
-    yield call(updateProfileInDB, uid, ava, email, firstName, lastName, phone);
+    yield call(updateUserInDB, uid, ava, email, firstName, lastName, phone);
     const profile = {
       ava,
       firstName,

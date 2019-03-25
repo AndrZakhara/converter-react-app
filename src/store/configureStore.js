@@ -8,6 +8,7 @@ import storage from 'redux-persist/lib/storage';
 import {
   watchGetAllCurrencies,
   watchCountCurrencies,
+  watchSendDealConvertation,
 } from 'sagas/currencySaga';
 import { getUserDialsData, watchGetAllUser } from 'sagas/userSaga';
 import signUpSaga from 'sagas/signUpSaga';
@@ -34,6 +35,7 @@ const persistor = persistStore(store);
 sagaMiddleware.run(adminSaga);
 sagaMiddleware.run(watchGetAllCurrencies);
 sagaMiddleware.run(watchCountCurrencies);
+sagaMiddleware.run(watchSendDealConvertation);
 sagaMiddleware.run(signUpSaga);
 sagaMiddleware.run(getUserDialsData);
 sagaMiddleware.run(signInSaga);
