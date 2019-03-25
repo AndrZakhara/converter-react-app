@@ -7,19 +7,11 @@ import {
 } from 'actions';
 import { updateUserInDB } from 'api/database';
 
-function* updateProfileSaga({
-  payload: { uid, ava, email, firstName, lastName, phone },
-}) {
+function* updateProfileSaga({ payload: { uid, ...user } }) {
   try {
     yield put(updateProfileStart());
-    yield call(updateUserInDB, uid, ava, email, firstName, lastName, phone);
-    const profile = {
-      ava,
-      firstName,
-      lastName,
-      phone,
-    };
-    yield put(updateProfileSuccess(profile));
+    yield call(updateUserInDB, uid, user);
+    yield put(updateProfileSuccess(user));
   } catch (e) {
     yield put(updateProfileError(e));
   }

@@ -21,24 +21,8 @@ export const createUserInDB = (
     role,
   });
 
-export const updateUserInDB = (
-  uid,
-  ava,
-  email,
-  firstName,
-  LastName,
-  phone,
-  role = USER,
-) => {
-  db.ref(`${USER_LIST}/${uid}`).update({
-    ava,
-    email,
-    firstName,
-    LastName,
-    phone,
-    role,
-    uid,
-  });
+export const updateUserInDB = (uid, user) => {
+  db.ref(`${USER_LIST}/${uid}`).update(user);
 };
 
 export const getUserFromDB = uid =>

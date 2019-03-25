@@ -3,6 +3,7 @@ import {
   UPDATE_PROFILE_START,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_ERROR,
+  UPLOAD_IMAGE,
 } from './types';
 
 export const updateProfile = profile => ({
@@ -22,4 +23,9 @@ export const updateProfileSuccess = profile => ({
 export const updateProfileError = error => ({
   type: UPDATE_PROFILE_ERROR,
   payload: error,
+});
+
+export const uploadImage = (url, user) => ({
+  type: UPLOAD_IMAGE,
+  payload: Object.assign({}, user, { ava: url }),
 });

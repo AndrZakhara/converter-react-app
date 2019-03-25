@@ -28,4 +28,5 @@ export {
   updateProfileStart,
   updateProfileSuccess,
   updateProfileError,
+  uploadImage,
 } from './updateProfile.actions';

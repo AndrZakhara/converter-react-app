@@ -17,14 +17,13 @@ import styles from './styles';
 
 const CardMediaWithUpload = uploadImage()(CardMedia);
 
-const handleImageUploadSuccess = url => {
-  console.log('heh', url);
-};
-const handleImageUploadFailure = e => {
-  console.log('meh', e);
-};
-
-const ProfileView = ({ user, classes, toggle }) => (
+const ProfileView = ({
+  user,
+  classes,
+  toggle,
+  handleImageUploadSuccess,
+  handleImageUploadFailure,
+}) => (
   <div className={classes.container}>
     <div className={classes.header}>
       <Typography variant="display1">Profile</Typography>
