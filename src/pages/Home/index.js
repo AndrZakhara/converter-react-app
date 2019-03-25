@@ -5,8 +5,8 @@ import { fetchUserDials } from 'actions/user.actions';
 
 class Home extends Component {
   componentDidMount() {
-    const { fetchUserDials: defState } = this.props;
-    defState();
+    const { fetchUserDials: defState, uid } = this.props;
+    defState(uid);
   }
 
   render() {
@@ -17,8 +17,9 @@ class Home extends Component {
 
 const select = store => {
   const data = store.user.userDials;
-
-  return { data };
+  // eslint-disable-next-line prefer-destructuring
+  const uid = store.user.profile.uid;
+  return { data, uid };
 };
 
 export default connect(

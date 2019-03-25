@@ -2,10 +2,9 @@
 import { call, put, take, takeEvery } from 'redux-saga/effects';
 import getProfile from 'api/getProfile';
 import { FETCH_USER, GET_USER_CURRENCY_DIALS, SIGNIN_SUCCESS, SIGNUP_SUCCESS } from 'actions/types';
-import { fetchUser, fetchUserSuccess, serverError, fetchDialsSuccess, createDbProfileStart, createDbProfileSuccess } from 'actions';
+import { fetchUser, fetchUserSuccess, serverError, fetchDialsRequest, fetchDialsSuccess, fetchDialsError, createDbProfileStart, createDbProfileSuccess } from 'actions';
 import { data, defUser } from '../../mocks/db';
-import { getUserfromDB } from 'api/database';
-import { createUserInDB } from 'api/database';
+import { getUserfromDB, getDealsConvertationfromDB, createUserInDB } from 'api/database';
 
 
 export function* fetchUserSaga() {
@@ -18,9 +17,17 @@ export function* fetchUserSaga() {
   }
 }
 
-export function* getUserDialsData() {
-  const dataList = yield call(() => defUser); // TODO
-  yield put(fetchDialsSuccess(dataList));
+export function* getUserDialsData(action) {
+  const { uid } = action.payload;
+  
+  
+  yield put(fetchDialsRequest());
+  try{
+    const dataList = yield call(getDealsConvertationfromDB(uid));
+    yield put(fetchDialsSuccess(dataList));
+  }catch(error){
+    yield put(fetchDialsError(error));
+  }
 }
 
 function* getUserProfile({ payload: uid }) {

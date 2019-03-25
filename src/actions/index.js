@@ -3,6 +3,9 @@ export {
   fetchUserSuccess,
   saveProfile,
   fetchDialsSuccess,
+  fetchUserDials,
+  fetchDialsRequest,
+  fetchDialsError,
 } from './user.actions';
 export {
   getAllUsers,

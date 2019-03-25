@@ -69,6 +69,12 @@ class Firebase {
       .once('value')
       .then(snapshot => snapshot.val());
 
+  getUserDealsConvertation = uid =>
+    this.database
+      .ref(`listOfDeals/${uid}`)
+      .once('value')
+      .then(snapshot => snapshot.val());
+
   fetchUsers = () =>
     this.database
       .ref('listOfUsers')
