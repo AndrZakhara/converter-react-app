@@ -9,6 +9,7 @@ const initialState = {
   weatherData: {
     city_name: 'New York',
     temp: 30,
+    rh: 35,
     weather: { icon: 'c01d', description: 'Will be sun' },
   },
 };

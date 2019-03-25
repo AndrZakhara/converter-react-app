@@ -1,25 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment';
-
 import PlacesWithStandaloneSearchBox from 'components/SearchInputGoogle';
 import styles from './style';
 
-class Weather extends Component {
-  componentDidMount() {
-    const { loadWeather } = this.props;
-    loadWeather();
-  }
-
-  render() {
-    const { classes, weather } = this.props;
+const Weather = ({ classes, weather, loadWeather }) => {
     return (
       <div className={classes.weatherWrapper}>
         <div className={classes.weatherTitle}>
           <h2>Weather in</h2>
           <span>{weather.city_name}</span>
         </div>
-        <PlacesWithStandaloneSearchBox />
+        <PlacesWithStandaloneSearchBox loadWeather={loadWeather} />
         <div className={classes.weatherContent}>
           <div className={classes.weatherContentTemp}>
             <i>{weather.temp}</i>
@@ -44,7 +36,6 @@ class Weather extends Component {
         </div>
       </div>
     );
-  }
 }
 
 export default withStyles(styles)(Weather);

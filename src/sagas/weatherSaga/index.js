@@ -7,10 +7,11 @@ import {
 import { LOAD_WEATHER } from 'actions/types';
 import getWeatherApi from 'api/weatherAPI';
 
-function* getWeather() {
+function* getWeather(action) {
   yield put(loadWeatherRequest());
+  const { lat, lng } = action.payload;
   try {
-    const weatherData = yield call(getWeatherApi, 40.7127753, -74.0059728);
+    const weatherData = yield call(getWeatherApi, lat, lng);
     yield put(loadWeatherSuccess(weatherData));
   } catch (error) {
     yield put(loadWeatherError(error));

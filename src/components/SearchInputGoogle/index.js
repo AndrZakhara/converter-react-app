@@ -7,27 +7,23 @@ import apiKeyGoogle from './config';
 class PlacesWithStandaloneSearchBox extends Component {
   componentWillMount() {
     const refs = {};
-
     this.setState({
-      places: [],
       onSearchBoxMounted: ref => {
         refs.searchBox = ref;
       },
       onPlacesChanged: () => {
         const places = refs.searchBox.getPlaces();
-        const cordinats = places.map(({ geometry: { location } }) => ({
-          lat: location.lat(),
-          long: location.lng(),
-        }));
-        this.setState({
-          places,
-        });
+        const { location } = places[0].geometry;
+        const lat = location.lat();
+        const lng = location.lng();
+        this.props.loadWeather({ lat, lng });
       },
     });
   }
 
   render() {
-    const { onSearchBoxMounted, bounds, onPlacesChanged } = this.props;
+    const { onSearchBoxMounted, bounds, onPlacesChanged } = this.state;
+
     return (
       <>
         <StandaloneSearchBox
@@ -44,7 +40,7 @@ class PlacesWithStandaloneSearchBox extends Component {
               height: '32px',
               padding: '0 12px',
               borderRadius: '3px',
-              boxShadow: '0 2px 6px rgba(0, 0, 0, 0.3)',
+              boxShadow: '0 2px 6px rgba(63, 81, 181, 0.8)',
               fontSize: '14px',
               outline: 'none',
               textOverflow: 'ellipses',
@@ -58,7 +54,7 @@ class PlacesWithStandaloneSearchBox extends Component {
 
 export default compose(
   withProps({
-    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${apiKeyGoogle}&callback&libraries=places`,
+    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${apiKeyGoogle}&callback&libraries=places,geometry`,
     loadingElement: <div style={{ height: '100%' }} />,
     containerElement: <div style={{ height: '400px' }} />,
   }),

@@ -4,7 +4,7 @@ import getProfile from 'api/getProfile';
 import { FETCH_USER, GET_USER_CURRENCY_DIALS, SIGNIN_SUCCESS, SIGNUP_SUCCESS } from 'actions/types';
 import { fetchUser, fetchUserSuccess, serverError, fetchDialsSuccess, createDbProfileStart, createDbProfileSuccess } from 'actions';
 import { data, defUser } from '../../mocks/db';
-import { getUserfromDB } from 'api/database';
+import { getUserFromDB } from 'api/database';
 import { createUserInDB } from 'api/database';
 
 
@@ -26,7 +26,7 @@ export function* getUserDialsData() {
 function* getUserProfile({ payload: uid }) {
   try {
     yield put(fetchUser());    
-    const user = yield call(getUserfromDB, uid);
+    const user = yield call(getUserFromDB, uid);
     yield put(fetchUserSuccess(user));
   } catch (e) {
     yield put(serverError(e));
