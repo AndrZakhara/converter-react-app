@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { compose, withProps } from 'recompose';
-import { withScriptjs } from 'react-google-maps';
+import { withStyles } from '@material-ui/core/styles';
 import { StandaloneSearchBox } from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 import apiKeyGoogle from './config';
+import styles from './style';
 
 class PlacesWithStandaloneSearchBox extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const refs = {};
     this.setState({
       onSearchBoxMounted: ref => {
@@ -23,6 +24,7 @@ class PlacesWithStandaloneSearchBox extends Component {
 
   render() {
     const { onSearchBoxMounted, bounds, onPlacesChanged } = this.state;
+    const { classes } = this.props;
 
     return (
       <>
@@ -33,18 +35,7 @@ class PlacesWithStandaloneSearchBox extends Component {
           <input
             type="text"
             placeholder="Enter your location"
-            style={{
-              boxSizing: 'border-box',
-              border: '1px solid transparent',
-              width: '85%',
-              height: '32px',
-              padding: '0 12px',
-              borderRadius: '3px',
-              boxShadow: '0 2px 6px rgba(63, 81, 181, 0.8)',
-              fontSize: '14px',
-              outline: 'none',
-              textOverflow: 'ellipses',
-            }}
+            className={classes.input}
           />
         </StandaloneSearchBox>
       </>
@@ -58,5 +49,5 @@ export default compose(
     loadingElement: <div style={{ height: '100%' }} />,
     containerElement: <div style={{ height: '400px' }} />,
   }),
-  withScriptjs,
+  withStyles(styles),
 )(PlacesWithStandaloneSearchBox);

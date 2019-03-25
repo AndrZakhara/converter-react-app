@@ -12,17 +12,14 @@ export const loadWeather = value => ({
 
 export const loadWeatherRequest = () => ({
   type: LOAD_WEATHER_REQUEST,
-  onLoading: true,
 });
 
 export const loadWeatherSuccess = data => ({
   type: LOAD_WEATHER_SUCCESS,
   payload: data,
-  onLoading: false,
 });
 
 export const loadWeatherError = error => ({
   type: LOAD_WEATHER_ERROR,
   payload: error,
-  onLoading: false,
 });
