@@ -3,7 +3,7 @@ export {
   fetchUserSuccess,
   saveProfile,
   fetchDialsSuccess,
-  fetchUserDials,
+  fetchUserDialsAction,
   fetchDialsRequest,
   fetchDialsError,
 } from './user.actions';

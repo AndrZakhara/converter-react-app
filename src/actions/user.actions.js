@@ -22,7 +22,7 @@ export const saveProfile = profile => ({
   payload: profile,
 });
 
-export const fetchUserDials = data => ({
+export const fetchUserDialsAction = data => ({
   type: GET_USER_CURRENCY_DIALS,
   payload: data,
 });

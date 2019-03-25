@@ -42,7 +42,7 @@ class EnhancedTableHead extends Component {
   };
 
   render() {
-    const { order, orderBy } = this.props;
+    const { classes, order, orderBy } = this.props;
 
     return (
       <TableHead>
@@ -52,7 +52,7 @@ class EnhancedTableHead extends Component {
               key={row.id}
               align="center"
               sortDirection={orderBy === row.id ? order : false}
-              style={{ fontSize: '20px', padding: 0 }}>
+              className={classes.remPadd}>
               <Tooltip
                 title="Sort"
                 placement={row.numeric ? 'bottom-end' : 'bottom-start'}

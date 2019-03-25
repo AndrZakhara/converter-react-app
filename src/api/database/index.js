@@ -23,8 +23,6 @@ export const createUserInDB = (
 
 export const getUserfromDB = uid => db.getUserFromDatabase(uid);
 
-export const getDealsConvertationfromDB = uid =>
-  db.getUserDealsConvertation(uid);
 export const updateUserInDB = (
   uid,
   ava,
@@ -59,9 +57,11 @@ export const getAllUsersFromDB = () =>
 
 export const getUserDealsConvertation = uid =>
   db
-    .ref(`listOfDeals/${uid}`)
+    .ref(`${USERDEALS_LIST}/${uid}`)
     .once('value')
     .then(snapshot => snapshot.val());
+
+export const getDealsConvertationfromDB = uid => getUserDealsConvertation(uid);
 
 export const createDealInDB = ({
   uid,

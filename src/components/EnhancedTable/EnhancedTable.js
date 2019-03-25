@@ -48,7 +48,6 @@ class EnhancedTable extends Component {
       const data = allUserData;
       const emptyRows =
         rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
       return (
         <Paper className={classes.root}>
           <h1 className={classes.headerTitle}>History of Converting values</h1>

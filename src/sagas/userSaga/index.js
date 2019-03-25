@@ -3,7 +3,6 @@ import { call, put, take, takeEvery } from 'redux-saga/effects';
 import getProfile from 'api/getProfile';
 import { FETCH_USER, GET_USER_CURRENCY_DIALS, SIGNIN_SUCCESS, SIGNUP_SUCCESS } from 'actions/types';
 import { fetchUser, fetchUserSuccess, serverError, fetchDialsRequest, fetchDialsSuccess, fetchDialsError, createDbProfileStart, createDbProfileSuccess } from 'actions';
-import { data, defUser } from '../../mocks/db';
 import { getDealsConvertationfromDB } from 'api/database';
 import { getUserFromDB } from 'api/database';
 import { createUserInDB } from 'api/database';
@@ -19,13 +18,30 @@ export function* fetchUserSaga() {
   }
 }
 
-export function* getUserDialsData(action) {
-  const { uid } = action.payload;
+export function* getUserDialsData({payload}) {
+  console.log(payload);
+  
   yield put(fetchDialsRequest());
   try{
-    const dataList = yield call(getDealsConvertationfromDB, uid);
-    yield put(fetchDialsSuccess(dataList));
+    console.log('try')
+    const dataList = yield call(getDealsConvertationfromDB, payload);
+    const dataListArray = dataList =>{
+      const list = dataList;
+      const newListArr = [];
+      Object.entries(list).forEach(([key, item]) => {
+        const itemCopy = { ...item };
+        if (typeof itemCopy === 'object') {
+          itemCopy.id = key;
+        }
+        newListArr.push(itemCopy);
+      });
+  
+      return newListArr;
+    };
+    console.log(dataList);
+    yield put(fetchDialsSuccess(dataListArray()));
   }catch(error){
+    console.log('error')
     yield put(fetchDialsError(error));
   }
 }
