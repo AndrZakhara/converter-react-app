@@ -3,36 +3,32 @@ import { compose, withProps } from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
 import { withScriptjs } from 'react-google-maps';
 import { StandaloneSearchBox } from 'react-google-maps/lib/components/places/StandaloneSearchBox';
+import { GOOGLE_MAP_URL } from 'constants/endpoints';
 import apiKeyGoogle from './config';
 import styles from './style';
 
 class PlacesWithStandaloneSearchBox extends Component {
-  componentWillMount() {
-    const refs = {};
-    this.setState({
-      onSearchBoxMounted: ref => {
-        refs.searchBox = ref;
-      },
-      onPlacesChanged: () => {
-        const places = refs.searchBox.getPlaces();
-        const { location } = places[0].geometry;
-        const lat = location.lat();
-        const lng = location.lng();
-        const { loadWeather } = this.props;
-        loadWeather({ lat, lng });
-      },
-    });
-  }
+  onSearchBoxMounted = ref => {
+    this.searchBox = ref;
+  };
+
+  onPlacesChanged = () => {
+    const places = this.searchBox.getPlaces();
+    const { location } = places[0].geometry;
+    const lat = location.lat();
+    const lng = location.lng();
+    const { loadWeather } = this.props;
+    loadWeather({ lat, lng });
+  };
 
   render() {
-    const { onSearchBoxMounted, bounds, onPlacesChanged } = this.state;
     const { classes } = this.props;
+
     return (
       <>
         <StandaloneSearchBox
-          ref={onSearchBoxMounted}
-          bounds={bounds}
-          onPlacesChanged={onPlacesChanged}>
+          ref={this.onSearchBoxMounted}
+          onPlacesChanged={this.onPlacesChanged}>
           <input
             type="text"
             placeholder="Enter your location"
@@ -46,7 +42,7 @@ class PlacesWithStandaloneSearchBox extends Component {
 
 export default compose(
   withProps({
-    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${apiKeyGoogle}&callback&libraries=places,geometry`,
+    googleMapURL: `${GOOGLE_MAP_URL}?key=${apiKeyGoogle}&callback&libraries=places,geometry`,
     loadingElement: <div />,
     containerElement: <div />,
   }),

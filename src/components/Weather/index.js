@@ -2,12 +2,11 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import PlacesWithStandaloneSearchBox from 'components/SearchInputGoogle';
+import { WEATHER_API_ICON_URL } from 'constants/endpoints';
 import styles from './style';
 
 const Weather = ({ classes, weather, loadWeather }) => {
-  const iconSrc = `https://www.weatherbit.io/static/img/icons/${
-    weather.weather.icon
-  }.png`;
+  const iconSrc = `${WEATHER_API_ICON_URL}${weather.weather.icon}.png`;
 
   return (
     <div className={classes.weatherWrapper}>
