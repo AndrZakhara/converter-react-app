@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { compose, withProps } from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
+import { withScriptjs } from 'react-google-maps';
 import { StandaloneSearchBox } from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 import apiKeyGoogle from './config';
 import styles from './style';
 
 class PlacesWithStandaloneSearchBox extends Component {
-  componentDidMount() {
+  componentWillMount() {
     const refs = {};
     this.setState({
       onSearchBoxMounted: ref => {
@@ -17,7 +18,8 @@ class PlacesWithStandaloneSearchBox extends Component {
         const { location } = places[0].geometry;
         const lat = location.lat();
         const lng = location.lng();
-        this.props.loadWeather({ lat, lng });
+        const { loadWeather } = this.props;
+        loadWeather({ lat, lng });
       },
     });
   }
@@ -25,7 +27,6 @@ class PlacesWithStandaloneSearchBox extends Component {
   render() {
     const { onSearchBoxMounted, bounds, onPlacesChanged } = this.state;
     const { classes } = this.props;
-
     return (
       <>
         <StandaloneSearchBox
@@ -46,8 +47,9 @@ class PlacesWithStandaloneSearchBox extends Component {
 export default compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${apiKeyGoogle}&callback&libraries=places,geometry`,
-    loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div style={{ height: '400px' }} />,
+    loadingElement: <div />,
+    containerElement: <div />,
   }),
   withStyles(styles),
+  withScriptjs,
 )(PlacesWithStandaloneSearchBox);
