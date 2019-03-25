@@ -1,8 +1,5 @@
-/* eslint-disable */
 import React from 'react';
-import { object } from 'prop-types';
 import { userType } from 'types';
-import { spacing } from '@material-ui/system';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -39,9 +36,24 @@ const UserInfo = ({ selectedUser, classes }) => {
               </ListItem>
             </div>
             <div className={classes.buttonWrapper}>
-              <Button className={classes.button} variant="contained" color="primary">Reset password</Button>
-              <Button className={classes.button} variant="contained" color="primary">Delete user</Button>
-              <Button className={classes.button} variant="contained" color="primary">Change role</Button>
+              <Button
+                className={classes.button}
+                variant="contained"
+                color="primary">
+                Reset password
+              </Button>
+              <Button
+                className={classes.button}
+                variant="contained"
+                color="primary">
+                Delete user
+              </Button>
+              <Button
+                className={classes.button}
+                variant="contained"
+                color="primary">
+                Change role
+              </Button>
             </div>
           </Paper>
         </Grid>
@@ -52,7 +64,6 @@ const UserInfo = ({ selectedUser, classes }) => {
 
 UserInfo.propTypes = {
   selectedUser: userType.isRequired,
-  classes: object.isRequired,
 };
 
 export default withStyles(styles)(UserInfo);

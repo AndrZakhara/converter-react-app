@@ -31,6 +31,7 @@ class Admin extends Component {
     return (
       <div className={classes.wrapper}>
         <UserList
+          className={classes.leftSactionWrapper}
           userListFiltered={userListFiltered}
           setSelectedUser={setSelectedUser}
           setFilter={setFilter}

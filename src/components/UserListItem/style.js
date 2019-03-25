@@ -1,7 +1,10 @@
-// const styles = () => ({
-//   itemListPadding: {
-//     padding: '2px 16px',
-//   },
-// });
+const styles = () => ({
+  itemListPadding: {
+    padding: '5px 16px',
+  },
+  itemListText: {
+    overflow: 'hidden',
+  },
+});
 
-// export default styles;
+export default styles;

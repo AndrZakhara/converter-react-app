@@ -1,30 +1,30 @@
-// const styles = () => ({
-//   root: {
-//     width: '100%',
-//     maxWidth: 320,
-//     maxHeight: '70%',
-//   },
-//   searchWrapper: {
-//     display: 'flex',
-//     paddingLeft: '20px',
-//     alighnItems: 'center',
-//     margin: '0px 3px 5px 8px',
-//     marginBottom: '20px',
-//   },
-//   listWrapper: {
-//     overflowY: 'scroll',
-//     maxHeight: '300',
-//     margin: '0px 3px 5px 8px',
-//   },
-//   input: {
-//     marginLeft: 8,
-//     flex: 1,
-//   },
-//   divider: {
-//     width: 1,
-//     height: 36,
-//     margin: 4,
-//   },
-// });
+const styles = () => ({
+  root: {
+    minWidth: 320,
+    width: 320,
+    height: '100%',
+    overflowY: 'auto',
+    padding: 0,
+    backgroundColor: '#F0F0F0',
+  },
+  searchWrapper: {
+    padding: '10px 0px 5px 20px',
+    display: 'flex',
+    alighnItems: 'center',
+    backgroundColor: 'white',
+  },
+  listWrapper: {
+    height: '100%',
+  },
+  input: {
+    marginLeft: 8,
+    flex: 1,
+  },
+  divider: {
+    width: 1,
+    height: 36,
+    margin: 4,
+  },
+});
 
-// export default styles;
+export default styles;
