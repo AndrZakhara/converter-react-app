@@ -1,10 +1,10 @@
 import { take, put, call, fork, select, takeEvery, all } from 'redux-saga/effects'; //eslint-disable-line
 import * as actions from 'actions';
 import { GET_ALL_USERS } from 'actions/types';
-import fb from 'api/firebase'; // TODO will fixed in another branch
+import { getAllUsersFromDB } from 'api/database'; // TODO will fixed in another branch
 
 export function* getAllUser() {
-  const userList = yield call(fb.fetchUsers); // TODO will fixed in another branch
+  const userList = yield call(getAllUsersFromDB); // TODO will fixed in another branch
 
   yield put(actions.reciveAllUser(userList));
 }
