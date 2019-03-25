@@ -24,10 +24,8 @@ class Profile extends Component {
   };
 
   handleImageUploadSuccess = url => {
-    console.log('heh', url);
     const { onUploadImage, user } = this.props;
     onUploadImage(url, user);
-    this.toggleEditing();
   };
 
   handleImageUploadFailure = e => {
