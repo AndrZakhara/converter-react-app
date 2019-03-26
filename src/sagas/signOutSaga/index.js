@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { signOutStart, signOutSuccess, signOutError } from 'actions';
 import { signOut } from 'api/auth';
-import { SIGN_OUT } from 'actions/types';
+import { SIGN_OUT } from 'actions/types.actions';
 
 function* SignOut() {
   try {
