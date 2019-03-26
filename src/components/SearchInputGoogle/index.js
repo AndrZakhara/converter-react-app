@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { compose, withProps } from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
-import { withScriptjs } from 'react-google-maps';
 import { StandaloneSearchBox } from 'react-google-maps/lib/components/places/StandaloneSearchBox';
-import { GOOGLE_MAP_URL } from 'constants/endpoints';
-import apiKeyGoogle from './config';
 import styles from './style';
 
 class PlacesWithStandaloneSearchBox extends Component {
@@ -42,10 +39,8 @@ class PlacesWithStandaloneSearchBox extends Component {
 
 export default compose(
   withProps({
-    googleMapURL: `${GOOGLE_MAP_URL}?key=${apiKeyGoogle}&callback&libraries=places,geometry`,
     loadingElement: <div />,
     containerElement: <div />,
   }),
   withStyles(styles),
-  withScriptjs,
 )(PlacesWithStandaloneSearchBox);
