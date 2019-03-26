@@ -16,7 +16,7 @@ import { ADMIN } from 'constants/roles';
 import styles from './style';
 
 const Header = ({ classes, isLoggedIn, role, onLogOut }) => (
-  <div>
+  <>
     <AppBar position="static" className={classes.navbar}>
       <Toolbar className={classes.toolbar}>
         {isLoggedIn ? (
@@ -83,7 +83,7 @@ const Header = ({ classes, isLoggedIn, role, onLogOut }) => (
         )}
       </Toolbar>
     </AppBar>
-  </div>
+  </>
 );
 
 const mapStateToProps = ({ auth, user }) => ({

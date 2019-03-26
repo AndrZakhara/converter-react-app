@@ -3,29 +3,42 @@ import {
   LOAD_CURRENCY_REQUEST,
   LOAD_CURRENCY_SUCCESS,
   LOAD_CURRENCY_ERROR,
-  SEND_DIAL,
+  SEND_DEAL_POST,
+  SEND_DEAL_SUCCESS,
+  SEND_DEAL_ERROR,
 } from 'actions/types';
 
 const initialState = {
   currencies: [],
+  onSending: false,
+  onLoading: false,
 };
 const UAH = { ccy: 'UAH', base_ccy: 'UAH', buy: '1', sale: '1' };
 
 export default combineEvents(
   {
-    [LOAD_CURRENCY_REQUEST]: (state, { onLoading }) => ({
-      onLoading,
+    [LOAD_CURRENCY_REQUEST]: () => ({
+      onLoading: true,
     }),
 
-    [LOAD_CURRENCY_SUCCESS]: (state, { payload, onLoading }) => ({
+    [LOAD_CURRENCY_SUCCESS]: (state, { payload }) => ({
       currencies: [UAH, ...payload],
-      onLoading,
+      onLoading: false,
     }),
-    [LOAD_CURRENCY_ERROR]: (state, { payload, onLoading }) => ({
+    [LOAD_CURRENCY_ERROR]: (state, { payload }) => ({
       error: payload,
-      onLoading,
+      onLoading: false,
     }),
-    [SEND_DIAL]: (state, { payload }) => ({ purchasedCurrency: payload }),
+    [SEND_DEAL_POST]: () => ({
+      onSending: true,
+    }),
+    [SEND_DEAL_SUCCESS]: () => ({
+      onSending: false,
+    }),
+    [SEND_DEAL_ERROR]: (state, { payload }) => ({
+      error: payload,
+      onSending: false,
+    }),
   },
   initialState,
 );
