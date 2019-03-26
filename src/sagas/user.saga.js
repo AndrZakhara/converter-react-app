@@ -1,7 +1,5 @@
-import { call, put, take, takeEvery } from 'redux-saga/effects';
-import getProfile from 'api/getProfile';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import {
-  FETCH_USER,
   FETCH_USER_CURRENCY_DIALS,
   SIGNIN_SUCCESS,
   SIGNUP_SUCCESS,
@@ -21,16 +19,6 @@ import {
   getUserFromDB,
   createUserInDB,
 } from 'api/database';
-
-export function* fetchUserSaga() {
-  try {
-    yield take(FETCH_USER);
-    const { data } = yield call(getProfile);
-    yield put(fetchUserSuccess(data.user));
-  } catch (e) {
-    yield put(serverError());
-  }
-}
 
 export function* getUserDialsData({ payload }) {
   yield put(fetchDialsRequest());

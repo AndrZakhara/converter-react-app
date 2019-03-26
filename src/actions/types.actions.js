@@ -35,6 +35,9 @@ export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
 export const SIGNIN_ERROR = 'SIGNIN_ERROR';
 
 export const SIGN_OUT = 'SIGN_OUT';
+export const SIGN_OUT_START = 'SIGN_OUT_START';
+export const SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS';
+export const SIGN_OUT_ERROR = 'SIGN_OUT_ERROR';
 
 export const LOAD_CURRENCY = 'LOAD_CURRENCY';
 export const LOAD_CURRENCY_REQUEST = 'LOAD_CURRENCY_REQUEST';
