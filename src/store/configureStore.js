@@ -10,7 +10,7 @@ import {
   watchCountCurrencies,
   watchSendDealConvertation,
 } from 'sagas/currencySaga';
-import { getUserDialsData, watchGetAllUser } from 'sagas/userSaga';
+import { watchGetAllUser } from 'sagas/userSaga';
 import signUpSaga from 'sagas/signUpSaga';
 import signInSaga from 'sagas/signInSaga';
 
@@ -36,7 +36,6 @@ sagaMiddleware.run(watchGetAllCurrencies);
 sagaMiddleware.run(watchCountCurrencies);
 sagaMiddleware.run(watchSendDealConvertation);
 sagaMiddleware.run(signUpSaga);
-sagaMiddleware.run(getUserDialsData);
 sagaMiddleware.run(signInSaga);
 sagaMiddleware.run(watchGetAllUser);
 
