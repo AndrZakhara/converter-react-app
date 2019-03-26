@@ -19,11 +19,9 @@ export function* fetchUserSaga() {
 }
 
 export function* getUserDialsData({payload}) {
-  console.log(payload);
   
   yield put(fetchDialsRequest());
   try{
-    console.log('try')
     const dataList = yield call(getDealsConvertationfromDB, payload);
     const dataListArray = dataList =>{
       const list = dataList;
@@ -38,10 +36,8 @@ export function* getUserDialsData({payload}) {
   
       return newListArr;
     };
-    console.log(dataList);
     yield put(fetchDialsSuccess(dataListArray()));
   }catch(error){
-    console.log('error')
     yield put(fetchDialsError(error));
   }
 }
