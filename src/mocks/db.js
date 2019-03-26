@@ -136,7 +136,6 @@ export const defUser = [
     amountTo: 10,
   },
 ];
-export const feeConvert = [0, 1, 2, 3, 4, 5];
 
 // this.listOfUsers = [
 //   {"id":1,"name":"Alex","description":"alex@gmail.com","field3":"user","field4":"field4 1","field5 ":"field5 1"},

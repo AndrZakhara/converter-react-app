@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { compose } from 'recompose';
+import moment from 'moment';
+
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
-import moment from 'moment';
-import { feeConvert } from 'mocks/db';
+
+import feeConvert from 'constants/tax';
 import styles from './style';
 
 class Currency extends Component {
@@ -28,7 +30,7 @@ class Currency extends Component {
   buyConcentrationCurrency = e => {
     e.preventDefault();
     const { sendCurrencyTransaction, currenciesCount, uid } = this.props;
-    const transactionDate = moment().format('llll');
+    const transactionDate = moment().format('DD.MM.YYYY');
     const {
       currencySell,
       amountSell,
@@ -36,6 +38,8 @@ class Currency extends Component {
       amountBuy,
       fee,
     } = currenciesCount.values;
+    const rate = amountSell / amountBuy;
+
     sendCurrencyTransaction({
       uid,
       transactionDate,
@@ -44,11 +48,13 @@ class Currency extends Component {
       currencyBuy,
       amountBuy,
       fee,
+      rate,
     });
   };
 
   render() {
     const { currencies, classes, onSending } = this.props;
+
     return (
       <form
         name="currencyForm"

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import Currency from 'components/Currency';
 import {
   loadCurrencies,
