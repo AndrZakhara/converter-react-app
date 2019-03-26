@@ -60,12 +60,8 @@ function* createUserProfileInDB({ payload: user }) {
   }
 }
 
-export function* watchGetAllUser() {
+export default function* watchGetAllUser() {
   yield takeEvery(GET_USER_CURRENCY_DIALS, getUserDialsData);
   yield takeEvery(SIGNIN_SUCCESS, getUserProfile);
   yield takeEvery(SIGNUP_SUCCESS, createUserProfileInDB);
-}
-
-export function* getUserDialsSaga() {
-  yield call(watchGetAllUser);
 }
