@@ -1,6 +1,5 @@
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
-export const SAVE_PROFILE = 'EDIT_PROFILE';
 
 export const SERVER_ERROR = 'SERVER_ERROR';
 
