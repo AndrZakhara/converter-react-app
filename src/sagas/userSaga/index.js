@@ -91,8 +91,3 @@ export function* watchGetAllUser() {
 export default function* getUserDialsSaga() {
   yield call(watchGetAllUser);
 }
-
-
-function* mySaga() {
-  yield takeEvery(SIGNIN, SignIn);
-}

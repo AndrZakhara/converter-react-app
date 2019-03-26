@@ -7,7 +7,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TableCell from '@material-ui/core/TableCell';
 import { stableSort, getSorting } from 'utils/sort';
-// import moment from 'moment';
 import EnhancedTableHead from './EnhancedTableHead';
 import styles from './style';
 
@@ -69,7 +68,6 @@ class EnhancedTable extends Component {
                         component="th"
                         scope="row"
                         className={classes.remPadd}>
-                        {/* {moment(n.date).format('DD.MM.YYYY')} */}
                         {n.date}
                       </TableCell>
                       <TableCell align="center" className={classes.remPadd}>
