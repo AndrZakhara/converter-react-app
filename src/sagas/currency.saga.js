@@ -1,4 +1,4 @@
-import { put, call, takeEvery } from 'redux-saga/effects';
+import { put, call, takeEvery, all } from 'redux-saga/effects';
 import {
   loadCurrenciesRequest,
   loadCurrenciesSuccess,
@@ -51,14 +51,22 @@ function* sendDealOfConverting(action) {
   }
 }
 
-export function* watchGetAllCurrencies() {
+function* watchGetAllCurrencies() {
   yield takeEvery(LOAD_CURRENCY, fetchCurrencies);
 }
 
-export function* watchCountCurrencies() {
+function* watchCountCurrencies() {
   yield takeEvery(COUNT_CURRENCY, countCurrencies);
 }
 
-export function* watchSendDealConvertation() {
+function* watchSendDealConvertation() {
   yield takeEvery(SEND_DEAL, sendDealOfConverting);
+}
+
+export default function* currencyRootSaga() {
+  yield all([
+    watchGetAllCurrencies(),
+    watchCountCurrencies(),
+    watchSendDealConvertation(),
+  ]);
 }
