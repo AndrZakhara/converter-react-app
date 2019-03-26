@@ -88,7 +88,7 @@ class EnhancedTable extends Component {
                       <TableCell
                         align="center"
                         className={classes.remPaddRight}>
-                        {n.rate}
+                        {Math.trunc(n.rate * 100) / 100}
                       </TableCell>
                     </TableRow>
                   ))}
