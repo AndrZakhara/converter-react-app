@@ -1,11 +1,9 @@
-/* eslint-disable */
 import React from 'react';
-import { func, object } from 'prop-types';
+import { func } from 'prop-types';
 import { usersFilteredType } from 'types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import List from '@material-ui/core/List';
 import InputBase from '@material-ui/core/InputBase';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import { UserListItem } from 'components';
@@ -18,7 +16,7 @@ const UserList = ({
   setFilter,
 }) => (
   <List component="nav" className={classes.root}>
-    <Paper className={classes.searchWrapper}>
+    <div className={classes.searchWrapper}>
       <InputBase
         className={classes.input}
         placeholder="Search user"
@@ -27,8 +25,8 @@ const UserList = ({
       <Button disabled aria-label="Search">
         <SearchIcon />
       </Button>
-    </Paper>
-    <Paper className={classes.listWrapper}>
+    </div>
+    <div className={classes.listWrapper}>
       {userListFiltered &&
         userListFiltered.map(item => (
           <UserListItem
@@ -37,7 +35,7 @@ const UserList = ({
             handleClickUser={setSelectedUser}
           />
         ))}
-    </Paper>
+    </div>
   </List>
 );
 
@@ -45,7 +43,10 @@ UserList.propTypes = {
   setFilter: func.isRequired,
   setSelectedUser: func.isRequired,
   userListFiltered: usersFilteredType,
-  classes: object.isRequired,
+};
+
+UserList.defaultProps = {
+  userListFiltered: null,
 };
 
 export default withStyles(styles)(UserList);

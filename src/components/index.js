@@ -8,6 +8,7 @@ import UserInfo from './UserInfo';
 import UserList from './UserList';
 import UserListItem from './UserListItem';
 import SignIn from './SignIn';
+import PageNotFound from './PageNotFound';
 
 export {
   Header,
@@ -20,4 +21,5 @@ export {
   UserList,
   UserListItem,
   SignIn,
+  PageNotFound,
 };

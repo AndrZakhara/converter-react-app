@@ -1,19 +1,9 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import adminSaga from 'sagas/adminSaga';
 import { composeWithDevTools } from 'redux-devtools-extension'; //eslint-disable-line
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import watcherWeather from 'sagas/weatherSaga';
-import {
-  watchGetAllCurrencies,
-  watchCountCurrencies,
-  watchSendDealConvertation,
-} from 'sagas/currencySaga';
-import { getUserDialsData, watchGetAllUser } from 'sagas/userSaga';
-import signUpSaga from 'sagas/signUpSaga';
-import signInSaga from 'sagas/signInSaga';
-
+import rootSaga from 'sagas';
 import rootReducer from 'reducers';
 
 const persistConfig = {
@@ -31,14 +21,6 @@ const store = createStore(
 );
 const persistor = persistStore(store);
 
-sagaMiddleware.run(adminSaga);
-sagaMiddleware.run(watchGetAllCurrencies);
-sagaMiddleware.run(watchCountCurrencies);
-sagaMiddleware.run(watchSendDealConvertation);
-sagaMiddleware.run(signUpSaga);
-sagaMiddleware.run(getUserDialsData);
-sagaMiddleware.run(signInSaga);
-sagaMiddleware.run(watchGetAllUser);
-sagaMiddleware.run(watcherWeather);
+sagaMiddleware.run(rootSaga);
 
 export { store, persistor };

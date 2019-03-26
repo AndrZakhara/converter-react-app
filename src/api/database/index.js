@@ -21,6 +21,8 @@ export const createUserInDB = (
     role,
   });
 
+export const getUserfromDB = uid => db.getUserFromDatabase(uid);
+
 export const updateUserInDB = (
   uid,
   ava,
@@ -53,6 +55,14 @@ export const getAllUsersFromDB = () =>
     .once('value')
     .then(snapshot => snapshot.val());
 
+export const getUserDealsConvertation = uid =>
+  db
+    .ref(`${USERDEALS_LIST}/${uid}`)
+    .once('value')
+    .then(snapshot => snapshot.val());
+
+export const getDealsConvertationfromDB = uid => getUserDealsConvertation(uid);
+
 export const createDealInDB = ({
   uid,
   transactionDate,
@@ -61,12 +71,14 @@ export const createDealInDB = ({
   currencyBuy,
   amountBuy,
   fee,
+  rate,
 }) =>
   db.ref(`${USERDEALS_LIST}/${uid}`).push({
-    transactionDate,
-    currencySell,
-    amountSell,
-    currencyBuy,
-    amountBuy,
-    fee,
+    date: transactionDate,
+    currencyFrom: currencySell,
+    amountFrom: amountSell,
+    currencyTo: currencyBuy,
+    amountTo: amountBuy,
+    commission: fee,
+    rate,
   });
