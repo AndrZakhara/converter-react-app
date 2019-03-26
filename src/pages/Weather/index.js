@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Weather from 'components/Weather';
-import { loadWeather } from 'actions/weather.actions';
+import { loadWeather } from 'actions';
 import locationDnepr from 'constants/location';
 
 class WeatherWrap extends Component {

@@ -3,7 +3,7 @@ import {
   LOAD_WEATHER_REQUEST,
   LOAD_WEATHER_SUCCESS,
   LOAD_WEATHER_ERROR,
-} from './types';
+} from './types.actions';
 
 export const loadWeather = value => ({
   type: LOAD_WEATHER,

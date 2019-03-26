@@ -10,7 +10,7 @@ import {
   SIGN_OUT,
   CREATE_DB_PROFILE,
   CREATE_DB_PROFILE_SUCCESS,
-} from './types';
+} from './types.actions';
 
 export const createDbProfileStart = () => ({
   type: CREATE_DB_PROFILE,

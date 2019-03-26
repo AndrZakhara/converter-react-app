@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { signInStart, signInError, signInSuccess } from 'actions';
 import { signIn } from 'api/auth';
-import { SIGNIN } from 'actions/types';
+import { SIGNIN } from 'actions/types.actions';
 
 function* SignIn({ payload: { email, password } }) {
   try {

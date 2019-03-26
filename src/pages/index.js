@@ -1,9 +1,7 @@
-import Converter from './Converter';
-import Home from './Home';
-import Profile from './Profile';
-import Admin from './Admin';
-import SignUp from './SignUp';
-import SignIn from './SignIn';
-import WeatherWrap from './Weather';
-
-export { Home, Converter, Profile, Admin, SignUp, SignIn, WeatherWrap };
+export { default as Converter } from './Converter';
+export { default as Home } from './Home';
+export { default as Profile } from './Profile';
+export { default as Admin } from './Admin';
+export { default as SignUp } from './SignUp';
+export { default as SignIn } from './SignIn';
+export { default as WeatherWrap } from './Weather';

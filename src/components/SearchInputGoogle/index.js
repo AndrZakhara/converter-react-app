@@ -15,17 +15,15 @@ const PlacesWithStandaloneSearchBox = ({ classes, loadWeather }) => {
     loadWeather({ lat, lng });
   };
   return (
-    <>
-      <StandaloneSearchBox
-        ref={onSearchBoxMounted}
-        onPlacesChanged={onPlacesChanged}>
-        <input
-          type="text"
-          placeholder="Enter your location"
-          className={classes.input}
-        />
-      </StandaloneSearchBox>
-    </>
+    <StandaloneSearchBox
+      ref={onSearchBoxMounted}
+      onPlacesChanged={onPlacesChanged}>
+      <input
+        type="text"
+        placeholder="Enter your location"
+        className={classes.input}
+      />
+    </StandaloneSearchBox>
   );
 };
 

@@ -5,7 +5,7 @@ import {
   FETCH_USER_CURRENCY_DIALS,
   SIGNIN_SUCCESS,
   SIGNUP_SUCCESS,
-} from 'actions/types';
+} from 'actions/types.actions';
 import {
   fetchUser,
   fetchUserSuccess,

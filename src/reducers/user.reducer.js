@@ -8,7 +8,7 @@ import {
   FETCH_USER_CURRENCY_DIALS_REQUEST,
   FETCH_USER_CURRENCY_DIALS_ERROR,
   CREATE_DB_PROFILE_SUCCESS
-} from 'actions/types';
+} from 'actions/types.actions';
 
 const initialState = {
   profile: {

@@ -6,7 +6,7 @@ import {
   FETCH_USER_CURRENCY_DIALS_REQUEST,
   FETCH_USER_CURRENCY_DIALS_SUCCESS,
   FETCH_USER_CURRENCY_DIALS_ERROR,
-} from './types';
+} from './types.actions';
 
 export const fetchUser = () => ({
   type: FETCH_USER,

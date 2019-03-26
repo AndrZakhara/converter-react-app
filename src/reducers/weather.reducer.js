@@ -3,7 +3,7 @@ import {
   LOAD_WEATHER_REQUEST,
   LOAD_WEATHER_SUCCESS,
   LOAD_WEATHER_ERROR,
-} from 'actions/types';
+} from 'actions/types.actions';
 
 const initialState = {
   weatherData: {

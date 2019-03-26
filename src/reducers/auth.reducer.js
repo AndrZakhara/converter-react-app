@@ -4,7 +4,7 @@ import {
   SIGNIN_ERROR,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
-} from 'actions/types';
+} from 'actions/types.actions';
 
 const initialState = {
   uid: null,

@@ -4,7 +4,7 @@ import {
   loadWeatherSuccess,
   loadWeatherError,
 } from 'actions/weather.actions';
-import { LOAD_WEATHER } from 'actions/types';
+import { LOAD_WEATHER } from 'actions/types.actions';
 import getWeatherApi from 'api/weatherAPI';
 
 function* getWeather(action) {
