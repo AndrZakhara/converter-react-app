@@ -47,15 +47,11 @@ class EnhancedTable extends Component {
       const data = allUserData;
       const emptyRows =
         rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
       return (
         <Paper className={classes.root}>
           <h1 className={classes.headerTitle}>History of Converting values</h1>
           <div className={classes.tableWrapper}>
-            <Table
-              className={classes.table}
-              aria-labelledby="tableTitle"
-              id="indexTable">
+            <Table className={classes.table} aria-labelledby="tableTitle">
               <EnhancedTableHead
                 order={order}
                 orderBy={orderBy}
@@ -66,33 +62,39 @@ class EnhancedTable extends Component {
                 {stableSort(data, getSorting(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map(n => (
-                    <TableRow hover>
-                      <TableCell component="th" scope="row">
+                    <TableRow hover key={n.id}>
+                      <TableCell
+                        align="center"
+                        component="th"
+                        scope="row"
+                        className={classes.remPadd}>
                         {n.date}
                       </TableCell>
-                      <TableCell align="center" style={{ fontSize: '16px' }}>
+                      <TableCell align="center" className={classes.remPadd}>
                         {n.currencyFrom}
                       </TableCell>
-                      <TableCell align="center" style={{ fontSize: '16px' }}>
+                      <TableCell align="center" className={classes.remPadd}>
                         {n.amountFrom}
                       </TableCell>
-                      <TableCell align="center" style={{ fontSize: '16px' }}>
+                      <TableCell align="center" className={classes.remPadd}>
                         {n.currencyTo}
                       </TableCell>
-                      <TableCell align="center" style={{ fontSize: '16px' }}>
+                      <TableCell align="center" className={classes.remPadd}>
                         {n.amountTo}
                       </TableCell>
-                      <TableCell align="center" style={{ fontSize: '16px' }}>
+                      <TableCell align="center" className={classes.remPadd}>
                         {n.commission}
                       </TableCell>
-                      <TableCell align="center" style={{ fontSize: '16px' }}>
-                        {n.rate}
+                      <TableCell
+                        align="center"
+                        className={classes.remPaddRight}>
+                        {Math.trunc(n.rate * 100) / 100}
                       </TableCell>
                     </TableRow>
                   ))}
                 {emptyRows > 0 && (
                   <TableRow style={{ height: 49 * emptyRows }}>
-                    <TableCell colSpan={6} />
+                    <TableCell colSpan={7} />
                   </TableRow>
                 )}
               </TableBody>

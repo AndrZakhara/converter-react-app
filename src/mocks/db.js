@@ -118,7 +118,8 @@ export const data = {
 };
 export const defUser = [
   {
-    date: '10.10.2010',
+    id: 'first',
+    date: 'Mon, 18 Mar 2019 02:05:16',
     currencyFrom: 'EUR',
     currencyTo: 'USD',
     commission: 0,
@@ -127,7 +128,18 @@ export const defUser = [
     amountTo: 222,
   },
   {
-    date: '11.11.2011',
+    id: 'second',
+    date: 'Mon, 18 Mar 2018 02:05:24',
+    currencyFrom: 'UAH',
+    currencyTo: 'USD',
+    commission: 0,
+    rate: 27.1,
+    amountFrom: 271,
+    amountTo: 10,
+  },
+  {
+    id: 'sird',
+    date: 'Mon, 27 Sep 2022 02:05:24',
     currencyFrom: 'UAH',
     currencyTo: 'USD',
     commission: 0,

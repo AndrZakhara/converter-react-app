@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EnhancedTable from 'components/EnhancedTable/EnhancedTable';
-import { fetchUserDials } from 'actions/user';
+import { fetchUserDialsAction } from 'actions/user.actions';
 
 class Home extends Component {
   componentDidMount() {
-    // eslint-disable-next-line react/destructuring-assignment
-    this.props.fetchUserDials();
+    const { fetchUserDials, uid } = this.props;
+    fetchUserDials(uid);
   }
 
   render() {
@@ -15,15 +15,16 @@ class Home extends Component {
   }
 }
 
-const select = store => {
-  const data = store.user.userDials;
+const mapStateToProps = ({ user, auth }) => ({
+  data: user.userDials,
+  uid: auth.uid,
+});
 
-  return { data };
+const mapDispatchToProps = {
+  fetchUserDials: fetchUserDialsAction,
 };
 
 export default connect(
-  select,
-  {
-    fetchUserDials,
-  },
+  mapStateToProps,
+  mapDispatchToProps,
 )(Home);

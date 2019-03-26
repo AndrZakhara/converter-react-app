@@ -4,6 +4,7 @@ export default theme => ({
     margin: '0 auto',
     marginTop: theme.spacing.unit * 3,
     textAlign: 'center',
+    marginBottom: '20px',
   },
   table: {
     minWidth: 1020,
@@ -25,5 +26,13 @@ export default theme => ({
                 0px 3px 1px -2px rgba(0,0,0,0.12)`,
     textTransform: 'capitalize',
     letterSpacing: '1px',
+  },
+  remPadd: {
+    padding: 0,
+    fontSize: '16px',
+  },
+  remPaddRight: {
+    paddingLeft: 0,
+    fontSize: '16px',
   },
 });

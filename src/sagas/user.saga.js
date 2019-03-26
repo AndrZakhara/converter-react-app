@@ -2,7 +2,7 @@ import { call, put, take, takeEvery } from 'redux-saga/effects';
 import getProfile from 'api/getProfile';
 import {
   FETCH_USER,
-  GET_USER_CURRENCY_DIALS,
+  FETCH_USER_CURRENCY_DIALS,
   SIGNIN_SUCCESS,
   SIGNUP_SUCCESS,
 } from 'actions/types';
@@ -10,12 +10,17 @@ import {
   fetchUser,
   fetchUserSuccess,
   serverError,
+  fetchDialsRequest,
   fetchDialsSuccess,
+  fetchDialsError,
   createDbProfileStart,
   createDbProfileSuccess,
 } from 'actions';
-import { defUser } from 'mocks/db';
-import { getUserFromDB, createUserInDB } from 'api/database';
+import {
+  getDealsConvertationfromDB,
+  getUserFromDB,
+  createUserInDB,
+} from 'api/database';
 
 export function* fetchUserSaga() {
   try {
@@ -27,9 +32,26 @@ export function* fetchUserSaga() {
   }
 }
 
-export function* getUserDialsData() {
-  const dataList = yield call(() => defUser); // TODO
-  yield put(fetchDialsSuccess(dataList));
+export function* getUserDialsData({ payload }) {
+  yield put(fetchDialsRequest());
+  try {
+    const dataList = yield call(getDealsConvertationfromDB, payload);
+    const dataListArray = () => {
+      const list = dataList;
+      const newListArr = [];
+      Object.entries(list).forEach(([key, item]) => {
+        const itemCopy = { ...item };
+        if (typeof itemCopy === 'object') {
+          itemCopy.id = key;
+        }
+        newListArr.push(itemCopy);
+      });
+      return newListArr;
+    };
+    yield put(fetchDialsSuccess(dataListArray()));
+  } catch (error) {
+    yield put(fetchDialsError(error));
+  }
 }
 
 function* getUserProfile({ payload: uid }) {
@@ -61,7 +83,7 @@ function* createUserProfileInDB({ payload: user }) {
 }
 
 export default function* watchGetAllUser() {
-  yield takeEvery(GET_USER_CURRENCY_DIALS, getUserDialsData);
+  yield takeEvery(FETCH_USER_CURRENCY_DIALS, getUserDialsData);
   yield takeEvery(SIGNIN_SUCCESS, getUserProfile);
   yield takeEvery(SIGNUP_SUCCESS, createUserProfileInDB);
 }
