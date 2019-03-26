@@ -4,6 +4,7 @@ export default theme => ({
     margin: '0 auto',
     marginTop: theme.spacing.unit * 3,
     textAlign: 'center',
+    marginBottom: '20px',
   },
   table: {
     minWidth: 1020,
