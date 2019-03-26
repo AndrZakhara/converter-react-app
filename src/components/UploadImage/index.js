@@ -2,14 +2,6 @@ import React from 'react';
 import { storage } from 'api/firebase';
 
 const storageRef = storage.ref();
-const inputFileStyles = `
-  width: 0;
-  height: 0;
-  position: absolute;
-  overflow: hidden;
-  opacity: 0;
-  z-index: -1;
-`;
 
 export default function uploadImage({
   storagePath = 'images',
@@ -20,7 +12,7 @@ export default function uploadImage({
 
   inputFile.setAttribute('type', 'file');
   inputFile.setAttribute('accept', accept.join(','));
-  inputFile.setAttribute('style', inputFileStyles);
+  inputFile.className = 'file-upload';
 
   return function targetComponent(Component) {
     class UploadImage extends React.Component {
