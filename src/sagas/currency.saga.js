@@ -7,10 +7,14 @@ import {
   sendCurrencyTransactionPost,
   sendCurrencyTransactionSuccess,
   sendCurrencyTransactionError,
-} from 'actions/converter.actions';
-import { LOAD_CURRENCY, COUNT_CURRENCY, SEND_DEAL } from 'actions/types';
+} from 'actions';
+import {
+  LOAD_CURRENCY,
+  COUNT_CURRENCY,
+  SEND_DEAL,
+} from 'actions/types.actions';
 import getCurrencyApi from 'api/getCurrency';
-import buyCurrency from 'helpers/converter.helper';
+import buyCurrency from 'utils/converter';
 import { createDealInDB } from 'api/database';
 
 function* fetchCurrencies() {

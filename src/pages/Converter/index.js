@@ -7,7 +7,7 @@ import {
   countCurrency,
   swappingCurrency,
   sendCurrencyTransaction,
-} from 'actions/converter.actions';
+} from 'actions';
 
 const Converter = ({
   loadCurrenciesAction,

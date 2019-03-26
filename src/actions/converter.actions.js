@@ -10,7 +10,7 @@ import {
   LOAD_CURRENCY_SUCCESS,
   LOAD_CURRENCY_ERROR,
   COUNT_CURRENCY_ASYNC,
-} from './types';
+} from './types.actions';
 
 export const loadCurrencies = () => ({
   type: LOAD_CURRENCY,

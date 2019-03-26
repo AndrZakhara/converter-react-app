@@ -4,6 +4,7 @@ import watchGetAllUser from './user.saga';
 import signUpSaga from './signup.saga';
 import signInSaga from './signin.saga';
 import admin from './admin.saga';
+import watcherWeather from './weather.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -12,5 +13,6 @@ export default function* rootSaga() {
     signUpSaga(),
     signInSaga(),
     admin(),
+    watcherWeather(),
   ]);
 }

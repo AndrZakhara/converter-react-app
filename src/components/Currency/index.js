@@ -108,7 +108,7 @@ class Currency extends Component {
             type="number"
             label="How much to exchange"
             min="0"
-            onChange={this.buyCurrency}
+            onKeyUp={this.buyCurrency}
           />
           <Field
             className={classes.inputAmount}
