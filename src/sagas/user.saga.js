@@ -1,12 +1,21 @@
-/* eslint-disable  */
 import { call, put, take, takeEvery } from 'redux-saga/effects';
 import getProfile from 'api/getProfile';
-import { FETCH_USER, GET_USER_CURRENCY_DIALS, SIGNIN_SUCCESS, SIGNUP_SUCCESS } from 'actions/types';
-import { fetchUser, fetchUserSuccess, serverError, fetchDialsSuccess, createDbProfileStart, createDbProfileSuccess } from 'actions';
-import { data, defUser } from '../mocks/db';
-import { getUserFromDB } from 'api/database';
-import { createUserInDB } from 'api/database';
-
+import {
+  FETCH_USER,
+  GET_USER_CURRENCY_DIALS,
+  SIGNIN_SUCCESS,
+  SIGNUP_SUCCESS,
+} from 'actions/types';
+import {
+  fetchUser,
+  fetchUserSuccess,
+  serverError,
+  fetchDialsSuccess,
+  createDbProfileStart,
+  createDbProfileSuccess,
+} from 'actions';
+import { defUser } from 'mocks/db';
+import { getUserFromDB, createUserInDB } from 'api/database';
 
 export function* fetchUserSaga() {
   try {
@@ -25,7 +34,7 @@ export function* getUserDialsData() {
 
 function* getUserProfile({ payload: uid }) {
   try {
-    yield put(fetchUser());    
+    yield put(fetchUser());
     const user = yield call(getUserFromDB, uid);
     yield put(fetchUserSuccess(user));
   } catch (e) {
@@ -35,7 +44,7 @@ function* getUserProfile({ payload: uid }) {
 
 function* createUserProfileInDB({ payload: user }) {
   try {
-    yield put(createDbProfileStart()); 
+    yield put(createDbProfileStart());
     yield call(
       createUserInDB,
       user.uid,
@@ -57,11 +66,6 @@ export function* watchGetAllUser() {
   yield takeEvery(SIGNUP_SUCCESS, createUserProfileInDB);
 }
 
-export default function* getUserDialsSaga() {
+export function* getUserDialsSaga() {
   yield call(watchGetAllUser);
-}
-
-
-function* mySaga() {
-  yield takeEvery(SIGNIN, SignIn);
 }
