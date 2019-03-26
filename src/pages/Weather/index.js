@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Weather from 'components/Weather';
 import { loadWeather } from 'actions/weather.actions';
+import locationDnepr from 'constants/location';
 
 class WeatherWrap extends Component {
   componentDidMount() {
     const { loadWeatherAction } = this.props;
-    loadWeatherAction({ lat: 48.46, lng: 35.046 });
+    loadWeatherAction(locationDnepr);
   }
 
   render() {
