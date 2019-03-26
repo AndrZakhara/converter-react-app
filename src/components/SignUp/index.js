@@ -19,6 +19,7 @@ import {
   passwordLength,
   passwordMatch,
 } from 'utils/validate';
+import normalizePhone from 'utils/mask';
 import styles from './style';
 
 const SignUpForm = ({
@@ -94,6 +95,7 @@ const SignUpForm = ({
             Icon={Phone}
             type="tel"
             validate={validatePhone}
+            normalize={normalizePhone}
           />
           <div className={classes.errorMsg}>{errorMsg && errorMsg.message}</div>
           <Button

@@ -2,24 +2,8 @@ import { db } from 'api/firebase';
 import { USER } from 'constants/roles';
 import { USER_LIST, USERDEALS_LIST } from 'constants/dbRoutes';
 
-export const createUserInDB = (
-  uid,
-  ava,
-  email,
-  firstName,
-  lastName,
-  phone,
-  role = USER,
-) =>
-  db.ref(`${USER_LIST}/${uid}`).set({
-    uid,
-    ava,
-    email,
-    firstName,
-    lastName,
-    phone,
-    role,
-  });
+export const createUserInDB = user =>
+  db.ref(`${USER_LIST}/${user.uid}`).set(user);
 
 export const getUserfromDB = uid => db.getUserFromDatabase(uid);
 
