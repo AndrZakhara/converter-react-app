@@ -50,7 +50,6 @@ export default function uploadImage({
           .then(async () => {
             if (typeof onImageUploadSuccess === 'function') {
               const downloadURL = await fileUploadTask.snapshot.ref.getDownloadURL();
-
               onImageUploadSuccess(downloadURL);
             }
           })

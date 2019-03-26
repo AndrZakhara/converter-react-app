@@ -18,8 +18,9 @@ export default ({ spacing: { unit } }) => ({
     padding: '0 30px',
   },
   media: {
-    height: '140px',
-    width: '140px',
+    height: '130px',
+    width: '130px',
     borderRadius: '50%',
+    backgroundColor: '#BABABA',
   },
 });

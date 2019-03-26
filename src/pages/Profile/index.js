@@ -24,8 +24,8 @@ class Profile extends Component {
   };
 
   handleImageUploadSuccess = url => {
-    const { onUploadImage, user } = this.props;
-    onUploadImage(url, user);
+    const { onUpdateProfile, user } = this.props;
+    onUpdateProfile({ uid: user.uid, ava: url });
   };
 
   handleImageUploadFailure = e => {

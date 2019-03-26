@@ -25,7 +25,7 @@ export default combineEvents(
   {
     [FETCH_USER]: state => ({ error: null }),
     [FETCH_USER_SUCCESS]: (state, { payload }) => ({ profile: payload }),
-    [UPDATE_PROFILE]: (state, { payload }) => ({ profile: payload }),
+    [UPDATE_PROFILE]: (state, { payload }) => ({ profile: { ...state.profile, ...payload } }),
     [FETCH_USER_CURRENCY_DIALS]: (state, { payload }) => ({
       userDials: payload,
     }),
