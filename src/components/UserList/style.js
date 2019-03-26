@@ -12,6 +12,10 @@ const styles = () => ({
     display: 'flex',
     alighnItems: 'center',
     backgroundColor: 'white',
+    position: 'sticky',
+    top: 0,
+    left: 0,
+    zIndex: 9,
   },
   listWrapper: {
     height: '100%',
