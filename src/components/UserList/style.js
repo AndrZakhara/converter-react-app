@@ -1,20 +1,24 @@
 const styles = () => ({
   root: {
-    width: '100%',
-    maxWidth: 320,
-    maxHeight: '70%',
+    minWidth: 320,
+    width: 320,
+    height: '100%',
+    overflowY: 'auto',
+    padding: 0,
+    backgroundColor: '#F0F0F0',
   },
   searchWrapper: {
+    padding: '10px 0px 5px 20px',
     display: 'flex',
-    paddingLeft: '20px',
     alighnItems: 'center',
-    margin: '0px 3px 5px 8px',
-    marginBottom: '20px',
+    backgroundColor: 'white',
+    position: 'sticky',
+    top: 0,
+    left: 0,
+    zIndex: 9,
   },
   listWrapper: {
-    overflowY: 'scroll',
-    maxHeight: '300',
-    margin: '0px 3px 5px 8px',
+    height: '100%',
   },
   input: {
     marginLeft: 8,

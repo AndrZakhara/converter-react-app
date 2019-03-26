@@ -1,6 +1,5 @@
-/* eslint-disable */
 import React from 'react';
-import { func, object } from 'prop-types';
+import { func } from 'prop-types';
 import { userType } from 'types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ListItem from '@material-ui/core/ListItem';
@@ -21,6 +20,7 @@ const UserListItem = props => {
         <Avatar src={ava} alt="avatar" />
       </ListItemIcon>
       <ListItemText
+        className={classes.itemListText}
         primary={
           firstName || lastName ? `${firstName} ${lastName}` : 'Unknown User'
         }
@@ -33,7 +33,6 @@ const UserListItem = props => {
 UserListItem.propTypes = {
   user: userType.isRequired,
   handleClickUser: func.isRequired,
-  classes: object.isRequired,
 };
 
 export default withStyles(styles)(UserListItem);

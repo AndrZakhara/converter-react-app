@@ -4,13 +4,12 @@ import { connect } from 'react-redux';
 import { func, shape, string } from 'prop-types';
 import { userType, usersFilteredType } from 'types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { UserList, UserInfo, EnhancedTable } from 'components';
+import { UserList, UserInfo } from 'components';
 import {
   getAllUsers as getAllUsersAction,
   setSelectedUser as setSelectedUserAction,
   setFilter as setFilterAction,
 } from 'actions';
-import { defUser } from 'mocks/db'; // TODO add real api
 import getFilteredUserList from './selectors';
 import styles from './style';
 
@@ -31,6 +30,7 @@ class Admin extends Component {
     return (
       <div className={classes.wrapper}>
         <UserList
+          className={classes.leftSactionWrapper}
           userListFiltered={userListFiltered}
           setSelectedUser={setSelectedUser}
           setFilter={setFilter}
@@ -41,7 +41,6 @@ class Admin extends Component {
           ) : (
             <h2 className={classes.infoHeader}>Any user selected.</h2>
           )}
-          {selectedUser && <EnhancedTable allUserData={defUser} />}
         </div>
       </div>
     );

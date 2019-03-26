@@ -1,6 +1,9 @@
 const styles = () => ({
   itemListPadding: {
-    padding: '2px 16px',
+    padding: '5px 16px',
+  },
+  itemListText: {
+    overflow: 'hidden',
   },
 });
 
