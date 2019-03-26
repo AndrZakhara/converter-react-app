@@ -1,12 +1,26 @@
-/* eslint-disable  */
 import { call, put, take, takeEvery } from 'redux-saga/effects';
 import getProfile from 'api/getProfile';
-import { FETCH_USER, FETCH_USER_CURRENCY_DIALS, SIGNIN_SUCCESS, SIGNUP_SUCCESS } from 'actions/types';
-import { fetchUser, fetchUserSuccess, serverError, fetchDialsRequest, fetchDialsSuccess, fetchDialsError, createDbProfileStart, createDbProfileSuccess } from 'actions';
-import { getDealsConvertationfromDB } from 'api/database';
-import { getUserFromDB } from 'api/database';
-import { createUserInDB } from 'api/database';
-
+import {
+  FETCH_USER,
+  FETCH_USER_CURRENCY_DIALS,
+  SIGNIN_SUCCESS,
+  SIGNUP_SUCCESS,
+} from 'actions/types';
+import {
+  fetchUser,
+  fetchUserSuccess,
+  serverError,
+  fetchDialsRequest,
+  fetchDialsSuccess,
+  fetchDialsError,
+  createDbProfileStart,
+  createDbProfileSuccess,
+} from 'actions';
+import {
+  getDealsConvertationfromDB,
+  getUserFromDB,
+  createUserInDB,
+} from 'api/database';
 
 export function* fetchUserSaga() {
   try {
@@ -18,12 +32,11 @@ export function* fetchUserSaga() {
   }
 }
 
-export function* getUserDialsData({payload}) {
-  
+export function* getUserDialsData({ payload }) {
   yield put(fetchDialsRequest());
-  try{
+  try {
     const dataList = yield call(getDealsConvertationfromDB, payload);
-    const dataListArray = () =>{
+    const dataListArray = () => {
       const list = dataList;
       const newListArr = [];
       Object.entries(list).forEach(([key, item]) => {
@@ -33,18 +46,17 @@ export function* getUserDialsData({payload}) {
         }
         newListArr.push(itemCopy);
       });
-  
       return newListArr;
     };
     yield put(fetchDialsSuccess(dataListArray()));
-  }catch(error){
+  } catch (error) {
     yield put(fetchDialsError(error));
   }
 }
 
 function* getUserProfile({ payload: uid }) {
   try {
-    yield put(fetchUser());    
+    yield put(fetchUser());
     const user = yield call(getUserFromDB, uid);
     yield put(fetchUserSuccess(user));
   } catch (e) {
@@ -54,7 +66,7 @@ function* getUserProfile({ payload: uid }) {
 
 function* createUserProfileInDB({ payload: user }) {
   try {
-    yield put(createDbProfileStart()); 
+    yield put(createDbProfileStart());
     yield call(
       createUserInDB,
       user.uid,
