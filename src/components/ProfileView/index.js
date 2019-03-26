@@ -43,7 +43,7 @@ const ProfileView = ({
       </CardContent>
       <CardMediaWithUpload
         className={classes.media}
-        image={user.ava ? user.ava : <EditIcon />}
+        image={user.ava}
         onImageUploadSuccess={handleImageUploadSuccess}
         onImageUploadFailed={handleImageUploadFailure}
       />

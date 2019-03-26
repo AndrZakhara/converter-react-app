@@ -28,8 +28,8 @@ class Profile extends Component {
     onUpdateProfile({ uid: user.uid, ava: url });
   };
 
-  handleImageUploadFailure = e => {
-    console.log('meh', e);
+  handleImageUploadFailure = () => {
+    // TODO ERROR FUNCTIONAL WITH MODAL WINDOW
   };
 
   render() {
