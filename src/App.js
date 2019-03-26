@@ -1,6 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Fragment } from 'react';
 import PrivateRoute from 'pages/PrivateRoute';
+import AdminRoute from 'pages/AdminRoute';
 import { Switch, Route } from 'react-router-dom';
 import { Header, Footer, PageNotFound } from './components';
 import {
@@ -18,7 +19,7 @@ const App = () => (
     <Header />
     <Switch>
       <PrivateRoute exact path="/" component={Home} />
-      <PrivateRoute path="/admin-panel" component={Admin} />
+      <AdminRoute path="/admin-panel" component={Admin} />
       <PrivateRoute path="/profile" component={Profile} />
       <PrivateRoute path="/converter" component={Converter} />
       <PrivateRoute path="/weather" component={WeatherWrap} />
