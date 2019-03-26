@@ -29,6 +29,7 @@ export default combineEvents(
     [FETCH_USER_SUCCESS]: (state, { payload }) => ({ profile: payload }),
     [SAVE_PROFILE]: (state, { payload }) => ({ profile: payload }),
     [FETCH_USER_CURRENCY_DIALS_REQUEST]: (state) => ({
+      //TODO add flag here.
     }),
     [FETCH_USER_CURRENCY_DIALS_SUCCESS]: (state, { payload }) => ({
       userDials: payload,

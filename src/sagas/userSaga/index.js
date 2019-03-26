@@ -1,7 +1,7 @@
 /* eslint-disable  */
 import { call, put, take, takeEvery } from 'redux-saga/effects';
 import getProfile from 'api/getProfile';
-import { FETCH_USER, GET_USER_CURRENCY_DIALS, SIGNIN_SUCCESS, SIGNUP_SUCCESS } from 'actions/types';
+import { FETCH_USER, FETCH_USER_CURRENCY_DIALS, SIGNIN_SUCCESS, SIGNUP_SUCCESS } from 'actions/types';
 import { fetchUser, fetchUserSuccess, serverError, fetchDialsRequest, fetchDialsSuccess, fetchDialsError, createDbProfileStart, createDbProfileSuccess } from 'actions';
 import { getDealsConvertationfromDB } from 'api/database';
 import { getUserFromDB } from 'api/database';
@@ -23,7 +23,7 @@ export function* getUserDialsData({payload}) {
   yield put(fetchDialsRequest());
   try{
     const dataList = yield call(getDealsConvertationfromDB, payload);
-    const dataListArray = dataList =>{
+    const dataListArray = () =>{
       const list = dataList;
       const newListArr = [];
       Object.entries(list).forEach(([key, item]) => {
@@ -71,7 +71,7 @@ function* createUserProfileInDB({ payload: user }) {
 }
 
 export function* watchGetAllUser() {
-  yield takeEvery(GET_USER_CURRENCY_DIALS, getUserDialsData);
+  yield takeEvery(FETCH_USER_CURRENCY_DIALS, getUserDialsData);
   yield takeEvery(SIGNIN_SUCCESS, getUserProfile);
   yield takeEvery(SIGNUP_SUCCESS, createUserProfileInDB);
 }

@@ -2,7 +2,7 @@ import {
   SAVE_PROFILE,
   FETCH_USER,
   FETCH_USER_SUCCESS,
-  GET_USER_CURRENCY_DIALS,
+  FETCH_USER_CURRENCY_DIALS,
   FETCH_USER_CURRENCY_DIALS_REQUEST,
   FETCH_USER_CURRENCY_DIALS_SUCCESS,
   FETCH_USER_CURRENCY_DIALS_ERROR,
@@ -23,7 +23,7 @@ export const saveProfile = profile => ({
 });
 
 export const fetchUserDialsAction = data => ({
-  type: GET_USER_CURRENCY_DIALS,
+  type: FETCH_USER_CURRENCY_DIALS,
   payload: data,
 });
 

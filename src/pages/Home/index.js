@@ -17,7 +17,7 @@ class Home extends Component {
 
 const mapStateToProps = ({ user, auth }) => ({
   data: user.userDials,
-  uid: auth,
+  uid: auth.uid,
 });
 
 const mapDispatchToProps = {

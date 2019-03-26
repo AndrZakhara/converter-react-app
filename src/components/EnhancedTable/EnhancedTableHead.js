@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+
+import withStyles from '@material-ui/core/styles/withStyles';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Tooltip from '@material-ui/core/Tooltip';
 import TableCell from '@material-ui/core/TableCell';
+
+import styles from './style';
 
 const rows = [
   {
@@ -72,4 +76,4 @@ class EnhancedTableHead extends Component {
   }
 }
 
-export default EnhancedTableHead;
+export default withStyles(styles)(EnhancedTableHead);
