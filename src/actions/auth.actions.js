@@ -10,6 +10,9 @@ import {
   SIGN_OUT,
   CREATE_DB_PROFILE,
   CREATE_DB_PROFILE_SUCCESS,
+  SIGN_OUT_START,
+  SIGN_OUT_SUCCESS,
+  SIGN_OUT_ERROR,
 } from './types.actions';
 
 export const createDbProfileStart = () => ({
@@ -70,4 +73,17 @@ export const signUpError = error => ({
 
 export const signOut = () => ({
   type: SIGN_OUT,
+});
+
+export const signOutStart = () => ({
+  type: SIGN_OUT_START,
+});
+
+export const signOutSuccess = () => ({
+  type: SIGN_OUT_SUCCESS,
+});
+
+export const signOutError = e => ({
+  type: SIGN_OUT_ERROR,
+  payload: e,
 });

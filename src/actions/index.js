@@ -27,6 +27,9 @@ export {
   signUpSuccess,
   signUpError,
   signOut,
+  signOutStart,
+  signOutSuccess,
+  signOutError,
 } from './auth.actions';
 
 export {
