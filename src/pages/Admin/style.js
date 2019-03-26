@@ -1,8 +1,13 @@
 const styles = () => ({
   wrapper: {
+    width: '100%',
+    height: '100%',
     display: 'flex',
-    maxHeight: '300px',
-    paddingTop: '20px',
+    overflow: 'hidden',
+    minHeight: 420,
+  },
+  leftSactionWrapper: {
+    height: '100%',
   },
   infoHeader: {
     width: '100%',
@@ -11,7 +16,11 @@ const styles = () => ({
     height: 30,
   },
   sectionWrapper: {
-    width: '70%',
+    display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '0 10px',
   },
 });
 
