@@ -36,4 +36,10 @@ export default theme => ({
     display: 'block',
     margin: '0 auto',
   },
+  arrow: {
+    '::-webkit-inner-spin-button': {
+      '-webkit-appearance': null,
+      margin: 0,
+    },
+  },
 });

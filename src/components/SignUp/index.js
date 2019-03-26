@@ -20,7 +20,6 @@ import {
   passwordMatch,
 } from 'utils/validate';
 import styles from './style';
-import './style.css';
 
 const SignUpForm = ({
   classes,
@@ -93,7 +92,7 @@ const SignUpForm = ({
             className={classes.textField}
             component={Input}
             Icon={Phone}
-            type="number"
+            type="tel"
             validate={validatePhone}
           />
           <div className={classes.errorMsg}>{errorMsg && errorMsg.message}</div>
