@@ -61,12 +61,14 @@ export const createDealInDB = ({
   currencyBuy,
   amountBuy,
   fee,
+  rate,
 }) =>
   db.ref(`${USERDEALS_LIST}/${uid}`).push({
-    transactionDate,
-    currencySell,
-    amountSell,
-    currencyBuy,
-    amountBuy,
-    fee,
+    date: transactionDate,
+    currencyFrom: currencySell,
+    amountFrom: amountSell,
+    currencyTo: currencyBuy,
+    amountTo: amountBuy,
+    commission: fee,
+    rate,
   });
