@@ -6,6 +6,9 @@ import {
   FETCH_USER_CURRENCY_DIALS_REQUEST,
   FETCH_USER_CURRENCY_DIALS_SUCCESS,
   FETCH_USER_CURRENCY_DIALS_ERROR,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_ERROR,
 } from './types.actions';
 
 export const fetchUser = () => ({
@@ -39,5 +42,20 @@ export const fetchDialsSuccess = data => ({
 
 export const fetchDialsError = data => ({
   type: FETCH_USER_CURRENCY_DIALS_ERROR,
+  payload: data,
+});
+
+export const resetPasswordRequest = data => ({
+  type: RESET_PASSWORD_REQUEST,
+  payload: data,
+});
+
+export const resetPasswordSuccess = data => ({
+  type: RESET_PASSWORD_SUCCESS,
+  payload: data,
+});
+
+export const resetPasswordError = data => ({
+  type: RESET_PASSWORD_ERROR,
   payload: data,
 });

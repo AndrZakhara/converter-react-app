@@ -6,6 +6,9 @@ export {
   fetchUserDialsAction,
   fetchDialsRequest,
   fetchDialsError,
+  resetPasswordError,
+  resetPasswordRequest,
+  resetPasswordSuccess,
 } from './user.actions';
 export {
   getAllUsers,

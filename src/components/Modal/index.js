@@ -5,13 +5,17 @@ import Modal from 'react-modal';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import styles from './style';
 
 const ModalWindow = ({ isOpen, closeModal, classes, modalMessage }) => (
   <Modal className={classes.modalWindow} isOpen={isOpen}>
     <Paper className={classes.modalContentWrapper}>
-      <span className={classes.mes}>{modalMessage}</span>
+      <span className={classes.mes}>
+        {modalMessage}
+        <CircularProgress className={classes.progress} color="primary" />
+      </span>
       <div className={classes.buttonModalWrapper}>
         <Button
           className={classes.button}

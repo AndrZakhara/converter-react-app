@@ -7,7 +7,10 @@ import {
   FETCH_USER_CURRENCY_DIALS_SUCCESS,
   FETCH_USER_CURRENCY_DIALS_REQUEST,
   FETCH_USER_CURRENCY_DIALS_ERROR,
-  CREATE_DB_PROFILE_SUCCESS
+  CREATE_DB_PROFILE_SUCCESS,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_ERROR,
 } from 'actions/types.actions';
 
 const initialState = {
@@ -21,6 +24,10 @@ const initialState = {
     uid: null,
   },
   error: null,
+  isResetPassQuery: false,
+  isResetPassSuccess: false,
+  isResetPassErr: null,
+
 };
 
 export default combineEvents(
