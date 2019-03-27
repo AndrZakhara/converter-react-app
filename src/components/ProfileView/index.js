@@ -54,6 +54,8 @@ const ProfileView = ({
 ProfileView.propTypes = {
   user: userType.isRequired,
   toggle: func.isRequired,
+  handleImageUploadSuccess: func.isRequired,
+  handleImageUploadFailure: func.isRequired,
 };
 
 export default withStyles(styles)(ProfileView);
