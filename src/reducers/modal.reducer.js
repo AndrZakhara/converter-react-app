@@ -1,5 +1,5 @@
 import combineEvents from 'utils/combineEvents';
-import { OPEN_MODAL, CLOSE_MODAL } from 'actions/types';
+import { OPEN_MODAL, CLOSE_MODAL } from 'actions/types.actions';
 
 const initialState = {
   isModalOpen: false,

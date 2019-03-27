@@ -4,7 +4,7 @@ import {
   RECIVE_ALL_USERS,
   SET_SELECTED_USER,
   SET_FILTER,
-} from './types';
+} from './types.actions';
 
 export const getAllUsers = () => ({
   type: GET_ALL_USERS,

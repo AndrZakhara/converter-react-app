@@ -1,4 +1,4 @@
-import { OPEN_MODAL, CLOSE_MODAL } from './types';
+import { OPEN_MODAL, CLOSE_MODAL } from './types.actions';
 
 export const closeModal = () => ({
   type: CLOSE_MODAL,

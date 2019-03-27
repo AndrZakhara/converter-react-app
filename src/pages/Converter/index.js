@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import Currency from 'components/Currency';
 import {
   loadCurrencies,
   countCurrency,
   swappingCurrency,
   sendCurrencyTransaction,
-} from 'actions/converter.actions';
+} from 'actions';
 
 const Converter = ({
   loadCurrenciesAction,

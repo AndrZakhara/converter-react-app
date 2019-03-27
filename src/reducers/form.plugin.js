@@ -1,4 +1,4 @@
-import { SWAP_CURRENCY, COUNT_CURRENCY_ASYNC } from 'actions/types';
+import { SWAP_CURRENCY, COUNT_CURRENCY_ASYNC } from 'actions/types.actions';
 import combineEvents from 'utils/combineEvents';
 
 export default {

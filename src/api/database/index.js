@@ -2,24 +2,10 @@ import { db } from 'api/firebase';
 import { USER } from 'constants/roles';
 import { USER_LIST, USERDEALS_LIST } from 'constants/dbRoutes';
 
-export const createUserInDB = (
-  uid,
-  ava,
-  email,
-  firstName,
-  lastName,
-  phone,
-  role = USER,
-) =>
-  db.ref(`${USER_LIST}/${uid}`).set({
-    uid,
-    ava,
-    email,
-    firstName,
-    lastName,
-    phone,
-    role,
-  });
+export const createUserInDB = user =>
+  db.ref(`${USER_LIST}/${user.uid}`).set(user);
+
+export const getUserfromDB = uid => db.getUserFromDatabase(uid);
 
 export const updateUserInDB = (
   uid,
@@ -53,6 +39,14 @@ export const getAllUsersFromDB = () =>
     .once('value')
     .then(snapshot => snapshot.val());
 
+export const getUserDealsConvertation = uid =>
+  db
+    .ref(`${USERDEALS_LIST}/${uid}`)
+    .once('value')
+    .then(snapshot => snapshot.val());
+
+export const getDealsConvertationfromDB = uid => getUserDealsConvertation(uid);
+
 export const createDealInDB = ({
   uid,
   transactionDate,
@@ -61,12 +55,14 @@ export const createDealInDB = ({
   currencyBuy,
   amountBuy,
   fee,
+  rate,
 }) =>
   db.ref(`${USERDEALS_LIST}/${uid}`).push({
-    transactionDate,
-    currencySell,
-    amountSell,
-    currencyBuy,
-    amountBuy,
-    fee,
+    date: transactionDate,
+    currencyFrom: currencySell,
+    amountFrom: amountSell,
+    currencyTo: currencyBuy,
+    amountTo: amountBuy,
+    commission: fee,
+    rate,
   });

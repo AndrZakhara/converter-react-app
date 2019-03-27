@@ -1,25 +1,13 @@
-import Header from './Header';
-import EnhancedTable from './EnhancedTable/EnhancedTable';
-import Footer from './Footer';
-import SignUp from './SignUp';
-import ProfileView from './ProfileView';
-import ProfileEdit from './ProfileEdit';
-import UserInfo from './UserInfo';
-import UserList from './UserList';
-import UserListItem from './UserListItem';
-import SignIn from './SignIn';
-import Modal from './Modal';
-
-export {
-  Header,
-  EnhancedTable,
-  SignUp,
-  Footer,
-  ProfileView,
-  ProfileEdit,
-  UserInfo,
-  UserList,
-  UserListItem,
-  SignIn,
-  Modal,
-};
+export { default as Header } from './Header';
+export { default as EnhancedTable } from './EnhancedTable/EnhancedTable';
+export { default as Footer } from './Footer';
+export { default as SignUp } from './SignUp';
+export { default as ProfileView } from './ProfileView';
+export { default as ProfileEdit } from './ProfileEdit';
+export { default as UserInfo } from './UserInfo';
+export { default as UserList } from './UserList';
+export { default as UserListItem } from './UserListItem';
+export { default as SignIn } from './SignIn';
+export { default as PageNotFound } from './PageNotFound';
+export { default as Weather } from './Weather';
+export { default as Modal } from './Modal';

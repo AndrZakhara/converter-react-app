@@ -6,7 +6,7 @@ import {
   SEND_DEAL_POST,
   SEND_DEAL_SUCCESS,
   SEND_DEAL_ERROR,
-} from 'actions/types';
+} from 'actions/types.actions';
 
 const initialState = {
   currencies: [],
