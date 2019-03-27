@@ -3,7 +3,7 @@ import combineEvents from 'utils/combineEvents';
 import {
   FETCH_USER,
   FETCH_USER_SUCCESS,
-  SAVE_PROFILE,
+  UPDATE_PROFILE,
   FETCH_USER_CURRENCY_DIALS_SUCCESS,
   FETCH_USER_CURRENCY_DIALS_REQUEST,
   FETCH_USER_CURRENCY_DIALS_ERROR,
@@ -27,7 +27,7 @@ export default combineEvents(
   {
     [FETCH_USER]: state => ({ error: null }),
     [FETCH_USER_SUCCESS]: (state, { payload }) => ({ profile: payload }),
-    [SAVE_PROFILE]: (state, { payload }) => ({ profile: payload }),
+    [UPDATE_PROFILE]: (state, { payload }) => ({ profile: { ...state.profile, ...payload } }),
     [FETCH_USER_CURRENCY_DIALS_REQUEST]: (state) => ({
       //TODO add flag here.
     }),
