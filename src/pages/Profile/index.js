@@ -1,12 +1,10 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/no-access-state-in-setstate */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { fetchUser, saveProfile } from 'actions';
+import { updateProfile, uploadImage } from 'actions';
 import { ProfileEdit, ProfileView } from 'components';
 import styles from './styles';
 
@@ -15,37 +13,48 @@ class Profile extends Component {
     editing: false,
   };
 
-  componentDidMount() {
-    this.props.onFetchUser();
-  }
-
   toggleEditing = () => {
-    this.setState({
-      editing: !this.state.editing,
-    });
+    this.setState(state => ({ editing: !state.editing }));
   };
 
   save = profile => {
-    this.props.onSaveProfile(profile);
+    const { onUpdateProfile } = this.props;
+    onUpdateProfile(profile);
     this.toggleEditing();
+  };
+
+  handleImageUploadSuccess = url => {
+    const { onUpdateProfile, user } = this.props;
+    onUpdateProfile({ uid: user.uid, ava: url });
+  };
+
+  handleImageUploadFailure = () => {
+    // TODO ERROR FUNCTIONAL WITH MODAL WINDOW
   };
 
   render() {
     const { user, classes } = this.props;
+    const { editing } = this.state;
+
     if (!user) {
       // TODO "NO RESPONSE" FUNCTIONAL
       return <CircularProgress className={classes.loader} />;
     }
     return (
       <div className={classes.container}>
-        {this.state.editing ? (
+        {editing ? (
           <ProfileEdit
             toggle={this.toggleEditing}
             initialValues={user}
             onSave={this.save}
           />
         ) : (
-          <ProfileView user={user} toggle={this.toggleEditing} />
+          <ProfileView
+            user={user}
+            toggle={this.toggleEditing}
+            handleImageUploadSuccess={this.handleImageUploadSuccess}
+            handleImageUploadFailure={this.handleImageUploadFailure}
+          />
         )}
       </div>
     );
@@ -57,8 +66,8 @@ const mapStateToProps = ({ user }) => ({
 });
 
 const mapDispatchToProps = {
-  onFetchUser: fetchUser,
-  onSaveProfile: saveProfile,
+  onUpdateProfile: updateProfile,
+  onUploadImage: uploadImage,
 };
 
 export default connect(
