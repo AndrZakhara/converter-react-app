@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import withStyles from '@material-ui/core/styles/withStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { updateProfile, uploadImage } from 'actions';
+import { updateProfile } from 'actions';
 import { ProfileEdit, ProfileView } from 'components';
 import styles from './styles';
 
@@ -21,15 +21,6 @@ class Profile extends Component {
     const { onUpdateProfile } = this.props;
     onUpdateProfile(profile);
     this.toggleEditing();
-  };
-
-  handleImageUploadSuccess = url => {
-    const { onUpdateProfile, user } = this.props;
-    onUpdateProfile({ uid: user.uid, ava: url });
-  };
-
-  handleImageUploadFailure = () => {
-    // TODO ERROR FUNCTIONAL WITH MODAL WINDOW
   };
 
   render() {
@@ -49,12 +40,7 @@ class Profile extends Component {
             onSave={this.save}
           />
         ) : (
-          <ProfileView
-            user={user}
-            toggle={this.toggleEditing}
-            handleImageUploadSuccess={this.handleImageUploadSuccess}
-            handleImageUploadFailure={this.handleImageUploadFailure}
-          />
+          <ProfileView user={user} toggle={this.toggleEditing} />
         )}
       </div>
     );
@@ -67,7 +53,6 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = {
   onUpdateProfile: updateProfile,
-  onUploadImage: uploadImage,
 };
 
 export default connect(
