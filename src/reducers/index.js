@@ -5,12 +5,14 @@ import users from './users.reducer';
 import converter from './converter.reducer';
 import auth from './auth.reducer';
 import user from './user.reducer';
+import modal from './modal.reducer';
 
 const appReducer = combineReducers({
   users,
   converter,
   user,
   auth,
+  modal,
   form: form.plugin(formPlugin),
 });
 

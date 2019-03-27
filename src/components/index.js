@@ -8,6 +8,7 @@ import UserInfo from './UserInfo';
 import UserList from './UserList';
 import UserListItem from './UserListItem';
 import SignIn from './SignIn';
+import Modal from './Modal';
 
 export {
   Header,
@@ -20,4 +21,5 @@ export {
   UserList,
   UserListItem,
   SignIn,
+  Modal,
 };

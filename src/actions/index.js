@@ -26,4 +26,6 @@ export {
   signOut,
 } from './auth';
 
+export { openModal, closeModal } from './modal.actions';
+
 export { serverError } from './errors';

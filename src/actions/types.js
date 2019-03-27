@@ -41,3 +41,6 @@ export const SEND_DEAL = 'SEND_DEAL';
 export const SEND_DEAL_POST = 'SEND_DEAL_POST';
 export const SEND_DEAL_SUCCESS = 'SEND_DEAL_SUCCESS';
 export const SEND_DEAL_ERROR = 'SEND_DEAL_ERROR';
+
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const OPEN_MODAL = 'OPEN_MODAL';
