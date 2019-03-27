@@ -9,14 +9,12 @@ import Button from '@material-ui/core/Button';
 import styles from './style';
 
 const ModalWindow = props => {
-  const { isOpen, closeModal, classes } = props;
+  const { isOpen, closeModal, classes, modalMessage } = props;
 
   return (
     <Modal className={classes.modalWindow} isOpen={isOpen}>
       <Paper className={classes.modalContentWrapper}>
-        <span className={classes.mes}>
-          Do You really want to remove user Vasya Ivanov ?
-        </span>
+        <span className={classes.mes}>{modalMessage}</span>
         <div className={classes.buttonModalWrapper}>
           <Button
             className={classes.button}
