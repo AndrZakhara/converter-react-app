@@ -1,30 +1,19 @@
 import React from 'react';
 import { storage } from 'api/firebase';
 
-const storageRef = storage.ref();
-export default function uploadImage({
-  storagePath = 'images',
-  accept = ['.png', '.jpg', '.jpeg'],
-} = {}) {
-  const distRef = storageRef.child(storagePath);
-  const inputFile = window.document.createElement('input');
+import InputFile from '../InputFile';
 
-  inputFile.setAttribute('type', 'file');
-  inputFile.setAttribute('accept', accept.join(','));
-  inputFile.className = 'file-upload';
+const storageRef = storage.ref();
+
+export default function uploadImage({ storagePath = 'images', accept } = {}) {
+  const distRef = storageRef.child(storagePath);
 
   return function targetComponent(Component) {
     class UploadImage extends React.Component {
-      componentDidMount() {
-        window.document.body.appendChild(inputFile);
+      constructor(props) {
+        super(props);
 
-        inputFile.addEventListener('change', this.onInputFileChange);
-      }
-
-      componentWillUnmount() {
-        inputFile.removeEventListener('change', this.onInputFileChange);
-
-        window.document.body.removeChild(inputFile);
+        this.inputFileRef = React.createRef();
       }
 
       onInputFileChange = ev => {
@@ -53,11 +42,21 @@ export default function uploadImage({
       };
 
       handleInitUpload = () => {
-        inputFile.click();
+        this.inputFileRef.current.click();
       };
 
       render() {
-        return <Component {...this.props} onClick={this.handleInitUpload} />;
+        return (
+          <React.Fragment>
+            <Component {...this.props} onClick={this.handleInitUpload} />
+
+            <InputFile
+              innerRef={this.inputFileRef}
+              accept={accept}
+              onChange={this.onInputFileChange}
+            />
+          </React.Fragment>
+        );
       }
     }
 
