@@ -55,4 +55,12 @@ export {
   loadWeatherError,
 } from './weather.actions';
 
+export {
+  updateProfile,
+  updateProfileStart,
+  updateProfileSuccess,
+  updateProfileError,
+  uploadImage,
+} from './profile.actions';
+
 export { serverError } from './errors.actions';

@@ -14,6 +14,7 @@ import DateIcon from '@material-ui/icons/Phone';
 
 import { validateTextEmpty, validatePhone } from 'utils/validate';
 import Input from 'components/Input/index';
+import normalizePhone from 'utils/mask';
 import styles from './styles';
 
 const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
@@ -55,6 +56,7 @@ const ProfileEdit = ({ handleSubmit, classes, onSave, toggle }) => (
             Icon={DateIcon}
             className={classes.input}
             validate={validatePhone}
+            normalize={normalizePhone}
           />
         </CardContent>
         <CardActions className={classes.actions}>
