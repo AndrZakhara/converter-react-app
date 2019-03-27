@@ -1,5 +1,4 @@
 import { db } from 'api/firebase';
-import { USER } from 'constants/roles';
 import { USER_LIST, USERDEALS_LIST } from 'constants/dbRoutes';
 
 export const createUserInDB = user =>
@@ -7,24 +6,8 @@ export const createUserInDB = user =>
 
 export const getUserfromDB = uid => db.getUserFromDatabase(uid);
 
-export const updateUserInDB = (
-  uid,
-  ava,
-  email,
-  firstName,
-  LastName,
-  phone,
-  role = USER,
-) => {
-  db.ref(`${USER_LIST}/${uid}`).update({
-    ava,
-    email,
-    firstName,
-    LastName,
-    phone,
-    role,
-    uid,
-  });
+export const updateUserInDB = (uid, user) => {
+  db.ref(`${USER_LIST}/${uid}`).update(user);
 };
 
 export const getUserFromDB = uid =>
