@@ -1,13 +1,16 @@
 import React from 'react';
-import { storage } from 'api/firebase';
 
-import InputFile from '../InputFile';
+import { connect } from 'react-redux';
 
-const storageRef = storage.ref();
+import InputFile from 'components/InputFile';
+
+import { uploadImage as upload } from 'actions/profile.actions';
+
+const mapDispatchToProps = {
+  initiateImageUpload: upload,
+};
 
 export default function uploadImage({ storagePath = 'images', accept } = {}) {
-  const distRef = storageRef.child(storagePath);
-
   return function targetComponent(Component) {
     class UploadImage extends React.Component {
       constructor(props) {
@@ -18,27 +21,13 @@ export default function uploadImage({ storagePath = 'images', accept } = {}) {
 
       onInputFileChange = ev => {
         const file = ev.target.files[0];
-        const { onImageUploadSuccess, onImageUploadFailed } = this.props;
+        const { initiateImageUpload } = this.props;
 
         if (!file) {
           return;
         }
 
-        const fileUploadTask = distRef.child(file.name).put(file);
-
-        fileUploadTask
-          .then(async () => {
-            if (typeof onImageUploadSuccess === 'function') {
-              const downloadURL = await fileUploadTask.snapshot.ref.getDownloadURL();
-
-              onImageUploadSuccess(downloadURL);
-            }
-          })
-          .catch(error => {
-            if (typeof onImageUploadFailed === 'function') {
-              onImageUploadFailed(error);
-            }
-          });
+        initiateImageUpload({ file, storagePath });
       };
 
       handleInitUpload = () => {
@@ -46,9 +35,10 @@ export default function uploadImage({ storagePath = 'images', accept } = {}) {
       };
 
       render() {
+        const { initiateImageUpload, ...restProps } = this.props;
         return (
           <React.Fragment>
-            <Component {...this.props} onClick={this.handleInitUpload} />
+            <Component {...restProps} onClick={this.handleInitUpload} />
 
             <InputFile
               innerRef={this.inputFileRef}
@@ -60,6 +50,9 @@ export default function uploadImage({ storagePath = 'images', accept } = {}) {
       }
     }
 
-    return UploadImage;
+    return connect(
+      null,
+      mapDispatchToProps,
+    )(UploadImage);
   };
 }

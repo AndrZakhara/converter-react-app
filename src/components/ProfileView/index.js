@@ -17,13 +17,7 @@ import styles from './styles';
 
 const CardMediaWithUpload = uploadImage()(CardMedia);
 
-const ProfileView = ({
-  user,
-  classes,
-  toggle,
-  handleImageUploadSuccess,
-  handleImageUploadFailure,
-}) => (
+const ProfileView = ({ user, classes, toggle }) => (
   <div className={classes.container}>
     <div className={classes.header}>
       <Typography variant="display1">Profile</Typography>
@@ -41,12 +35,7 @@ const ProfileView = ({
         </Typography>
         <Typography variant="subheading">{user.role}</Typography>
       </CardContent>
-      <CardMediaWithUpload
-        className={classes.media}
-        image={user.ava}
-        onImageUploadSuccess={handleImageUploadSuccess}
-        onImageUploadFailed={handleImageUploadFailure}
-      />
+      <CardMediaWithUpload className={classes.media} image={user.ava} />
     </Card>
   </div>
 );
@@ -54,8 +43,6 @@ const ProfileView = ({
 ProfileView.propTypes = {
   user: userType.isRequired,
   toggle: func.isRequired,
-  handleImageUploadSuccess: func.isRequired,
-  handleImageUploadFailure: func.isRequired,
 };
 
 export default withStyles(styles)(ProfileView);
