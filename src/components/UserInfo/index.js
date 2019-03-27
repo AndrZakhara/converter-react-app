@@ -1,5 +1,6 @@
 import React from 'react';
 import { userType } from 'types';
+
 import withStyles from '@material-ui/core/styles/withStyles';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -7,9 +8,10 @@ import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
+
 import styles from './style';
 
-const UserInfo = ({ selectedUser, classes }) => {
+const UserInfo = ({ selectedUser, classes, openModal }) => {
   const { firstName, lastName, ava, email, role, phone } = selectedUser;
 
   return (
@@ -38,25 +40,29 @@ const UserInfo = ({ selectedUser, classes }) => {
           <Button
             className={classes.button}
             variant="contained"
-            color="primary">
+            color="primary"
+            onClick={openModal}>
             Reset password
           </Button>
           <Button
             className={classes.button}
             variant="contained"
-            color="primary">
+            color="primary"
+            onClick={openModal}>
             Delete user
           </Button>
           <Button
             className={classes.button}
             variant="contained"
-            color="primary">
+            color="primary"
+            onClick={openModal}>
             Change role
           </Button>
           <Button
             className={classes.button}
             variant="contained"
-            color="primary">
+            color="primary"
+            onClick={openModal}>
             User activity
           </Button>
         </div>

@@ -5,6 +5,7 @@ import users from './users.reducer';
 import converter from './converter.reducer';
 import auth from './auth.reducer';
 import user from './user.reducer';
+import modal from './modal.reducer';
 import weather from './weather.reducer';
 
 const appReducer = combineReducers({
@@ -12,6 +13,7 @@ const appReducer = combineReducers({
   converter,
   user,
   auth,
+  modal,
   weather,
   form: form.plugin(formPlugin),
 });

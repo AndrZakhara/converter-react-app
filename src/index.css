@@ -24,3 +24,6 @@ body {
   align-items: center;
   flex-direction: column;
 }
+.ReactModal__Overlay {
+  z-index: 10000;
+}

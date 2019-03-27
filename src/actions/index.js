@@ -32,6 +32,8 @@ export {
   signOutError,
 } from './auth.actions';
 
+export { openModal, closeModal } from './modal.actions';
+
 export {
   loadCurrencies,
   loadCurrenciesRequest,
