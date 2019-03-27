@@ -25,7 +25,7 @@ export const updateProfileError = error => ({
   payload: error,
 });
 
-export const uploadImage = (url, user) => ({
+export const uploadImage = payload => ({
   type: UPLOAD_IMAGE,
-  payload: Object.assign({}, user, { ava: url }),
+  payload,
 });
