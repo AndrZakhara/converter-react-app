@@ -24,3 +24,12 @@ body {
   align-items: center;
   flex-direction: column;
 }
+
+input.file-upload {
+  width: 0;
+  height: 0;
+  position: absolute;
+  overflow: hidden;
+  opacity: 0;
+  z-index: -1;
+}
