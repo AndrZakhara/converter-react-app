@@ -18,10 +18,12 @@ const Converter = ({
   onSending,
   currenciesCount,
   uid,
+  onLoad,
 }) => (
   <div className="converter-wrapper">
     <Currency
       uid={uid}
+      onLoad={onLoad}
       currencies={currencies}
       onSending={onSending}
       currenciesCount={currenciesCount}
@@ -35,6 +37,7 @@ const Converter = ({
 
 const mapStateToProps = ({ converter, form, user }) => ({
   currencies: converter.currencies,
+  onLoad: converter.onLoading,
   currenciesCount: form.currencyForm,
   uid: user.profile.uid,
   deal: converter.deal,

@@ -6,6 +6,7 @@ import moment from 'moment';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Fade from '@material-ui/core/Fade';
 import { withStyles } from '@material-ui/core/styles';
 
 import feeConvert from 'constants/tax';
@@ -53,105 +54,107 @@ class Currency extends Component {
   };
 
   render() {
-    const { currencies, classes, onSending } = this.props;
+    const { currencies, classes, onSending, onLoad } = this.props;
 
     return (
-      <form
-        name="currencyForm"
-        className={classes.appContent}
-        onSubmit={this.buyConcentrationCurrency}>
-        <div className={classes.converterTitle}>
-          <h2 className={classes.marginDef}>Currency Converter</h2>
-        </div>
-        <div className={classes.currencyLine}>
-          <FormControl className={classes.formControl}>
-            <p className={classes.text}>give back</p>
+      <Fade in={!onLoad}>
+        <form
+          name="currencyForm"
+          className={classes.appContent}
+          onSubmit={this.buyConcentrationCurrency}>
+          <div className={classes.converterTitle}>
+            <h2 className={classes.marginDef}>Currency Converter</h2>
+          </div>
+          <div className={classes.currencyLine}>
+            <FormControl className={classes.formControl}>
+              <p className={classes.text}>give back</p>
+              <Field
+                className={classes.select}
+                name="currencySell"
+                component="select"
+                onChange={this.buyCurrency}>
+                {currencies.map(item => (
+                  <option value={item.ccy} key={item.ccy}>
+                    {item.ccy}
+                  </option>
+                ))}
+              </Field>
+            </FormControl>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.changeCurrencies}>
+              &#8660;
+            </Button>
+            <FormControl className={classes.formControl}>
+              <p className={classes.text}>we get</p>
+              <Field
+                className={classes.select}
+                name="currencyBuy"
+                component="select"
+                onChange={this.buyCurrency}>
+                {currencies.map(item => (
+                  <option value={item.ccy} key={item.ccy}>
+                    {item.ccy}
+                  </option>
+                ))}
+              </Field>
+            </FormControl>
+          </div>
+          <div className={classes.currencyLine}>
             <Field
-              className={classes.select}
-              name="currencySell"
-              component="select"
-              onChange={this.buyCurrency}>
-              {currencies.map(item => (
-                <option value={item.ccy} key={item.ccy}>
-                  {item.ccy}
-                </option>
-              ))}
-            </Field>
-          </FormControl>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.changeCurrencies}>
-            &#8660;
-          </Button>
-          <FormControl className={classes.formControl}>
-            <p className={classes.text}>we get</p>
+              className={classes.inputAmount}
+              name="amountSell"
+              parse={value => Number(value)}
+              component="input"
+              type="number"
+              label="How much to exchange"
+              min="0"
+              onKeyUp={this.buyCurrency}
+            />
             <Field
-              className={classes.select}
-              name="currencyBuy"
-              component="select"
-              onChange={this.buyCurrency}>
-              {currencies.map(item => (
-                <option value={item.ccy} key={item.ccy}>
-                  {item.ccy}
-                </option>
-              ))}
-            </Field>
-          </FormControl>
-        </div>
-        <div className={classes.currencyLine}>
-          <Field
-            className={classes.inputAmount}
-            name="amountSell"
-            parse={value => Number(value)}
-            component="input"
-            type="number"
-            label="How much to exchange"
-            min="0"
-            onKeyUp={this.buyCurrency}
-          />
-          <Field
-            className={classes.inputAmount}
-            name="amountBuy"
-            parse={value => Number(value)}
-            component="input"
-            type="number"
-            label="How much will we get"
-            readOnly
-          />
-        </div>
-        <div className={classes.bottomBtnsWrap}>
-          <FormControl className={classes.feeWrapper}>
-            <p className={classes.text}>Fee </p>
-            <Field
-              className={classes.feeSelect}
-              name="fee"
-              component="select"
-              onChange={this.buyCurrency}>
-              {feeConvert.map(item => (
-                <option value={item} key={item}>
-                  {item}
-                </option>
-              ))}
-            </Field>
-            <p className={classes.text}> %</p>
-          </FormControl>
-        </div>
-        <div className={classes.wrapperbuyBtn}>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.buyBtn}
-            type="submit"
-            disabled={onSending}
-            onClick={this.handleButtonClick}>
-            Buy
-          </Button>
-          {onSending && (
-            <CircularProgress size={24} className={classes.buttonProgress} />
-          )}
-        </div>
-      </form>
+              className={classes.inputAmount}
+              name="amountBuy"
+              parse={value => Number(value)}
+              component="input"
+              type="number"
+              label="How much will we get"
+              readOnly
+            />
+          </div>
+          <div className={classes.bottomBtnsWrap}>
+            <FormControl className={classes.feeWrapper}>
+              <p className={classes.text}>Fee </p>
+              <Field
+                className={classes.feeSelect}
+                name="fee"
+                component="select"
+                onChange={this.buyCurrency}>
+                {feeConvert.map(item => (
+                  <option value={item} key={item}>
+                    {item}
+                  </option>
+                ))}
+              </Field>
+              <p className={classes.text}> %</p>
+            </FormControl>
+          </div>
+          <div className={classes.wrapperbuyBtn}>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.buyBtn}
+              type="submit"
+              disabled={onSending}
+              onClick={this.handleButtonClick}>
+              Buy
+            </Button>
+            {onSending && (
+              <CircularProgress size={24} className={classes.buttonProgress} />
+            )}
+          </div>
+        </form>
+      </Fade>
     );
   }
 }
