@@ -11,10 +11,14 @@ class WeatherWrap extends Component {
   }
 
   render() {
-    const { weather, loadWeatherAction } = this.props;
+    const { weather, loadWeatherAction, onLoad } = this.props;
     return (
       <div>
-        <Weather weather={weather} loadWeather={loadWeatherAction} />
+        <Weather
+          weather={weather}
+          loadWeather={loadWeatherAction}
+          onLoad={onLoad}
+        />
       </div>
     );
   }
@@ -22,6 +26,7 @@ class WeatherWrap extends Component {
 
 const mapStateToProps = ({ weather }) => ({
   weather: weather.weatherData,
+  onLoad: weather.onLoading,
 });
 
 const mapDispatchToProps = {
