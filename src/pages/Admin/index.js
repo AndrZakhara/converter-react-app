@@ -9,19 +9,20 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 import { UserList, UserInfo, Modal } from 'components';
 import {
-  getAllUsers as getAllUsersAction,
+  getUsersRequest as getAllUsersAction,
   setSelectedUser as setSelectedUserAction,
   setFilter as setFilterAction,
   closeModal as closeModalAction,
   openModal as openModalAction,
+  resetPasswordRequest as resetPasswordRequestAction,
 } from 'actions';
 import styles from './style';
 import getFilteredUserList from './selectors';
 
 class Admin extends Component {
   componentDidMount() {
-    const { getAllUsers } = this.props;
-    getAllUsers();
+    const { getUsersRequest } = this.props;
+    getUsersRequest();
   }
 
   render() {
@@ -34,6 +35,10 @@ class Admin extends Component {
       isModalOpen,
       closeModal,
       openModal,
+      message,
+      resetPasswordRequest,
+      isQuery,
+      isSuccess,
     } = this.props;
 
     return (
@@ -51,16 +56,24 @@ class Admin extends Component {
             <h2 className={classes.infoHeader}>Any user selected.</h2>
           )}
         </div>
-        <Modal isOpen={isModalOpen} closeModal={closeModal} />
+        <Modal
+          isOpen={isModalOpen}
+          closeModal={closeModal}
+          handleClick={resetPasswordRequest}
+          modalMessage={message}
+          isLoading={isQuery}
+          isSuccess={isSuccess}
+        />
       </div>
     );
   }
 }
 
 Admin.propTypes = {
-  getAllUsers: func.isRequired,
+  getUsersRequest: func.isRequired,
   setSelectedUser: func.isRequired,
   setFilter: func.isRequired,
+  resetPasswordRequest: func.isRequired,
   selectedUser: userType,
   userListFiltered: usersFilteredType,
   classes: shape({
@@ -74,20 +87,29 @@ Admin.defaultProps = {
   userListFiltered: null,
 };
 
-const mapStateToProps = ({ users, modal }) => {
-  const userListFiltered = getFilteredUserList(users);
-  const { selectedUser, filterValue } = users;
-  const { isModalOpen } = modal;
+const mapStateToProps = ({ admin, modal }) => {
+  const userListFiltered = getFilteredUserList(admin);
+  const { selectedUser, filterValue, isQuery, isSuccess } = admin;
+  const { isModalOpen, message } = modal;
 
-  return { userListFiltered, selectedUser, filterValue, isModalOpen };
+  return {
+    userListFiltered,
+    selectedUser,
+    filterValue,
+    isModalOpen,
+    message,
+    isQuery,
+    isSuccess,
+  };
 };
 
 const mapDispatchToProps = {
-  getAllUsers: getAllUsersAction,
+  getUsersRequest: getAllUsersAction,
   setSelectedUser: setSelectedUserAction,
   setFilter: setFilterAction,
   closeModal: closeModalAction,
   openModal: openModalAction,
+  resetPasswordRequest: resetPasswordRequestAction,
 };
 
 export default compose(

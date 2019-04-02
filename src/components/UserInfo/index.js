@@ -1,6 +1,8 @@
 import React from 'react';
 import { userType } from 'types';
 
+import { RESET_PASSWORD } from 'constants/modalMessage';
+
 import withStyles from '@material-ui/core/styles/withStyles';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -13,7 +15,6 @@ import styles from './style';
 
 const UserInfo = ({ selectedUser, classes, openModal }) => {
   const { firstName, lastName, ava, email, role, phone } = selectedUser;
-
   return (
     <Paper className={classes.paperWrapper}>
       <div className={classes.headerWrapper}>
@@ -41,7 +42,7 @@ const UserInfo = ({ selectedUser, classes, openModal }) => {
             className={classes.button}
             variant="contained"
             color="primary"
-            onClick={openModal}>
+            onClick={() => openModal(RESET_PASSWORD)}>
             Reset password
           </Button>
           <Button

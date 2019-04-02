@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 import formPlugin from './form.plugin';
-import users from './users.reducer';
+import admin from './admin.reducer';
 import converter from './converter.reducer';
 import auth from './auth.reducer';
 import user from './user.reducer';
@@ -9,7 +9,7 @@ import modal from './modal.reducer';
 import weather from './weather.reducer';
 
 const appReducer = combineReducers({
-  users,
+  admin,
   converter,
   user,
   auth,

@@ -6,17 +6,17 @@ export {
   fetchUserDialsAction,
   fetchDialsRequest,
   fetchDialsError,
+} from './user.actions';
+export {
+  getUsersRequest,
+  getUsersSuccess,
+  getUsersError,
+  setSelectedUser,
+  setFilter,
   resetPasswordError,
   resetPasswordRequest,
   resetPasswordSuccess,
-} from './user.actions';
-export {
-  getAllUsers,
-  getUserData,
-  reciveAllUser,
-  setSelectedUser,
-  setFilter,
-} from './users.actions';
+} from './admin.actions';
 
 export {
   createDbProfileStart,

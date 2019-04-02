@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-const getFilterValue = users => users.filterValue;
-const getUserList = users => users.userList;
+const getFilterValue = admin => admin.filterValue;
+const getUserList = admin => admin.userList;
 
 const transformToArray = createSelector(
   getUserList,

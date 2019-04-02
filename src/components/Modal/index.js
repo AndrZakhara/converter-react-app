@@ -9,23 +9,39 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import styles from './style';
 
-const ModalWindow = ({ isOpen, closeModal, classes, modalMessage }) => (
-  <Modal className={classes.modalWindow} isOpen={isOpen}>
+const ModalWindow = ({
+  isOpen,
+  closeModal,
+  classes,
+  modalMessage,
+  handleClick,
+  isLoading,
+  isSuccess,
+}) => (
+  <Modal className={classes.modalWindow} isOpen={isOpen} ariaHideApp={false}>
     <Paper className={classes.modalContentWrapper}>
       <span className={classes.mes}>
-        {modalMessage}
-        <CircularProgress className={classes.progress} color="primary" />
+        {!isLoading && !isSuccess && <p>{modalMessage.approve}</p>}
+        {isSuccess && <p>{modalMessage.success}</p>}
+        {isLoading && (
+          <CircularProgress className={classes.progress} color="primary" />
+        )}
       </span>
       <div className={classes.buttonModalWrapper}>
         <Button
           className={classes.button}
+          disabled={isSuccess && true}
           onClick={closeModal}
           variant="contained"
           color="primary">
           Cancel
         </Button>
-        <Button className={classes.button} variant="contained" color="primary">
-          Apply
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          onClick={!isSuccess ? handleClick : closeModal}>
+          {!isSuccess ? 'Apply' : 'Close'}
         </Button>
       </div>
     </Paper>

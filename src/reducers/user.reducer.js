@@ -8,9 +8,7 @@ import {
   FETCH_USER_CURRENCY_DIALS_REQUEST,
   FETCH_USER_CURRENCY_DIALS_ERROR,
   CREATE_DB_PROFILE_SUCCESS,
-  RESET_PASSWORD_REQUEST,
-  RESET_PASSWORD_SUCCESS,
-  RESET_PASSWORD_ERROR,
+
 } from 'actions/types.actions';
 
 const initialState = {
@@ -23,11 +21,6 @@ const initialState = {
     role: null,
     uid: null,
   },
-  error: null,
-  isResetPassQuery: false,
-  isResetPassSuccess: false,
-  isResetPassErr: null,
-
 };
 
 export default combineEvents(
@@ -46,7 +39,7 @@ export default combineEvents(
     }),
     [CREATE_DB_PROFILE_SUCCESS]: (state, { payload }) => ({
       profile: payload,
-    }),
+    }),   
   },
   initialState,
 );

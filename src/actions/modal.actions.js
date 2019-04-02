@@ -4,6 +4,7 @@ export const closeModal = () => ({
   type: CLOSE_MODAL,
 });
 
-export const openModal = () => ({
+export const openModal = mes => ({
   type: OPEN_MODAL,
+  payload: mes,
 });
