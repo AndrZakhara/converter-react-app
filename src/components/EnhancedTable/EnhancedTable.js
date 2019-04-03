@@ -118,7 +118,7 @@ class EnhancedTable extends Component {
         </Paper>
       );
     }
-    return null;
+    return <div> You have not any transactions yet.</div>;
   }
 }
 
