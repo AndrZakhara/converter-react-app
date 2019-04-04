@@ -21,8 +21,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-modal": "^3.8.1",
     "react-google-maps": "^9.4.5",
+    "react-modal": "^3.8.1",
     "react-phone-number-input": "^2.3.7",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
@@ -32,7 +32,8 @@
     "redux-form": "^8.1.0",
     "redux-persist": "^5.10.0",
     "redux-saga": "^1.0.2",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "styled-components": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

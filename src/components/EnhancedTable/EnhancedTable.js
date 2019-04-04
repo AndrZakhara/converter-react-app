@@ -1,14 +1,48 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import TableCell from '@material-ui/core/TableCell';
 import { stableSort, getSorting } from 'utils/sort';
+import Paper from '@material-ui/core/Paper';
+import styled from 'styled-components';
 import EnhancedTableHead from './EnhancedTableHead';
-import styles from './style';
+
+const StyledPaper = styled(Paper)`
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
+const TableTitle = styled.h1`
+  background: #3f51b5;
+  color: #fff;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin: 0;
+  padding: 10px 0;
+  border: 1px solid #3f51b5;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  text-transform: capitalize;
+  letter-spacing: 1px;
+`;
+
+const StyledTable = styled(Table)`
+  min-width: 1020px;
+`;
+
+const StyledTableWrapper = styled.div`
+  overflow-x: auto;
+`;
+
+const StyledTableCell = styled(TableCell)`
+  font-size: 16px !important;
+  text-align: left;
+`;
 
 const ORDER = {
   ASC: 'asc',
@@ -40,7 +74,7 @@ class EnhancedTable extends Component {
   };
 
   render() {
-    const { classes, allUserData } = this.props;
+    const { allUserData } = this.props;
     const { order, orderBy, rowsPerPage, page } = this.state;
 
     if (allUserData) {
@@ -48,10 +82,10 @@ class EnhancedTable extends Component {
       const emptyRows =
         rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
       return (
-        <Paper className={classes.root}>
-          <h1 className={classes.headerTitle}>History of Converting values</h1>
-          <div className={classes.tableWrapper}>
-            <Table className={classes.table} aria-labelledby="tableTitle">
+        <StyledPaper>
+          <TableTitle>History of Converting values</TableTitle>
+          <StyledTableWrapper>
+            <StyledTable aria-labelledby="tableTitle">
               <EnhancedTableHead
                 order={order}
                 orderBy={orderBy}
@@ -63,43 +97,40 @@ class EnhancedTable extends Component {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map(n => (
                     <TableRow hover key={n.id}>
-                      <TableCell
+                      <StyledTableCell
                         align="center"
                         component="th"
-                        scope="row"
-                        className={classes.remPadd}>
+                        scope="row">
                         {n.date}
-                      </TableCell>
-                      <TableCell align="center" className={classes.remPadd}>
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
                         {n.currencyFrom}
-                      </TableCell>
-                      <TableCell align="center" className={classes.remPadd}>
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
                         {n.amountFrom}
-                      </TableCell>
-                      <TableCell align="center" className={classes.remPadd}>
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
                         {n.currencyTo}
-                      </TableCell>
-                      <TableCell align="center" className={classes.remPadd}>
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
                         {n.amountTo}
-                      </TableCell>
-                      <TableCell align="center" className={classes.remPadd}>
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
                         {n.commission}
-                      </TableCell>
-                      <TableCell
-                        align="center"
-                        className={classes.remPaddRight}>
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
                         {Math.trunc(n.rate * 100) / 100}
-                      </TableCell>
+                      </StyledTableCell>
                     </TableRow>
                   ))}
                 {emptyRows > 0 && (
                   <TableRow style={{ height: 49 * emptyRows }}>
-                    <TableCell colSpan={7} />
+                    <StyledTableCell colSpan={7} />
                   </TableRow>
                 )}
               </TableBody>
-            </Table>
-          </div>
+            </StyledTable>
+          </StyledTableWrapper>
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
@@ -115,11 +146,12 @@ class EnhancedTable extends Component {
             onChangePage={this.handleChangePage}
             onChangeRowsPerPage={this.handleChangeRowsPerPage}
           />
-        </Paper>
+        </StyledPaper>
       );
     }
     return <div> You have not any transactions yet.</div>;
   }
 }
 
-export default withStyles(styles)(EnhancedTable);
+// export default withStyles(styles)(EnhancedTable);
+export default EnhancedTable;

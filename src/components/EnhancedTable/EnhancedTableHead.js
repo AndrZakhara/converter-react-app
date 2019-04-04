@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-
-import withStyles from '@material-ui/core/styles/withStyles';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Tooltip from '@material-ui/core/Tooltip';
 import TableCell from '@material-ui/core/TableCell';
+import styled from 'styled-components';
 
-import styles from './style';
-
+const HeaderCell = styled(TableCell)`
+  font-size: 18px !important;
+  font-weight: bold !important;
+`;
 const rows = [
   {
     id: 'date',
@@ -46,17 +47,16 @@ class EnhancedTableHead extends Component {
   };
 
   render() {
-    const { classes, order, orderBy } = this.props;
+    const { order, orderBy } = this.props;
 
     return (
       <TableHead>
         <TableRow>
           {rows.map(row => (
-            <TableCell
+            <HeaderCell
               key={row.id}
               align="center"
-              sortDirection={orderBy === row.id ? order : false}
-              className={classes.remPadd}>
+              sortDirection={orderBy === row.id ? order : false}>
               <Tooltip
                 title="Sort"
                 placement={row.numeric ? 'bottom-end' : 'bottom-start'}
@@ -68,7 +68,7 @@ class EnhancedTableHead extends Component {
                   {row.label}
                 </TableSortLabel>
               </Tooltip>
-            </TableCell>
+            </HeaderCell>
           ))}
         </TableRow>
       </TableHead>
@@ -76,4 +76,4 @@ class EnhancedTableHead extends Component {
   }
 }
 
-export default withStyles(styles)(EnhancedTableHead);
+export default EnhancedTableHead;
