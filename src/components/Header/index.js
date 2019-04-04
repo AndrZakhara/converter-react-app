@@ -1,88 +1,83 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Toolbar from '@material-ui/core/Toolbar';
-import AppBar from '@material-ui/core/AppBar';
 import Person from '@material-ui/icons/Person';
 import ExitToApp from '@material-ui/icons/ExitToApp';
-
 import { signOut } from 'actions';
 import { ADMIN } from 'constants/roles';
-import styles from './style';
+import {
+  StyledAppBar,
+  StyledToolbar,
+  Brand,
+  StyledLink,
+  ButtonLogo,
+  Logo,
+} from './styles';
 
-const Header = ({ classes, isLoggedIn, role, onLogOut }) => (
+const Header = ({ isLoggedIn, role, onLogOut }) => (
   <>
-    <AppBar position="static" className={classes.navbar}>
-      <Toolbar className={classes.toolbar}>
+    <StyledAppBar position="static">
+      <StyledToolbar>
         {isLoggedIn ? (
-          <div className={classes.brand}>
-            <Link to="/" className={classes.navbarA}>
-              <Button className={classes.rightButton}>
-                <Typography variant="title" className={classes.title}>
-                  LOGO
-                </Typography>
-              </Button>
-            </Link>
-          </div>
+          <Brand>
+            <StyledLink to="/">
+              <ButtonLogo>
+                <Logo variant="title">LOGO</Logo>
+              </ButtonLogo>
+            </StyledLink>
+          </Brand>
         ) : (
-          <div className={classes.brand}>
-            <Typography variant="title" className={classes.title}>
-              LOGO
-            </Typography>
-          </div>
+          <Brand>
+            <Logo variant="title">LOGO</Logo>
+          </Brand>
         )}
         {isLoggedIn ? (
           <Fragment>
             {role === ADMIN ? (
               <Fragment>
-                <Link to="/admin-panel" className={classes.navbarA}>
-                  <Button className={classes.rightButton}>
-                    <span className="text">Admin Panel</span>
-                  </Button>
-                </Link>
+                <StyledLink to="/admin-panel">
+                  <ButtonLogo>
+                    <span>Admin Panel</span>
+                  </ButtonLogo>
+                </StyledLink>
               </Fragment>
             ) : null}
-            <Link to="/converter" className={classes.navbarA}>
-              <Button className={classes.rightButton}>
-                <span className="text">Converter</span>
-              </Button>
-            </Link>
-            <Link to="/weather" className={classes.navbarA}>
-              <Button className={classes.rightButton}>
-                <span className="text">Weather</span>
-              </Button>
-            </Link>
-            <Link to="/profile" className={classes.navbarA}>
-              <Button className={classes.rightButton}>
+            <StyledLink to="/converter">
+              <ButtonLogo>
+                <span>Converter</span>
+              </ButtonLogo>
+            </StyledLink>
+            <StyledLink to="/weather">
+              <ButtonLogo>
+                <span>Weather</span>
+              </ButtonLogo>
+            </StyledLink>
+            <StyledLink to="/profile">
+              <ButtonLogo>
                 <Person />
-              </Button>
-            </Link>
-            <Button className={classes.rightButton} onClick={onLogOut}>
+              </ButtonLogo>
+            </StyledLink>
+            <ButtonLogo onClick={onLogOut}>
               <ExitToApp />
-              <span className="text">Logout</span>
-            </Button>
+              <span>Logout</span>
+            </ButtonLogo>
           </Fragment>
         ) : (
           <Fragment>
-            <Link to="/sign-in" className={classes.navbarA}>
-              <Button className={classes.rightButton}>
-                <span className="text">Sign In</span>
-              </Button>
-            </Link>
-            <Link to="/sign-up" className={classes.navbarA}>
-              <Button className={classes.rightButton}>
-                <span className="text">Sign Up</span>
-              </Button>
-            </Link>
+            <StyledLink to="/sign-in">
+              <ButtonLogo>
+                <span>Sign In</span>
+              </ButtonLogo>
+            </StyledLink>
+            <StyledLink to="/sign-up">
+              <ButtonLogo>
+                <span>Sign Up</span>
+              </ButtonLogo>
+            </StyledLink>
           </Fragment>
         )}
-      </Toolbar>
-    </AppBar>
+      </StyledToolbar>
+    </StyledAppBar>
   </>
 );
 
@@ -96,7 +91,6 @@ const mapDispatchToProps = {
 };
 
 export default compose(
-  withStyles(styles),
   connect(
     mapStateToProps,
     mapDispatchToProps,
