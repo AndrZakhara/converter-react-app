@@ -6,7 +6,8 @@ import AppBar from '@material-ui/core/AppBar';
 import styled from 'styled-components';
 
 export const StyledAppBar = styled(AppBar)`
-  width: 100%;
+  width: 100% !important;
+  background: ${props => props.theme.main} !important;
 `;
 export const StyledToolbar = styled(Toolbar)`
   display: flex;
