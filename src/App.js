@@ -5,13 +5,13 @@ import { ThemeProvider, withTheme } from 'styled-components';
 import theme from './styles';
 
 const App = () => (
-  <Fragment>
-    <ThemeProvider theme={theme}>
+  <ThemeProvider theme={theme}>
+    <Fragment>
       <Header />
-    </ThemeProvider>
-    <RootRouter />
-    <Footer />
-  </Fragment>
+      <RootRouter />
+      <Footer />
+    </Fragment>
+  </ThemeProvider>
 );
 
 export default withTheme(App);
