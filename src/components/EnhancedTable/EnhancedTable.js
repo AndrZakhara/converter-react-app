@@ -51,7 +51,7 @@ class EnhancedTable extends Component {
         rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
       return (
         <StyledPaper>
-          <TableTitle primary>History of Converting values</TableTitle>
+          <TableTitle>History of Converting values</TableTitle>
           <StyledTableWrapper>
             <StyledTable aria-labelledby="tableTitle">
               <EnhancedTableHead
