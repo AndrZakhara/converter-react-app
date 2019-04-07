@@ -1,23 +1,17 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import styles from './style';
+import { SubFooter, FooterText, Wrapper } from './styles';
 
-const Footer = ({ classes }) => {
+const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <div className="footer">
-      <Grid className={classes.subFooter}>
-        <Typography
-          className={classes.footerText}
-          variant="subheading"
-          component="span">
+    <Wrapper className="footer">
+      <SubFooter>
+        <FooterText variant="subheading" component="span">
           © {currentYear} CHISW, Inc.
-        </Typography>
-      </Grid>
-    </div>
+        </FooterText>
+      </SubFooter>
+    </Wrapper>
   );
 };
 
-export default withStyles(styles)(Footer);
+export default Footer;
