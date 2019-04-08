@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import { StandaloneSearchBox } from 'react-google-maps/lib/components/places/StandaloneSearchBox';
-import styles from './style';
+import SearchBox from './styles';
 
-const PlacesWithStandaloneSearchBox = ({ classes, loadWeather }) => {
+const PlacesWithStandaloneSearchBox = ({ loadWeather }) => {
   const onSearchBoxMounted = useRef();
 
   const onPlacesChanged = () => {
@@ -18,13 +17,9 @@ const PlacesWithStandaloneSearchBox = ({ classes, loadWeather }) => {
     <StandaloneSearchBox
       ref={onSearchBoxMounted}
       onPlacesChanged={onPlacesChanged}>
-      <input
-        type="text"
-        placeholder="Enter your location"
-        className={classes.input}
-      />
+      <SearchBox type="text" placeholder="Enter your location" />
     </StandaloneSearchBox>
   );
 };
 
-export default withStyles(styles)(PlacesWithStandaloneSearchBox);
+export default PlacesWithStandaloneSearchBox;
