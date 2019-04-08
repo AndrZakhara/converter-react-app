@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { compose } from 'recompose';
 import moment from 'moment';
-
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
-import { withStyles } from '@material-ui/core/styles';
-
 import feeConvert from 'constants/tax';
-import styles from './style';
+import {
+  StyledForm,
+  ConverterTitle,
+  Heading,
+  CurrencyLine,
+  StyledFormControl,
+  FeeWrapper,
+  TextField,
+  Select,
+  InputAmount,
+  FeeSelect,
+  BottomBtnsWrap,
+  WrapperBuyBtn,
+  BuyBtn,
+  ButtonProgress,
+} from './styles';
 
 class Currency extends Component {
   componentDidMount() {
@@ -54,22 +63,19 @@ class Currency extends Component {
   };
 
   render() {
-    const { currencies, classes, onSending, onLoad } = this.props;
-
+    const { currencies, onSending, onLoad } = this.props;
     return (
       <Fade in={!onLoad}>
-        <form
+        <StyledForm
           name="currencyForm"
-          className={classes.appContent}
           onSubmit={this.buyConcentrationCurrency}>
-          <div className={classes.converterTitle}>
-            <h2 className={classes.marginDef}>Currency Converter</h2>
-          </div>
-          <div className={classes.currencyLine}>
-            <FormControl className={classes.formControl}>
-              <p className={classes.text}>give back</p>
-              <Field
-                className={classes.select}
+          <ConverterTitle>
+            <Heading>Currency Converter</Heading>
+          </ConverterTitle>
+          <CurrencyLine>
+            <StyledFormControl>
+              <TextField>give back</TextField>
+              <Select
                 name="currencySell"
                 component="select"
                 onChange={this.buyCurrency}>
@@ -78,18 +84,17 @@ class Currency extends Component {
                     {item.ccy}
                   </option>
                 ))}
-              </Field>
-            </FormControl>
-            <Button
+              </Select>
+            </StyledFormControl>
+            <BuyBtn
               variant="contained"
               color="primary"
               onClick={this.changeCurrencies}>
               &#8660;
-            </Button>
-            <FormControl className={classes.formControl}>
-              <p className={classes.text}>we get</p>
-              <Field
-                className={classes.select}
+            </BuyBtn>
+            <StyledFormControl>
+              <TextField>we get</TextField>
+              <Select
                 name="currencyBuy"
                 component="select"
                 onChange={this.buyCurrency}>
@@ -98,12 +103,11 @@ class Currency extends Component {
                     {item.ccy}
                   </option>
                 ))}
-              </Field>
-            </FormControl>
-          </div>
-          <div className={classes.currencyLine}>
-            <Field
-              className={classes.inputAmount}
+              </Select>
+            </StyledFormControl>
+          </CurrencyLine>
+          <CurrencyLine>
+            <InputAmount
               name="amountSell"
               parse={value => Number(value)}
               component="input"
@@ -112,8 +116,7 @@ class Currency extends Component {
               min="0"
               onKeyUp={this.buyCurrency}
             />
-            <Field
-              className={classes.inputAmount}
+            <InputAmount
               name="amountBuy"
               parse={value => Number(value)}
               component="input"
@@ -121,12 +124,11 @@ class Currency extends Component {
               label="How much will we get"
               readOnly
             />
-          </div>
-          <div className={classes.bottomBtnsWrap}>
-            <FormControl className={classes.feeWrapper}>
-              <p className={classes.text}>Fee </p>
-              <Field
-                className={classes.feeSelect}
+          </CurrencyLine>
+          <BottomBtnsWrap>
+            <FeeWrapper>
+              <TextField>Fee </TextField>
+              <FeeSelect
                 name="fee"
                 component="select"
                 onChange={this.buyCurrency}>
@@ -135,25 +137,22 @@ class Currency extends Component {
                     {item}
                   </option>
                 ))}
-              </Field>
-              <p className={classes.text}> %</p>
-            </FormControl>
-          </div>
-          <div className={classes.wrapperbuyBtn}>
-            <Button
+              </FeeSelect>
+              <TextField> %</TextField>
+            </FeeWrapper>
+          </BottomBtnsWrap>
+          <WrapperBuyBtn>
+            <BuyBtn
               variant="contained"
               color="primary"
-              className={classes.buyBtn}
               type="submit"
               disabled={onSending}
               onClick={this.handleButtonClick}>
               Buy
-            </Button>
-            {onSending && (
-              <CircularProgress size={24} className={classes.buttonProgress} />
-            )}
-          </div>
-        </form>
+            </BuyBtn>
+            {onSending && <ButtonProgress size={24} />}
+          </WrapperBuyBtn>
+        </StyledForm>
       </Fade>
     );
   }
@@ -171,7 +170,4 @@ const withForm = reduxForm({
   },
 });
 
-export default compose(
-  withForm,
-  withStyles(styles),
-)(Currency);
+export default compose(withForm)(Currency);
