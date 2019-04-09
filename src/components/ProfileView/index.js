@@ -1,31 +1,22 @@
 import React from 'react';
 import { func } from 'prop-types';
-
-import uploadImage from 'components/UploadImage/index';
-
 import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import IconButton from '@material-ui/core/IconButton';
-import CardMedia from '@material-ui/core/CardMedia';
-
 import EditIcon from '@material-ui/icons/Edit';
 import { userType } from 'types';
 
-import styles from './styles';
+import { Container, Media, СardWrapper, Header, StyledIcon } from './styles';
 
-const CardMediaWithUpload = uploadImage()(CardMedia);
-
-const ProfileView = ({ user, classes, toggle }) => (
-  <div className={classes.container}>
-    <div className={classes.header}>
+const ProfileView = ({ user, toggle }) => (
+  <Container>
+    <Header>
       <Typography variant="display1">Profile</Typography>
-      <IconButton onClick={toggle} color="primary">
+      <StyledIcon onClick={toggle}>
         <EditIcon />
-      </IconButton>
-    </div>
-    <Card className={classes.cardWrapper}>
+      </StyledIcon>
+    </Header>
+    {/* eslint-disable-next-line  */}
+    <СardWrapper>
       <CardContent>
         <Typography variant="headline">{user.firstName}</Typography>
         <Typography variant="headline">{user.lastName}</Typography>
@@ -35,9 +26,9 @@ const ProfileView = ({ user, classes, toggle }) => (
         </Typography>
         <Typography variant="subheading">{user.role}</Typography>
       </CardContent>
-      <CardMediaWithUpload className={classes.media} image={user.ava} />
-    </Card>
-  </div>
+      <Media image={user.ava} />
+    </СardWrapper>
+  </Container>
 );
 
 ProfileView.propTypes = {
@@ -45,4 +36,4 @@ ProfileView.propTypes = {
   toggle: func.isRequired,
 };
 
-export default withStyles(styles)(ProfileView);
+export default ProfileView;
