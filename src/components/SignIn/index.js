@@ -1,68 +1,55 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { compose } from 'recompose';
 import { Redirect } from 'react-router-dom';
-
-import withStyles from '@material-ui/core/styles/withStyles';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 import MailIcon from '@material-ui/icons/Mail';
 import Security from '@material-ui/icons/Security';
-
 import Input from 'components/Input';
 import { validateEmail, passwordLength } from 'utils/validate';
-import styles from './style';
+import {
+  FormContainer,
+  LoginTitle,
+  StyledPaper,
+  TextField,
+  ErrorMsg,
+  SubmitBtn,
+} from './style';
 
-const SignInForm = ({
-  classes,
-  onSubmit,
-  errorMsg,
-  handleSubmit,
-  isLoggedIn,
-}) => {
+const SignInForm = ({ onSubmit, errorMsg, handleSubmit, isLoggedIn }) => {
   if (isLoggedIn) {
     return <Redirect to="/" />;
   }
 
   return (
-    <div className={classes.formContainer}>
-      <div className={classes.loginTitle}>Sign In</div>
-      <Paper className={classes.form}>
+    <FormContainer>
+      <LoginTitle>Sign In</LoginTitle>
+      <StyledPaper>
         <form noValidate onSubmit={handleSubmit(onSubmit)}>
-          <Field
+          <TextField
             label="Email"
             name="email"
             type="email"
-            className={classes.textField}
             Icon={MailIcon}
             component={Input}
             validate={validateEmail}
           />
 
-          <Field
+          <TextField
             label="Password"
             name="password"
             type="password"
-            className={classes.textField}
             component={Input}
             Icon={Security}
             validate={passwordLength}
           />
-          <div className={classes.errorMsg}>{errorMsg && errorMsg.message}</div>
-          <Button
-            type="submit"
-            className={classes.submitBtn}
-            variant="contained"
-            color="primary">
+          <ErrorMsg>{errorMsg && errorMsg.message}</ErrorMsg>
+          <SubmitBtn type="submit" variant="contained" color="primary">
             Log In
-          </Button>
+          </SubmitBtn>
         </form>
-      </Paper>
-    </div>
+      </StyledPaper>
+    </FormContainer>
   );
 };
 
-export default compose(
-  reduxForm({ form: 'signIn' }),
-  withStyles(styles),
-)(SignInForm);
+export default compose(reduxForm({ form: 'signIn' }))(SignInForm);
