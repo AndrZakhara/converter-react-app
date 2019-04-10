@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-
-import { func, shape, string } from 'prop-types';
+import { func } from 'prop-types';
 import { userType, usersFilteredType } from 'types';
-
-import withStyles from '@material-ui/core/styles/withStyles';
-
-import { UserList, UserInfo, Modal } from 'components';
+import { UserInfo, Modal } from 'components';
 import {
   getAllUsers as getAllUsersAction,
   setSelectedUser as setSelectedUserAction,
@@ -15,7 +11,12 @@ import {
   closeModal as closeModalAction,
   openModal as openModalAction,
 } from 'actions';
-import styles from './style';
+import {
+  Wrapper,
+  LeftSactionWrapper,
+  InfoHeader,
+  SectionWrapper,
+} from './style';
 import getFilteredUserList from './selectors';
 
 class Admin extends Component {
@@ -26,7 +27,6 @@ class Admin extends Component {
 
   render() {
     const {
-      classes,
       selectedUser,
       userListFiltered,
       setSelectedUser,
@@ -37,22 +37,21 @@ class Admin extends Component {
     } = this.props;
 
     return (
-      <div className={classes.wrapper}>
-        <UserList
-          className={classes.leftSactionWrapper}
+      <Wrapper>
+        <LeftSactionWrapper
           userListFiltered={userListFiltered}
           setSelectedUser={setSelectedUser}
           setFilter={setFilter}
         />
-        <div className={classes.sectionWrapper}>
+        <SectionWrapper>
           {selectedUser ? (
             <UserInfo openModal={openModal} selectedUser={selectedUser} />
           ) : (
-            <h2 className={classes.infoHeader}>Any user selected.</h2>
+            <InfoHeader>Any user selected.</InfoHeader>
           )}
-        </div>
+        </SectionWrapper>
         <Modal isOpen={isModalOpen} closeModal={closeModal} />
-      </div>
+      </Wrapper>
     );
   }
 }
@@ -63,10 +62,6 @@ Admin.propTypes = {
   setFilter: func.isRequired,
   selectedUser: userType,
   userListFiltered: usersFilteredType,
-  classes: shape({
-    wrapper: string.isRequired,
-    infoHeader: string.isRequired,
-  }).isRequired,
 };
 
 Admin.defaultProps = {
@@ -91,7 +86,6 @@ const mapDispatchToProps = {
 };
 
 export default compose(
-  withStyles(styles),
   connect(
     mapStateToProps,
     mapDispatchToProps,
