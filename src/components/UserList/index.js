@@ -1,32 +1,23 @@
 import React from 'react';
 import { func } from 'prop-types';
 import { usersFilteredType } from 'types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import List from '@material-ui/core/List';
-import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import { UserListItem } from 'components';
-import styles from './style';
+import { StyledList, SearchWrapper, StyledInput, ListWrapper } from './style';
 
-const UserList = ({
-  userListFiltered,
-  classes,
-  setSelectedUser,
-  setFilter,
-}) => (
-  <List component="nav" className={classes.root}>
-    <div className={classes.searchWrapper}>
-      <InputBase
-        className={classes.input}
+const UserList = ({ userListFiltered, setSelectedUser, setFilter }) => (
+  <StyledList component="nav">
+    <SearchWrapper>
+      <StyledInput
         placeholder="Search user"
         onChange={e => setFilter(e.target.value)}
       />
       <Button disabled aria-label="Search">
         <SearchIcon />
       </Button>
-    </div>
-    <div className={classes.listWrapper}>
+    </SearchWrapper>
+    <ListWrapper>
       {userListFiltered &&
         userListFiltered.map(item => (
           <UserListItem
@@ -35,8 +26,8 @@ const UserList = ({
             handleClickUser={setSelectedUser}
           />
         ))}
-    </div>
-  </List>
+    </ListWrapper>
+  </StyledList>
 );
 
 UserList.propTypes = {
@@ -49,4 +40,4 @@ UserList.defaultProps = {
   userListFiltered: null,
 };
 
-export default withStyles(styles)(UserList);
+export default UserList;
