@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import withStyles from '@material-ui/core/styles/withStyles';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
 import { updateProfile } from 'actions';
 import { ProfileEdit, ProfileView } from 'components';
-import styles from './styles';
+import { Сontainer, Loader } from './styles';
 
 class Profile extends Component {
   state = {
@@ -24,15 +20,17 @@ class Profile extends Component {
   };
 
   render() {
-    const { user, classes } = this.props;
+    const { user } = this.props;
     const { editing } = this.state;
 
     if (!user) {
       // TODO "NO RESPONSE" FUNCTIONAL
-      return <CircularProgress className={classes.loader} />;
+
+      // eslint-disable-next-line react/jsx-pascal-case
+      return <Сontainer />;
     }
     return (
-      <div className={classes.container}>
+      <Loader>
         {editing ? (
           <ProfileEdit
             toggle={this.toggleEditing}
@@ -42,7 +40,7 @@ class Profile extends Component {
         ) : (
           <ProfileView user={user} toggle={this.toggleEditing} />
         )}
-      </div>
+      </Loader>
     );
   }
 }
@@ -58,4 +56,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyles(styles)(Profile));
+)(Profile);
