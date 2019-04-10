@@ -46,4 +46,5 @@ export const ButtonWrapper = styled.div`
 
 export const StyledButton = styled(Button)`
   margin: 0 5px 5px 5px !important;
+  background: ${props => props.theme.main} !important;
 `;
