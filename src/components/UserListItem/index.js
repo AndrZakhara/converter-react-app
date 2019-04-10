@@ -1,32 +1,25 @@
 import React from 'react';
 import { func } from 'prop-types';
 import { userType } from 'types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
-import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import styles from './style';
+import { StyledList, StyledListText } from './style';
 
 const UserListItem = props => {
-  const { classes, user, handleClickUser } = props;
+  const { user, handleClickUser } = props;
   const { firstName, lastName, ava, email } = user;
   return (
-    <ListItem
-      button
-      className={classes.itemListPadding}
-      onClick={() => handleClickUser(user)}>
+    <StyledList button onClick={() => handleClickUser(user)}>
       <ListItemIcon>
         <Avatar src={ava} alt="avatar" />
       </ListItemIcon>
-      <ListItemText
-        className={classes.itemListText}
+      <StyledListText
         primary={
           firstName || lastName ? `${firstName} ${lastName}` : 'Unknown User'
         }
         secondary={`email: ${email || ' - '}`}
       />
-    </ListItem>
+    </StyledList>
   );
 };
 
@@ -35,4 +28,4 @@ UserListItem.propTypes = {
   handleClickUser: func.isRequired,
 };
 
-export default withStyles(styles)(UserListItem);
+export default UserListItem;
