@@ -1,18 +1,16 @@
 import React from 'react';
-import { Card, withStyles } from '@material-ui/core';
-import CardMedia from '@material-ui/core/CardMedia';
-
 import image from 'assets/images/404_image.gif';
-import styles from './styles';
+import { Сontainer, Media, MediaTitle, MediaTitleMain } from './styles';
 
-const PageNotFound = ({ classes }) => (
-  <Card className={classes.container}>
-    <CardMedia className={classes.media} image={image} />
-    <div className={classes.mediaTitle}>
-      <h2 className={classes.mediaTitleMain}>404</h2>
+const PageNotFound = () => (
+  // eslint-disable-next-line react/jsx-pascal-case
+  <Сontainer>
+    <Media image={image} />
+    <MediaTitle>
+      <MediaTitleMain>404</MediaTitleMain>
       <p>Ooops, the page you are looking for does not exist.</p>
-    </div>
-  </Card>
+    </MediaTitle>
+  </Сontainer>
 );
 
-export default withStyles(styles)(PageNotFound);
+export default PageNotFound;
